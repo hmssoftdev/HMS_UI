@@ -126,23 +126,23 @@
             <div class="p-card-subtitle">Enter bank details</div>
             <div class="p-fluid p-formgrid p-grid" ngModelGroup="bankDetails" #bDetails="ngModelGroup">
                 <div class="p-field p-col-3">
-                    <label for="accountName"><b>Account Name</b></label>
-                    <input id="accountName" name="accountName" class="p-inputtext-sm" #accName="ngModel" [(ngModel)]="admin.accountName" placeholder="Account Name" pInputText />
+                    <label for="acctName"><b>Account Name</b></label>
+                    <input id="accName" name="accName" class="p-inputtext-sm" #accName="ngModel" [(ngModel)]="admin.accountName" placeholder="Account Name" pInputText />
                     <!-- <div *ngIf="accName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="accName.errors.required">Account Name is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">
-                    <label for="accountNumber"><b>Account Number</b></label>
-                    <input type="text" id="accountNumber" pInputText #accNum="ngModel" name="accountNumber" class="p-inputtext-sm" [(ngModel)]="admin.accountNumber" placeholder="Account Number">
+                    <label for="accNumber"><b>Account Number</b></label>
+                    <input type="text" id="accNumber" pInputText #accNum="ngModel" name="accNumber" class="p-inputtext-sm" [(ngModel)]="admin.accountNumber" placeholder="Account Number">
                     <!-- <div *ngIf="accNum.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="accNum.errors.required">Account Number is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-2">
-                    <label for="bankName"><b>Bank Name</b></label>
-                    <input type="text" id="bankName" name="bankName" class="p-inputtext-sm" #bankName="ngModel" [(ngModel)]="admin.bankName" placeholder="Bank Name" pInputText />
+                    <label for="bankname"><b>Bank Name</b></label>
+                    <input type="text" id="bankname" name="bankname" class="p-inputtext-sm" #bankName="ngModel" [(ngModel)]="admin.bankName" placeholder="Bank Name" pInputText />
                     <!-- <div *ngIf="bankName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="bankName.errors.required">Business category is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">
-                    <label for="ifscCode"><b>IFCS Code</b></label>
-                    <input type="text" id="ifscCode" name="ifscCode" #ifcsCode="ngModel" class="p-inputtext-sm" [(ngModel)]="admin.ifscCode" placeholder="IFCS Code" pInputText />
+                    <label for="ifsccode"><b>IFCS Code</b></label>
+                    <input type="text" id="ifsccode" name="ifsccode" #ifcsCode="ngModel" class="p-inputtext-sm" [(ngModel)]="admin.ifscCode" placeholder="IFCS Code" pInputText />
                     <!-- <div *ngIf="ifscCode.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="ifscCode.errors.required">IFSC code is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">

@@ -1,0 +1,32 @@
+.headerWrap{
+    background-color: #222b94;
+}
+.profilWrap{
+    position: relative;
+    .dropdownMenu{
+        .dropdownHeader{
+            padding: 8px 20px;
+    background: #e4e7ea;
+    border-bottom: 1px solid #c8ced3;
+        }
+        position: absolute;
+        color:#fff;
+        text-align: left;
+        list-style: none;
+        display: block;
+        width: 100%;
+        padding: .25rem 1.5rem;
+        clear: both;
+        font-weight: 400;
+        color: #23282c;
+        text-align: inherit;
+        white-space: nowrap;
+        background-color: transparent;
+        border: 0;
+        li{ 
+            position: relative;
+    padding: 10px 20px;
+    border-bottom: 1px solid #c8ced3;
+        }
+    }
+}

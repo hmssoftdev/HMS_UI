@@ -1,5 +1,25 @@
+<<<<<<< HEAD
 <div class="" *ngIf="admin">
     <table class="tblInvoice">
+=======
+<div class="" *ngIf="adminData">
+   <table class="tblInvoice">
+    <tr><td> 
+            <div class="p-col p-py-0"><strong>Name: </strong>{{adminData.businessName}}</div>
+            <div class="p-col p-py-0"><strong>Address: </strong>{{adminData.address}}</div>
+            <div class="p-col p-py-0"><strong>State: </strong>{{adminData.state}}</div>
+            <div class="p-col p-py-0"><strong>GSTIN No./PAN No: </strong>{{adminData.gst}}</div>
+ 
+    </td> <td>
+        <img [src]="adminData.restaurentLogo" [alt]="adminData.restaurentLogo" width="120" class="resLogo">
+        <div class="p-col p-py-0"><strong>GSTIN: </strong>{{adminData.state}}</div>
+        <div class="p-col p-py-0"><strong>Voucher No: </strong>{{adminData.state}}</div>
+        <div class="p-col p-py-0"><strong>Date: </strong></div> 
+    </td></tr>
+</table>
+<table class="tblInvoice">
+    <thead>
+>>>>>>> 13cf286d2368caf2bf6152e95a216278d8397740
         <tr>
             <td>
                 <div class="p-col p-py-0"><strong>Name: </strong>{{admin.businessName}}</div>
@@ -93,6 +113,7 @@
             This is an electronically generated purchase bill
             <strong>E & O.E.</strong>
 
+<<<<<<< HEAD
         </div>
         <div class="p-col-3 text-right p-text-bold smTxt">
             For, XYZ <br>
@@ -100,3 +121,12 @@
         </div>
     </div>
 </div>
+=======
+     </div>
+     <div class="p-col-3 text-right p-text-bold smTxt">
+         For, XYZ <br>
+         <img [src]="adminData.signature" width="100" [alt]="adminData.businessName">
+     </div>
+</div>
+</div>
+>>>>>>> 13cf286d2368caf2bf6152e95a216278d8397740

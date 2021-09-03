@@ -1,0 +1,28 @@
+.billing-separator{
+    border-bottom:1px dotted #dcdcdc;
+    // margin:10px 0;
+}
+.billingIcnsWrap{
+    border-radius: 50%;
+    height: 2.357em;
+    width: 2.357rem;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: #6c757d;
+    border: 1px solid #6c757d;
+    ::after{content: "";border-top: 1px solid #6c757d;width: 2.05rem;position: absolute;top: 5px;left:60%}
+    position: relative;
+
+}
+.billingIcnsWrap.active{
+    color: #ffffff;
+    background: #28a745;
+    border: 1px solid #28a745;
+    ::after{
+        content:"";
+        border-color: #28a745;
+    }
+}

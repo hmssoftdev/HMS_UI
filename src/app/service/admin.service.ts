@@ -66,7 +66,7 @@ export class AdminService {
     );
   }
   getAdmin(): Observable<Admin[]> {
-    return this.httpClient.get<Admin[]>(`${this.url}/GetById/${this.userData.adminId}`).pipe(
+    return this.httpClient.get<Admin[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
       map(x => {
         this.clientList = x;
         return this.clientList;

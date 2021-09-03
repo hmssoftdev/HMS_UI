@@ -11,12 +11,8 @@ import { CartService } from '../../service/cart.service';
 })
 export class InvoiceComponent implements OnInit {
   @Input() adminData: Admin
-  public cartItems: ShoppingCart;
-
-  admin: Admin;
-    constructor( public adminService: AdminService,private cartService: CartService) { }
-  
-
+  public cartItems: ShoppingCart; 
+  constructor( public adminService: AdminService,private cartService: CartService) { }
   ngOnInit(): void {
     this.cartService.get().subscribe(resp=> this.cartItems = resp);
     console.log(this.cartItems.grossTotal);

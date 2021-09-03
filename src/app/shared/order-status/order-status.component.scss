@@ -1,0 +1,22 @@
+.custom-marker{
+    border-radius: 50%;
+    height: 2.357em;
+    width: 2.357rem;
+    padding: 0.5rem 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffffff;
+    background: #6c757d;
+    border: 1px solid #6c757d;
+}
+.custom-marker.status-completed{
+    color: #ffffff;
+    background: #28a745;
+    border: 1px solid #28a745; 
+}
+.custom-marker.status-running{
+    color: #ffffff;
+    background: #FF9800;
+    border: 1px solid #FF9800; 
+}

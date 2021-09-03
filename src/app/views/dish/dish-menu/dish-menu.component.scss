@@ -231,3 +231,13 @@
 .visibility div {
     display: none;
 }
+
+.p-inputswitch .p-inputswitch-slider{
+    background: #D32F2F;
+    transition: background-color 0.2s, color 0.2s, border-color 0.2s, box-shadow 0.2s;
+   // border-radius: 30px;
+  }
+   
+  .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider{
+      background:#689F38;
+  }

@@ -5,7 +5,7 @@ export class ApiConfig {
     public static URL ="http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/";// environment.apiURL //'http://localhost:8000/'
     public static DISH = 'Dish';
     public static DISHCATEGORY = 'DishCategory';
-    public static CLIENT = 'admin';
+    public static CLIENT = 'Admin';
     public static CLIENTCATEGORY = 'BusinessCategory';
     public static BANKDETAILS = 'bankDetails';
     public static ENDUSER = 'endUser';

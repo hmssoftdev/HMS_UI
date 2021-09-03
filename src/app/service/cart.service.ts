@@ -34,20 +34,23 @@ public get(): Observable<ShoppingCart> {
 }
 
 public addItem(product: any, quantity: number, gstCompliance?:number): void {
+  console.log(product);
 
   const cart = this.retrieve();
   const prodId = product.id ? product.id : product.productId;
-  let item = cart.items.find((p) => p.productId == prodId);
+  const qStatus = product.isFullIsHalf ? product.isFullIsHalf : product.isFullIsHalf;
+  let item = cart.items.find((p) => p.productId == prodId && p.isFullIsHalf === qStatus);
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
   if (item === undefined) {
     item = new CartItem();
     item.productId = product.id;
     item.name = product.name;
-    item.price = product.price ? product.price : product.fullPrice ;
+    item.price = product.isFullIsHalf ? product.fullPrice : product.halfPrice ;
     item.description = product.description;
     item.image= product.imageUrl ? product.imageUrl : './assets/img/dishes/img-menu-placeholder.jpg';
     item.gstCompliance = gstCompliance || 0;
     item.gstPrice = item.price * item.gstCompliance / 100;
+    item.isFullIsHalf = product.isFullIsHalf;
     cart.items.push(item);
   }
 

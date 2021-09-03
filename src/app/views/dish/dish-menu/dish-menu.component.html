@@ -1,16 +1,19 @@
 <div class="card">
     <div class="p-grid">
         <div class="p-col-9">
-            <p-dataView #dv [value]="dishes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField" [sortOrder]="sortOrder" layout="list">
+            <p-dataView #dv [value]="dishes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+                [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
                     <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price" (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
+                            (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
                         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                             <i class="pi pi-search"></i>
                             <input type="search" pInputText placeholder="Search by Name"
                                 (input)="dv.filter($event.target.value)">
                         </span>
-                        <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category" (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                        <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
+                            (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
 
                         <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                     </div>
@@ -20,14 +23,17 @@
                         <div class="product-list-item">
                             <div class="imgWrap">
                                 <img [src]="dish.imageUrl" alt="{{dish.name}}">
-                                <span class="icnBookmark" (click)="fnBookmarkMenu(dish)" [ngClass]="{'bMarked':dish.bookmark}"><i class="pi pi-bookmark"></i></span>
+                                <span class="icnBookmark" (click)="fnBookmarkMenu(dish)"
+                                    [ngClass]="{'bMarked':dish.bookmark}"><i class="pi pi-bookmark"></i></span>
                                 <div class="mAvailibility" [ngClass]="dish.statuses === 'active' ? '': 'unavailable'">
-                                    <span>{{dish.statuses === 'active' ? 'Available':'Unavailable'}}</span></div>
+                                    <span>{{dish.statuses === 'active' ? 'Available':'Unavailable'}}</span>
+                                </div>
                             </div>
 
                             <div class="product-list-detail">
 
-                                <div class="product-name"><span class="vegSymbol p-mr-1" [ngClass]="dish.isVeg ? 'txtSuccess':'txtDanger'"> <i
+                                <div class="product-name"><span class="vegSymbol p-mr-1"
+                                        [ngClass]="dish.isVeg ? 'txtSuccess':'txtDanger'"> <i
                                             class="pi pi-circle-on"></i></span>{{dish.name}}</div>
                                 <div class="product-description">{{dish.description}}</div>
                                 <!-- <p-rating [ngModel]="dish.rating" [readonly]="true" [cancel]="false"></p-rating> -->
@@ -36,11 +42,23 @@
                                     </p-tag>
                                     <span class="voteTxt">{{dish.rating ? 1 : 0}} votes</span>
                                 </div>
-                                <i class="pi pi-tag product-category-icon"></i><span class="product-category">{{dish.categories}}</span>
+                                <i class="pi pi-tag product-category-icon"></i><span
+                                    class="product-category">{{dish.categories}}</span>
                             </div>
                             <div class="product-list-action">
-                                <span class="product-price">{{dish.fullPrice | currency:'INR'}}</span>
-                                <p-button icon="pi pi-shopping-cart" styleClass="p-button-sm" label="Add to Cart" (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"></p-button>
+                                <span class="product-price">{{(dish.isFullIsHalf ? dish.fullPrice : dish.halfPrice )|
+                                    currency:'INR'}}</span>
+                                <div class="p-field">
+                                    <div class="p-formgroup-inline">
+                                        <label for="isFullIsHalfStatus">Half </label>
+                                        <p-inputSwitch [(ngModel)]="dish.isFullIsHalf" name="isFullIsHalfStatus"
+                                            class="p-mx-2">
+                                        </p-inputSwitch>
+                                        <label for="isFullIsHalfStatus">Full</label>
+                                    </div>
+                                </div>
+                                <p-button icon="pi pi-shopping-cart" styleClass="p-button-sm" label="Add to Cart"
+                                    (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"></p-button>
                                 <div class="timeTxt"><i class="pi pi-clock p-mr-1"></i> {{dish.timeForCook}} mins</div>
 
                             </div>
@@ -61,11 +79,14 @@
                             <div class="product-grid-item-content">
                                 <div class="p-mb-2 imgWrap">
                                     <img [src]="dish.imageUrl" alt="{{dish.name}}">
-                                    <span class="icnBookmark" (click)="fnBookmarkMenu(dish)" [ngClass]="{'bMarked':dish.bookmark}"><i class="pi pi-bookmark"></i></span>
-                                    <div class="mAvailibility" [ngClass]="dish.statuses === 'active' ? '': 'unavailable'"><span>{{dish.statuses
+                                    <span class="icnBookmark" (click)="fnBookmarkMenu(dish)"
+                                        [ngClass]="{'bMarked':dish.bookmark}"><i class="pi pi-bookmark"></i></span>
+                                    <div class="mAvailibility"
+                                        [ngClass]="dish.statuses === 'active' ? '': 'unavailable'"><span>{{dish.statuses
                                             === 'active' ? 'Available':'Unavailable'}}</span></div>
                                 </div>
-                                <div class="product-name"><span class="vegSymbol p-mr-1" [ngClass]="dish.isVeg ? 'txtSuccess':'txtDanger'"> <i
+                                <div class="product-name"><span class="vegSymbol p-mr-1"
+                                        [ngClass]="dish.isVeg ? 'txtSuccess':'txtDanger'"> <i
                                             class="pi pi-circle-on"></i></span>{{dish.name}}</div>
                                 <div class="product-description">{{dish.description}}</div>
                                 <!-- <p-rating [ngModel]="dish.rating" [readonly]="true" [cancel]="false"></p-rating> -->
@@ -77,7 +98,20 @@
                             </div>
                             <div class="product-grid-item-bottom">
                                 <span class="product-price">{{dish.fullPrice | currency:'INR'}}</span>
-                                <p-button styleClass="p-button-sm" icon="pi pi-shopping-cart" (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'" pTooltip="Bookmark Dish" tooltipPosition="bottom"></p-button>
+
+                                <p-button styleClass="p-button-sm" icon="pi pi-shopping-cart"
+                                    (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                                    pTooltip="Bookmark Dish" tooltipPosition="bottom"></p-button>
+                            </div>
+                            <div class="p-field
+                            ">
+                                <div class="p-formgroup-inline">
+                                    <label for="isFullIsHalfStatus">Half </label>
+                                    <p-inputSwitch [(ngModel)]="dish.isFullIsHalf" name="isFullIsHalfStatus"
+                                        class="p-mx-2">
+                                    </p-inputSwitch>
+                                    <label for="isFullIsHalfStatus">Full</label>
+                                </div>
                             </div>
                         </div>
                     </div>
@@ -93,12 +127,14 @@
                 <div class="p-d-flex p-ai-center pborder">
                     <!-- <label for="userName">User Name:</label> -->
                     <span *ngIf="userData.userType === 3">{{userData.username}}</span>
-                    <p-dropdown *ngIf="userData.userType === 1 || userData.userType === 2" class="p-mr-4 p-inputtext-sm" id="userName"
-                        [options]="user" [(ngModel)]="selectedUser" placeholder="Search for Number" optionLabel="label"
-                        optionValue="value" [showClear]="true" [filter]="true" filterBy="label"></p-dropdown>
-                    <button *ngIf="userData.userType === 1 || userData.userType === 2" pButton pRipple label="" icon="pi pi-plus"
-                        class="p-button-success p-mr-2 p-button-sm my-2" pTooltip="Add new user" (click)="openNew()"></button>
-                </div> 
+                    <p-dropdown (onChange)="newMessage()" *ngIf="userData.userType === 1 || userData.userType === 2"
+                        class="p-mr-4 p-inputtext-sm" id="userName" [options]="user" [(ngModel)]="selectedUser"
+                        placeholder="Search for Number" optionLabel="label" optionValue="value" [filter]="true"
+                        [showClear]="true" filterBy="label"></p-dropdown>
+                    <button (click)="sendToDish()" *ngIf="userData.userType === 1 || userData.userType === 2" pButton
+                        pRipple label="" icon="pi pi-plus" class="p-button-success p-mr-2 p-button-sm my-2"
+                        pTooltip="Add new user" (click)="openNew()"></button>
+                </div>
                 <app-card-details (fnBillingModal)="fnMakePayment()"></app-card-details>
             </div>
         </div>
@@ -111,7 +147,11 @@
     <app-user-form [user]="user" *ngIf="userDialog"></app-user-form>
 </p-dialog>
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
-    header="Billing Details" [maximizable]="true" [resizable]="true">
+    header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <app-invoice *ngIf="billingDialog" [adminData]="admin"></app-invoice>
-    <app-billing *ngIf="billingDialog" [adminData]="admin"></app-billing>
+    <app-billing *ngIf="billingDialog" [adminData]="admin">
+        </app-billing>
+</p-dialog>
+<p-dialog>
+<app-billing *ngIf="billingDialog" [adminData]="admin"></app-billing>
 </p-dialog>

@@ -1,4 +1,4 @@
-<app-header *ngIf="authService.loggedIn()" [navbarBrandRouterLink]="['/dashboard']" 
+<!-- <app-header *ngIf="authService.loggedIn()" [navbarBrandRouterLink]="['/dashboard']" 
 [fixed]="true" [navbarBrandFull]="{src: 'assets/img/brand/logo.jpg', width: 60,  alt: 'FY 5 Logo'}" 
 [navbarBrandMinimized]="{src: 'assets/img/brand/sygnet.svg', width: 30, height: 30, alt: 'FY 5 Logo'}"
     [sidebarToggler]="'lg'">
@@ -30,12 +30,16 @@
             </div>
         </li>
     </ul>
-</app-header>
+</app-header>  -->
+
+<!-- <app-header-new></app-header-new> -->
 <div class="app-body">
+    
     <app-sidebar #appSidebar *ngIf="authService.loggedIn()" [fixed]="true" [display]="'lg'" [minimized]="sidebarMinimized" (minimizedChange)="toggleMinimize($event)">
         <app-sidebar-nav *ngIf="authService.loggedIn()" [navItems]="navItems" [perfectScrollbar] [disabled]="appSidebar.minimized"></app-sidebar-nav>
         <app-sidebar-minimizer></app-sidebar-minimizer>
     </app-sidebar>
+    <!-- <app-sidebar-new></app-sidebar-new> -->
     <!-- Main content -->
     <main class="main">
         <!-- Breadcrumb -->

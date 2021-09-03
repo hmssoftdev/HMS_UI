@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'; 
 import { ModalDirective } from 'ngx-bootstrap/modal'; 
-import { Admin, Bankdetails } from '../../models/admin';
+import { Admin } from '../../models/admin';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonService } from '../../service/common.service';
 import { AdminService } from '../../service/admin.service';
@@ -29,11 +29,15 @@ export class HotelAdminComponent implements OnInit {
     private confirmationService: ConfirmationService
   ) {
     this.admin = new Admin();
-    this.admin.bankDetails = new Bankdetails();
+    // this.admin.bankDetails = new Bankdetails();
    }
    categories:any;
    isEdit: boolean;
   ngOnInit(): void {
+    this.admin.id = 0;
+    this.admin.subscriptionStatus = 2;
+    this.admin.startDate = new Date().toLocaleDateString();
+    this.admin.endDAte = new Date('02-10-2021').toLocaleDateString();
     this.loadClient();
     this.getClientCategory();
     this.fnGetCitiesList();
@@ -57,11 +61,10 @@ export class HotelAdminComponent implements OnInit {
   }
 
   loadClient(){
-    this.adminService.getClientList().subscribe(resp => {
+    this.adminService.getAdmin().subscribe(resp => {
       if(resp.length > 0){  
        const adminItm = resp.find(x => x.id == x.id);
-       this.admin = adminItm;
-       
+       this.admin = adminItm;    
       }
     });
   }

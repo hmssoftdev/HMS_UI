@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core'; 
 import { ModalDirective } from 'ngx-bootstrap/modal'; 
-import { Admin, Bankdetails } from '../../models/admin';
+import { Admin } from '../../models/admin';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { CommonService } from '../../service/common.service';
 import { AdminService } from '../../service/admin.service';
@@ -29,7 +29,7 @@ export class AdminSettingComponent implements OnInit {
     private confirmationService: ConfirmationService
     ) { 
     this.admin = new Admin();
-    this.admin.bankDetails = new Bankdetails();
+    // this.admin.bankDetails = new Bankdetails();
    }
   
   categories:any;
@@ -167,7 +167,6 @@ export class AdminSettingComponent implements OnInit {
       }
     });
   }
-
   fnGetCitiesList(){
     this.commonService.getCities().subscribe(x => {
       this.cities = x.map(cItem => {

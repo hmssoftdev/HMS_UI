@@ -38,8 +38,12 @@ import {RippleModule} from 'primeng/ripple';
 import {DataViewModule} from 'primeng/dataview';
 import {AvatarModule} from 'primeng/avatar';
 import {TabViewModule} from 'primeng/tabview';
+import { TimelineModule } from "primeng/timeline";
+import { OrderStatusComponent } from './order-status/order-status.component';
 @NgModule({
-  declarations: [],
+  declarations: [
+    OrderStatusComponent
+  ],
   imports: [
     CommonModule,
     FormsModule,
@@ -79,7 +83,8 @@ import {TabViewModule} from 'primeng/tabview';
     RippleModule,
     DataViewModule,
     AvatarModule,
-    TabViewModule
+    TabViewModule,
+    TimelineModule
   ],
   exports:[
     CommonModule,
@@ -118,7 +123,9 @@ import {TabViewModule} from 'primeng/tabview';
     RippleModule,
     DataViewModule,
     AvatarModule,
-    TabViewModule
+    TabViewModule,
+    TimelineModule,
+    OrderStatusComponent
   ],
   providers:[MessageService, ConfirmationService]
 })

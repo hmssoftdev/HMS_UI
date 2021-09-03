@@ -1,0 +1,55 @@
+
+<div class="card"> 
+<p-table #d2 [value]="dishList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]"> 
+            <ng-template pTemplate="header">
+                <tr>
+                    <th style="width: 3rem">
+                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                    </th>
+                    <th>Name
+                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                    </th> 
+                    <th>Price</th> 
+                    <th>Delivery Date
+                        
+                    </th> 
+                    <th>Status
+                        <p-columnFilter type="text" field="status" display="menu">
+                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
+                                <p-dropdown [ngModel]="value" [options]="status" (onChange)="filter($event.value)" placeholder="Any">
+                                    <ng-template let-option pTemplate="order">
+                                        <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
+                                    </ng-template>
+                                </p-dropdown>
+                            </ng-template>
+                        </p-columnFilter>
+                    </th>
+                    <th style="width:14%;">Action </th>
+            </ng-template>
+            <ng-template pTemplate="body" let-order  let-columns="columns">
+                <tr>
+                    <td>
+                        <p-tableCheckbox [value]="order"></p-tableCheckbox>
+                    </td>
+                    <td><span class="p-column-title">Name</span>{{order.name}}</td>
+                     
+                    <td>{{order.fullPrice | currency:'INR'}}</td> 
+                    <td>{{order.timeForCook}} mins</td>
+                    <td>
+                        <p-tag [value]="order.status" *ngIf="order.status" class="p-text-uppercase" [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
+                        <td>
+                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
+                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
+                            <!-- <p-checkbox name="groupname{{order.id}}" [value]="order.selectedDish" [inputId]="order.id" [(ngModel)]="selectedValues" (change)="onCheckboxChange(order.id, $event)"></p-checkbox> -->
+                        </td>
+                </tr>
+            </ng-template>
+        </p-table>
+        <p-dialog [(visible)]="orderStatusDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
+    header="Order Status" [modal]="true">
+    <app-order-status *ngIf="orderStatusDialog"></app-order-status>
+</p-dialog>
+        </div>
+
+

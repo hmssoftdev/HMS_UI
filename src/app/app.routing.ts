@@ -10,6 +10,7 @@ import { LoginComponent } from './views/login/userLogin.component';
 import { RegisterComponent } from './views/register/register.component'; 
 import { InvoiceComponent } from './views/invoice/invoice.component'
 import { TableConfigurationComponent } from '../app/views/hotel-admin/table-configuration/table-configuration.component'
+import { OrderStatusComponent } from './shared/order-status/order-status.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -61,6 +62,12 @@ export const routes: Routes = [
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
      
       },
+      {path:'order-status', component:OrderStatusComponent, 
+      data: {
+        title: "Order Status",
+        roles: roleConfig.authRoles.user
+      },
+        canActivate:[AuthGuard]},
       {
         path: '404',
         component: P404Component,

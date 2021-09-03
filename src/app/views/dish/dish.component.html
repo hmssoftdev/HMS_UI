@@ -13,8 +13,8 @@
         </p-toolbar>
     </div>
     <div class="card-body">
-        <p-table #d2 [value]="dishList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[10,25,50]">
+        <p-table #d2 [value]="dishList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]"> 
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem">
@@ -43,12 +43,12 @@
                     </th>
                     <th style="width:14%;">Action </th>
             </ng-template>
-            <ng-template pTemplate="body" let-item>
+            <ng-template pTemplate="body" let-item  let-columns="columns">
                 <tr>
                     <td>
                         <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
-                    <td>{{item.name}}</td>
+                    <td><span class="p-column-title">Name</span>{{item.name}}</td>
                     <td>
                         <img src="{{item.imageUrl}}" [alt]="item.name" width="100" class="p-shadow-4" />
                     </td>

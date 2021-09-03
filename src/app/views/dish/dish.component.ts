@@ -10,6 +10,7 @@ import { HttpClient } from '@angular/common/http';
   styleUrls: ['./dish.component.scss']
 })
 export class DishComponent implements OnInit {
+  selectedUser: string;
   dishDialog: boolean;
   checked: boolean = true;
   isEdit: boolean;
@@ -40,6 +41,10 @@ export class DishComponent implements OnInit {
       { label: "Sea Food", value: "seaFood" }
     ];
     this.fnGetDishCategoy();
+  }
+
+  receivedValue($event){
+    this.selectedUser = $event;
   }
 
   loadData() {

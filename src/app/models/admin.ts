@@ -17,7 +17,7 @@ public cityId?: number,
 public stateId?: number,
 public city?: string,
 public state?: string,
-public bankDetails?: Bankdetails,
+// public bankDetails?: Bankdetails,
 public bankName?: string,
 public ifscCode?: string,
 public upiImage?:string,
@@ -34,15 +34,14 @@ public status?: string,
 public RestaurentLogoFile?: Binary,
 public SignatureFile?: Binary,
 public RestaurentSealFile?: Binary,
-public UpiImageFile?: Binary
+public UpiImageFile?: Binary,
+public accountName?: string,
+public accountNumber?: number,
+public UPICodeImg?:string,
+public UPICodeNumber?:string
   ){}
 }
-export class Bankdetails {
-  constructor(
-    public accountName?: string,
-    public accountNumber?: number,
-    public bankName?: string,
-    public ifscCode?: string,
-    public UPICodeImg?:string,
-    public UPICodeNumber?:string){}
-  }
+// export class Bankdetails {
+//   constructor(
+//     ){}
+//   }

@@ -1,0 +1,25 @@
+
+    <div class="p-card">
+<div class="p-grid">
+<div class="p-col-12">
+    <h3 class="p-text-normal p-text-center p-mb-3">Order Status</h3>
+	<p-timeline [value]="orderStatusData">
+        <ng-template pTemplate="marker" let-event>
+			<span class="custom-marker p-shadow-2" [ngClass]="'status-' + event.status">
+                <i [ngClass]="event.icon"></i>
+            </span>
+		</ng-template>
+		<ng-template pTemplate="content" let-event>
+			<small class="p-text-secondary">{{event.date}}</small>
+		</ng-template>
+		<ng-template pTemplate="opposite" let-event>
+			{{event.name}}
+		</ng-template>
+	</p-timeline>
+    <div class="p-d-flex p-jc-end p-m-2">
+        <button pButton pRipple label="Cancel Order" type="button" icon="pi pi-times" class="p-button-danger p-button-raised"
+        (click)="fnCancelOrder()"></button>
+    </div>
+</div>
+</div>
+</div>

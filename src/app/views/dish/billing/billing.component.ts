@@ -15,6 +15,8 @@ export class BillingComponent implements OnInit {
   lblIsProceed: boolean;
   paymentMode: string;
   invoiceDialog: boolean;
+  deliveryMode:string;
+  isSelectDeliveryMode: boolean;
   constructor(public adminService: AdminService) { }
 
   ngOnInit(): void {
@@ -24,6 +26,10 @@ export class BillingComponent implements OnInit {
     this.paymentMode = "Cash"
     this.lblIsProceed = true;
   }
+  fnDeliveryMode(s:string){
+    this.deliveryMode = s;
+    this.isSelectDeliveryMode = true;
+  }
   fnUPIProceed(){
     this.paymentMode = 'UPI';
     this.lblIsProceed = true;
@@ -32,6 +38,8 @@ export class BillingComponent implements OnInit {
   fnResetPayment(){
     this.paymentMode = null;
     this.lblIsProceed = false;
+    this.deliveryMode = null;
+    this.isSelectDeliveryMode = null;
   }
   fnProceed(){
     if(this.paymentMode === 'Cash'){
