@@ -1,4 +1,4 @@
-<div class="card">
+<div class="p-card">
     <div class="p-grid">
         <div class="p-col-9">
             <p-dataView #dv [value]="dishes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
@@ -46,15 +46,15 @@
                                     class="product-category">{{dish.categories}}</span>
                             </div>
                             <div class="product-list-action">
-                                <span class="product-price">{{(dish.isFullIsHalf ? dish.fullPrice : dish.halfPrice )|
+                                <span class="product-price">{{(dish.isFull ? dish.fullPrice : dish.halfPrice )|
                                     currency:'INR'}}</span>
-                                <div class="p-field">
+                                <div *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0" class="p-field">
                                     <div class="p-formgroup-inline">
-                                        <label for="isFullIsHalfStatus">Half </label>
-                                        <p-inputSwitch [(ngModel)]="dish.isFullIsHalf" name="isFullIsHalfStatus"
+                                        <label for="isFullStatus">Half </label>
+                                        <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus"
                                             class="p-mx-2">
                                         </p-inputSwitch>
-                                        <label for="isFullIsHalfStatus">Full</label>
+                                        <label for="isFullStatus">Full</label>
                                     </div>
                                 </div>
                                 <p-button icon="pi pi-shopping-cart" styleClass="p-button-sm" label="Add to Cart"
@@ -103,14 +103,13 @@
                                     (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"
                                     pTooltip="Bookmark Dish" tooltipPosition="bottom"></p-button>
                             </div>
-                            <div class="p-field
-                            ">
+                            <div *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0" class="p-field">
                                 <div class="p-formgroup-inline">
-                                    <label for="isFullIsHalfStatus">Half </label>
-                                    <p-inputSwitch [(ngModel)]="dish.isFullIsHalf" name="isFullIsHalfStatus"
+                                    <label for="isFullStatus">Half </label>
+                                    <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus"
                                         class="p-mx-2">
                                     </p-inputSwitch>
-                                    <label for="isFullIsHalfStatus">Full</label>
+                                    <label for="isFullStatus">Full</label>
                                 </div>
                             </div>
                         </div>
@@ -121,13 +120,13 @@
         </div>
         <div class="p-col-3">
             <div class="cartHeader">
-                Cart Items
+                Cart orderitems
             </div>
             <div class="cartContent">
                 <div class="p-d-flex p-ai-center pborder">
                     <!-- <label for="userName">User Name:</label> -->
                     <span *ngIf="userData.userType === 3">{{userData.username}}</span>
-                    <p-dropdown (onChange)="newMessage()" *ngIf="userData.userType === 1 || userData.userType === 2"
+                    <p-dropdown (onChange)="userSelection(user)" *ngIf="userData.userType === 1 || userData.userType === 2"
                         class="p-mr-4 p-inputtext-sm" id="userName" [options]="user" [(ngModel)]="selectedUser"
                         placeholder="Search for Number" optionLabel="label" optionValue="value" [filter]="true"
                         [showClear]="true" filterBy="label"></p-dropdown>
@@ -148,10 +147,10 @@
 </p-dialog>
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
-    <app-invoice *ngIf="billingDialog" [adminData]="admin"></app-invoice>
+    <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
     <app-billing *ngIf="billingDialog" [adminData]="admin">
-        </app-billing>
+    </app-billing>
 </p-dialog>
-<p-dialog>
-<app-billing *ngIf="billingDialog" [adminData]="admin"></app-billing>
-</p-dialog>
+<!-- <p-dialog>
+    <app-billing *ngIf="billingDialog" [adminData]="admin"></app-billing>
+</p-dialog> -->

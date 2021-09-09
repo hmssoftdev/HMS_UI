@@ -23,7 +23,7 @@ export class CheckoutComponent implements OnInit {
   ngOnInit(): void {
     this.loadCategory();
     this.cartService.get().subscribe(resp => this.cartItems = resp);
-    let itemPrice = this.cartItems.items.map( x => x.price);
+    let itemPrice = this.cartItems.orderitems.map( x => x.price);
     console.log(itemPrice);
     let gst =  this.CategoryList.map(x => x.gstCompliance);
     console.log(gst);

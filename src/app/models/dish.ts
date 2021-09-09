@@ -2,6 +2,7 @@ import { Binary } from "@angular/compiler";
 
 export interface Dish {
     id?: number;
+    userId?: number;
     name?: string;
     description?: string | undefined;
     halfPrice?: number;
@@ -23,7 +24,7 @@ export interface Dish {
     files?: Binary;
     upi?: string;
     oldImageUrl?:string;
-    isFullIsHalf?: boolean;
+    isFull?: boolean;
 }
 
 export class DishCategory {

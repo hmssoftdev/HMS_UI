@@ -52,9 +52,9 @@
         <form name="categoryForm" #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-6">
-                    <label for="name">Dish Name</label>
-                    <input type="text" name="name" #name="ngModel" class="p-inputtext-sm" pInputText id="name" [(ngModel)]="category.name" placeholder="Dish Name" required autofocus />
-                    <div *ngIf="name.touched && name.invalid && f.submitted"> <small class="p-error" *ngIf="name.errors.required">Dish name is required.</small></div>
+                    <label for="name">Category Name</label>
+                    <input type="text" name="name" #name="ngModel" class="p-inputtext-sm" pInputText id="name" [(ngModel)]="category.name" placeholder="Category Name" required autofocus />
+                    <div *ngIf="name.touched && name.invalid && f.submitted"> <small class="p-error" *ngIf="name.errors.required">Category name is required.</small></div>
                 </div>
                 <div class="p-field p-col-6">
                     <label for="inventoryStatus">Inventory Status</label>

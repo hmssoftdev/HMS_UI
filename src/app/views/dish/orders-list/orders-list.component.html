@@ -1,5 +1,5 @@
 
-<div class="card"> 
+<div class="p-card"> 
 <p-table #d2 [value]="dishList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [rowsPerPageOptions]="[10,25,50]"> 
             <ng-template pTemplate="header">
@@ -7,25 +7,15 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th>Name
+                    <th>Username
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th> 
+                    <th>Mobile</th>
                     <th>Price</th> 
-                    <th>Delivery Date
-                        
-                    </th> 
-                    <th>Status
-                        <p-columnFilter type="text" field="status" display="menu">
-                            <ng-template pTemplate="filter" let-value let-filter="filterCallback">
-                                <p-dropdown [ngModel]="value" [options]="status" (onChange)="filter($event.value)" placeholder="Any">
-                                    <ng-template let-option pTemplate="order">
-                                        <span [class]="'customer-badge status-' + option.value">{{option.label}}</span>
-                                    </ng-template>
-                                </p-dropdown>
-                            </ng-template>
-                        </p-columnFilter>
+                    <th>Order Type</th> 
+                    <th>Payment Mode
                     </th>
-                    <th style="width:14%;">Action </th>
+                    <th style="width:26%">Action </th>
             </ng-template>
             <ng-template pTemplate="body" let-order  let-columns="columns">
                 <tr>
@@ -35,12 +25,20 @@
                     <td><span class="p-column-title">Name</span>{{order.name}}</td>
                      
                     <td>{{order.fullPrice | currency:'INR'}}</td> 
-                    <td>{{order.timeForCook}} mins</td>
+                    <td>03/09/21</td>
                     <td>
-                        <p-tag [value]="order.status" *ngIf="order.status" class="p-text-uppercase" [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
+                        <p-tag value="Completed" *ngIf="order.status" class="p-text-uppercase" [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
+                       
+                       <td></td>
                         <td>
-                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2" (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
-                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger" (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
+                            <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-success p-button-sm" (click)="fnProcessing(order)" pTooltip="Process Order" tooltipPosition="left"></button>
+
+                            <button pButton pRipple icon="pi pi-envelope" class="p-button-rounded p-button-warning p-button-sm" (click)="fnShipping(order)" pTooltip="Shipping Order" tooltipPosition="left"></button>
+
+                            <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-secondary p-button-sm" (click)="fnCompleted(order)" pTooltip="Complete Order" tooltipPosition="left"></button>
+
+                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-button-sm" (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
+                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-button-sm" (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
                             <!-- <p-checkbox name="groupname{{order.id}}" [value]="order.selectedDish" [inputId]="order.id" [(ngModel)]="selectedValues" (change)="onCheckboxChange(order.id, $event)"></p-checkbox> -->
                         </td>
                 </tr>

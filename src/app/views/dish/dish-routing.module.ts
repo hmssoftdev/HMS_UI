@@ -28,7 +28,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-    path: 'dishCategoryConfig',
+    path: 'dish-category-config',
     component: DishCategoryConfigComponent,
     data: {
       title: 'Dish Category Config',
@@ -46,7 +46,7 @@ const routes: Routes = [
   //   canActivate:[AuthGuard]
   // },
   {
-    path:'orders-list',
+    path:'order-list',
     component:OrdersListComponent,
     data:{
       title:"Order List",

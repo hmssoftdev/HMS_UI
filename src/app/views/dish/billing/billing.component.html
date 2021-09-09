@@ -7,10 +7,10 @@
             label="Dining" icon="pi pi-money-bill pi-text-primary" (click)="fnDeliveryMode('Dining')"
             class="p-px-5 p-py-3 p-mr-2"></button> -->
         <button pButton type="button" [ngClass]="deliveryMode == 'Home Delivery' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
-            label="Home Delivery" icon="pi pi-home" (click)="fnDeliveryMode('Home Delivery')" class="p-px-5 p-py-3"></button>
+            label="Home Delivery" icon="pi pi-home" (click)="fnDeliveryMode('Home Delivery')" class="p-px-5 p-py-3 p-mr-2"></button>
             <button pButton type="button" [ngClass]="deliveryMode == 'Take Away' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
             label="Take Away" icon="pi pi-send pi-text-primary" (click)="fnDeliveryMode('Take Away')"
-            class="p-px-5 p-py-3 p-mr-2"></button> 
+            class="p-px-5 p-py-3"></button> 
     </div>
     <div class="billing-separator p-col-12 p-my-2 p-p-0"></div>
     <div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':lblIsProceed}">

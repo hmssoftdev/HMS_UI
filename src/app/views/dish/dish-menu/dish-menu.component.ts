@@ -11,6 +11,7 @@ import { CommonService } from '../../../service/common.service';
 import { DishService } from '../../../service/dish.service';
 import { UserService } from '../../../service/user.service';
 import { ShareDataService } from '../../../service/share-data.service';
+import { ShoppingCart } from '../../../models/shopping-cart';
 @Component({
   selector: 'app-dish-menu',
   templateUrl: './dish-menu.component.html',
@@ -19,7 +20,7 @@ import { ShareDataService } from '../../../service/share-data.service';
 export class DishMenuComponent implements OnInit {
   //Test
   dishes: Dish[];
-  message: string;
+  selectedUserId: number;
   sortOptions: SelectItem[];
   sortOrder: number;
   sortField: string;
@@ -27,11 +28,12 @@ export class DishMenuComponent implements OnInit {
   cartItems: Array<any> = [];
   cities: any;
   states: any;
-  selectedUser: string;
+  selectedUser: number;
   userList: User[];
   userDialog: boolean;
   submitted: boolean;
   user: any;
+  userID: any;
   userData: any; 
   CategoryList: DishCategory[];
   billingDialog: boolean;
@@ -52,9 +54,9 @@ export class DishMenuComponent implements OnInit {
     public data: ShareDataService
     ) { }
   ngOnInit() {
-      this.data.currentMessage.subscribe(message => this.message = message);
+      this.data.currentMessage.subscribe(message => this.selectedUserId = message);
       this.dishService.getList().subscribe(data => {this.dishes = data;
-      this.dishes.map(x => x.isFullIsHalf = true);
+     // this.dishes.map(x => x.isFull = true);
       });
       this.sortOptions = [
           {label: 'Price High to Low', value: '!fullPrice'},
@@ -70,7 +72,7 @@ export class DishMenuComponent implements OnInit {
 
   }
 
-  newMessage(){
+  userSelection(user){
     this.data.changeMessage(this.selectedUser);
   }
 
@@ -85,7 +87,7 @@ export class DishMenuComponent implements OnInit {
   loadClient(){
    this.obs = this.adminService.getAdmin().subscribe(resp => {
       if(resp.length > 0){  
-        // this.admin = resp;
+        this.admin = resp[0];
       }
     });
   }
@@ -98,8 +100,10 @@ export class DishMenuComponent implements OnInit {
   
   loadData() {
     this.userSvc.getUserList().subscribe(res => {
+      
+      console.log(this.userID);
       this.user = res.map(CItem => {
-        return { label: CItem.contact, value: CItem.contact}
+        return { label: CItem.contact, value: CItem.id}
       })
     });
   }
@@ -173,9 +177,10 @@ export class DishMenuComponent implements OnInit {
   
   //Add to cart Function
   fnAddtoCart(cartItem:Dish){
-   const selCategory =  this.rawDishCategoyItems.filter(dItem =>dItem.id === cartItem.mainCategoryId)[0];
+   const selCategory =  this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
    console.log(cartItem);
-
+   cartItem.userId = this.userID;
+   console.log(cartItem);
     // console.log(selCategory.gstCompliance, "GST C");
     this.cartService.addItem(cartItem,1, selCategory.gstCompliance);
   //   if(this.cartItems.length > 0) { 

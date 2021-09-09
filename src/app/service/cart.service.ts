@@ -1,5 +1,6 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { resourceUsage } from 'process';
 import { Observable, Observer, of } from 'rxjs';
 import { catchError, map } from 'rxjs/internal/operators';
 import { ApiConfig } from '../constant/api';
@@ -14,6 +15,8 @@ export class CartService {
 
   orderUrl = `${ApiConfig.URL}${ApiConfig.ORDER}`;
   orderList: Array<any>;
+  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+
   private storage: Storage;
   private subscriptionObservable: Observable<ShoppingCart>;
   private subscribers: Array<Observer<ShoppingCart>> = new Array<Observer<ShoppingCart>>();
@@ -38,25 +41,25 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
 
   const cart = this.retrieve();
   const prodId = product.id ? product.id : product.productId;
-  const qStatus = product.isFullIsHalf ? product.isFullIsHalf : product.isFullIsHalf;
-  let item = cart.items.find((p) => p.productId == prodId && p.isFullIsHalf === qStatus);
+  const qStatus = product.isFull;
+  let item = cart.orderitems.find((p) => p.productId == prodId && p.isFull === qStatus);
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
   if (item === undefined) {
     item = new CartItem();
     item.productId = product.id;
     item.name = product.name;
-    item.price = product.isFullIsHalf ? product.fullPrice : product.halfPrice ;
+    item.price = product.isFull ? product.fullPrice : product.halfPrice ;
     item.description = product.description;
     item.image= product.imageUrl ? product.imageUrl : './assets/img/dishes/img-menu-placeholder.jpg';
     item.gstCompliance = gstCompliance || 0;
     item.gstPrice = item.price * item.gstCompliance / 100;
-    item.isFullIsHalf = product.isFullIsHalf;
-    cart.items.push(item);
+    item.isFull = product.isFull;
+    cart.orderitems.push(item);
   }
 
   item.quantity += quantity;
-  cart.items = cart.items.filter((cartItem) => cartItem.quantity > 0);
-  if (cart.items.length === 0) {
+  cart.orderitems = cart.orderitems.filter((cartItem) => cartItem.quantity > 0);
+  if (cart.orderitems.length === 0) {
     cart.deliveryOptionId = undefined;
   }
 
@@ -72,16 +75,16 @@ public empty(): void {
 }
 
 private calculateCart(cart: ShoppingCart): void {
-  cart.itemsTotal = cart.items
+  cart.itemTotal = cart.orderitems
                         .map((item) => item.quantity * item.price)
                         .reduce((previous, current) => previous + current, 0);
   // cart.deliveryTotal = cart.deliveryOptionId ?
   //                       this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price :
   //                       0;
-  cart.gstTotal = cart.items
+  cart.gstTotal = cart.orderitems
   .map((item) => item.quantity * item.gstPrice)
   .reduce((previous, current) => previous + current, 0);
-  cart.grossTotal = cart.itemsTotal + cart.gstTotal;
+  cart.grossTotal = cart.itemTotal + cart.gstTotal;
 }
 
 private retrieve(): ShoppingCart {
@@ -109,6 +112,14 @@ private dispatch(cart: ShoppingCart): void {
       });
 }
 
+getOrder(): Observable<any> {
+  return this.http.get<ShoppingCart>(`${this.orderUrl}/Get/${this.userData.adminId}`).pipe(
+    map(x => {
+     this.orderList.push(x);
+     return this.orderList;
+    })
+  )
+}
   
 postOrder(order): Observable<any> {
 

@@ -1,3 +1,4 @@
+import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { UserLogin } from '../../models/userLogin';
@@ -16,16 +17,21 @@ export class LoginComponent implements OnInit {
   userList: UserLogin[] = [];
   storage: Storage;
   users:UserLogin;
+  otpInput:null;
   constructor(
     public userSvc: UserService, 
     private authService: AuthService, 
     private storageService:StorageService,
-    private router: Router) {
+    private router: Router,
+    private location: Location) {
     this.storage = this.storageService.get();
   }
   ngOnInit(): void {
     this.users = {};
     this.userList = [{username: '' , password: '', contact: 1234567890}];
+    if(this.authService.loggedIn()){
+      this.location.back();
+    }
   }
   loginUser(){  
     this.authService.loginUser(this.users).subscribe(

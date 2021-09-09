@@ -40,9 +40,18 @@ import {AvatarModule} from 'primeng/avatar';
 import {TabViewModule} from 'primeng/tabview';
 import { TimelineModule } from "primeng/timeline";
 import { OrderStatusComponent } from './order-status/order-status.component';
+import { UserFormComponent } from '../views/user/user-form/user-form.component';
+import { ClickOutsideDirective } from './../directive/click-outside.directive';
+import { InvoiceComponent } from '../views/invoice/invoice.component';
+
 @NgModule({
   declarations: [
-    OrderStatusComponent
+    OrderStatusComponent,
+    UserFormComponent,
+    InvoiceComponent,
+    ClickOutsideDirective,
+    
+
   ],
   imports: [
     CommonModule,
@@ -125,7 +134,10 @@ import { OrderStatusComponent } from './order-status/order-status.component';
     AvatarModule,
     TabViewModule,
     TimelineModule,
-    OrderStatusComponent
+    OrderStatusComponent,
+    UserFormComponent,
+    InvoiceComponent,
+    ClickOutsideDirective
   ],
   providers:[MessageService, ConfirmationService]
 })

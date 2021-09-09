@@ -5,11 +5,10 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class ShareDataService {
-  private messageSource = new BehaviorSubject<string>('');
+  private messageSource = new BehaviorSubject<number>(null);
   currentMessage = this.messageSource.asObservable();
-
   constructor() { }
-  changeMessage(message: string){
+  changeMessage(message: number){
     this.messageSource.next(message);
   }
 }

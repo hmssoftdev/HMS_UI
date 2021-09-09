@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { navItems } from './_nav';
 
@@ -6,6 +6,7 @@ import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
 import { AuthService } from './service/auth.service';
 import { StorageService } from './service/storage.service';
+import { SidebarComponent } from './common/sidebar/sidebar.component';
 
 @Component({
   // tslint:disable-next-line
@@ -15,8 +16,9 @@ import { StorageService } from './service/storage.service';
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit { 
+  @ViewChild(SidebarComponent) private sideBarComp:SidebarComponent;
   storage: Storage;
-  isLoggedin:boolean;
+  isLoggedin:boolean; 
   constructor(
     private router: Router,
     public iconSet: IconSetService,
@@ -51,9 +53,11 @@ export class AppComponent implements OnInit {
     });
   }
 
+  fnMenuSBarClick(){
+    this.sideBarComp.fnToggleSidebar(); 
+  }
 
-
-  logout(){
+  fnLogout(){
     this.authService.logoutUser();
     this.authService.uLoggedInSubject$.next(false);
     this.router.navigate(['/login'])

@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Admin } from '../../models/admin';
+import { AdminService } from '../../service/admin.service';
 
 @Component({
   selector: 'app-order-status',
@@ -7,7 +9,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OrderStatusComponent implements OnInit {
   orderStatusData: Array<any>;
-  constructor() { }
+  adminData: Admin;
+  showInvoice:boolean = false;
+  constructor(private adminService: AdminService) { }
 
   ngOnInit(): void {
     this.orderStatusData = [
@@ -37,6 +41,15 @@ export class OrderStatusComponent implements OnInit {
         status: 'pending' //"#607D8B"
       }
     ];
+    this.adminService.getAdmin().subscribe(resp => {
+      this.adminData = resp[0];
+    })
   }
 
+  fnCancelOrder(){
+    // Do something
+  }
+  fnShowInvoice(){
+    this.showInvoice = !this.showInvoice;
+  }
 }

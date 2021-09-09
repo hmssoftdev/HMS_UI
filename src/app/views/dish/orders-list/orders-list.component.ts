@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Dish } from '../../../models/dish';
 import { DishService } from '../../../service/dish.service';
+import { CartService } from '../../../service/cart.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -9,8 +10,10 @@ import { DishService } from '../../../service/dish.service';
 })
 export class OrdersListComponent implements OnInit {
   dishList: Dish[];
+  selectedDishes: Dish[];
   orderStatusDialog:boolean;
-  constructor(private dishSvc: DishService) { }
+  constructor(private dishSvc: DishService,
+    private orderService: CartService) { }
 
   ngOnInit(): void {
     this.loadData();
@@ -22,6 +25,12 @@ export class OrdersListComponent implements OnInit {
   }
   fnViewOrder(){
     this.orderStatusDialog =true;
+  }
+  fnProcessing(){ 
+  }
+  fnShipping(){  
+  }
+  fnCompleted(){ 
   }
   fnCancelOrder(){
 

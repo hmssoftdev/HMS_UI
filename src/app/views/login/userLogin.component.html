@@ -1,51 +1,32 @@
-<div class="container">
-    <div class="row">
-        <div class="col-sm-5 mx-auto mt-5">
-            <div class="card-group">
-                <div class="card p-4">
-                    <div class="card-body">
+                        
+                        <div class="p-grid p-mt-5">
+                        <div class="p-card p-col-4 p-mx-auto p-px-4"> 
                         <form name="loginForm">
-                            <h1>User Login</h1>
-                            <p class="text-muted">Sign In to your account</p>
-                            <div class="input-group mb-3">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="icon-user"></i></span>
-                                </div>
-                                <input type="text" name="username" class="form-control" [(ngModel)]="users.username" placeholder="Username" autocomplete="username" required>
+                            <h1 class="p-text-center">FY5 Login </h1>
+                            <p class="p-text-muted">Sign In to your account</p>
+                            <div class="p-inputgroup p-mb-3">
+                                <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
+                                <input type="text" pInputText name="username" class="form-control" [(ngModel)]="users.username" placeholder="Username" autocomplete="username" required>
                             </div>
-                            <div class="input-group mb-4">
-                                <div class="input-group-prepend">
-                                    <span class="input-group-text"><i class="icon-lock"></i></span>
-                                </div>
-                                <input type="password" name="password" class="form-control" [(ngModel)]="users.password" placeholder="Password" autocomplete="current-password" required>
+                            <div class="p-inputgroup p-mb-4">
+                                <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                                <input type="password" pInputText name="password" class="form-control" [(ngModel)]="users.password" placeholder="Password" autocomplete="current-password" required>         
                             </div>
-                            <div class="row">
-                                <div class="col-12 text-center">
-                                    <button type="button" (click)="loginUser()" class="btn btn-primary px-4">Login</button>
-                                </div>
-                                <div class="col-6">
-                                    <button type="button" routerLink="/register" class="btn btn-link px-0">
-                                        Register Now
-                                    </button>
-                                </div>
-                                <div class="col-6 text-right">
-                                    <button type="button" class="btn btn-link px-0">Forgot password?</button>
-                                </div>
+                            <div class="p-text-center">
+                                <button type="button" (click)="loginUser()" pButton class="pButton">Login</button>
                             </div>
-                            <p class="text-center p-mt-2">OR</p>
-                            <div class="input-group mb-4">
-                                <!-- <div class="input-group-prepend">
-                                            <span class="input-group-text"><i class="pi pi-phone"></i></span>
-                                        </div> -->
-                                <input style="border-width: 0 0 2px; border-bottom: 2px solid black; outline: none;" pInputText type="text" class="form-control" placeholder="Mobile / Username / Email" autocomplete="current-password" required>
+                            <div class="p-d-flex p-jc-between">
+                            <button pButton label="Register Now" class="p-button-text" routerLink="/register" ></button>
+                            <button pButton label="Forgot Password?" class="p-button-text" ></button>
                             </div>
-                            <div style="width: 100%;">
-                                <button type="button" class="btn btn-primary px-4" (click)="loginUser()" style="width: 100%;">Send OTP</button>
+                            <div class="p-text-center p-my-3">OR</div>
+                            <div class="p-inputgroup p-mb-3">
+                                <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
+                                <input type="text" pInputText name="otpInput" class="form-control" [(ngModel)]="otpInput" placeholder="Mobile / Username / Email" autocomplete="otpInput" required>
+                            </div> 
+                            <div class="p-text-center p-my-2">
+                                <button pButton type="button" class="pButton p-col-12 p-text-center" (click)="loginUser()" label="Send OTP"></button>
                             </div>
                         </form>
-                    </div>
+                    </div> 
                 </div>
-            </div>
-        </div>
-    </div>
-</div>

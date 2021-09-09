@@ -4,6 +4,7 @@
 =======
 <div class="" *ngIf="adminData">
    <table class="tblInvoice">
+       <tr><td colspan="2" class="p-text-center"><h3 class="p-m-1">Invoice</h3></td></tr>
     <tr><td> 
             <div class="p-col p-py-0"><strong>Name: </strong>{{adminData.businessName}}</div>
             <div class="p-col p-py-0"><strong>Address: </strong>{{adminData.address}}</div>
@@ -21,12 +22,60 @@
     <thead>
 >>>>>>> 13cf286d2368caf2bf6152e95a216278d8397740
         <tr>
+<<<<<<< HEAD
             <td>
                 <div class="p-col p-py-0"><strong>Name: </strong>{{admin.businessName}}</div>
                 <div class="p-col p-py-0"><strong>Address: </strong>{{admin.address}}</div>
                 <div class="p-col p-py-0"><strong>State: </strong>{{admin.state}}</div>
                 <div class="p-col p-py-0"><strong>GSTIN No./PAN No: </strong>{{admin.gst}}</div>
 
+=======
+            <th rowspan="2">#</th>
+            <th rowspan="2"> Name Of Product</th>
+            <th rowspan="2">Qty</th>
+            <th rowspan="2">Rate</th>
+            <th rowspan="2">Discount</th>
+            <th rowspan="2">Non Taxable Value</th>
+            <th colspan="2">CGST</th>
+            <th colspan="2">SGST</th>
+            <th rowspan="2">Total</th>
+        </tr>
+        <tr>
+            <th>Rate</th>
+            <th>Amount</th>
+            <th>Rate</th>
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of cartItems.orderitems; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td class="text-right">{{item.price}}</td>
+            <td class="text-right">0</td>
+            <td class="text-right">{{item.price * item.quantity}}</td>
+            <td class="text-right">{{item.gstCompliance/2}}</td>
+            <td class="text-right">{{item.price * item.quantity * (item.gstCompliance/2) /100}}</td>
+            <td class="text-right">{{item.gstCompliance/2}}</td>
+            <td class="text-right">{{item.price * item.quantity * (item.gstCompliance/2) /100}}</td>
+            <td class="text-right">{{item.price * item.quantity + (item.price * item.quantity * item.gstCompliance /100)}}</td>
+        </tr>
+        <tr>
+            <td colspan="2" class="text-right"><strong>Total</strong></td>            
+            <td>{{cartItems.itemCount}}</td>
+            <td></td>
+            <td>0</td>
+            <td class="text-right">{{cartItems.grossTotal | currency : 'INR'}}</td>
+            <td  class="text-right"colspan="2">{{cartItems.gstTotal /2  | currency :'INR'}}</td>
+            <td colspan="2" class="text-right">{{cartItems.gstTotal /2  | currency :'INR'}}</td>
+            <td class="text-right"><strong>{{cartItems.grossTotal + cartItems.gstTotal | currency :'INR'}}</strong></td>
+        </tr>
+        <tr>
+            <td rowspan="3" class="text-center" colspan="7">
+                <p class="p-text-bold">Total invoice amount in words</p>
+                <!-- <p>{{cartItems.grossTotal + cartItems.gstTotal}}</p> -->
+>>>>>>> 7cdb946d360ea4b103ab28fa1eb13fe5edd434bf
             </td>
             <td>
                 <img [src]="admin.restaurentLogo" [alt]="admin.restaurentLogo" width="120" class="resLogo">

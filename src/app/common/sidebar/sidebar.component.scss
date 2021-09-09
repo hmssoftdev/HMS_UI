@@ -1,32 +1,17 @@
-$sidebar-bg-color: #1d1d1d !default;
-$sidebar-color: #adadad !default;
-$sidebar-width: 270px !default;
-$sidebar-collapsed-width: 80px !default;
-$highlight-color: #d8d8d8 !default;
-$submenu-bg-color: #2b2b2b !default;
-$submenu-bg-color-collapsed: #2b2b2b !default;
-$icon-bg-color: #2b2b2b !default;
-$icon-size: 35px !default;
-
+$sidebar-bg-color: #1d1d1d !default; 
 $breakpoint-xs: 480px !default;
 $breakpoint-sm: 576px !default;
 $breakpoint-md: 768px !default;
 $breakpoint-lg: 992px !default;
-$breakpoint-xl: 1200px !default;$sidebar-bg-color: #1d1d1d !default;
+$breakpoint-xl: 1200px !default; 
 $sidebar-color: #adadad !default;
-$sidebar-width: 270px !default;
-$sidebar-collapsed-width: 80px !default;
+$sidebar-width: 230px !default;
+$sidebar-collapsed-width: 65px !default;
 $highlight-color: #d8d8d8 !default;
 $submenu-bg-color: #2b2b2b !default;
 $submenu-bg-color-collapsed: #2b2b2b !default;
 $icon-bg-color: #2b2b2b !default;
-$icon-size: 35px !default;
-
-$breakpoint-xs: 480px !default;
-$breakpoint-sm: 576px !default;
-$breakpoint-md: 768px !default;
-$breakpoint-lg: 992px !default;
-$breakpoint-xl: 1200px !default;
+$icon-size: 35px !default; 
 
 
 @mixin break-point {
@@ -41,18 +26,7 @@ $breakpoint-xl: 1200px !default;
         display: block;
       }
     }
-    &.rtl {
-      left: auto;
-      right: -$sidebar-width;
-      &.collapsed {
-        left: auto;
-        right: -$sidebar-collapsed-width;
-      }
-      &.toggled {
-        left: auto;
-        right: 0;
-      }
-    }
+     
   }
   
   .pro-sidebar {
@@ -232,7 +206,7 @@ $breakpoint-xl: 1200px !default;
           position: relative;
           display: flex;
           align-items: center;
-          padding: 8px 35px 8px 20px;
+          padding: 8px 25px 8px 10px;
           cursor: pointer;
   
           &:focus {
@@ -313,7 +287,7 @@ $breakpoint-xl: 1200px !default;
           }
   
           .pro-inner-list-item {
-            padding-left: 20px;
+            padding-left: 0;
   
             .pro-inner-item {
               padding: 8px 30px 8px 15px;
@@ -340,25 +314,7 @@ $breakpoint-xl: 1200px !default;
           }
         }
       }
-  
-      &.square {
-        .pro-menu-item {
-          > .pro-inner-item {
-            > .pro-icon-wrapper {
-              border-radius: 0;
-            }
-          }
-        }
-      }
-      &.round {
-        .pro-menu-item {
-          > .pro-inner-item {
-            > .pro-icon-wrapper {
-              border-radius: 4px;
-            }
-          }
-        }
-      }
+   
       &.circle {
         .pro-menu-item {
           > .pro-inner-item {
@@ -410,12 +366,15 @@ $breakpoint-xl: 1200px !default;
               > .pro-inner-list-item {
                 height: auto !important;
                 position: fixed;
-                visibility: hidden;
-                min-width: 220px;
-                max-width: 270px;
+                visibility: visible;
+                min-width: 230px;
+                max-width: 230px;
                 background-color: transparent;
                 max-height: 100%;
-                padding-left: 3px;
+                padding-left: 3px; 
+                background: $icon-bg-color;
+                margin-top: -44px;
+                margin-left: 61px;
                 &.has-arrow {
                   padding-left: 10px;
                 }
@@ -428,10 +387,6 @@ $breakpoint-xl: 1200px !default;
                 }
               }
               &:hover {
-                > .pro-inner-list-item {
-                  transition: visibility, transform 0.3s;
-                  visibility: visible;
-                }
                 .pro-icon-wrapper {
                   .pro-icon {
                     animation: swing ease-in-out 0.5s 1 alternate;
@@ -535,3 +490,19 @@ $breakpoint-xl: 1200px !default;
     }
   }
   
+
+  :host{
+    // position: fixed;
+    z-index: 1019;
+    // width: 200px;
+    height: calc(100vh - 60px);
+  }
+  .pro-menu-item .react-slidedown.closed{
+    height: 0;
+    display: none;
+    // transition-property: height 0.5s;
+  }
+  .pro-menu-item.open .react-slidedown{
+    height: auto;
+    transition-property: none;
+  }

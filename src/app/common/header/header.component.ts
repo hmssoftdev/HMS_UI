@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Output,EventEmitter} from '@angular/core';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-header-new',
@@ -7,10 +8,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
 
-  constructor() { }
-
+@Output() fnMenuSidebar = new EventEmitter();
+@Output() logOut = new EventEmitter();
+  constructor(public authService: AuthService) { }
+  lbluserProfleShow = false;
   ngOnInit(): void {
   }
-  fnLogout(){}
+  fnLogout(){
+    this.logOut.emit();
+    this.lbluserProfleShow = false;
+  }
+  fnToggleUProfile(){
+    this.lbluserProfleShow = !this.lbluserProfleShow;
+  }
+  fnhmBurgerClick(){
+this.fnMenuSidebar.emit();
+  }
 
 }

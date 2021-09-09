@@ -7,6 +7,7 @@ import { Router } from '@angular/router';
 import { NgForm } from '@angular/forms';
 import { style } from '@angular/animations';
 import { UserService } from '../../service/user.service';
+import { Location } from '@angular/common';
 @Component({
   selector: 'app-dashboard',
   templateUrl: 'register.component.html'
@@ -23,7 +24,8 @@ export class RegisterComponent {
     public userSvc: UserService,
     private authService: AuthService,
     private storageService: StorageService,
-    private router: Router) {
+    private router: Router, 
+    private location: Location) {
     this.storage = this.storageService.get();
   }
 
@@ -38,6 +40,9 @@ export class RegisterComponent {
       label: 'User', value: 3
     }
     ];
+    if(this.authService.loggedIn()){
+      this.location.back();
+    }
   }
   // getUsers() {
   //   this.regSvc.getRegisteredUser().subscribe(res => {
@@ -47,8 +52,7 @@ export class RegisterComponent {
 
 
   register(data: NgForm) { 
-    this.submitted = true;
-    console.log(data);
+    this.submitted = true; 
     if (this.users.userType === 3) {
       this.userSvc.AddUser(this.users).subscribe(() => {
         this.registeredList.push(this.users);
@@ -58,7 +62,8 @@ export class RegisterComponent {
       this.regSvc.AddUser(this.users).subscribe(res => {
         if (res) {
           this.registeredList.push(this.users);
-          alert('Registration completed')
+          alert('Registration completed');
+          this.router.navigate(['/login'])
         }
         this.users = {}
       })

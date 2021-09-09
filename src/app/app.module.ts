@@ -53,8 +53,7 @@ import { HotelAdminModule } from './views/hotel-admin/hotel-admin.module';
 import { UserModule } from '../app/views/user/user.module';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
-// import { UserDetailComponent } from '../app/views/user/user-detail/user-detail.component';
-// import { InvoiceComponent } from './views/invoice/invoice.component'
+import { FooterComponent } from './common/footer/footer.component'; 
 @NgModule({
   imports: [
     BrowserModule,
@@ -87,9 +86,8 @@ import { HeaderComponent } from './common/header/header.component';
     routingComponents,
     ClientConfigComponent,
     SidebarComponent,
-    HeaderComponent
-    // UserDetailComponent,
-    // InvoiceComponent,
+    HeaderComponent,
+    FooterComponent
   ],
   providers: [
     AuthService,

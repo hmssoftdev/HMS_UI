@@ -5,3 +5,24 @@
 .app-header > ul.mainNav li a{
     color:#fff;
 }
+.app-body{    display: flex;
+flex-direction: row;
+flex-grow: 1;
+overflow-x: hidden;
+}
+
+.app-body .main {
+    flex: 1;
+    min-width: 0;
+}
+.breacrumbWrap{
+    display: flex;
+    flex-wrap: wrap;
+    padding: .75rem 1rem;
+    margin-bottom: 1.5rem;
+    list-style: none;
+    background-color: #fff;
+    border-radius: 0;
+    border-bottom: 1px solid #c8ced3;
+
+}
