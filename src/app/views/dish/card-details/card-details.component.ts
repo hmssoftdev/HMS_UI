@@ -23,6 +23,7 @@ export class CardDetailsComponent implements OnInit {
     private msgService: MessageService) { }
 
   ngOnInit(): void {
+    console.log(this.selectedUserId);
     this.data.currentMessage.subscribe(message => this.selectedUserId = message);
     this.cartService.get().subscribe(resp=> this.cartItems = resp);
   }
@@ -36,12 +37,15 @@ export class CardDetailsComponent implements OnInit {
     this.cartService.empty();
   }
   fnMakePayment(){
-    this.fnBillingModal.emit();
+    // this.fnBillingModal.emit();
+    // this.cartItems.userId = this.selectedUserId;
+    // this.cartItems.adminId = this.userData.adminId;
+    this.fnBillingModal.emit(this.cartItems);
     this.cartItems.userId = this.selectedUserId;
     this.cartItems.adminId = this.userData.adminId;
-    console.log(this.cartItems);
-    this.cartService.postOrder(this.cartItems).subscribe(() => {
-      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });
-    })
+    // console.log(this.cartItems);
+    // this.cartService.postOrder(this.cartItems).subscribe(() => {
+    //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });
+    // })
   }
 }

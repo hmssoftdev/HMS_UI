@@ -19,6 +19,7 @@ import { ShoppingCart } from '../../../models/shopping-cart';
 })
 export class DishMenuComponent implements OnInit {
   //Test
+  shoppingCart: ShoppingCart;
   dishes: Dish[];
   selectedUserId: number;
   sortOptions: SelectItem[];
@@ -197,7 +198,8 @@ export class DishMenuComponent implements OnInit {
   const totVal = (accumulator:any, curVal:any) => accumulator + curVal.price;
   return this.cartItems.reduce(totVal);
   }
-  fnMakePayment(){
+  fnMakePayment(shoppingCart:ShoppingCart){
+    this.shoppingCart = shoppingCart;
     this.billingDialog = true;
   }
 

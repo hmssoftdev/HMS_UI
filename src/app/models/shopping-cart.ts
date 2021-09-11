@@ -7,6 +7,7 @@ export class CartItem {
   public image: string;
   public description:string;
   public gstCompliance:number;
+  public orderID: number;
   public gstPrice:number;
   public isFull: boolean;
 }
@@ -15,6 +16,7 @@ export class ShoppingCart {
   public adminId: number;
   public userId: number;
   public orderitems: CartItem[] = new Array<CartItem>();
+  public orderStatus: OrderStatus[];
   public deliveryOptionId: number;
   public grossTotal: number = 0;
   public deliveryTotal: number = 0;
@@ -34,6 +36,9 @@ export class ShoppingCart {
 }
 
 export class OrderStatus {
+  public id: number;
   public orderId: number;
   public status: number;
+   public createdOn? : Date;
+  // public name: string;
 }

@@ -1,53 +1,63 @@
+<div class="p-card">
+    <p-table #d2 [value]="orderList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
+        [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id"
+        currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        [rowsPerPageOptions]="[10,25,50]">
+        <ng-template pTemplate="header">
+            <tr>
+                <th style="width: 3rem">
+                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+                </th>
+                <th>Username
+                    <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                </th>
+                <th style="width: 100px; text-align: center;">Mobile</th>
+                <th style="width: 50px;">Price</th>
+                <th style="text-align: center;">Order Type</th>
+                <th style="text-align: center;">Payment Mode</th>
+                <th style="text-align: center;">Order Status</th>
+                <th style="width: 225px; text-align: center;">Action </th>
+        </ng-template>
+        <ng-template pTemplate="body" let-order let-columns="columns">
+            <tr>
+                <td>
+                    <p-tableCheckbox [value]="order"></p-tableCheckbox>
+                </td>
+                <td>{{order.userName}}</td>
+                <td style="text-align: center;">{{order.userMobileNumber}}</td>
+                <td style="text-align: center;">{{order.grossTotal}}</td>
+                <td style="text-align: center;">{{order.deliveryOptionId === 1? 'Home Delivery': 'Take Away'}}</td>
+                <td style="text-align: center;">{{order.paymentMode === 1? 'Cash': 'UPI'}}</td>
+                <td style="text-align: center;">
+                    <p-tag
+                        [value]="(order.status === 1)? 'Ordered': (order.status === 2)? 'Processing': (order.status === 3)? 'Shipped': (order.status === 4)? 'Delivered': '' "
+                        *ngIf="order.status" class="p-text-uppercase"
+                        [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
+                </td>
+                <td style="text-align: center;">
+                    <button [disabled]="order.status != 1" pButton pRipple icon="pi pi-cog"
+                        class="p-button-rounded p-button-success p-button-sm" (click)="fnProcessing(order)"
+                        pTooltip="Process Order" tooltipPosition="left"></button>
 
-<div class="p-card"> 
-<p-table #d2 [value]="dishList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[10,25,50]"> 
-            <ng-template pTemplate="header">
-                <tr>
-                    <th style="width: 3rem">
-                        <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
-                    </th>
-                    <th>Username
-                        <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
-                    </th> 
-                    <th>Mobile</th>
-                    <th>Price</th> 
-                    <th>Order Type</th> 
-                    <th>Payment Mode
-                    </th>
-                    <th style="width:26%">Action </th>
-            </ng-template>
-            <ng-template pTemplate="body" let-order  let-columns="columns">
-                <tr>
-                    <td>
-                        <p-tableCheckbox [value]="order"></p-tableCheckbox>
-                    </td>
-                    <td><span class="p-column-title">Name</span>{{order.name}}</td>
-                     
-                    <td>{{order.fullPrice | currency:'INR'}}</td> 
-                    <td>03/09/21</td>
-                    <td>
-                        <p-tag value="Completed" *ngIf="order.status" class="p-text-uppercase" [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
-                       
-                       <td></td>
-                        <td>
-                            <button pButton pRipple icon="pi pi-cog" class="p-button-rounded p-button-success p-button-sm" (click)="fnProcessing(order)" pTooltip="Process Order" tooltipPosition="left"></button>
+                    <button [disabled]="order.status != 2" pButton pRipple icon="pi pi-envelope"
+                        class="p-button-rounded p-button-warning p-button-sm" (click)="fnShipping(order)"
+                        pTooltip="Shipping Order" tooltipPosition="left"></button>
 
-                            <button pButton pRipple icon="pi pi-envelope" class="p-button-rounded p-button-warning p-button-sm" (click)="fnShipping(order)" pTooltip="Shipping Order" tooltipPosition="left"></button>
+                    <button [disabled]="order.status != 3" pButton pRipple icon="pi pi-check"
+                        class="p-button-rounded p-button-secondary p-button-sm" (click)="fnCompleted(order)"
+                        pTooltip="Complete Order" tooltipPosition="left"></button>
 
-                            <button pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-secondary p-button-sm" (click)="fnCompleted(order)" pTooltip="Complete Order" tooltipPosition="left"></button>
-
-                            <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-button-sm" (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
-                            <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-button-sm" (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
-                            <!-- <p-checkbox name="groupname{{order.id}}" [value]="order.selectedDish" [inputId]="order.id" [(ngModel)]="selectedValues" (change)="onCheckboxChange(order.id, $event)"></p-checkbox> -->
-                        </td>
-                </tr>
-            </ng-template>
-        </p-table>
-        <p-dialog [(visible)]="orderStatusDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
-    header="Order Status" [modal]="true">
-    <app-order-status *ngIf="orderStatusDialog"></app-order-status>
-</p-dialog>
-        </div>
-
-
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-button-sm"
+                        (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
+                    <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-button-sm"
+                        (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
+                    <!-- <p-checkbox name="groupname{{order.id}}" [value]="order.selectedDish" [inputId]="order.id" [(ngModel)]="selectedValues" (change)="onCheckboxChange(order.id, $event)"></p-checkbox> -->
+                </td>
+            </tr>
+        </ng-template>
+    </p-table>
+    <p-dialog [(visible)]="orderStatusDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+        [style]="{width: '52vw' }" header="Order Status" [modal]="true">
+        <app-order-status *ngIf="orderStatusDialog" [orderId]="selectedOrderId"></app-order-status>
+    </p-dialog>
+</div>
