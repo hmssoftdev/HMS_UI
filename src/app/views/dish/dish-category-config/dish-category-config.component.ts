@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Dish, DishCategory } from '../../../models/dish';
 import { DishService } from '../../../service/dish.service';
+import { ShareDataService } from '../../../service/share-data.service';
 
 @Component({
   selector: 'app-dish-category-config',
@@ -16,9 +17,11 @@ export class DishCategoryConfigComponent implements OnInit {
   selectedCategories: Dish[];
   categoryDialog: boolean;
   submitted: boolean;
+  sendId:number;
   dishList: Dish[];
   dish: Dish;
-  constructor(private categorySvc: DishService, private msgService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(private categorySvc: DishService, private msgService: MessageService, private confirmationService: ConfirmationService,
+    private shareData: ShareDataService) { }
 
   ngOnInit(): void {
     this.status = [{ label: 'Active', value: 'active' },
@@ -26,8 +29,9 @@ export class DishCategoryConfigComponent implements OnInit {
     // this.dishCategory = {};
     this.loadCategory();
   }
-  loadCategory(){
-    this.categorySvc.getDishCategory().subscribe(x => {
+  loadCategory() {
+    this.shareData.currentId.subscribe(id => this.sendId = id);
+    this.categorySvc.getDishCategory(this.sendId).subscribe(x => {
       this.CategoryList = x;
       console.log(x);
     });
@@ -44,25 +48,25 @@ export class DishCategoryConfigComponent implements OnInit {
   }
 
   editDish(category: DishCategory) {
-    this.category = {...category };
+    this.category = { ...category };
     this.categoryDialog = true;
   }
-    //to delete dish item 
-    deleteCategory(category: DishCategory) {
-      this.confirmationService.confirm({
-        message: 'Are you sure you want to delete ' + category.name + '?',
-        header: 'Confirm',
-        icon: 'pi pi-exclamation-triangle',
-        accept: () => {
-          this.categorySvc.deleteCategoryData(category.id).subscribe(() => {
-              this.CategoryList = this.CategoryList.filter(val => val.id !== category.id);
-              this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Category Deleted', life: 3000 });
-          })
-        }
-      });
-    }
+  //to delete dish item 
+  deleteCategory(category: DishCategory) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete ' + category.name + '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      accept: () => {
+        this.categorySvc.deleteCategoryData(category.id).subscribe(() => {
+          this.CategoryList = this.CategoryList.filter(val => val.id !== category.id);
+          this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Category Deleted', life: 3000 });
+        })
+      }
+    });
+  }
 
-  onSubmit(f){
+  onSubmit(f) {
     this.submitted = true;
     if (f.invalid) return;
     if (this.category.id) {
@@ -77,9 +81,9 @@ export class DishCategoryConfigComponent implements OnInit {
       // this.category.id = this.CategoryList[this.CategoryList.length - 1].id + 1;
       // this.dish.mainCategoryId = 1;
       this.categorySvc.addDishCategory(this.category).subscribe(() => {
-          this.CategoryList.push(this.category);
-          this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Dish Created', life: 3000 });
-          this.loadCategory();
+        this.CategoryList.push(this.category);
+        this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Dish Created', life: 3000 });
+        this.loadCategory();
       });
 
 

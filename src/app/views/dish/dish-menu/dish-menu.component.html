@@ -51,8 +51,7 @@
                                 <div *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0" class="p-field">
                                     <div class="p-formgroup-inline">
                                         <label for="isFullStatus">Half </label>
-                                        <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus"
-                                            class="p-mx-2">
+                                        <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus" class="p-mx-2">
                                         </p-inputSwitch>
                                         <label for="isFullStatus">Full</label>
                                     </div>
@@ -90,27 +89,32 @@
                                             class="pi pi-circle-on"></i></span>{{dish.name}}</div>
                                 <div class="product-description">{{dish.description}}</div>
                                 <!-- <p-rating [ngModel]="dish.rating" [readonly]="true" [cancel]="false"></p-rating> -->
-                                <div class="p-mb-1">
-                                    <p-tag [value]="dish.rating ? dish.rating : 0" icon="pi pi-star" severity="success">
-                                    </p-tag>
-                                    <span class="voteTxt">{{dish.rating ? 1 : 0}} votes</span>
+                                <div class="p-d-flex p-jc-between">
+                                    <div>
+                                        <p-tag [value]="dish.rating ? dish.rating : 0" icon="pi pi-star"
+                                            severity="success">
+                                        </p-tag>
+                                        <div>
+                                            <span class="voteTxt">{{dish.rating ? 1 : 0}} votes</span>
+                                        </div>
+                                    </div>
+                                    <div class="p-formgroup-inline">
+                                        <label for="isFullStatus">Half </label>
+                                        <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus" class="p-mx-2">
+                                        </p-inputSwitch>
+                                        <label for="isFullStatus">Full</label>
+                                    </div>
                                 </div>
-                            </div>
-                            <div class="product-grid-item-bottom">
-                                <span class="product-price">{{(dish.isFull ? dish.fullPrice : dish.halfPrice )|
-                                    currency:'INR'}}</span>
+                                <div class="product-grid-item-bottom">
+                                    <span class="product-price">{{(dish.isFull ? dish.fullPrice : dish.halfPrice )|
+                                        currency:'INR'}}</span>
 
-                                <p-button styleClass="p-button-sm" icon="pi pi-shopping-cart"
-                                    (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"
-                                    pTooltip="Bookmark Dish" tooltipPosition="bottom"></p-button>
-                            </div>
-                            <div *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0" class="p-field">
-                                <div class="p-formgroup-inline">
-                                    <label for="isFullStatus">Half </label>
-                                    <p-inputSwitch [(ngModel)]="dish.isFull" name="isFullStatus"
-                                        class="p-mx-2">
-                                    </p-inputSwitch>
-                                    <label for="isFullStatus">Full</label>
+                                    <p-button styleClass="p-button-sm" icon="pi pi-shopping-cart"
+                                        (click)="fnAddtoCart(dish)" [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                                        pTooltip="Bookmark Dish" tooltipPosition="bottom"></p-button>
+                                </div>
+                                <div *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0" class="p-field">
+
                                 </div>
                             </div>
                         </div>
@@ -127,10 +131,11 @@
                 <div class="p-d-flex p-ai-center pborder">
                     <!-- <label for="userName">User Name:</label> -->
                     <span *ngIf="userData.userType === 3">{{userData.username}}</span>
-                    <p-dropdown (onChange)="userSelection(user)" *ngIf="userData.userType === 1 || userData.userType === 2"
-                        class="p-mr-4 p-inputtext-sm" id="userName" [options]="user" [(ngModel)]="selectedUser"
-                        placeholder="Search for Number" optionLabel="label" optionValue="value" [filter]="true"
-                        [showClear]="true" filterBy="label"></p-dropdown>
+                    <p-dropdown (onChange)="userSelection(user)"
+                        *ngIf="userData.userType === 1 || userData.userType === 2" class="p-mr-4 p-inputtext-sm"
+                        id="userName" [options]="user" [(ngModel)]="selectedUser" placeholder="Search for Number"
+                        optionLabel="label" optionValue="value" [filter]="true" [showClear]="true" filterBy="label">
+                    </p-dropdown>
                     <button (click)="sendToDish()" *ngIf="userData.userType === 1 || userData.userType === 2" pButton
                         pRipple label="" icon="pi pi-plus" class="p-button-success p-mr-2 p-button-sm my-2"
                         pTooltip="Add new user" (click)="openNew()"></button>

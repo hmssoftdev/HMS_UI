@@ -16,7 +16,7 @@
                 <th style="text-align: center;">Order Type</th>
                 <th style="text-align: center;">Payment Mode</th>
                 <th style="text-align: center;">Order Status</th>
-                <th style="width: 225px; text-align: center;">Action </th>
+                <th style="width: 250px; text-align: center;">Action </th>
         </ng-template>
         <ng-template pTemplate="body" let-order let-columns="columns">
             <tr>
@@ -34,20 +34,20 @@
                         *ngIf="order.status" class="p-text-uppercase"
                         [severity]="order.status =='active' ? 'success':'danger'"></p-tag>
                 </td>
-                <td style="text-align: center;">
+                <td style="text-align: center; width: 250px;">
                     <button [disabled]="order.status != 1" pButton pRipple icon="pi pi-cog"
-                        class="p-button-rounded p-button-success p-button-sm" (click)="fnProcessing(order)"
+                        class="p-button-rounded p-button-success p-button-sm p-mr-1" (click)="fnProcessing(order)"
                         pTooltip="Process Order" tooltipPosition="left"></button>
 
                     <button [disabled]="order.status != 2" pButton pRipple icon="pi pi-envelope"
-                        class="p-button-rounded p-button-warning p-button-sm" (click)="fnShipping(order)"
+                        class="p-button-rounded p-button-warning p-button-sm p-mr-1" (click)="fnShipping(order)"
                         pTooltip="Shipping Order" tooltipPosition="left"></button>
 
                     <button [disabled]="order.status != 3" pButton pRipple icon="pi pi-check"
-                        class="p-button-rounded p-button-secondary p-button-sm" (click)="fnCompleted(order)"
+                        class="p-button-rounded p-button-secondary p-button-sm p-mr-1" (click)="fnCompleted(order)"
                         pTooltip="Complete Order" tooltipPosition="left"></button>
 
-                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-button-sm"
+                    <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-primary p-button-sm p-mr-1"
                         (click)="fnViewOrder(order)" pTooltip="View Order" tooltipPosition="left"></button>
                     <button pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-button-sm"
                         (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
@@ -58,6 +58,6 @@
     </p-table>
     <p-dialog [(visible)]="orderStatusDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
         [style]="{width: '52vw' }" header="Order Status" [modal]="true">
-        <app-order-status *ngIf="orderStatusDialog" [orderId]="selectedOrderId"></app-order-status>
+        <app-order-status *ngIf="orderStatusDialog" [orderId]="selectedOrderId" [orderTotal]="selectedOrderTotal" ></app-order-status>
     </p-dialog>
 </div>

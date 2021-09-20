@@ -4,6 +4,7 @@ import { ShoppingCart } from '../../../models/shopping-cart';
 import { AuthService } from '../../../service/auth.service';
 import { CartService } from '../../../service/cart.service';
 import { DishService } from '../../../service/dish.service';
+import { ShareDataService } from '../../../service/share-data.service';
 import { StorageService } from '../../../service/storage.service';
 
 @Component({
@@ -12,15 +13,17 @@ import { StorageService } from '../../../service/storage.service';
   styleUrls: ['./checkout.component.scss']
 })
 export class CheckoutComponent implements OnInit {
-
+  sendId: number;
   public cartItems: ShoppingCart;
   storage: Storage;
   totCartPrice: any;
   userData: any;
   CategoryList: DishCategory[];
-  constructor( private categorySvc: DishService, private cartService: CartService, private authServive: AuthService, private storageService: StorageService) { }
+  constructor( private categorySvc: DishService, private cartService: CartService, private authServive: AuthService, private storageService: StorageService,
+    private shareData: ShareDataService) { }
 
   ngOnInit(): void {
+    this.shareData.currentId.subscribe(id => this.sendId =  id);
     this.loadCategory();
     this.cartService.get().subscribe(resp => this.cartItems = resp);
     let itemPrice = this.cartItems.orderitems.map( x => x.price);
@@ -33,7 +36,7 @@ export class CheckoutComponent implements OnInit {
     this.userData = this.authServive.userData(); 
   }
   loadCategory(){
-    this.categorySvc.getDishCategory().subscribe(x => {
+    this.categorySvc.getDishCategory(this.sendId).subscribe(x => {
       this.CategoryList = x;
       console.log(x);
     });

@@ -83,7 +83,7 @@
                 </div>
                 <div class="p-field p-col-6" >
                     <label for="files">Upload Dish Image</label>
-                    <input name="files" [(ngModel)]="dish.imageUrl" (change)="fileChange($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="dish.imageUrl" (change)="fileChange($event)" class="p-inputtext-sm" pInputText type="file" maxFileSize="50000">
                 </div>
                 <!-- <div class="card"> -->
                 <!-- <div>Dish image</div>-->
@@ -112,9 +112,8 @@
                         <label for="isVeg">Veg</label>
                     </div>
                 </div>
-
                 <div class="p-field p-col-8">
-                    <div class="p-formgroup-inline" [hidden]="dish.isVeg">
+                    <div class="p-formgroup-inline" *ngIf="!dish.isVeg">
                         <div class="p-field-checkbox">
                             <p-radioButton name="nonVegCategory" value="chicken" [(ngModel)]="dish.nonVegCategory" inputId="nonVegCategory1"></p-radioButton>
                             <label for="nonVegCategory1">Chicken</label>
@@ -127,7 +126,6 @@
                             <p-radioButton name="nonVegCategory" value="seaFood" [(ngModel)]="dish.nonVegCategory" inputId="nonVegCategory3"></p-radioButton>
                             <label for="nonVegCategory3">Sea Food</label>
                         </div>
-
                     </div>
                 </div>
                 <div class="p-field p-col-3">

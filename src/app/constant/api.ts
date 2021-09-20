@@ -9,12 +9,13 @@ export class ApiConfig {
     public static CLIENTCATEGORY = 'BusinessCategory';
     public static BANKDETAILS = 'bankDetails';
     public static ENDUSER = 'endUser';
-    public static USER = 'UserConfig';
+    // public static USER = 'UserConfig';
     public static CITY = 'StateCity/GetCity';
     public static STATE = 'StateCity/GetState';
     public static USERFEEDBACK = 'UserFeedback';
     public static MASTERADMIN = 'masterAdmin';
-    public static REGISTERED = "User";
+    public static USER = "User";
     public static HOTEL = 'Hotel';
     public static ORDER = 'Order';
+    public static INVOICE = 'Invoice'
 }

@@ -135,7 +135,7 @@ getOrderItem(orderId: number): Observable<OrderItem[]> {
    })
  ); 
 }
-postOrder(order): Observable<ShoppingCart> {
+postOrder(order: ShoppingCart): Observable<ShoppingCart> {
   return this.http.post<ShoppingCart>(this.orderUrl, order).pipe(
     map(x => {
       return x;

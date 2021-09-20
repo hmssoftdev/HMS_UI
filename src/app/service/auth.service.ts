@@ -9,7 +9,7 @@ import { StorageService } from './storage.service';
   providedIn: 'root'
 })
 export class AuthService {
-  url = `${ApiConfig.URL}${ApiConfig.REGISTERED}`;
+  url = `${ApiConfig.URL}${ApiConfig.USER}`;
   public register: Registration;
   storage: Storage;
   public uLoggedInSubject$ = new BehaviorSubject(null);

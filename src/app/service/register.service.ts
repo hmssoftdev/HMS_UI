@@ -10,7 +10,7 @@ import { catchError, map } from 'rxjs/internal/operators';
   providedIn: 'root'
 })
 export class RegisterService {
-  url = `${ApiConfig.URL}${ApiConfig.REGISTERED}`;
+  url = `${ApiConfig.URL}${ApiConfig.USER}`;
   public register: Registration;
   public registeredList: Registration[] = [];
   constructor(

@@ -23,8 +23,9 @@ export class CardDetailsComponent implements OnInit {
     private msgService: MessageService) { }
 
   ngOnInit(): void {
-    console.log(this.selectedUserId);
     this.data.currentMessage.subscribe(message => this.selectedUserId = message);
+    console.log(this.selectedUserId);
+    this.cartService.empty();
     this.cartService.get().subscribe(resp=> this.cartItems = resp);
   }
   addItem(item){
@@ -42,6 +43,7 @@ export class CardDetailsComponent implements OnInit {
     // this.cartItems.adminId = this.userData.adminId;
     this.fnBillingModal.emit(this.cartItems);
     this.cartItems.userId = this.selectedUserId;
+    console.log(this.cartItems.userId);
     this.cartItems.adminId = this.userData.adminId;
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {

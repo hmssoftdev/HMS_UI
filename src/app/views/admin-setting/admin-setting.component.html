@@ -4,17 +4,23 @@
     <div class="card-header">
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedAdmin()" [disabled]="!selectedAdmins || !selectedAdmins.length" pTooltip="Delete Admin" tooltipPosition="bottom"></button>
+                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                    (click)="openNew()"></button>
+                <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger"
+                    (click)="deleteSelectedAdmin()" [disabled]="!selectedAdmins || !selectedAdmins.length"
+                    pTooltip="Delete Admin" tooltipPosition="bottom"></button>
             </ng-template>
             <ng-template pTemplate="right">
-                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
+                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+                    class="p-mr-2 p-d-inline-block"></p-fileUpload>
                 <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help my-2"></button>
             </ng-template>
         </p-toolbar>
     </div>
     <div class="card-body">
-        <p-table #d2 [value]="adminList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedAdmins" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+        <p-table #d2 [value]="adminList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10"
+            [showCurrentPageReport]="true" [(selection)]="selectedAdmins" [rowHover]="true" dataKey="id"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
                 <tr>
@@ -54,12 +60,22 @@
                     <td>{{item.pinCode}}</td>
                     <td>{{item.age}}</td>
                     <td>
-                        <p-tag [value]="item.subscriptionStatus" *ngIf="item.subscriptionStatus" class="p-text-uppercase" [ngClass]="{'bg-primary' : item.subscriptionStatus === 1 ,'bg-danger': item.subscriptionStatus === 2 ,'bg-success': item.subscriptionStatus === 3}"></p-tag>
+                        <p-tag [value]="item.subscriptionStatus" *ngIf="item.subscriptionStatus"
+                            class="p-text-uppercase"
+                            [ngClass]="{'bg-primary' : item.subscriptionStatus === 1 ,'bg-danger': item.subscriptionStatus === 2 ,'bg-success': item.subscriptionStatus === 3}">
+                        </p-tag>
                     </td>
                     <td>
-                        <button [disabled]="item.subscriptionStatus === 3" pButton pRipple icon="pi pi-check" class="p-button-rounded p-button-success p-mr-2" (click)="approve(item)" pTooltip="Approve Admin" tooltipPosition="left"></button>
-                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2" (click)="editAdmin(item)" pTooltip="Edit Admin" tooltipPosition="left"></button>
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteAdmin(item)" pTooltip="Delete Admin" tooltipPosition="left"></button>
+                        <button (click)="fnWorkAsAdmin()" pButton pRipple icon="pi pi-user"
+                            class="p-button-rounded p-button-primary p-button-sm p-mr-1" pTooltip="Work as Admin"
+                            tooltipPosition="left"></button>
+                        <button [disabled]="item.subscriptionStatus === 3" pButton pRipple icon="pi pi-check"
+                            class="p-button-rounded p-button-success p-mr-2" (click)="approve(item)"
+                            pTooltip="Approve Admin" tooltipPosition="left"></button>
+                        <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
+                            (click)="editAdmin(item)" pTooltip="Edit Admin" tooltipPosition="left"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                            (click)="deleteAdmin(item)" pTooltip="Delete Admin" tooltipPosition="left"></button>
                     </td>
                 </tr>
             </ng-template>
@@ -68,58 +84,83 @@
 </div>
 
 
-<p-dialog [(visible)]="adminDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '70vw'}" header="Admin Configuration" [modal]="true">
+<p-dialog [(visible)]="adminDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '70vw'}"
+    header="Admin Configuration" [modal]="true">
     <ng-template pTemplate="content">
         <form name="aForm" #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
             <div class="p-card-title"><b>Personal Information</b></div>
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-4">
                     <label for="businessName"><b>Business Name</b></label>
-                    <input type="text" name="businessName" class="p-inputtext-sm" pInputText id="businessName" [(ngModel)]="admin.businessName" placeholder="Business Name" #bName="ngModel" required autofocus />
-                    <div *ngIf="bName.touched && bName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="bName.errors.required">Business name is required.</small> </div>
+                    <input type="text" name="businessName" class="p-inputtext-sm" pInputText id="businessName"
+                        [(ngModel)]="admin.businessName" placeholder="Business Name" #bName="ngModel" required
+                        autofocus />
+                    <div *ngIf="bName.touched && bName.invalid && f.submitted"> <small class="p-error p-error-danger"
+                            *ngIf="bName.errors.required">Business name is required.</small> </div>
                 </div>
                 <div class="p-field p-col-4">
                     <label for="email"><b>Email</b></label>
-                    <input type="email" name="email" class="p-inputtext-sm" pInputText id="email" [(ngModel)]="admin.email" placeholder="Email" #email="ngModel" required autofocus />
-                    <div *ngIf="email.touched && email.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="email.errors.required">Email name is required.</small> </div>
+                    <input type="email" name="email" class="p-inputtext-sm" pInputText id="email"
+                        [(ngModel)]="admin.email" placeholder="Email" #email="ngModel" required autofocus />
+                    <div *ngIf="email.touched && email.invalid && f.submitted"> <small class="p-error p-error-danger"
+                            *ngIf="email.errors.required">Email name is required.</small> </div>
                 </div>
                 <div class="p-field p-col-4">
                     <label for="inventoryStatus"><b>Business Category</b></label>
-                    <p-dropdown [(ngModel)]="admin.categoryId" class="p-inputtext-sm" name="category" inputId="categories" [options]="categories" required #category="ngModel" optionLabel="label" optionValue="value" placeholder="Select Category">
+                    <p-dropdown [(ngModel)]="admin.categoryId" class="p-inputtext-sm" name="category"
+                        inputId="categories" [options]="categories" required #category="ngModel" optionLabel="label"
+                        optionValue="value" placeholder="Select Category">
                     </p-dropdown>
-                    <div *ngIf="category.touched && category.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="category.errors.required">Business category is required.</small> </div>
+                    <div *ngIf="category.touched && category.invalid && f.submitted"> <small
+                            class="p-error p-error-danger" *ngIf="category.errors.required">Business category is
+                            required.</small> </div>
                 </div>
                 <div class="p-field p-col-2">
                     <label for="foodClass"><b>License Number</b></label>
-                    <input type="text" id="foodLincNum" name="foodLincNum" #foodLicnNum="ngModel" [(ngModel)]="admin.foodLincNum" placeholder="Food Class" pInputText required/>
-                    <div *ngIf="foodLicnNum.touched && foodLicnNum.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="foodLicnNum.errors.required">Food License Number is required.</small> </div>
+                    <input type="text" id="foodLincNum" name="foodLincNum" #foodLicnNum="ngModel"
+                        [(ngModel)]="admin.foodLincNum" placeholder="Food Class" pInputText required />
+                    <div *ngIf="foodLicnNum.touched && foodLicnNum.invalid && f.submitted"> <small
+                            class="p-error p-error-danger" *ngIf="foodLicnNum.errors.required">Food License Number is
+                            required.</small> </div>
                     <label for="GSTNumber"><b>GST Number</b></label>
-                    <input type="text" id="GSTNumber" name="gst" #gst="ngModel" [(ngModel)]="admin.gst" placeholder="GST Number" pInputText required/>
-                    <div *ngIf="gst.touched && gst.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="gst.errors.required">GST Number is required.</small> </div>
+                    <input type="text" id="GSTNumber" name="gst" #gst="ngModel" [(ngModel)]="admin.gst"
+                        placeholder="GST Number" pInputText required />
+                    <div *ngIf="gst.touched && gst.invalid && f.submitted"> <small class="p-error p-error-danger"
+                            *ngIf="gst.errors.required">GST Number is required.</small> </div>
                 </div>
 
                 <div class="p-field p-col-2">
                     <label for="state"><b>State</b></label>
-                    <p-dropdown inputId="state" name="state" [options]="states" [(ngModel)]="admin.stateId" placeholder="Select" optionLabel="label" optionValue="value"></p-dropdown>
+                    <p-dropdown inputId="state" name="state" [options]="states" [(ngModel)]="admin.stateId"
+                        placeholder="Select" optionLabel="label" optionValue="value"></p-dropdown>
                     <label for="city"><b>City</b></label>
-                    <p-dropdown inputId="cities" name="city" [options]="cities" [(ngModel)]="admin.cityId" placeholder="Select" optionLabel="label" optionValue="value">
+                    <p-dropdown inputId="cities" name="city" [options]="cities" [(ngModel)]="admin.cityId"
+                        placeholder="Select" optionLabel="label" optionValue="value">
                     </p-dropdown>
                 </div>
                 <div class="p-field p-col-2">
                     <label for="pincode"><b>Pincode</b></label>
-                    <input type="text" id="pincode" name="pincode" #pincode="ngModel" [(ngModel)]="admin.pinCode" placeholder="Pincode" minlength="6" maxlength="6" pInputText />
-                    <div *ngIf="pincode.touched && pincode.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="pincode.errors.minlength">Minimum 6 digit required.</small> </div>
+                    <input type="text" id="pincode" name="pincode" #pincode="ngModel" [(ngModel)]="admin.pinCode"
+                        placeholder="Pincode" minlength="6" maxlength="6" pInputText />
+                    <div *ngIf="pincode.touched && pincode.invalid && f.submitted"> <small
+                            class="p-error p-error-danger" *ngIf="pincode.errors.minlength">Minimum 6 digit
+                            required.</small> </div>
                     <label for="contact"><b>Contact</b></label>
-                    <input type="text" id="contact" name="contact" #contact="ngModel" [(ngModel)]="admin.contact" placeholder="Contact" maxlength="10" pInputText />
-                    <div *ngIf="contact.touched && contact.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="contact.errors.minlength">Minimum 10 digit required.</small> </div>
+                    <input type="text" id="contact" name="contact" #contact="ngModel" [(ngModel)]="admin.contact"
+                        placeholder="Contact" maxlength="10" pInputText />
+                    <div *ngIf="contact.touched && contact.invalid && f.submitted"> <small
+                            class="p-error p-error-danger" *ngIf="contact.errors.minlength">Minimum 10 digit
+                            required.</small> </div>
                 </div>
                 <div class="p-field p-col-6">
                     <label for="address">Address</label>
-                    <textarea id="address" name="address" type="text" [(ngModel)]="admin.address" rows="4" pInputTextarea></textarea>
+                    <textarea id="address" name="address" type="text" [(ngModel)]="admin.address" rows="4"
+                        pInputTextarea></textarea>
                 </div>
                 <div class="p-field p-col-6">
                     <label for="terms"><b>Terms & Conditoins</b></label>
-                    <textarea id="terms" name="terms" type="text" [(ngModel)]="admin.termAndCondition" rows="4" pInputTextarea></textarea>
+                    <textarea id="terms" name="terms" type="text" [(ngModel)]="admin.termAndCondition" rows="4"
+                        pInputTextarea></textarea>
                 </div>
             </div>
             <div class="p-card-title"><b>Bank Information</b></div>
@@ -127,48 +168,58 @@
             <div class="p-fluid p-formgrid p-grid" ngModelGroup="bankDetails" #bDetails="ngModelGroup">
                 <div class="p-field p-col-3">
                     <label for="acctName"><b>Account Name</b></label>
-                    <input id="accName" name="accName" class="p-inputtext-sm" #accName="ngModel" [(ngModel)]="admin.accountName" placeholder="Account Name" pInputText />
+                    <input id="accName" name="accName" class="p-inputtext-sm" #accName="ngModel"
+                        [(ngModel)]="admin.accountName" placeholder="Account Name" pInputText />
                     <!-- <div *ngIf="accName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="accName.errors.required">Account Name is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">
                     <label for="accNumber"><b>Account Number</b></label>
-                    <input type="text" id="accNumber" pInputText #accNum="ngModel" name="accNumber" class="p-inputtext-sm" [(ngModel)]="admin.accountNumber" placeholder="Account Number">
+                    <input type="text" id="accNumber" pInputText #accNum="ngModel" name="accNumber"
+                        class="p-inputtext-sm" [(ngModel)]="admin.accountNumber" placeholder="Account Number">
                     <!-- <div *ngIf="accNum.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="accNum.errors.required">Account Number is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-2">
                     <label for="bankname"><b>Bank Name</b></label>
-                    <input type="text" id="bankname" name="bankname" class="p-inputtext-sm" #bankName="ngModel" [(ngModel)]="admin.bankName" placeholder="Bank Name" pInputText />
+                    <input type="text" id="bankname" name="bankname" class="p-inputtext-sm" #bankName="ngModel"
+                        [(ngModel)]="admin.bankName" placeholder="Bank Name" pInputText />
                     <!-- <div *ngIf="bankName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="bankName.errors.required">Business category is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">
                     <label for="ifsccode"><b>IFCS Code</b></label>
-                    <input type="text" id="ifsccode" name="ifsccode" #ifcsCode="ngModel" class="p-inputtext-sm" [(ngModel)]="admin.ifscCode" placeholder="IFCS Code" pInputText />
+                    <input type="text" id="ifsccode" name="ifsccode" #ifcsCode="ngModel" class="p-inputtext-sm"
+                        [(ngModel)]="admin.ifscCode" placeholder="IFCS Code" pInputText />
                     <!-- <div *ngIf="ifscCode.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="ifscCode.errors.required">IFSC code is required.</small> </div> -->
                 </div>
                 <div class="p-field p-col-3">
                     <label for="UPICodeNumber"><b>UPI Code(Number)</b></label>
-                    <input type="text" id="UPICodeNumber" name="UPICodeNumber" class="p-inputtext-sm" [(ngModel)]="admin.codeNumber" placeholder="UPI Code" pInputText />
+                    <input type="text" id="UPICodeNumber" name="UPICodeNumber" class="p-inputtext-sm"
+                        [(ngModel)]="admin.codeNumber" placeholder="UPI Code" pInputText />
                 </div>
-                <div class="p-field p-col-3" >
+                <div class="p-field p-col-3">
                     <label for="files"><b>Upload restaurent's Logo</b></label>
-                    <input name="files" [(ngModel)]="admin.restaurentLogo" (change)="logoFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="admin.restaurentLogo" (change)="logoFile($event)"
+                        class="p-inputtext-sm" pInputText type="file">
                 </div>
-                <div class="p-field p-col-3" >
+                <div class="p-field p-col-3">
                     <label for="files"><b>Upload Owner's Sign</b></label>
-                    <input name="files" [(ngModel)]="admin.signature" (change)="signFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="admin.signature" (change)="signFile($event)" class="p-inputtext-sm"
+                        pInputText type="file">
                 </div>
-                <div class="p-field p-col-3" >
+                <div class="p-field p-col-3">
                     <label for="files"><b>Upload Restaurent's Seal</b></label>
-                    <input name="files" [(ngModel)]="admin.restaurentSeal" (change)="sealFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="admin.restaurentSeal" (change)="sealFile($event)"
+                        class="p-inputtext-sm" pInputText type="file">
                 </div>
-                <div class="p-field p-col-3" >
+                <div class="p-field p-col-3">
                     <label for="files"><b>Upload UPI Scan Image</b></label>
-                    <input name="files" [(ngModel)]="admin.upiImage" (change)="upiFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="admin.upiImage" (change)="upiFile($event)" class="p-inputtext-sm"
+                        pInputText type="file">
                 </div>
             </div>
             <div class="p-card-footer p-text-right">
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised"></button>
-                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-danger p-button-raised" type="reset" (click)="hideDialog()"></button>
+                <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-danger p-button-raised"
+                    type="reset" (click)="hideDialog()"></button>
             </div>
         </form>
     </ng-template>
