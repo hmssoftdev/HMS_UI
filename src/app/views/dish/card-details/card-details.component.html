@@ -15,7 +15,23 @@
             </span>
 
             <span>{{ item.quantity * item.price | currency:'INR':true }}</span>
-
+        </li>
+        <li>
+            <div class="p-flex-md-row">
+                <div class="p-col">
+                    <!-- <input pInputNumber [(ngModel)]="cartItems.discountInPercent" class="p-inputtext-sm" suffix=" %"  type="text" placeholder="Enter Discount in %"> -->
+                    <p-inputNumber class="p-inputtext-sm" name="discount" id="discount" prefix="%" mode="decimal"
+                        [useGrouping]="false" placeholder="Enter Discount in %"
+                        [(ngModel)]="cartItems.discountInPercent" [minFractionDigits]="2" (change)="onInput($event.target.value)">
+                    </p-inputNumber>
+                </div>
+                <span>{{cartItems.discountInRupees}}</span>
+                <div class="p-col">
+                    <p-inputNumber [(ngModel)]="cartItems.additionalAmount" class="p-inputtext-sm" mode="currency"
+                        placeholder="Enter Additional amount" currency="INR" locale="en-IN">
+                    </p-inputNumber>
+                </div>
+            </div>
         </li>
         <li>
             <div class="p-d-flex p-jc-between p-m-0"><span>GST</span> {{cartItems.gstTotal | currency:'INR': true}}
@@ -25,8 +41,8 @@
         </li>
     </ul>
     <div class="btnWrap">
-        <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment" (click)="fnMakePayment($event)"
-            class="p-button-sm p-button-success"></button>
+        <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment"
+            (click)="fnMakePayment($event)" class="p-button-sm p-button-success"></button>
         <button pButton type="button" label="Empty Cart" (click)="emptyCart()"
             class="p-button-sm p-button-danger"></button>
     </div>
