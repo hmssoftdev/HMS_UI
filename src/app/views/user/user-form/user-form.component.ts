@@ -3,6 +3,7 @@ import { User } from './../../../models/user';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './../../../service/user.service';
 import { CommonService } from './../../../service/common.service'
+import { ShareDataService } from '../../../service/share-data.service';
 
 @Component({
   selector: 'app-user-form',
@@ -19,10 +20,16 @@ export class UserFormComponent implements OnInit {
   selectedUsers: User[];
   cities: any;
   states: any;
-
-  constructor(public userSvc: UserService, public commonSvc: CommonService, private msgService: MessageService, private confirmationService: ConfirmationService) { }
+  cityFilter: [];
+  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  constructor(public userSvc: UserService,
+     public commonSvc: CommonService, 
+     private msgService: MessageService, 
+     private confirmationService: ConfirmationService,
+     private shareData: ShareDataService) { }
 
   ngOnInit(): void {
+    this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.loadData();
     this.getCities();
     this.getStates();
@@ -36,9 +43,7 @@ export class UserFormComponent implements OnInit {
 
   getCities() {
     this.commonSvc.getCities().subscribe(x => {
-      this.cities = x.map(cItem => {
-        return { label: cItem.name, value: cItem.id }
-      })
+      this.cities = x;
     });
 
   }
@@ -49,12 +54,16 @@ export class UserFormComponent implements OnInit {
       })
     });
   }
+  onStateChange(e) {
+    this.cityFilter = this.cities.filter((city) => city.stateId === this.user.stateId);
+  }
 
   saveUser() {
     this.submitted = true;
     console.log(this.user);
     if (this.user.userName.trim()) {
       if (this.user.id) {
+        this.user.userType = this.userData.userType;
         this.userSvc.updateUser(this.user).subscribe(() => {
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Updated', life: 3000 });
           this.loadData();
@@ -63,6 +72,7 @@ export class UserFormComponent implements OnInit {
         })
 
       } else {
+        this.user.userType = this.userData.userType;
         this.userSvc.AddUser(this.user).subscribe(() => {
           this.userList.push(this.user);
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Created', life: 3000 });
@@ -72,7 +82,8 @@ export class UserFormComponent implements OnInit {
         })
       }
       this.userList = [...this.userList];
-      this.userDialog = false;
+      this.shareData.changeDialog(false);
+      // this.userDialog = false;
     }
   }
 

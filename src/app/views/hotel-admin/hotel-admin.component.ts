@@ -23,6 +23,7 @@ export class HotelAdminComponent implements OnInit {
   adminDialog: boolean;
   submitted: boolean;
   dataId: number;
+  cityFilter: [];
   constructor(
     public adminService: AdminService,
     private msgService: MessageService,
@@ -102,9 +103,7 @@ export class HotelAdminComponent implements OnInit {
         debugger;
           this.msgService.add({severity:'success', summary: 'Successful', detail: 'Admin Details Added!', life: 3000});
           this.loadClient();  
-          this.getClientCategory();
-          this.fnGetCitiesList();
-          this.fnGetStatesList();                                                                                                          
+          this.getClientCategory();                                                                                                         
       });
     } else {
       const dFormData = this.convertFormdata(this.admin);
@@ -114,8 +113,6 @@ export class HotelAdminComponent implements OnInit {
         this.msgService.add({severity:'success', summary: 'Successful', detail: 'Admin Details Updated!', life: 3000});
         this.loadClient();
         this.getClientCategory();
-        this.fnGetCitiesList();
-        this.fnGetStatesList();
       });
     }
     
@@ -126,9 +123,15 @@ export class HotelAdminComponent implements OnInit {
 
   fnGetCitiesList(){
     this.commonService.getCities().subscribe(x => {
-      this.cities = x.map(cItem => {
-        return { label: cItem.name, value: cItem.id }
-      }) 
+      // if(this.admin.stateId){
+      //   this.cities = x.filter((city) => city.id === this.admin.stateId).map( cItem => {
+      //     return { label: cItem.name, value: cItem.id }
+      //   })
+      // }
+      this.cities = x;
+      if(this.admin.stateId){
+      this.onStateChange();
+      }
     });
   }
   fnGetStatesList(){
@@ -136,7 +139,12 @@ export class HotelAdminComponent implements OnInit {
       this.states = x.map(cItem => {
         return { label: cItem.name, value: cItem.id }
       }) 
-    });
+    }); 
+  }
+
+  onStateChange(){
+    debugger;
+    this.cityFilter = this.cities.filter((city) => city.stateId === this.admin.stateId);
   }
 
   findIndexById(id: number) {

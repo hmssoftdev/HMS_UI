@@ -22,7 +22,7 @@
                 <div *ngIf="contact.touched && contact.invalid && userForm.submitted"> <small class="p-error"
                         *ngIf="contact.errors.required">User Contact is required.</small></div>
                 <label for="state">State</label>
-                <p-dropdown inputId="state" name="state" [options]="states" [(ngModel)]="user.stateId"
+                <p-dropdown (onChange)="onStateChange($event)" inputId="state" name="state" [options]="states" [(ngModel)]="user.stateId"
                     placeholder="State" optionLabel="label" optionValue="value"></p-dropdown>
             </div>
             <div class="p-field p-col-6">
@@ -34,14 +34,13 @@
             </div>
             <div class="p-field p-col-6">
                 <label for="city">City</label>
-                <p-dropdown #city="ngModel" name="city" inputId="cities" name="city" [options]="cities" [(ngModel)]="user.cityId"
-                    placeholder="City" optionLabel="label" optionValue="value"></p-dropdown>
+                <p-dropdown #city="ngModel" name="city" inputId="cityFilter" name="city" [options]="cityFilter" [(ngModel)]="user.cityId"
+                    placeholder="City" optionLabel="name" optionValue="id"></p-dropdown>
             </div>
             <div class="p-field p-col-6">
                 <label for="pincode">Pincode</label>
-                <p-inputNumber #pincode="ngModel" name="pincode" [(ngModel)]="user.pinCode" minlength="6" maxlength="6" mode="decimal"
-                    placeholder="Pincode " inputId="pincode" [useGrouping]="false">
-                </p-inputNumber>
+                <input pInputText #pincode="ngModel" name="pincode" [(ngModel)]="user.pinCode" minlength="6" maxlength="6" mode="decimal"
+                    placeholder="Pincode " inputId="pincode" />
                 <div *ngIf="pincode.touched && pincode.invalid && userForm.submitted"> <small class="p-error"
                         *ngIf="pincode.errors.required">User Address is required.</small></div>
             </div>

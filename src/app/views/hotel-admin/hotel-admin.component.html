@@ -30,9 +30,9 @@
                 </div>
                 <div class="p-field p-col-2">
                     <label for="state"><b>State</b></label>
-                    <p-dropdown inputId="state" name="state" [options]="states" [(ngModel)]="admin.stateId" placeholder="Select" optionLabel="label" optionValue="value"></p-dropdown>
+                    <p-dropdown (onChange)="onStateChange()" inputId="state" name="state" [options]="states" [(ngModel)]="admin.stateId" placeholder="Select" optionLabel="label" optionValue="value"></p-dropdown>
                     <label for="city"><b>City</b></label>
-                    <p-dropdown inputId="cities" name="city" [options]="cities" [(ngModel)]="admin.cityId" placeholder="Select" optionLabel="label" optionValue="value">
+                    <p-dropdown inputId="cityFilter" name="city" [options]="cityFilter" [(ngModel)]="admin.cityId" placeholder="Select" optionLabel="name" optionValue="id">
                     </p-dropdown>
                 </div>
                 <div class="p-field p-col-2">
