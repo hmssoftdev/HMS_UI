@@ -4,8 +4,8 @@
             <p-dataView #dv [value]="dishes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
                 [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
-                    <div class="p-d-flex p-flex-column p-flex-md-row p-jc-md-between">
-                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
+                    <div class="p-d-flex p-flex-column p-flex-md-row">
+                        <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
                             (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
                         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                             <i class="pi pi-search"></i>
@@ -13,9 +13,15 @@
                                 (input)="dv.filter($event.target.value)">
                         </span>
                         <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
-                            (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                            (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
+                        <div *ngFor="let item of dishCategory">
+                            <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
+                            <button (click)="onCategoryFilter($event)" pButton styleClass="p-mr-2" type="button" [label]="item.value" class="p-button-secondary p-button-sm"></button>
 
-                        <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        </div>
+                        <div class="p-ml-auto">
+                            <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+                        </div>
                     </div>
                 </ng-template>
                 <ng-template let-dish pTemplate="listItem">
