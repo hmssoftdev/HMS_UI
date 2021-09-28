@@ -17,6 +17,11 @@
             <span>{{ item.quantity * item.price | currency:'INR':true }}</span>
         </li>
         <li>
+         
+        </li>
+        <li>
+            <div class="p-d-flex p-jc-between p-m-0"><span>GST</span> {{cartItems.gstTotal | currency:'INR': true}}
+            </div>
             <div class="p-flex-md-row">
                 <div class="p-grid p-jc-end">
                     <div class="p-col">
@@ -30,14 +35,11 @@
                             (change)="onInput($event.target.value)">
                         </p-inputNumber>
                     </div>
-
                 </div>
-                <div class="p-col-1">
-                    <span style="font-size:small">Additional amount</span> 
-                </div>
+                    <div style="font-size:small p-my-2">Discount in &#8377;</div>
                 <div class="p-grid p-jc-end">
                     <div class="p-col">
-                        <span style="font-size:small">Discount in rupees</span>
+                    <span style="font-size:small">Additional amount</span> 
                     </div>
                     <div class="p-col">
                         <p-inputNumber [(ngModel)]="cartItems.additionalAmount" class="p-inputtext-sm" mode="currency"
@@ -45,10 +47,6 @@
                         </p-inputNumber>
                     </div>
                 </div>
-            </div>
-        </li>
-        <li>
-            <div class="p-d-flex p-jc-between p-m-0"><span>GST</span> {{cartItems.gstTotal | currency:'INR': true}}
             </div>
             <div class="p-d-flex p-jc-between gTotP"><span> Total</span>{{cartItems.grossTotal | currency:'INR':true}}
             </div>

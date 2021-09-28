@@ -5,23 +5,25 @@
                 [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
                     <div class="p-d-flex p-flex-column p-flex-md-row">
-                        <!-- <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
-                            (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                        <div *ngFor="let item of dishCategory">
+                            <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
+                            <button (click)="onCategoryFilter($event)" pButton type="button" [label]="item.value" class="p-button-secondary p-button-sm p-mr-2 p-mb-1"></button>
+                        </div>                         
+                    </div>
+                    <hr>
+                    <div class="p-d-flex p-flex-column p-flex-md-row">
+                        <p-dropdown [options]="sortOptions" [(ngModel)]="sortKey" placeholder="Sort By Price"
+                        (onChange)="onSortChange($event)" styleClass="p-mb-2 p-mb-md-0 p-mr-2"></p-dropdown>
                         <span class="p-input-icon-left p-mb-2 p-mb-md-0">
                             <i class="pi pi-search"></i>
                             <input type="search" pInputText placeholder="Search by Name"
-                                (input)="dv.filter($event.target.value)">
+                            (input)="dv.filter($event.target.value)" class="p-mr-2">
                         </span>
                         <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
-                            (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
-                        <div *ngFor="let item of dishCategory">
-                            <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
-                            <button (click)="onCategoryFilter($event)" pButton styleClass="p-mr-2" type="button" [label]="item.value" class="p-button-secondary p-button-sm"></button>
-
-                        </div>
+                        (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
                         <div class="p-ml-auto">
                             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
-                        </div>
+                        </div>  
                     </div>
                 </ng-template>
                 <ng-template let-dish pTemplate="listItem">
