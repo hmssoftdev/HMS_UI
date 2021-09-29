@@ -1,13 +1,13 @@
 <div class="p-card">
     <div class="p-grid">
         <div class="p-col-9">
-            <p-dataView #dv [value]="dishes" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+            <p-dataView #dv [value]="categoryFilter" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
                 [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
                     <div class="p-d-flex p-flex-column p-flex-md-row">
-                        <div *ngFor="let item of dishCategory">
+                        <div *ngFor="let item of dishCategory; let i = index">
                             <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
-                            <button (click)="onCategoryFilter($event)" pButton type="button" [label]="item.value" class="p-button-secondary p-button-sm p-mr-2 p-mb-1"></button>
+                            <button (click)="onCategoryFilter(i , item)" pButton type="button" [label]="item.value" class="p-button-secondary p-button-sm p-mr-2 p-mb-1"></button>
                         </div>                         
                     </div>
                     <hr>

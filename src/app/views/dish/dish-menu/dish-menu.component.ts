@@ -25,7 +25,7 @@ export class DishMenuComponent implements OnInit {
   sortOptions: SelectItem[];
   sortOrder: number;
   sortField: string;
-  dishCategory: { label: string; value: string; }[];
+  dishCategory: any;
   cartItems: Array<any> = [];
   cities: any;
   states: any;
@@ -44,14 +44,7 @@ export class DishMenuComponent implements OnInit {
   admin: Admin;
   obs: Subscription;
   text: string = "Text1";
-  // activeIndex1: number;
-  // activeIndex2: number;
-  // scrollableTabs: any[];
-  activeIndex1: number = 0;
-
-    activeIndex2: number = 0;
-
-    scrollableTabs: any[] = Array.from({ length: 50 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content` }));
+  categoryFilter: any[];
   @Output() toDish = new EventEmitter();
   constructor(
     private dishService: DishService, 
@@ -70,12 +63,6 @@ export class DishMenuComponent implements OnInit {
       this.data.currentMessage.subscribe(message => this.selectedUser = message);
       this.data.currentId.subscribe(id => this.sendId = id);
       this.dishService.getList(this.sendId).subscribe(data => {this.dishes = data;
-        // this.activeIndex1 = 0;
-
-        // this.activeIndex2 = 0;
-    
-        // this.scrollableTabs = Array.from({ length: 50 }, (_, i) => ({ title: `Tab ${i + 1}`, content: `Tab ${i + 1} Content` }));
-     // this.dishes.map(x => x.isFull = true);
       });
       this.sortOptions = [
           {label: 'Price High to Low', value: '!fullPrice'},
@@ -119,8 +106,6 @@ export class DishMenuComponent implements OnInit {
   
   loadData() {
     this.userSvc.getUserList().subscribe(res => {
-      
-
       this.user = res.map(CItem => {
         return { label: CItem.contact, value: CItem.id}
       })
@@ -227,7 +212,11 @@ export class DishMenuComponent implements OnInit {
     this.obs.unsubscribe();
   }
 
-  onCategoryFilter(event){
-    console.log(event);
+  onCategoryFilter(index, category){
+    console.log(index);
+    console.log(category.value);
+    console.log(this.dishCategory.value)
+    this.categoryFilter = this.dishes.filter((categoryVal) => categoryVal.dishCategory === category.value);
+    console.log(this.categoryFilter);
   }
 }

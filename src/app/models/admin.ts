@@ -1,5 +1,5 @@
 import { Binary } from "@angular/compiler";
-// Comment
+ 
 export class Admin{
   constructor(
 public businessName?:string,
