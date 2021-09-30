@@ -1,4 +1,5 @@
 export interface Hotel {
+     // isBooked: boolean;
      id?: number;
      name?: string;
      seat?: number;
