@@ -28,38 +28,38 @@
             </div>
         </div> -->
 
-<!-- <div>     -->
-<p-tabView class="col-md-12 p-m-3">
-    <p-tabPanel header="Advanced Table Booking">
-        <div class="p-grid">
-            <div class="p-col-2" *ngFor="let tblItem of tableList" (click)="fnTblBook(tblItem)">
-                <div class="tblBox p-shadow-1 p-px-0 text-center" 
-                [ngClass]="{'booked':tblItem.isBooked}"> <h6>{{tblItem.name}}</h6>
-                    <p class="text-small">Seats: {{tblItem.seat}}</p>
-                    <p class="text-small">Shape: {{tblItem.shape}}</p>
-                    <p class="text-small">Hall type: {{tblItem.isAc === true? 'AC': 'Non AC'}}</p>
-                </div> 
-            </div>   
-        </div>    
-    </p-tabPanel>
-    <p-tabPanel header="Dining">
-       <div class="col-md-12">
-           <p class="text-medium"> Total list of Dining <strong># 10</strong></p>
-       </div>
-    </p-tabPanel>
-    <p-tabPanel header="Home Delivery">
-        <div class="col-md-12">
-            <p class="text-medium"> Total list of Home Delivery <strong># 30</strong></p>
-        </div>
-    </p-tabPanel>
-    <p-tabPanel header="Take Away" class="col-md-12">
-        <div class="p-grid">
-            <div class="p-col-12">
-            <p class="text-medium"> Total list of Take Away <strong># 02</strong></p>
-        </div>
-        </div>
-    </p-tabPanel>
-</p-tabView>
+        <!-- <div>     -->
+        <p-tabView class="col-md-12 p-m-3">
+            <p-tabPanel header="Advanced Table Booking">
+                <div class="p-grid">
+                    <div class="p-col-2" *ngFor="let tblItem of tableList" (click)="fnTblBook(tblItem)">
+                        <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':tblItem.isBooked}">
+                            <p class="text-small p-p-1 p-m-1">{{tblItem.name}}</p>
+                            <p class="text-small p-p-1 p-m-1">Seats: {{tblItem.seat}}</p>
+                            <p class="text-small p-p-1 p-m-1">Shape: {{tblItem.shape}}</p>
+                            <p class="text-small p-p-1 p-m-1">Hall type: {{tblItem.isAc === true? 'AC': 'Non AC'}}</p>
+                        </div>
+                    </div>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Dining">
+                <div class="col-md-12">
+                    <p class="text-medium"> Total list of Dining <strong># 10</strong></p>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Home Delivery">
+                <div class="col-md-12">
+                    <p class="text-medium"> Total list of Home Delivery <strong># 30</strong></p>
+                </div>
+            </p-tabPanel>
+            <p-tabPanel header="Take Away" class="col-md-12">
+                <div class="p-grid">
+                    <div class="p-col-12">
+                        <p class="text-medium"> Total list of Take Away <strong># 02</strong></p>
+                    </div>
+                </div>
+            </p-tabPanel>
+        </p-tabView>
     </div>
 </div>
 <!-- </div> -->

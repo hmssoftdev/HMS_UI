@@ -24,13 +24,13 @@
             </div>
             <div class="p-flex-md-row">
                 <div class="p-grid p-jc-end">
-                    <div class="p-col">
+                    <div class="p-col-8">
                         <span style="font-size:small">
                             Discount in %
                         </span>
                     </div>
-                    <div class="p-col">
-                        <p-inputNumber class="p-inputtext-sm" name="discount" id="discount" prefix="%" mode="decimal"
+                    <div class="p-col-4">
+                        <p-inputNumber class="p-inputtext-sm fullWidth" name="discount" id="discount" prefix="%" mode="decimal"
                             [useGrouping]="false" [(ngModel)]="cartItems.discountInPercent" [minFractionDigits]="2"
                             (change)="onInput($event.target.value)">
                         </p-inputNumber>

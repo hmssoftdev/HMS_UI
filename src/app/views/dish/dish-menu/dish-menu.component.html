@@ -1,13 +1,13 @@
 <div class="p-card">
     <div class="p-grid">
         <div class="p-col-9">
-            <p-dataView #dv [value]="categoryFilter" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
+            <p-dataView #dv [value]="!categoryFilter ? dishes : categoryFilter" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
                 [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
                     <div class="p-d-flex p-flex-column p-flex-md-row">
                         <div *ngFor="let item of dishCategory; let i = index">
                             <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
-                            <button (click)="onCategoryFilter(i , item)" pButton type="button" [label]="item.value" class="p-button-secondary p-button-sm p-mr-2 p-mb-1"></button>
+                            <button (click)="onCategoryFilter(item)" pButton type="button" [ngClass]="status === 'Enable'? 'p-button-secondary' : 'p-button-primary'" [label]="item.value" class="p-button-sm p-mr-2 p-mb-1"></button>
                         </div>                         
                     </div>
                     <hr>
@@ -19,8 +19,8 @@
                             <input type="search" pInputText placeholder="Search by Name"
                             (input)="dv.filter($event.target.value)" class="p-mr-2">
                         </span>
-                        <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
-                        (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown>
+                        <!-- <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
+                        (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
                         <div class="p-ml-auto">
                             <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
                         </div>  

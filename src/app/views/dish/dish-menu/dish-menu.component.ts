@@ -19,6 +19,9 @@ import { ShoppingCart } from '../../../models/shopping-cart';
 })
 export class DishMenuComponent implements OnInit {
   //Test
+
+  toggle = true;
+  status = 'Enable';
   shoppingCart: ShoppingCart;
   dishes: Dish[];
   selectedUserId: number;
@@ -31,12 +34,12 @@ export class DishMenuComponent implements OnInit {
   states: any;
   selectedUser: number;
   userList: User[];
-  sendId:number;
+  sendId: number;
   userDialog: boolean;
   submitted: boolean;
   user: any;
   userID: any;
-  userData: any; 
+  userData: any;
   CategoryList: DishCategory[];
   billingDialog: boolean;
   users: { label: number, value: number }[];
@@ -47,67 +50,68 @@ export class DishMenuComponent implements OnInit {
   categoryFilter: any[];
   @Output() toDish = new EventEmitter();
   constructor(
-    private dishService: DishService, 
+    private dishService: DishService,
     private primengConfig: PrimeNGConfig,
-    private cartService:CartService,
+    private cartService: CartService,
     public commonSvc: CommonService,
     private msgService: MessageService,
     public userSvc: UserService,
     private authServive: AuthService,
     public adminService: AdminService,
     public data: ShareDataService
-    ) { }
+  ) { }
   ngOnInit() {
-      this.data.sendObject('Hello from dish menu!');
-      this.data.currentDiallog.subscribe(dialog => this.userDialog = dialog);
-      this.data.currentMessage.subscribe(message => this.selectedUser = message);
-      this.data.currentId.subscribe(id => this.sendId = id);
-      this.dishService.getList(this.sendId).subscribe(data => {this.dishes = data;
-      });
-      this.sortOptions = [
-          {label: 'Price High to Low', value: '!fullPrice'},
-          {label: 'Price Low to High', value: 'fullPrice'}
-      ];
-      this.userData = this.authServive.userData(); 
-      this.primengConfig.ripple = true;
-      this.fnGetDishCategoy();
-      this.loadData()
-      // this.getCities();
-      // this.getStates();
-      this.loadClient();
+    this.data.sendObject('Hello from dish menu!');
+    this.data.currentDiallog.subscribe(dialog => this.userDialog = dialog);
+    this.data.currentMessage.subscribe(message => this.selectedUser = message);
+    this.data.currentId.subscribe(id => this.sendId = id);
+    this.dishService.getList(this.sendId).subscribe(data => {
+      this.dishes = data;
+    });
+    this.sortOptions = [
+      { label: 'Price High to Low', value: '!fullPrice' },
+      { label: 'Price Low to High', value: 'fullPrice' }
+    ];
+    this.userData = this.authServive.userData();
+    this.primengConfig.ripple = true;
+    this.fnGetDishCategoy();
+    this.loadData()
+    // this.getCities();
+    // this.getStates();
+    this.loadClient();
 
   }
 
-  userSelection(user){
+  userSelection(user) {
     this.data.changeMessage(this.selectedUser);
   }
 
-  fnBTN1(){
+  fnBTN1() {
     alert('Full button is pressed');
   }
 
-  fnBTN2(){
+  fnBTN2() {
     alert('Half button is pressed');
   }
 
-  loadClient(){
-   this.obs = this.adminService.getAdmin().subscribe(resp => {
-      if(resp.length > 0){  
+  loadClient() {
+    this.obs = this.adminService.getAdmin().subscribe(resp => {
+      if (resp.length > 0) {
         this.admin = resp[0];
       }
     });
   }
-  loadCategory(){
+  loadCategory() {
     this.dishService.getDishCategory(this.sendId).subscribe(x => {
       this.CategoryList = x;
-      console.log(this.CategoryList); 
+      console.log(this.CategoryList);
     });
   }
-  
+
   loadData() {
     this.userSvc.getUserList().subscribe(res => {
       this.user = res.map(CItem => {
-        return { label: CItem.contact, value: CItem.id}
+        return { label: CItem.contact, value: CItem.id }
       })
     });
   }
@@ -141,68 +145,68 @@ export class DishMenuComponent implements OnInit {
     this.userDialog = false;
   }
   onSortChange(event) {
-      let value = event.value;
+    let value = event.value;
 
-      if (value.indexOf('!') === 0) {
-          this.sortOrder = -1;
-          this.sortField = value.substring(1, value.length);
-      }
-      else {
-          this.sortOrder = 1;
-          this.sortField = value;
-      }
+    if (value.indexOf('!') === 0) {
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
+    }
+    else {
+      this.sortOrder = 1;
+      this.sortField = value;
+    }
   }
   // Get Category
   fnGetDishCategoy() {
-    this.dishService.getDishCategory(this.sendId).subscribe((x:DishCategory[]) => {
+    this.dishService.getDishCategory(this.sendId).subscribe((x: DishCategory[]) => {
       this.rawDishCategoyItems = x;
-      this.dishCategory = x.map(cItem => { 
-        return { label:cItem.name, value:cItem.name}
-         }) 
+      this.dishCategory = x.map(cItem => {
+        return { label: cItem.name, value: cItem.name }
+      })
     });
   }
   onCategoryChange(event) {
     let value = event.value;
 
     if (value.indexOf('!') === 0) {
-        this.sortOrder = -1;
-        this.sortField = value.substring(1, value.length);
+      this.sortOrder = -1;
+      this.sortField = value.substring(1, value.length);
     }
     else {
-        this.sortOrder = -1;
-        this.sortField = value;
+      this.sortOrder = -1;
+      this.sortField = value;
     }
 
-}
+  }
   // Bookmark the menu Item
 
-  fnBookmarkMenu(dish:Dish){
-      dish.bookmark =  !dish.bookmark;
+  fnBookmarkMenu(dish: Dish) {
+    dish.bookmark = !dish.bookmark;
   }
-  
+
   //Add to cart Function
-  fnAddtoCart(cartItem:Dish){
-   const selCategory =  this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
-   console.log(cartItem);
-   cartItem.userId = this.userID;
-   console.log(cartItem);
+  fnAddtoCart(cartItem: Dish) {
+    const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
+    console.log(cartItem);
+    cartItem.userId = this.userID;
+    console.log(cartItem);
     // console.log(selCategory.gstCompliance, "GST C");
-    this.cartService.addItem(cartItem,1, selCategory.gstCompliance);
-  //   if(this.cartItems.length > 0) { 
-  //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name,quantity:1})
+    this.cartService.addItem(cartItem, 1, selCategory.gstCompliance);
+    //   if(this.cartItems.length > 0) { 
+    //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name,quantity:1})
 
-  // } else {
-  //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name, quantity:1})
+    // } else {
+    //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name, quantity:1})
 
-  // }
+    // }
 
-  
-}
-  fnGetTotal(){
-  const totVal = (accumulator:any, curVal:any) => accumulator + curVal.price;
-  return this.cartItems.reduce(totVal);
+
   }
-  fnMakePayment(shoppingCart:ShoppingCart){
+  fnGetTotal() {
+    const totVal = (accumulator: any, curVal: any) => accumulator + curVal.price;
+    return this.cartItems.reduce(totVal);
+  }
+  fnMakePayment(shoppingCart: ShoppingCart) {
     this.shoppingCart = shoppingCart;
     this.billingDialog = true;
   }
@@ -212,11 +216,9 @@ export class DishMenuComponent implements OnInit {
     this.obs.unsubscribe();
   }
 
-  onCategoryFilter(index, category){
-    console.log(index);
-    console.log(category.value);
-    console.log(this.dishCategory.value)
+  onCategoryFilter(category) {
+    this.toggle = !this.toggle;
+    this.status = this.toggle ? 'Enable' : 'Disable';
     this.categoryFilter = this.dishes.filter((categoryVal) => categoryVal.dishCategory === category.value);
-    console.log(this.categoryFilter);
   }
 }
