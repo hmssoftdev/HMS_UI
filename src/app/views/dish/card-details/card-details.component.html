@@ -23,13 +23,13 @@
             <div class="p-d-flex p-jc-between p-m-0"><span>GST</span> {{cartItems.gstTotal | currency:'INR': true}}
             </div>
             <div class="p-flex-md-row">
-                <div class="p-grid p-jc-end">
-                    <div class="p-col-8">
-                        <span style="font-size:small">
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-7">
+                        <span >
                             Discount in %
                         </span>
                     </div>
-                    <div class="p-col-4">
+                    <div class="p-field p-col-5">
                         <p-inputNumber class="p-inputtext-sm fullWidth" name="discount" id="discount" prefix="%" mode="decimal"
                             [useGrouping]="false" [(ngModel)]="cartItems.discountInPercent" [minFractionDigits]="2"
                             (change)="onInput($event.target.value)">
@@ -37,11 +37,11 @@
                     </div>
                 </div>
                     <!-- <div style="font-size:small p-my-2">Discount in &#8377;</div> -->
-                <div class="p-grid p-jc-end">
-                    <div class="p-col">
-                    <span style="font-size:small">Additional amount</span> 
+                <div class="p-fluid p-formgrid p-grid">
+                    <div class="p-field p-col-7">
+                    <span >Additional amount</span> 
                     </div>
-                    <div class="p-col">
+                    <div class="p-field p-col-5">
                         <p-inputNumber [(ngModel)]="cartItems.additionalAmount" class="p-inputtext-sm" mode="currency"
                              currency="INR" locale="en-IN">
                         </p-inputNumber>
@@ -54,9 +54,11 @@
     </ul>
     <div class="btnWrap">
         <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment"
-            (click)="fnMakePayment($event)" class="p-button-sm p-button-success"></button>
-        <button pButton type="button" label="Empty Cart" (click)="emptyCart()"
-            class="p-button-sm p-button-danger"></button>
+            (click)="fnMakePayment($event)" class="p-button-sm p-button-success p-p-1"></button>
+            <button [disabled]="!selectedUserId" pButton type="button" label="KOT Print"
+            (click)="fnPrintKOT($event)" class="p-button-sm p-button-info p-p-1"></button>
+        <button pButton type="button" label="Empty Carts" (click)="emptyCart()"
+            class="p-button-sm p-button-danger p-p-1"></button>
     </div>
 
 </div>
