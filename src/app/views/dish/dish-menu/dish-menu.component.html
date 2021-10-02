@@ -7,7 +7,7 @@
                     <div class="p-d-flex p-flex-column p-flex-md-row">
                         <div *ngFor="let item of dishCategory; let i = index">
                             <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
-                            <button (click)="onCategoryFilter(item)" pButton type="button" [ngClass]="status === 'Enable'? 'p-button-secondary' : 'p-button-primary'" [label]="item.value" class="p-button-sm p-mr-2 p-mb-1"></button>
+                            <button (click)="onCategoryFilter(item)" pButton type="button" [ngClass]="status === item? 'p-button-primary' : 'p-button-secondary'" [label]="item.value" class="p-button-sm p-mr-2 p-mb-1"></button>
                         </div>                         
                     </div>
                     <hr>
