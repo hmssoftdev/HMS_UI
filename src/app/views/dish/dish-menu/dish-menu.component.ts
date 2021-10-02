@@ -218,7 +218,7 @@ export class DishMenuComponent implements OnInit {
 
   onCategoryFilter(category) {
     this.toggle = !this.toggle;
-    this.status = this.toggle ? 'Enable' : 'Disable';
+    this.status = category;
     this.categoryFilter = this.dishes.filter((categoryVal) => categoryVal.dishCategory === category.value);
   }
 }

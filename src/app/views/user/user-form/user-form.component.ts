@@ -63,6 +63,7 @@ export class UserFormComponent implements OnInit {
     console.log(this.user);
     if (this.user.userName.trim()) {
       if (this.user.id) {
+        this.user.id = Number(this.user.id)
         this.user.userType = this.userData.userType;
         this.userSvc.updateUser(this.user).subscribe(() => {
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Updated', life: 3000 });
@@ -83,7 +84,7 @@ export class UserFormComponent implements OnInit {
       }
       this.userList = [...this.userList];
       this.shareData.changeDialog(false);
-      // this.userDialog = false;
+      this.userDialog = false;
     }
   }
 
