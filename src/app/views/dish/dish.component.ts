@@ -184,7 +184,7 @@ export class DishComponent implements OnInit {
       return fd;
     }
     fileChange(e){
-      this.dish.files = this.commonMethod.limitFileSize(e , 200, 500);
+      this.dish.files = this.commonMethod.limitFileSize(e , 50, 500);
     }
     findIndexById(id: number) {
     let index = -1;

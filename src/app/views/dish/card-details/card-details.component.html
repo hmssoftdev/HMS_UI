@@ -1,6 +1,6 @@
 <div *ngIf="cartItems?.orderitems.length > 0">
     <ul class="ulCart">
-        <li class="cart-item" *ngFor="let item of cartItems.orderitems">
+        <li class="cart-item p-mt-2" *ngFor="let item of cartItems.orderitems">
             <span>{{ item.name }} <span>{{item.isFull ? '' : '(Half)'}}</span></span>
             <span class="btnPlusMinusWrap">
                 <!-- <i class="pi pi-minus"></i>  -->
@@ -15,9 +15,6 @@
             </span>
 
             <span>{{ item.quantity * item.price | currency:'INR':true }}</span>
-        </li>
-        <li>
-         
         </li>
         <li>
             <div class="p-d-flex p-jc-between p-m-0"><span>GST</span> {{cartItems.gstTotal | currency:'INR': true}}
@@ -48,11 +45,13 @@
                     </div>
                 </div>
             </div>
+            
             <div class="p-d-flex p-jc-between gTotP"><span> Total</span>{{cartItems.grossTotal | currency:'INR':true}}
             </div>
         </li>
+        
     </ul>
-    <div class="btnWrap">
+    <div class="btnWrap p-mb-1">
         <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment"
             (click)="fnMakePayment($event)" class="p-button-sm p-button-success p-p-1"></button>
             <button [disabled]="!selectedUserId" pButton type="button" label="KOT Print"
