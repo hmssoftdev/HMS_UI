@@ -52,9 +52,9 @@
         
     </ul>
     <div class="btnWrap p-mb-1">
-        <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment"
+        <button  pButton type="button" label="Make Payment"
             (click)="fnMakePayment($event)" class="p-button-sm p-button-success p-p-1"></button>
-            <button [disabled]="!selectedUserId" pButton type="button" label="KOT Print"
+            <button pButton type="button" label="KOT Print"
             (click)="fnPrintKOT($event)" class="p-button-sm p-button-info p-p-1"></button>
         <button pButton type="button" label="Empty Carts" (click)="emptyCart()"
             class="p-button-sm p-button-danger p-p-1"></button>
