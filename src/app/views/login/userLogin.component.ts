@@ -33,6 +33,13 @@ export class LoginComponent implements OnInit {
       this.location.back();
     }
   }
+
+  keypress(e: KeyboardEvent){
+    console.log(e.key)
+    if(e.key === 'Enter'){
+      this.loginUser();
+    }
+  }
   loginUser(){  
     this.authService.loginUser(this.users).subscribe(
       (resp:any)=>{

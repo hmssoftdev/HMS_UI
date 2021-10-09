@@ -1,4 +1,4 @@
-                        
+                     
                         <div class="p-grid p-mt-5">
                         <div class="p-card p-col-11 p-md-6 p-lg-4 p-mx-auto p-px-4"> 
                         <form name="loginForm">
@@ -10,7 +10,7 @@
                             </div>
                             <div class="p-inputgroup p-mb-4">
                                 <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                                <input type="password" pInputText name="password" class="form-control" [(ngModel)]="users.password" placeholder="Password" autocomplete="current-password" required>         
+                                <input type="password" (keypress)="keypress($event)" pInputText name="password" class="form-control" [(ngModel)]="users.password" placeholder="Password" autocomplete="current-password" required>         
                             </div>
                             <div class="p-text-center">
                                 <button type="button" (click)="loginUser()" pButton class="pButton">Login</button>

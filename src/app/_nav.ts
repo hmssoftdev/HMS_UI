@@ -5,7 +5,8 @@ export const navItems: INavData[] = [
     name: 'Dish Config',
     url: '/dish',
     icon: 'icon-drop'
-  },{
+  },
+  {
     name: 'Dish Menu',
     url: '/dish/dish-menu',
     icon: 'icon-drop'

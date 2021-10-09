@@ -80,16 +80,16 @@ export class HotelAdminComponent implements OnInit {
    
   }
   logoFile(e){
-    this.admin.RestaurentLogoFile = this.commonMethod.limitFileSize(e , 50 , 500);
+    this.admin.RestaurentLogoFile = this.commonMethod.limitFileSize(e , 500);
   }
   signFile(e){
-    this.admin.SignatureFile = this.commonMethod.limitFileSize(e , 50 , 500);
+    this.admin.SignatureFile = this.commonMethod.limitFileSize(e , 500);
   }
   sealFile(e){
-    this.admin.RestaurentSealFile = this.commonMethod.limitFileSize(e , 50 , 500);
+    this.admin.RestaurentSealFile = this.commonMethod.limitFileSize(e , 500);
   }
   upiFile(e){
-    this.admin.UpiImageFile = this.commonMethod.limitFileSize(e , 50 , 500);
+    this.admin.UpiImageFile = this.commonMethod.limitFileSize(e , 500);
   }
 
   onSubmit(fData){
@@ -165,6 +165,4 @@ export class HotelAdminComponent implements OnInit {
     }
     return fd;
   }
-
-
 }
