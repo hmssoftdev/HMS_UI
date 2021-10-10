@@ -29,7 +29,7 @@
                     <div class="p-field p-col-5">
                         <p-inputNumber class="p-inputtext-sm fullWidth" name="discount" id="discount" prefix="%" mode="decimal"
                             [useGrouping]="false" [(ngModel)]="cartItems.discountInPercent" [minFractionDigits]="2"
-                            (change)="onInput($event.target.value)">
+                            (blur)="fnDiscountCal($event.target.value)">
                         </p-inputNumber>
                     </div>
                 </div>
@@ -39,9 +39,12 @@
                     <span >Additional amount</span> 
                     </div>
                     <div class="p-field p-col-5">
-                        <p-inputNumber [(ngModel)]="cartItems.additionalAmount" class="p-inputtext-sm" mode="currency"
-                             currency="INR" locale="en-IN">
-                        </p-inputNumber>
+                        <!-- <p-inputNumber class="p-inputtext-sm" mode="currency"
+                             currency="INR" locale="en-IN" (blur)="fnAdditionalAmount($event)">
+                        </p-inputNumber> -->
+                    <input type="number" [(ngModel)]="cartItems.additionalAmount" name="addAmount" currency="INR" locale="en-IN" 
+                     class="p-inputtext-sm" pInputText id="addAmount" (blur)="fnAdditionalAmount($event)"/>
+
                     </div>
                 </div>
             </div>
@@ -50,13 +53,15 @@
             </div>
         </li>
         
-    </ul>
+    </ul> 
     <div class="btnWrap p-mb-1">
-        <button [disabled]="!selectedUserId || userData.userType === 3" pButton type="button" label="Make Payment"
+        <button pButton type="button" label="KOT Print"
+            (click)="fnKOTPrint($event)" class="p-button-sm p-button-info p-p-1"></button>            
+            <button pButton type="button" label="Bill Print"
+            (click)="fnBillPrint($event)" class="p-button-sm p-button-info p-p-1"></button>
+            <button [disabled]="userData.userType === 3" pButton type="button" label="Make Payment"
             (click)="fnMakePayment($event)" class="p-button-sm p-button-success p-p-1"></button>
-            <button [disabled]="!selectedUserId" pButton type="button" label="KOT Print"
-            (click)="fnPrintKOT($event)" class="p-button-sm p-button-info p-p-1"></button>
-        <button pButton type="button" label="Empty Carts" (click)="emptyCart()"
+            <button pButton type="button" label="Empty Carts" (click)="emptyCart()"
             class="p-button-sm p-button-danger p-p-1"></button>
     </div>
 

@@ -1,0 +1,30 @@
+<h2 class="orderNumber p-my-1">Order ID: {{ orderData.userId}}</h2>
+<h2 class="orderNumber p-my-1">User ID: {{ orderData.userId}}</h2> 
+<h2 class="orderNumber p-my-1">Table ID: {{ orderData.tableId}}</h2>  
+<h4 class="p-m-0">Order Items:</h4>
+<table class="p-col-12">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th class="p-text-right">Qty</th>
+    </tr>
+  </thead>
+  
+  <tbody *ngFor="let item of orderData.orderitems">
+    <tr *ngIf="!item.kotPrinted">
+      <td>
+        {{ item.name }}{{item.isFull ? '' : ' (Half)'}}
+      </td>
+      <td class="p-text-right">
+        {{ item.quantity }}
+      </td>
+    </tr>
+  </tbody>
+
+  <tfoot>
+    <!-- <tr class="dashedBorderT">
+        <td class="p-text-right dashedBorderT">Bill Total: </td>
+        <td class="p-text-right dashedBorderT"><strong>{{orderTotal}}</strong></td>
+    </tr> -->
+  </tfoot>
+</table>

@@ -22,9 +22,9 @@ export class HotelSettingComponent implements OnInit {
     })
 }
   fnTblBook(tblItem){ 
-    this.tableList.map(res => { 
+    this.tableList.map((res:any) => { 
         if(res.name === tblItem.name ){
-          // res.isBooked = true;
+         res.isBooked = true;
         }
       });
   }

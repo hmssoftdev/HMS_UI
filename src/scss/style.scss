@@ -116,3 +116,18 @@ p-dialog app-order-status .p-card {
             margin-right: 0.5rem !important;
         }
 }
+
+app-kot-items{
+    display: none;
+}
+
+@media print{
+
+   body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
+        display: none !important;
+    }
+
+    app-kot-items{
+        display: block !important;
+    }
+}

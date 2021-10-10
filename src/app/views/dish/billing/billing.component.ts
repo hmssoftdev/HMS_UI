@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy  } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter  } from '@angular/core';
 import { scan } from 'rxjs/internal/operators';
 import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
@@ -16,6 +16,7 @@ import { Subscription } from 'rxjs';
 export class BillingComponent implements OnInit {
   @Input() adminData: Admin;
   @Input() shoppingCart: ShoppingCart;
+  @Output() close: EventEmitter<any> = new EventEmitter(); 
   selectedUserId: number;
   stateOptions: any[];
   lblIsProceed: boolean;
@@ -96,5 +97,7 @@ export class BillingComponent implements OnInit {
     })
   }
 
-   
+  fnCloseModal(){
+    this.close.emit()
+  }
 }

@@ -1,6 +1,6 @@
-<div class="p-card">
+<div class="p-card dishMenuWrapper">
     <div class="p-grid">
-        <div class="p-col-9">
+        <div class="p-col-8">
             <p-dataView #dv [value]="!categoryFilter ? dishes : categoryFilter" [paginator]="true" [rows]="9" filterBy="name" [sortField]="sortField"
                 [sortOrder]="sortOrder" layout="list">
                 <ng-template pTemplate="header">
@@ -131,12 +131,24 @@
 
             </p-dataView>
         </div>
-        <div class="p-col-3">
+        <div class="p-col-4">
+
             <div class="cartHeader">
-                Cart orderitems
+                Cart Order Items
             </div>
-            <div class="cartContent">
-                <div class="p-d-flex p-ai-center pborder">
+            <div class="cartContent"> 
+                <div class="delOptbtnWrap">
+                <button pButton type="button" [ngClass]="deliveryMode == 'Dining'  ? '' : 'p-button-outlined'"
+                label="Dining" icon="pi pi-money-bill pi-text-primary"
+                (click)="fnDeliveryMode('Dining')"
+                class="p-mr-1"></button>
+                <button pButton type="button" [ngClass]="deliveryMode == 'Home Delivery'  ? '' : 'p-button-outlined'"
+                label="Home Delivery" icon="pi pi-home" (click)="fnDeliveryMode('Home Delivery')" class="p-mr-1"></button>
+                <button pButton type="button" [ngClass]="deliveryMode == 'Take Away' ? '' : 'p-button-outlined'"
+                label="Take Away" icon="pi pi-send pi-text-primary" (click)="fnDeliveryMode('Take Away')"
+                class=""></button> 
+                </div>
+                <div class="p-d-flex p-ai-center pborder p-mt-2">
                     <!-- <label for="userName">User Name:</label> -->
                     <span *ngIf="userData.userType === 3">{{userData.username}}</span>
                     <p-dropdown (onChange)="userSelection(user)"
@@ -144,11 +156,11 @@
                         id="userName" [options]="user" [(ngModel)]="selectedUser" placeholder="Search for Number"
                         optionLabel="label" optionValue="value" [filter]="true" [showClear]="true" filterBy="label">
                     </p-dropdown>
-                    <button (click)="sendToDish()" *ngIf="userData.userType === 1 || userData.userType === 2" pButton
+                    <button  *ngIf="userData.userType === 1 || userData.userType === 2" pButton
                         pRipple label="" icon="pi pi-plus" class="p-button-success p-mr-2 p-button-sm my-2 p-mb-2"
                         pTooltip="Add new user" (click)="openNew()"></button>
                 </div>
-                <app-card-details (fnBillingModal)="fnMakePayment($event)"></app-card-details>
+                <app-card-details (fnBillingModal)="fnMakePayment($event)" (KOTPrint)="fnKOTPrint($event)" (BillPrint)="fnBillPrint($event)"></app-card-details>
             </div>
         </div>
     </div>
@@ -162,9 +174,10 @@
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="shoppingCart">
+    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="shoppingCart" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<!-- <p-dialog>
-    <app-billing *ngIf="billingDialog" [adminData]="admin"></app-billing>
-</p-dialog> -->
+<p-dialog [(visible)]="diningTableDialog" header="Dining Table List" [modal]="true" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '75vw'}">
+    <app-dining-table (tableSelection)="fnTableSelection($event)"></app-dining-table>
+</p-dialog>  
+<app-kot-items [orderData]="KOTitems" *ngIf="KOTitems"></app-kot-items>

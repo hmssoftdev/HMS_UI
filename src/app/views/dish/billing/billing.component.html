@@ -1,17 +1,17 @@
 <div class="p-grid">
-    <div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':isSelectDeliveryMode}">
+    <!--<div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':isSelectDeliveryMode}">
         <span class="pi pi-directions"></span></div></div>
     <div class="p-col-11">
-        <h3 class="p-text-normal p-mt-0">Choose Delivery Option</h3>
+         <h3 class="p-text-normal p-mt-0">Choose Delivery Option</h3> -->
         <!-- <button pButton type="button" [ngClass]="deliveryMode == 'Dining' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
             label="Dining" icon="pi pi-money-bill pi-text-primary" (click)="fnDeliveryMode('Dining')"
             class="p-px-5 p-py-3 p-mr-2"></button> -->
-        <button pButton type="button" [ngClass]="deliveryMode == 'Home Delivery' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
+        <!-- <button pButton type="button" [ngClass]="deliveryMode == 'Home Delivery' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
             label="Home Delivery" icon="pi pi-home" (click)="fnDeliveryMode('Home Delivery')" class="p-px-5 p-py-3 p-mr-2"></button>
             <button pButton type="button" [ngClass]="deliveryMode == 'Take Away' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
             label="Take Away" icon="pi pi-send pi-text-primary" (click)="fnDeliveryMode('Take Away')"
-            class="p-px-5 p-py-3"></button> 
-    </div>
+            class="p-px-5 p-py-3"></button>  
+    </div>-->
     <div class="billing-separator p-col-12 p-my-2 p-p-0"></div>
     <div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':lblIsProceed}">
         <span class="pi pi-briefcase"></span></div></div>
@@ -28,10 +28,10 @@
     </div>
 
     <div class="p-col-12 p-d-flex p-jc-end">
-        <button pButton pRipple label="Proceed" [disabled]="!(lblIsProceed && isSelectDeliveryMode)" icon="pi pi-check"
+        <button pButton pRipple label="Proceed" [disabled]="!lblIsProceed" icon="pi pi-check"
             class="p-button-success p-button p-button-raised p-mx-1" (click)="fnProceed()"></button>
         <button pButton pRipple label="Cancel" type="button" icon="pi pi-times" class="p-button-danger p-button-raised"
-            (click)="fnResetPayment()"></button>
+            (click)="fnCloseModal()"></button>
     </div>
 
     

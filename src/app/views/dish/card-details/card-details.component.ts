@@ -18,6 +18,9 @@ export class CardDetailsComponent implements OnInit {
   public cartItems: ShoppingCart;
   totCartPrice: any;
   @Output() fnBillingModal: EventEmitter<any> = new EventEmitter();
+  @Output() KOTPrint : EventEmitter<any> = new EventEmitter();
+  @Output() BillPrint : EventEmitter<any> = new EventEmitter();
+
   constructor(private cartService: CartService,
     public data: ShareDataService,
     private msgService: MessageService) { }
@@ -26,11 +29,7 @@ export class CardDetailsComponent implements OnInit {
     this.data.currentMessage.subscribe(message => this.selectedUserId = message);
     console.log(this.selectedUserId);
     this.cartService.empty();
-    this.cartService.get().subscribe(resp=> this.cartItems = resp);
-  }
-
-  onInput(value: number){
-    this.cartItems.discountInRupees = (this.cartItems.grossTotal * value) / 100; 
+    this.cartService.get().subscribe((resp:ShoppingCart)=> this.cartItems = resp);
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -54,5 +53,26 @@ export class CardDetailsComponent implements OnInit {
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
     //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });
     // })
+  }
+  fnDiscountCal(value){
+    this.cartItems.discountInPercent  = parseInt(value);
+    this.cartItems.discountInRupees = (this.cartItems.grossTotal * value) / 100; 
+    this.cartItems.grossTotal = this.cartItems.grossTotal - this.cartItems.discountInRupees;
+  }
+  fnAdditionalAmount(event){
+    debugger
+    console.log(event.target.value, "VALUE")
+    this.cartItems.additionalAmount  = parseInt(event.target.value);
+    this.cartItems.grossTotal = this.cartItems.grossTotal + this.cartItems.additionalAmount;
+  }
+  fnKOTPrint(){
+    // this.cartService.get().subscribe(resp=> {
+    //   if(resp){
+        this.KOTPrint.emit(this.cartItems);
+    //   }
+    // })
+  }
+  fnBillPrint(){
+    this.BillPrint.emit(this.cartItems)
   }
 }

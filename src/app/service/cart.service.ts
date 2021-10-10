@@ -44,6 +44,7 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
   const qStatus = product.isFull;
   let item = cart.orderitems.find((p) => p.productId == prodId && p.isFull === qStatus);
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
+  
   if (item === undefined) {
     item = new CartItem();
     item.productId = product.id;
@@ -54,6 +55,7 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
     item.gstCompliance = gstCompliance || 0;
     item.gstPrice = item.price * item.gstCompliance / 100;
     item.isFull = product.isFull;
+    item.kotPrinted = product.kotPrinted ? product.kotPrinted : false;
     cart.orderitems.push(item);
   }
 
@@ -62,7 +64,6 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
   if (cart.orderitems.length === 0) {
     cart.deliveryOptionId = undefined;
   }
-
   this.calculateCart(cart);
   this.save(cart);
   this.dispatch(cart);
@@ -93,11 +94,12 @@ private retrieve(): ShoppingCart {
   if (storedCart) {
     cart.updateFrom(JSON.parse(storedCart));
   }
-
   return cart;
 }
 
 private save(cart: ShoppingCart): void {
+  cart.userId = this.userData.id;
+  debugger
   this.storage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
@@ -112,6 +114,12 @@ private dispatch(cart: ShoppingCart): void {
       });
 }
 
+public addTable(table){
+  const cart = this.retrieve();
+  cart.tableId = table.id;
+  this.save(cart);
+  console.log(cart, "Cart for Table save")
+}
 getOrder(): Observable<OrderList[]> {
   return this.http.get<OrderList[]>(`${this.orderUrl}/Get/${this.userData.adminId}`).pipe(
     map(x => {

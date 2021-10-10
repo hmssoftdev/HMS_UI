@@ -10,11 +10,13 @@ export class CartItem {
   public orderID: number;
   public gstPrice:number;
   public isFull: boolean;
+  public kotPrinted: boolean;
 }
 export class ShoppingCart {
   public id: number;
   public adminId: number;
   public userId: number;
+  public tableId:number;
   public orderitems: CartItem[] = new Array<CartItem>();
   public orderStatus: OrderStatus[];
   public deliveryOptionId: number;
@@ -28,6 +30,9 @@ export class ShoppingCart {
   public discountInRupees: number;
   public additionalAmount: number;
   public updateFrom(src: ShoppingCart) {
+      this.adminId = src.adminId;
+      this.userId = src.userId;
+      this.tableId = src.tableId;
       this.orderitems = src.orderitems;
       this.deliveryOptionId = src.deliveryOptionId;
       this.grossTotal = src.grossTotal;

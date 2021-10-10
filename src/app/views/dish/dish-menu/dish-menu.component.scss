@@ -196,8 +196,16 @@
     .pborder{
         border-bottom:1px solid #898989;
     }
+   
 }
-
+.delOptbtnWrap{
+    button{ 
+        padding:5px 7px;
+        .pi{
+            margin-top:3px;
+        }
+    }
+}
 @media screen and (max-width: 576px) {
     :host ::ng-deep .product-list-item {
         flex-direction: column;
@@ -249,3 +257,4 @@
 .red {
     background-color: red;
 }
+

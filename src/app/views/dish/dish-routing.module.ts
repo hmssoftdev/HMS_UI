@@ -8,6 +8,7 @@ import { AuthGuard } from '../../helpers/auth.guard';
 import { roleConfig } from '../../constant/rolesConfig';
 import { BillingComponent } from './billing/billing.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
+import {DishMenuNewComponent} from './dish-menu-new/dish-menu-new.component'
 const routes: Routes = [
   {
     path: '',
@@ -21,6 +22,15 @@ const routes: Routes = [
   {
     path:'dish-menu',
     component:DishMenuComponent,
+    data:{
+      title:"Dish Menu",
+      roles:roleConfig.authRoles.guest
+    },
+    canActivate:[AuthGuard]
+  },
+  {
+    path:'dish-menu-new',
+    component:DishMenuNewComponent,
     data:{
       title:"Dish Menu",
       roles:roleConfig.authRoles.guest

@@ -49,6 +49,9 @@ export class DishMenuComponent implements OnInit {
   text: string = "Text1";
   categoryFilter: any[];
   @Output() toDish = new EventEmitter();
+  KOTitems: any;
+  diningTableDialog: boolean;
+  deliveryMode: string;
   constructor(
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
@@ -199,7 +202,9 @@ export class DishMenuComponent implements OnInit {
     //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name, quantity:1})
 
     // }
-
+    this.cartService.get().subscribe(resp => {
+     this.KOTitems = resp;//.orderitems.filter(fitem => !fitem.kotPrinted)
+   })
 
   }
   fnGetTotal() {
@@ -220,5 +225,23 @@ export class DishMenuComponent implements OnInit {
     this.toggle = !this.toggle;
     this.status = category;
     this.categoryFilter = this.dishes.filter((categoryVal) => categoryVal.dishCategory === category.value);
+  }
+  closeModal() {
+    this.billingDialog = false;
+  }
+  fnKOTPrint(resp) {
+    this.shoppingCart = resp;
+    debugger
+    window.print();
+  }
+  fnBillPrint(billdata){
+    this.shoppingCart = billdata;
+    window.print();
+  }
+  fnDeliveryMode(s:string){
+    this.deliveryMode = s;
+    if(s =='Dining'){
+      this.diningTableDialog = true;
+    } 
   }
 }

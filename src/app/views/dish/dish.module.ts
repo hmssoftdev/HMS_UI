@@ -8,12 +8,15 @@ import { CheckoutComponent } from './checkout/checkout.component';
 import { DishCategoryConfigComponent } from './dish-category-config/dish-category-config.component';
 import { BillingComponent } from './billing/billing.component';
 import { OrdersListComponent } from './orders-list/orders-list.component';
+import { KOTItemsComponent } from './kot-items/kot-items.component';
+import { DiningTableComponent } from './dining-table/dining-table.component';
+import { DishMenuNewComponent } from './dish-menu-new/dish-menu-new.component';
 @NgModule({
   imports: [
     SharedModule,
     DishRoutingModule,
   ],
-  declarations: [DishComponent,DishMenuComponent, CardDetailsComponent, CheckoutComponent, DishCategoryConfigComponent, BillingComponent, OrdersListComponent]
+  declarations: [DishComponent,DishMenuComponent, CardDetailsComponent, CheckoutComponent, DishCategoryConfigComponent, BillingComponent, OrdersListComponent, KOTItemsComponent, DiningTableComponent, DishMenuNewComponent]
  
 })
 export class DishModule { }

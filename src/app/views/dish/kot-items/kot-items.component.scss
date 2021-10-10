@@ -1,0 +1,16 @@
+
+html, body, h1, h2, h3, h4, p, img { margin: 0;} /* margin reset*/
+h1{font-size: 18pt; font-weight: 500; margin-bottom: 0.5cm;}
+h2{font-size: 16pt; font-weight: 500;}
+p{font-size: 12pt;}
+table{
+    tr {
+        th{
+            background-color: #f8f9fa;
+            font-weight: 600;
+            color: #495057;         }
+        td{
+            border:1px solid #e9ecef; 
+        }
+    }
+}
