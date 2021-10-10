@@ -59,6 +59,11 @@ export class SidebarComponent implements OnInit {
             access:roleConfig.authRoles.admin,
           },
           {
+            name:'Table Config',
+            routing:'/table-configuration',
+            access:roleConfig.authRoles.admin,
+          },
+          {
             name:'User Feedback',
             routing:'/users/user-feedback',
             access:roleConfig.authRoles.user,

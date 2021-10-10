@@ -43,6 +43,7 @@ import { OrderStatusComponent } from './order-status/order-status.component';
 import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
+import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 @NgModule({
   declarations: [
@@ -93,7 +94,8 @@ import { InvoiceComponent } from '../views/invoice/invoice.component';
     DataViewModule,
     AvatarModule,
     TabViewModule,
-    TimelineModule
+    TimelineModule,
+    ProgressSpinnerModule
   ],
   exports:[
     CommonModule,
@@ -137,7 +139,8 @@ import { InvoiceComponent } from '../views/invoice/invoice.component';
     OrderStatusComponent,
     UserFormComponent,
     InvoiceComponent,
-    ClickOutsideDirective
+    ClickOutsideDirective,
+    ProgressSpinnerModule
   ],
   providers:[MessageService, ConfirmationService]
 })
