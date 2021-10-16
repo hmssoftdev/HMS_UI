@@ -49,12 +49,15 @@ export class LoginComponent implements OnInit {
         switch(resp.userType){
           case 1:
           this.router.navigate(['/admin-setting']);
+          // window.location.reload();
           break;
           case 2:
           this.router.navigate(['/dish']);
+          // window.location.reload();
           break;
           default:
-          this.router.navigate(['/dish/dish-menu'])
+          this.router.navigate(['/dish/dish-menu']);
+          // window.location.reload();
         } 
       },
       err=> {
@@ -62,5 +65,6 @@ export class LoginComponent implements OnInit {
       }
     )
   }
+  
 
  }

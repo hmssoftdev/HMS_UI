@@ -9,7 +9,7 @@
                     <ul>
                         <ng-container *ngFor="let mItem of navMenu; let i = index;">
 
-                            <li class="pro-menu-item pro-sub-menu" routerLinkActive="active" *ngIf="mItem.subItems.length > 0"
+                            <li class="pro-menu-item pro-sub-menu" routerLinkActive="active" *ngIf="mItem.subItems.length > 0 && userType !== 1"
                                 (click)="fnToggle(i+1)" [ngClass]="{'open':lblMenuToggle == (i+1)}">
                                 <div class="pro-inner-item" role="button" tabindex="0"><span class="pro-icon-wrapper">
                                         <span class="pro-icon"><i class="{{mItem.icon}}"></i></span></span>

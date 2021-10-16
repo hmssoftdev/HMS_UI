@@ -5,6 +5,7 @@ import { CartService } from '../../../service/cart.service';
 import { OrderStatus, ShoppingCart } from '../../../models/shopping-cart';
 import { OrderList } from '../../../models/orderList';
 import { MessageService } from 'primeng/api';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-orders-list',
@@ -19,16 +20,21 @@ export class OrdersListComponent implements OnInit {
   selectedOrderId: number = 0;
   selectedOrderTotal: number = 0;
   orderStatusDialog:boolean;
-  constructor(private dishSvc: DishService,
+  constructor(
+    private dishSvc: DishService,
     private orderService: CartService,
-    private msgService: MessageService) { }
+    private msgService: MessageService,
+    private authServive: AuthService
+    ) { }
 
   ngOnInit(): void {
+    this.authServive.showLoader = true;
     this.loadData();
   }
   loadData() {
     this.orderService.getOrder().subscribe(res => {
       this.orderList = res;
+    this.authServive.showLoader = false;
     });
   }
   fnViewOrder(order: OrderList){
