@@ -32,12 +32,16 @@
         <p-tabView class="col-md-12 p-m-3">
             <p-tabPanel header="Advanced Table Booking">
                 <div class="p-grid">
-                    <div class="p-col-2" *ngFor="let tblItem of tableList" (click)="fnTblBook(tblItem)">
+                    <div class="p-col-2" *ngFor="let tblItem of tableList">
                         <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':tblItem.isBooked}">
-                            <p class="text-small p-p-1 p-m-1">{{tblItem.name}}</p>
-                            <p class="text-small p-p-1 p-m-1">Seats: {{tblItem.seat}}</p>
-                            <p class="text-small p-p-1 p-m-1">Shape: {{tblItem.shape}}</p>
-                            <p class="text-small p-p-1 p-m-1">Hall type: {{tblItem.isAc === true? 'AC': 'Non AC'}}</p>
+                            <h2 class="tblHead">{{tblItem.name}}</h2>
+                            <p class="txtSeats"> {{tblItem.seat}}<span class="p-text-small">seats</span></p>
+                            <p class="txtShape">{{tblItem.shape}} <span> - spape</span></p>
+                            <p class="txtHallType">{{tblItem.isAc === true? 'AC': 'Non AC'}}<span class="p-text-small"> - Hall type</span></p>
+                            <div class="btnWrapper">
+                                <button pButton class="p-button-outlined p-button-text-only" (click)="fnTblBook(tblItem)">Select</button>
+                                <button pButton class="p-button-outlined p-button-text-only">Join Table</button>
+                            </div>
                         </div>
                     </div>
                 </div>

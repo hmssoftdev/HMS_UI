@@ -5,6 +5,8 @@ import { DishService } from '../../service/dish.service';
 import { HttpClient } from '@angular/common/http';
 import { ShareDataService } from '../../service/share-data.service';
 import { CommonMethodsService } from '../../service/common-methods.service';
+import { Subscription } from 'rxjs';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'dish-Component',
@@ -24,7 +26,8 @@ export class DishComponent implements OnInit {
     private msgService: MessageService,
     private shareData: ShareDataService,
     private http: HttpClient,
-    private commonMethod: CommonMethodsService) { }
+    private commonMethod: CommonMethodsService,
+    private authServive: AuthService) { }
   dishList: Dish[] = [];
   uploadedFiles: any[] = [];
   dish: Dish;
@@ -36,7 +39,9 @@ export class DishComponent implements OnInit {
   submitted: boolean;
   nonVegTypes: Array<any>;
   isVeg = true;
+  subDish: Subscription;
   ngOnInit(): void {
+    this.authServive.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
     this.loadData();
@@ -55,8 +60,9 @@ export class DishComponent implements OnInit {
   }
 
   loadData() {
-    this.dishSvc.getList(this.sendId).subscribe(res => {
-      this.dishList = res;
+    this.subDish = this.dishSvc.getList(this.sendId).subscribe(res => {
+      this.dishList = res; 
+    this.authServive.showLoader = false;
     });
   }
   files;
@@ -102,7 +108,8 @@ export class DishComponent implements OnInit {
 
   // edit the dish item
   editDish(dish: Dish) {
-    // dish.imageUrl = dish.imageUrl ? dish.imageUrl : '';
+    debugger;
+    dish.imageUrl = dish.imageUrl ? dish.imageUrl : '';
     // dish.oldImageUrl = dish.imageUrl;
     // dish.imageUrl = '';
     this.dish = { ...dish };
@@ -222,4 +229,7 @@ export class DishComponent implements OnInit {
   //   if (this.selectedDish.length > 1) {
   //   }
   // }
+  ngOnDestroy(){
+    this.subDish.unsubscribe();
+  }
 }

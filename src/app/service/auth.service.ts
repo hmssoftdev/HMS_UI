@@ -12,6 +12,7 @@ export class AuthService {
   url = `${ApiConfig.URL}${ApiConfig.USER}`;
   public register: Registration;
   storage: Storage;
+  public showLoader = false;
   public uLoggedInSubject$ = new BehaviorSubject(null);
   constructor(private http: HttpClient, private storageService: StorageService) { 
     this.storage = this.storageService.get();

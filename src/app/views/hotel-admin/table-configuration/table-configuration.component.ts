@@ -2,6 +2,7 @@ import { Component } from "@angular/core";
 import { TableService } from "../../../service/table.service";
 import { Hotel } from "../../../models/tabelConfiguration.model";
 import { ConfirmationService, MessageService } from "primeng/api";
+import { AuthService } from "../../../service/auth.service";
 @Component({
     selector: 'app-table-configuration',
     templateUrl: './table-configuration.component.html',
@@ -16,8 +17,11 @@ export class TableConfigurationComponent {
     selectedTables: Hotel[];
     constructor(public tableSvc: TableService,
         private msgService: MessageService,
-        private confirmationService: ConfirmationService) { }
+        private confirmationService: ConfirmationService,
+        private authServive: AuthService
+    ) { }
     ngOnInit(): void {
+        this.authServive.showLoader = true;
         this.hallType = [{ label: 'AC', value: true },
         { label: 'Non AC', value: false }];
         this.tableShape = [{ label: 'Square', value: 'square' },
@@ -28,6 +32,8 @@ export class TableConfigurationComponent {
     loadTabaleData() {
         this.tableSvc.getTableData().subscribe(res => {
             this.tableList = res;
+            this.authServive.showLoader = false;
+
         })
     }
 
@@ -67,7 +73,7 @@ export class TableConfigurationComponent {
 
 
     reset() {
-        
+
     }
 
     openNew() {

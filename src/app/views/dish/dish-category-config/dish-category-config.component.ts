@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { MessageService, ConfirmationService } from 'primeng/api';
 import { Dish, DishCategory } from '../../../models/dish';
+import { AuthService } from '../../../service/auth.service';
 import { DishService } from '../../../service/dish.service';
 import { ShareDataService } from '../../../service/share-data.service';
 
@@ -20,10 +21,15 @@ export class DishCategoryConfigComponent implements OnInit {
   sendId:number;
   dishList: Dish[];
   dish: Dish;
-  constructor(private categorySvc: DishService, private msgService: MessageService, private confirmationService: ConfirmationService,
-    private shareData: ShareDataService) { }
+  constructor(private categorySvc: DishService,
+    private msgService: MessageService,
+    private confirmationService: ConfirmationService,
+    private shareData: ShareDataService,
+    private authServive: AuthService
+    ) { }
 
   ngOnInit(): void {
+    this.authServive.showLoader = true;
     this.status = [{ label: 'Active', value: 'active' },
     { label: 'InActive', value: 'inactive' }];
     // this.dishCategory = {};
@@ -33,7 +39,7 @@ export class DishCategoryConfigComponent implements OnInit {
     this.shareData.currentId.subscribe(id => this.sendId = id);
     this.categorySvc.getDishCategory(this.sendId).subscribe(x => {
       this.CategoryList = x;
-      console.log(x);
+    this.authServive.showLoader = false;
     });
   }
 

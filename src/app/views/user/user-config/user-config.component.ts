@@ -3,6 +3,7 @@ import { User } from './../../../models/user';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './../../../service/user.service';
 import { CommonService } from './../../../service/common.service'
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-user-config',
@@ -17,15 +18,21 @@ export class UserConfigComponent implements OnInit {
   selectedUsers: User[];
   cities: any;
   states: any;
-  constructor(public userSvc: UserService,public commonSvc: CommonService, private msgService: MessageService, private confirmationService: ConfirmationService) { }
+  constructor(public userSvc: UserService,
+    public commonSvc: CommonService,
+    private msgService: MessageService,
+    private confirmationService: ConfirmationService,
+    private authServive: AuthService) { }
 
   ngOnInit(): void {
+    this.authServive.showLoader = true;
     this.loadData();
   }
 
   loadData() {
     this.userSvc.getUserList().subscribe(res => {
       this.userList = res;
+    this.authServive.showLoader = false;
     });
   }
   openNew() {

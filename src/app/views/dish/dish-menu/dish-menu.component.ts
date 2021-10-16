@@ -64,12 +64,14 @@ export class DishMenuComponent implements OnInit {
     public data: ShareDataService
   ) { }
   ngOnInit() {
+    this.authServive.showLoader = true;
     this.data.sendObject('Hello from dish menu!');
     this.data.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.data.currentMessage.subscribe(message => this.selectedUser = message);
     this.data.currentId.subscribe(id => this.sendId = id);
     this.dishService.getList(this.sendId).subscribe(data => {
       this.dishes = data;
+      this.authServive.showLoader = false;
     });
     this.sortOptions = [
       { label: 'Price High to Low', value: '!fullPrice' },
