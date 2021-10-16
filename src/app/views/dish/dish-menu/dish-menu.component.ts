@@ -246,4 +246,7 @@ export class DishMenuComponent implements OnInit {
       this.diningTableDialog = true;
     } 
   }
+  fnTableSelection(e){
+    //Do something
+  }
 }
