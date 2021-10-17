@@ -85,9 +85,18 @@ private calculateCart(cart: ShoppingCart): void {
   cart.gstTotal = cart.orderitems
   .map((item) => item.quantity * item.gstPrice)
   .reduce((previous, current) => previous + current, 0);
-  cart.grossTotal = cart.itemTotal + cart.gstTotal;
+  cart.discountInRupees = (cart.itemTotal * cart.discountInPercent | 0) / 100; 
+  cart.grossTotal = (cart.itemTotal - cart.discountInRupees + (cart.additionalAmount  | 0)) + cart.gstTotal ;
 }
-
+public calcDiscountRupees(cart:ShoppingCart){
+  cart.discountInRupees = (cart.itemTotal * cart.discountInPercent) / 100 | 0; 
+  cart.grossTotal = (cart.itemTotal - cart.discountInRupees + (cart.additionalAmount | 0)) + cart.gstTotal ;
+  this.save(cart)
+}
+public calcAdditionalAmount(cart:ShoppingCart){ 
+  cart.grossTotal = (cart.itemTotal - cart.discountInRupees+ (cart.additionalAmount | 0)) + cart.gstTotal ;
+  this.save(cart)
+}
 private retrieve(): ShoppingCart {
   const cart = new ShoppingCart();
   const storedCart = this.storage.getItem(CART_KEY);
@@ -99,7 +108,6 @@ private retrieve(): ShoppingCart {
 
 private save(cart: ShoppingCart): void {
   cart.userId = this.userData.id;
-  debugger
   this.storage.setItem(CART_KEY, JSON.stringify(cart));
 }
 
@@ -120,6 +128,12 @@ public addTable(table){
   this.save(cart);
   console.log(cart, "Cart for Table save")
 }
+public addDeliveryMode(deliveryMode:string){
+  const cart = this.retrieve();
+  cart.deliveryMode = deliveryMode;
+  this.save(cart)
+}
+
 getOrder(): Observable<OrderList[]> {
   return this.http.get<OrderList[]>(`${this.orderUrl}/Get/${this.userData.adminId}`).pipe(
     map(x => {

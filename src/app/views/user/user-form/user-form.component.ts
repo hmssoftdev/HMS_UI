@@ -1,4 +1,4 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { User } from './../../../models/user';
 import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './../../../service/user.service';
@@ -13,6 +13,7 @@ import { ShareDataService } from '../../../service/share-data.service';
 
 export class UserFormComponent implements OnInit {
   @Input() user?: User;
+  @Output() saveEvent = new EventEmitter();
   // user: User;
   submitted: boolean;
   userList: User[] = [];
@@ -82,6 +83,7 @@ export class UserFormComponent implements OnInit {
           this.getStates();
         })
       }
+      this.saveEvent.emit(this.userList)
       this.userList = [...this.userList];
       this.shareData.changeDialog(false);
       this.userDialog = false;
