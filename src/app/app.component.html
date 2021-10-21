@@ -77,10 +77,9 @@
 </app-footer> -->
 
 <div *ngIf="authService.showLoader">
-    <p-dialog header="Loading Data..." [(visible)]="authService.showLoader" [style]="{width: '50vw'}" [modal]="true">
-        <div class="d-flex justify-content-center">
-            <p-progressSpinner [style]="{width: '50px', height: '50px'}" styleClass="custom-spinner" strokeWidth="8"
-            fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>
-        </div>
+    <p-dialog [(visible)]="authService.showLoader" [style]="{width: '15%'}" [closable]="false" [modal]="true">
+            <div style="text-align: center">
+                <p-progressSpinner [style]="{width: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>    
+              </div>
     </p-dialog>
 </div>
