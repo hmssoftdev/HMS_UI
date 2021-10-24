@@ -1,5 +1,6 @@
-import { Component, OnInit} from '@angular/core';
+import { Component, OnInit} from '@angular/core'; 
 import { PrimeNGConfig } from 'primeng/api';
+import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
 import { ShoppingCart } from '../../../models/shopping-cart';
 import { User } from '../../../models/user';
@@ -33,9 +34,13 @@ export class DishMenuNewComponent implements OnInit {
   submitted: boolean;
   usersList: any[];
   user: User;
+  billingDialog:boolean;
   cartItems: ShoppingCart;
   shoppingCart: ShoppingCart;
   KOTitems: ShoppingCart;
+  subUserList: Subscription;
+  subDishList: Subscription;
+  selectedPrintType:string;
   constructor(
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
@@ -46,7 +51,7 @@ export class DishMenuNewComponent implements OnInit {
 
   ngOnInit(): void {
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
-    this.dishService.getList(this.sendId).subscribe(data => {
+    this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
       this.dishesRaw = data;
       this.dishes = data;
     });
@@ -132,7 +137,7 @@ export class DishMenuNewComponent implements OnInit {
   }
   
   loadUserData() {
-    this.userService.getUserList().subscribe(res => {
+   this.subUserList = this.userService.getUserList().subscribe(res => {
       this.usersList = res.map(CItem => {
         return { label: CItem.contact, value: CItem.id }
       })
@@ -175,6 +180,7 @@ export class DishMenuNewComponent implements OnInit {
     this.cartItems.userId = this.selectedUser;
     console.log(this.cartItems.userId);
     this.cartItems.adminId = this.userData.adminId;
+    this.billingDialog = true;
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
     //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });
@@ -193,19 +199,41 @@ export class DishMenuNewComponent implements OnInit {
 
   fnKOTPrint(resp) {
    // console.log(this.cartItems,"KOT PRINT")
-    this.cartService.get().subscribe(resp => {
-      this.KOTitems = resp;
-      this.cartItems = resp;
+   this.cartService.get().subscribe(resp => {
+    this.KOTitems = resp;
+    this.cartItems = resp;
+    const orderS = {status:1}
+    this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
+    this.cartItems.orderStatus.push(orderS)
+    //this.cartItems.orderStatus.push({status:1,orderId:this.cartItems.id,id:this.cartItems.id})
+    this.cartService.postOrder(this.cartItems).subscribe(resp => {
+      debugger
     })
-    // this.KOTitems = this.cartItems;
-
+  }) 
+  // this.KOTitems = this.cartItems;
+    this.selectedPrintType = 'KOTPrintUI';
     setTimeout(function () {
       window.print();
     },2000)
   }
   fnBillPrint(billdata){
-    console.log(this.cartItems,'BillPrint')
-    // this.shoppingCart = billdata;
+    // this.selectedPrintType = 'BillPrintUI';
+    // console.log(this.cartItems,'BillPrint')
+    // this.KOTitems = this.cartItems;
     // window.print();
+    
+    this.selectedPrintType = 'BillPrintUI';
+    this.cartService.get().subscribe(resp => {
+      this.KOTitems = resp;
+      this.cartItems = resp;
+    })
+    // this.KOTitems = this.cartItems;
+    setTimeout(function () {
+      window.print();
+    },2000)
+  }
+  ngOnDestroy(){
+    this.subUserList.unsubscribe();
+    this.subDishList.unsubscribe();
   }
 }

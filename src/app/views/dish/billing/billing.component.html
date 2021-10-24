@@ -12,7 +12,6 @@
             label="Take Away" icon="pi pi-send pi-text-primary" (click)="fnDeliveryMode('Take Away')"
             class="p-px-5 p-py-3"></button>  
     </div>-->
-    <div class="billing-separator p-col-12 p-my-2 p-p-0"></div>
     <div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':lblIsProceed}">
         <span class="pi pi-briefcase"></span></div></div>
     <div class="p-col-11"> 
@@ -27,6 +26,7 @@
         <img [src]="adminData.upiImage" alt="UPI" style="width: 200px; height: 200px;">
     </div>
 
+    <div class="billing-separator p-col-12 p-my-2 p-p-0"></div>
     <div class="p-col-12 p-d-flex p-jc-end">
         <button pButton pRipple label="Proceed" [disabled]="!lblIsProceed" icon="pi pi-check"
             class="p-button-success p-button p-button-raised p-mx-1" (click)="fnProceed()"></button>

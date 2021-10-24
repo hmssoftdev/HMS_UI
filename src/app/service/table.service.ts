@@ -25,8 +25,8 @@ export class TableService {
   }
 
   addTable(table): Observable<Hotel> {
-
-    return this.http.post<Hotel>(this.url, table).pipe(
+debugger
+    return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).pipe(
       map(x => {
         this.tableList.push(x);
         return table;

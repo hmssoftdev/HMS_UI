@@ -86,15 +86,16 @@ export class BillingComponent implements OnInit {
     // } else if(this.paymentMode === 'UPI'){
     //   alert('Please scan the QR code and proceed');
     // }
-    var orderStatus : OrderStatus = {status : 1,id:0,orderId:0};
-    this.shoppingCart.orderStatus = [];
-    this.shoppingCart.orderStatus.push(orderStatus);
-    this.shoppingCart.userId = Number(this.selectedUserId);
-    console.log(this.shoppingCart);
-    this.cartService.postOrder(this.shoppingCart).subscribe(() => {
-      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
+    // var orderStatus : OrderStatus = {status : 1,id:0,orderId:0};
+    // this.shoppingCart.orderStatus = [];
+    // this.shoppingCart.orderStatus.push(orderStatus);
+    // this.shoppingCart.userId = Number(this.selectedUserId);
+    this.router.navigate(['/dish/order-list']);
+    // console.log(this.shoppingCart);
+    // this.cartService.postOrder(this.shoppingCart).subscribe(() => {
+    //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
       this.router.navigate(['/dish/order-list']);
-    })
+   // })
   }
 
   fnCloseModal(){

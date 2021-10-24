@@ -16,7 +16,7 @@ export class ShoppingCart {
   public id: number;
   public adminId: number;
   public userId: number;
-  public tableId: Array<any> = [];
+  public tableIds: Array<any> = [];
   public orderitems: CartItem[] = new Array<CartItem>();
   public orderStatus: OrderStatus[];
   public deliveryOptionId: number;
@@ -33,7 +33,7 @@ export class ShoppingCart {
   public updateFrom(src: ShoppingCart) {
       this.adminId = src.adminId;
       this.userId = src.userId;
-      this.tableId = src.tableId;
+      this.tableIds = src.tableIds;
       this.orderitems = src.orderitems;
       this.deliveryOptionId = src.deliveryOptionId;
       this.grossTotal = src.grossTotal;
@@ -50,8 +50,8 @@ export class ShoppingCart {
 }
 
 export class OrderStatus {
-  public id: number;
-  public orderId: number;
+  public id?: number;
+  public orderId?: number;
   public status: number;
    public createdOn? : Date;
   // public name: string;

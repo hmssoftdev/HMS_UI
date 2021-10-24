@@ -124,7 +124,9 @@ private dispatch(cart: ShoppingCart): void {
 
 public addTable(table){
   const cart = this.retrieve();
-  cart.tableId = table.id;
+  cart.tableIds = [];
+  cart.tableIds.push(table.id)
+ // cart.tableId = table.id;
   this.save(cart);
   console.log(cart, "Cart for Table save")
 }

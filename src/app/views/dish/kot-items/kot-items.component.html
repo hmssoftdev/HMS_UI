@@ -1,8 +1,9 @@
 
+
+<ng-container *ngIf="printType === 'KOTPrintUI'">
+
 <div *ngIf="orderData">
-<h2 class="orderNumber p-my-1">Order ID: {{ orderData.userId}}</h2>
-<h2 class="orderNumber p-my-1">User ID: {{ orderData.userId}}</h2> 
-<h2 class="orderNumber p-my-1">Table ID: {{ orderData.tableId}}</h2>  
+<p class="orderNumber p-my-1">Order ID: <strong>{{ orderData.userId}}</strong> | Table ID: <strong>{{ orderData.tableId}}</strong> |  User ID: <strong>{{ orderData.userId}}</strong></p>  
 <h4 class="p-m-0">Order Items:</h4>
 <table class="p-col-12">
   <thead>
@@ -31,3 +32,139 @@
   </tfoot>
 </table>
 </div>
+
+</ng-container>
+
+<ng-container *ngIf="printType === 'BillPrintUI'">
+  <table class="tblInvoice hide"  cellspacing="0" cellpadding="0" style="display:none;width: 100%;">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th> Name Of Product</th>
+            <th>Qty</th>
+            <th>Rate</th>  
+            <th>Amount</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let item of orderData.orderitems; let i = index;">
+            <td>{{i+1}}</td>
+            <td>{{item.name}}</td>
+            <td>{{item.quantity}}</td>
+            <td class="text-right">{{item.price}}</td> 
+            <td class="text-right">{{item.price * item.quantity}}</td>
+        </tr>
+        <tr style="border-top: 1px solid #dcdcdc;">
+            <td colspan="4" class="text-right"><strong>Sub-Total</strong></td> 
+            <td class="text-right"><strong>{{orderData.itemTotal | currency : 'INR'}}</strong></td> 
+        </tr>
+        <tr style="border-bottom:1px dashed #dcdcdc;">
+          <td colspan="4" class="text-right">GST</td>  
+          <td class="text-right"> {{ orderData.gstTotal | currency :'INR'}}</td>
+      </tr>
+        <tr *ngIf="orderData.discountInRupees">
+          <td colspan="4" class="text-right"> Discount </td> 
+          <td class="p-text-right"> {{orderData.discountInRupees | currency : 'INR'}} </td> 
+      </tr>
+      <tr *ngIf="orderData.additionalAmount">
+        <td colspan="4" class="text-right">Additional Amount </td> 
+        <td class="p-text-right"> {{orderData.additionalAmount | currency : 'INR'}} </td> 
+    </tr>
+        <tr>
+          <td colspan="4" class="p-text-right"  style="border-top:1px solid #dcdcdc;"><strong>Total Amount</strong></td>  
+          <td class="p-text-right"  style="border-top:1px solid #dcdcdc;"><strong>{{orderData.grossTotal | currency :'INR'}}</strong>
+          </td>
+      </tr>
+       <tr><td colspan="5" class="p-text-center"> Thank you! Visit Again !!</td></tr> 
+        </tbody>
+        </table>
+        <table class="tblInvoice">
+          <thead>
+              <tr>
+                  <th>#</th>
+                  <th> Name Of Product</th>
+                  <th>Qty</th>
+                  <th>Rate</th>
+                  <!-- <th>Discount</th> -->
+                  <th>Non Taxable Value</th>
+                  <!-- <th colspan="2">CGST</th>
+                  <th colspan="2">SGST</th> -->
+                  <!-- <th>Total</th> -->
+              </tr>
+              <!-- <tr>
+                  <th>Rate</th>
+                  <th>Amount</th>
+                  <th>Rate</th>
+                  <th>Amount</th>
+              </tr> -->
+          </thead>
+          <tbody>
+              <tr *ngFor="let item of orderData.orderItems; let i = index;">
+                  <td>{{i+1}}</td>
+                  <td>{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
+                  <td>{{item.quantity}}</td>
+                  <td class="text-right">{{item.price}}</td>
+                  <!-- <td class="text-right">0</td> -->
+                  <td class="text-right">{{item.price * item.quantity}}</td>
+                  <!-- <td class="text-right">{{item.gstCompliance/2}}</td>
+                  <td class="text-right">{{item.price * item.quantity * (item.gstCompliance/2) /100}}</td>
+                  <td class="text-right">{{item.gstCompliance/2}}</td>
+                  <td class="text-right">{{item.price * item.quantity * (item.gstCompliance/2) /100}}</td> -->
+                  <!-- <td class="text-right">{{item.price * item.quantity + (item.price * item.quantity * item.gstCompliance
+                      /100)}}</td> -->
+              </tr>
+              <tr>
+                  <td colspan="2" class="text-right"><strong>Total</strong></td>
+                  <td><strong>{{orderData.itemCount}}</strong></td>
+                  <td></td> 
+                  <!-- <td class="text-right">{{orderData.gstTotal | currency : 'INR'}}</td> -->
+                  <!-- <td class="text-right" colspan="2">{{orderData.gstTotal /2 | currency :'INR'}}</td>
+                  <td colspan="2" class="text-right">{{orderData.gstTotal /2 | currency :'INR'}}</td> -->
+                  <td class="text-right"><strong>{{orderData.itemTotal | currency :'INR'}}</strong></td>
+              </tr>
+              <tr *ngIf="orderData.discountInRupees">
+                  <td colspan="4" class="p-text-right">Discount in %</td>
+                  <td>{{orderData.discountInRupees | currency :'INR'}}</td>
+              </tr>
+              <tr *ngIf="orderData.additionalAmount">
+                  <td colspan="4" class="p-text-right">additionalAmount</td>
+                  <td>{{orderData.additionalAmount | currency :'INR'}}</td>
+              </tr> 
+              <tr>
+                  <td colspan="4" class="p-text-right">CGST</td>
+                  <td>{{orderData.gstTotal /2 | currency :'INR'}}</td>
+              </tr>
+              <tr>
+                  <td colspan="4" class="p-text-right">SGST</td>
+                  <td>{{orderData.gstTotal /2 | currency :'INR'}}</td>
+              </tr>
+              <tr>
+                  <td colspan="4" class="p-text-right p-text-bold">Total Amount</td>
+                  <td class="p-text-bold">{{orderData.grossTotal | currency :'INR'}}</td>
+              </tr>
+             
+             <!--  <tr>
+                  <td  class="text-center" colspan="7">
+                      <p class="p-text-bold">Total invoice amount in words</p>
+                       
+                  </td> 
+                  <td>
+                      <strong>{{orderData.grossTotal  | currency :'INR'}}</strong>
+                  </td>
+              </tr>
+              <tr>
+              <td colspan="3">Add CGST: <br> Add SGST:</td> 
+                  <td class="text-right">{{orderData.gstTotal/2 | currency: 'INR'}}<br>
+                      {{orderData.gstTotal/2 | currency: 'INR'}}
+                  </td>
+          </tr>
+          <tr>
+              <td colspan="3"> Tax Amount GST: <br> Total Amount:</td>
+             <td class="text-right">
+              {{orderData.gstTotal | currency: 'INR'}} <br>
+              <strong>{{orderData.grossTotal + orderData.gstTotal | currency: 'INR' }}</strong>
+             </td>
+          </tr> -->
+          </tbody>
+      </table>
+</ng-container>
