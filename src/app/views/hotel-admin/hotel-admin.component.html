@@ -81,7 +81,7 @@
                 </div>
                 <div class="p-field p-col-3">
                     <label for="UPICodeNumber"><b>UPI Code(Number)</b></label>
-                    <input type="text" id="UPICodeNumber" name="UPICodeNumber" class="p-inputtext-sm" [(ngModel)]="admin.codeNumber" placeholder="UPI Code" pInputText />
+                    <input type="text" id="UPICodeNumber" name="UPICodeNumber" class="p-inputtext-sm" [(ngModel)]="admin.UPICodeNumber" placeholder="UPI Code" pInputText />
                 </div>
                 <div class="p-field p-col-3" >
                     <label for="files"><b>Upload restaurent's Logo</b></label>
@@ -97,7 +97,7 @@
                 </div>
                 <div class="p-field p-col-3" >
                     <label for="files"><b>Upload UPI Scan Image</b></label>
-                    <input name="files" [(ngModel)]="admin.upiImage" (change)="upiFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="files" [(ngModel)]="admin.UPICodeImg" (change)="upiFile($event)" class="p-inputtext-sm" pInputText type="file">
                 </div>
                 <div class="p-field p-col-3" >
                     <label for="logo"><b>Logo</b></label>

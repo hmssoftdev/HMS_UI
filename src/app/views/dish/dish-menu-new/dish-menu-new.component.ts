@@ -236,4 +236,7 @@ export class DishMenuNewComponent implements OnInit {
     this.subUserList.unsubscribe();
     this.subDishList.unsubscribe();
   }
+
+  fnTableSelection(e){
+  }
 }
