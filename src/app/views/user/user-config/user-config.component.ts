@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './../../../service/user.service';
 import { CommonService } from './../../../service/common.service'
 import { AuthService } from '../../../service/auth.service';
+import { ShareDataService } from '../../../service/share-data.service';
 
 @Component({
   selector: 'app-user-config',
@@ -22,9 +23,11 @@ export class UserConfigComponent implements OnInit {
     public commonSvc: CommonService,
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
-    private authServive: AuthService) { }
+    private authServive: AuthService,
+    private shareData: ShareDataService) { }
 
   ngOnInit(): void {
+    this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authServive.showLoader = true;
     this.loadData();
   }
@@ -38,7 +41,7 @@ export class UserConfigComponent implements OnInit {
   openNew() {
     this.user = {};
     this.submitted = false;
-    this.userDialog = true;
+    this.shareData.changeDialog(true);
   }
   reset() {
     this.user = {}
@@ -46,7 +49,7 @@ export class UserConfigComponent implements OnInit {
   }
   editUser(user: User) {
     this.user = { ...user };
-    this.userDialog = true;
+    this.shareData.changeDialog(true);
   }
 
   deleteUser(user: User) {

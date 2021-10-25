@@ -86,7 +86,6 @@ export class UserFormComponent implements OnInit {
       this.saveEvent.emit(this.userList)
       this.userList = [...this.userList];
       this.shareData.changeDialog(false);
-      this.userDialog = false;
     }
   }
 
