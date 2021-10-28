@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, Output, EventEmitter  } from '@angular/core';
+import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { scan } from 'rxjs/internal/operators';
 import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
@@ -16,13 +16,13 @@ import { Subscription } from 'rxjs';
 export class BillingComponent implements OnInit {
   @Input() adminData: Admin;
   @Input() shoppingCart: ShoppingCart;
-  @Output() close: EventEmitter<any> = new EventEmitter(); 
+  @Output() close: EventEmitter<any> = new EventEmitter();
   selectedUserId: number;
   stateOptions: any[];
   lblIsProceed: boolean;
   paymentMode: string;
   invoiceDialog: boolean;
-  deliveryMode:string;
+  deliveryMode: string;
   isSelectDeliveryMode: boolean;
   subscription: Subscription;
   object: any;
@@ -34,7 +34,7 @@ export class BillingComponent implements OnInit {
 
 
   ngOnInit(): void {
-    var testData 
+    var testData
     this.data.currentObject.subscribe(
       object => {
         return testData = object;
@@ -47,32 +47,32 @@ export class BillingComponent implements OnInit {
     console.log(this.adminData);
   }
 
-  fnCashProceed(v){
+  fnCashProceed(v) {
     this.paymentMode = "Cash"
     this.lblIsProceed = true;
   }
-  fnDeliveryMode(s:string){
+  fnDeliveryMode(s: string) {
     this.deliveryMode = s;
     console.log(this.deliveryMode);
-    if(this.deliveryMode === 'Home Delivery'){
-    this.shoppingCart.deliveryOptionId = 1;
-  } else {
-    this.shoppingCart.deliveryOptionId = 2;
-  }
+    if (this.deliveryMode === 'Home Delivery') {
+      this.shoppingCart.deliveryOptionId = 1;
+    } else {
+      this.shoppingCart.deliveryOptionId = 2;
+    }
     this.isSelectDeliveryMode = true;
   }
-  fnUPIProceed(){
+  fnUPIProceed() {
     this.paymentMode = 'UPI';
     this.lblIsProceed = true;
   }
 
-  fnResetPayment(){
+  fnResetPayment() {
     this.paymentMode = null;
     this.lblIsProceed = false;
     this.deliveryMode = null;
     this.isSelectDeliveryMode = null;
   }
-  fnProceed(){
+  fnProceed() {
     // if(this.paymentMode === 'Cash'){
     //   alert('Payment Successful');
     //   this.invoiceDialog = true
@@ -90,15 +90,15 @@ export class BillingComponent implements OnInit {
     // this.shoppingCart.orderStatus = [];
     // this.shoppingCart.orderStatus.push(orderStatus);
     // this.shoppingCart.userId = Number(this.selectedUserId);
-    this.router.navigate(['/dish/order-list']);
-    // console.log(this.shoppingCart);
-    // this.cartService.postOrder(this.shoppingCart).subscribe(() => {
-    //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
+    // this.router.navigate(['/dish/order-list']);
+    console.log(this.shoppingCart);
+    this.cartService.postOrder(this.shoppingCart).subscribe(() => {
+      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
       this.router.navigate(['/dish/order-list']);
-   // })
+    })
   }
 
-  fnCloseModal(){
+  fnCloseModal() {
     this.close.emit()
   }
 }
