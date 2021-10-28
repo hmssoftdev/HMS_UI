@@ -19,17 +19,21 @@ export class UserConfigComponent implements OnInit {
   selectedUsers: User[];
   cities: any;
   states: any;
+  cityFilter: [];
   constructor(public userSvc: UserService,
     public commonSvc: CommonService,
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
     private authServive: AuthService,
-    private shareData: ShareDataService) { }
+    private shareData: ShareDataService,
+    private commonService: CommonService,
+    ) { }
 
   ngOnInit(): void {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authServive.showLoader = true;
     this.loadData();
+    this.fnGetCitiesList();
   }
 
   loadData() {
@@ -80,6 +84,18 @@ export class UserConfigComponent implements OnInit {
         })
       }
     });
+  }
+
+  fnGetCitiesList() {
+    this.commonService.getCities().subscribe(x => {
+      this.cities = x;
+      if (this.user.stateId) {
+        this.onStateChange();
+      }
+    });
+  }
+  onStateChange() {
+    this.cityFilter = this.cities.filter((city) => city.stateId === this.user.stateId);
   }
 
   findIndexById(id: number) {
