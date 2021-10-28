@@ -31,9 +31,10 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
-    this.loadData();
+   // this.loadData();
     this.getCities();
     this.getStates();
+    this.onStateChange();
   }
 
   loadData() {
@@ -55,7 +56,7 @@ export class UserFormComponent implements OnInit {
       })
     });
   }
-  onStateChange(e) {
+  onStateChange() {
     this.cityFilter = this.cities.filter((city) => city.stateId === this.user.stateId);
   }
 
@@ -76,7 +77,7 @@ export class UserFormComponent implements OnInit {
       } else {
         this.user.userType = this.userData.userType;
         this.userSvc.AddUser(this.user).subscribe(() => {
-          this.userList.push(this.user);
+          // this.userList.push(this.user);
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Created', life: 3000 });
           this.loadData();
           this.getCities();

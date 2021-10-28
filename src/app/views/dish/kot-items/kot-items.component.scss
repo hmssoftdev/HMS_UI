@@ -5,15 +5,24 @@ h2{font-size: 16pt; font-weight: 500;}
 p{font-size: 12pt;}
 table{
     table-layout: fixed;
+    width:100%; 
+    border: 1px solid #dcdcdc;
     tr {
+        // th,td{
+        //     border:1px solid #2c1616; 
+        //     border-bottom: 0;
+        //     border-top:0;
+        //     padding:0 2px;
+        // }
         th{
             background-color: #f8f9fa;
             font-weight: 600;
             color: #495057;
-            border-bottom: 1px solid #495057;
+            border-bottom: 1px solid #dcdcdc;
+            padding:2px 5px;
         }
-        td{
-            // border:1px solid #e9ecef; 
-        }
+       
+        .b-top {border-top:1px solid #dcdcdc;}
+        .b-dashed {border-bottom:1px dashed #dcdcdc;}
     }
 }

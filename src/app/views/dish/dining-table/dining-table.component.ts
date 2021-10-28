@@ -22,17 +22,20 @@ export class DiningTableComponent implements OnInit {
     })
 }
   fnTblBook(tblItem){ 
+      
     if(tblItem.isBooked){
 
     } else {
-    this.tableSvc.addTable(tblItem).subscribe(resp =>{
+      tblItem.isBooked = true;
+      this.tableSvc.addTable(tblItem).subscribe(resp =>{
     });
   } 
   this.tableList.map((res:any) => { 
-        if(res.name === tblItem.name ){
-         res.isBooked = true; 
-         this.cartService.addTable(tblItem); 
-        }
-      });      
+    if(res.name === tblItem.name ){
+      tblItem.isBooked = true; 
+     this.cartService.addTable(tblItem); 
+    }
+  }); 
+    
 }
 }

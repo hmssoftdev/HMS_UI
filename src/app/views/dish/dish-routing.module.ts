@@ -21,15 +21,6 @@ const routes: Routes = [
   },
   {
     path:'dish-menu',
-    component:DishMenuComponent,
-    data:{
-      title:"Dish Menu",
-      roles:roleConfig.authRoles.guest
-    },
-    canActivate:[AuthGuard]
-  },
-  {
-    path:'dish-menu-new',
     component:DishMenuNewComponent,
     data:{
       title:"Dish Menu",
@@ -37,6 +28,15 @@ const routes: Routes = [
     },
     canActivate:[AuthGuard]
   },
+  // {
+  //   path:'dish-menu-new',
+  //   component:DishMenuNewComponent,
+  //   data:{
+  //     title:"Dish Menu",
+  //     roles:roleConfig.authRoles.guest
+  //   },
+  //   canActivate:[AuthGuard]
+  // },
   {
     path: 'dish-category-config',
     component: DishCategoryConfigComponent,
