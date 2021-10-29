@@ -33,7 +33,6 @@ export class UserConfigComponent implements OnInit {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authServive.showLoader = true;
     this.loadData();
-    this.fnGetCitiesList();
   }
 
   loadData() {
@@ -84,18 +83,6 @@ export class UserConfigComponent implements OnInit {
         })
       }
     });
-  }
-
-  fnGetCitiesList() {
-    this.commonService.getCities().subscribe(x => {
-      this.cities = x;
-      if (this.user.stateId) {
-        this.onStateChange();
-      }
-    });
-  }
-  onStateChange() {
-    this.cityFilter = this.cities.filter((city) => city.stateId === this.user.stateId);
   }
 
   findIndexById(id: number) {
