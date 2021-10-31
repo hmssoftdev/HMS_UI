@@ -3,7 +3,7 @@
 <ng-container *ngIf="printType === 'KOTPrintUI'">
 
 <div *ngIf="orderData">
-<p class="orderNumber p-my-1">Order ID: <strong>{{ orderData.userId}}</strong> | Table ID: <strong>{{ orderData.tableId}}</strong> |  User ID: <strong>{{ orderData.userId}}</strong></p>  
+<p class="orderNumber p-my-1">Order ID: <strong>{{ orderData.userId}}</strong> | <ng-container *ngIf="orderData.deliveryMode==='Dining'">Table names: <strong>{{ tableNames}}</strong> |</ng-container>  User ID: <strong>{{ orderData.userId}}</strong></p>  
 <h4 class="p-m-0">Order Items:</h4>
 <table cellspacing="0" cellpadding="0">
   <thead>

@@ -1,5 +1,5 @@
 import { Component, OnInit} from '@angular/core'; 
-import { PrimeNGConfig } from 'primeng/api';
+import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
 import { ShoppingCart } from '../../../models/shopping-cart';
@@ -36,32 +36,39 @@ export class DishMenuNewComponent implements OnInit {
   user: User;
   billingDialog:boolean;
   cartItems: ShoppingCart;
-  shoppingCart: ShoppingCart;
-  KOTitems: ShoppingCart;
+  shoppingCart: ShoppingCart; 
   subUserList: Subscription;
   subDishList: Subscription;
   selectedPrintType:string;
+  isKOTdone: boolean = false;
+  KOTEnabled: boolean = false;
+  selectedTableNames: Number[];
+  subCartItems: Subscription;
+  showKOTItems: boolean;
   constructor(
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
     private dataService: ShareDataService,
     private userService: UserService,
     private authService: AuthService,
-    private cartService: CartService) { }
+    private cartService: CartService,
+    private msgService: MessageService) { }
 
   ngOnInit(): void {
+   
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
     this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
       this.dishesRaw = data;
       this.dishes = data;
     });
-    this.loadUserData();
-    this.fnLoadCartData();
-    this.userData = this.authService.userData();
     this.fnGetDishCategoy();
+    this.emptyCart();
+    this.fnLoadCartData();
+    this.loadUserData();
+    this.userData = this.authService.userData();
     this.sortOptions = [
-      { label: 'Price High to Low', value: '!fullPrice' },
-      { label: 'Price Low to High', value: 'fullPrice' }
+    { label: 'Price High to Low', value: '!fullPrice' },
+    { label: 'Price Low to High', value: 'fullPrice' }
     ];
   } 
 
@@ -74,18 +81,12 @@ export class DishMenuNewComponent implements OnInit {
       })
     });
   }
-  onCategoryFilter(category:string) {
-    // this.toggle = !this.toggle;
+  onCategoryFilter(category:string) { 
     this.selCategory = category;
-    
     this.dishes = category === 'All' ? this.dishesRaw : this.dishesRaw.filter((categoryVal) => categoryVal.dishCategory === category);
-    console.log(this.dishes)
-    //this.table.filter(category.value, 'category', 'in');
-    debugger
   }
   onCategoryChange(event) {
     let value = event.value;
-
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
@@ -94,7 +95,6 @@ export class DishMenuNewComponent implements OnInit {
       this.sortOrder = -1;
       this.sortField = value;
     }
-
   }
   onSortChange(event) {
     let value = event.value;
@@ -111,29 +111,20 @@ export class DishMenuNewComponent implements OnInit {
     //Add to cart Function
     fnAddtoCart(cartItem: Dish) {
       const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
-      console.log(cartItem);
-   //   cartItem.userId = this.userID;
-      console.log(cartItem);
-      // console.log(selCategory.gstCompliance, "GST C");
-      this.cartService.addItem(cartItem, 1, selCategory.gstCompliance);
-      //   if(this.cartItems.length > 0) { 
-      //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name,quantity:1})
-  
-      // } else {
-      //   this.cartItems.push({Id:cartItem.id,price:cartItem.fullPrice,name:cartItem.name, quantity:1})
-  
-      // }
-      this.cartService.get().subscribe(resp => {
-    //   this.KOTitems = resp;//.orderitems.filter(fitem => !fitem.kotPrinted)
-     })
-  
+      this.cartService.addItem(cartItem, 1, selCategory.gstCompliance); 
+      this.fnLoadCartData();
     }
   fnDeliveryMode(s:string){
     this.deliveryMode = s;
+    this.isKOTdone = false;
     if(s =='Dining'){
       this.diningTableDialog = true;
-    } 
-    this.cartService.addDeliveryMode(s);
+      this.KOTEnabled = false;
+    } else {
+      this.KOTEnabled = true;
+    }
+
+    this.cartService.addDeliveryMode(s); 
   }
   
   loadUserData() {
@@ -159,8 +150,9 @@ export class DishMenuNewComponent implements OnInit {
 
   // Cart 
   fnLoadCartData(){
-    this.cartService.empty();
-    this.cartService.get().subscribe((resp:ShoppingCart)=> this.cartItems = resp);
+    let count = 0; 
+   this.subCartItems = this.cartService.get().subscribe(resp => this.cartItems = resp); 
+   console.log('CARTSERVICE GET fnLoadCartData', count++) 
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -170,6 +162,10 @@ export class DishMenuNewComponent implements OnInit {
   }
   emptyCart(){
     this.cartService.empty();
+    //this.subCartItems.unsubscribe();
+    this.deliveryMode = '';
+    this.KOTEnabled = false;
+    this.isKOTdone = false;
   }
   fnMakePayment(){
     // this.fnBillingModal.emit();
@@ -197,37 +193,32 @@ export class DishMenuNewComponent implements OnInit {
     this.cartService.calcAdditionalAmount(this.cartItems); 
    }
 
-  fnKOTPrint(resp) {
-   // console.log(this.cartItems,"KOT PRINT")
-   this.cartService.get().subscribe(resp => {
-    this.KOTitems = resp;
-    this.cartItems = resp;
+  fnKOTPrint(resp) { 
+    this.fnLoadCartData();
+    this.showKOTItems = true; 
     const orderS = {status:1}
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
-    this.cartItems.orderStatus.push(orderS)
-    //this.cartItems.orderStatus.push({status:1,orderId:this.cartItems.id,id:this.cartItems.id})
-    this.cartService.postOrder(this.cartItems).subscribe(resp => {
-      debugger
-    })
-  }) 
+    this.cartItems.orderStatus.push(orderS) 
+ // }) 
+  this.cartService.postOrder(this.cartItems).subscribe(resp => {
+    if(this.deliveryMode === 'Dining'){
+      this.emptyCart();
+    } else {
+
+    } 
+  });
   // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
     setTimeout(function () {
       window.print();
+     
     },2000)
-  }
+
+    }
   fnBillPrint(billdata){
-    // this.selectedPrintType = 'BillPrintUI';
-    // console.log(this.cartItems,'BillPrint')
-    // this.KOTitems = this.cartItems;
-    // window.print();
     
     this.selectedPrintType = 'BillPrintUI';
-    this.cartService.get().subscribe(resp => {
-      this.KOTitems = resp;
-      this.cartItems = resp;
-    })
-    // this.KOTitems = this.cartItems;
+    this.fnLoadCartData(); 
     setTimeout(function () {
       window.print();
     },2000)
@@ -235,8 +226,16 @@ export class DishMenuNewComponent implements OnInit {
   ngOnDestroy(){
     this.subUserList.unsubscribe();
     this.subDishList.unsubscribe();
+    this.subCartItems.unsubscribe();
   }
 
-  fnTableSelection(e){
+  fnTableSelection(arr:Array<Number>){ 
+    this.KOTEnabled = true;
+    this.selectedTableNames = arr;    
+  }
+  fnHideDiningTableM(event){
+    if(!this.selectedTableNames || this.selectedTableNames.length == 0){
+      this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:4000 });
+    }
   }
 }

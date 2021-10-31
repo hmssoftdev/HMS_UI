@@ -417,7 +417,7 @@
             <button
               pButton
               type="button" 
-              [disabled]="!deliveryMode"
+              [disabled]="!KOTEnabled"
               label="KOT Print"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
@@ -426,7 +426,7 @@
               pButton
               type="button"
               label="Bill Print"
-              [disabled]="!deliveryMode"                                                    
+              [disabled]="!isKOTdone"                                                    
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
             ></button>
@@ -435,6 +435,7 @@
               pButton
               type="button"
               label="Make Payment"
+              [disabled]="!isKOTdone"
               (click)="fnMakePayment($event)"
               class="p-button-sm p-button-success p-p-1"
             ></button>
@@ -478,10 +479,11 @@
   [(visible)]="diningTableDialog"
   header="Dining Table List"
   [modal]="true"
+  (onHide)="fnHideDiningTableM('diningTable')"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
   [style]="{ width: '75vw' }"
 >
-  <app-dining-table
+  <app-dining-table 
     (tableSelection)="fnTableSelection($event)"
   ></app-dining-table>
 </p-dialog>
@@ -492,4 +494,4 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="shoppingCart" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [printType]="selectedPrintType" [orderData]="KOTitems" *ngIf="KOTitems"></app-kot-items>
+<app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" *ngIf="showKOTItems"></app-kot-items>

@@ -133,6 +133,19 @@ public addTable(table){
 public addDeliveryMode(deliveryMode:string){
   const cart = this.retrieve();
   cart.deliveryMode = deliveryMode;
+  let dMid = 1;
+  switch(deliveryMode){
+    case 'Dining':
+      dMid = 1;
+      break;
+    case 'Home Delivery':
+      dMid = 2;
+      break;
+    case 'Take Away':
+      dMid = 3;
+      break;
+  }
+  cart.deliveryOptionId = dMid;
   this.save(cart)
 }
 

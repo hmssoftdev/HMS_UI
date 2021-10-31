@@ -7,6 +7,7 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class KOTItemsComponent implements OnInit {
 @Input() orderData: any;
+@Input() tableNames: any;
 @Input() printType: string;
   constructor() { }
 
