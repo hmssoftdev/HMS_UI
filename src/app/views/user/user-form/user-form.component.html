@@ -22,7 +22,7 @@
                 <div *ngIf="contact.touched && contact.invalid && userForm.submitted"> <small class="p-error"
                         *ngIf="contact.errors.required">User Contact is required.</small></div>
                 <label for="state">State</label>
-                <p-dropdown (onChange)="onStateChange($event)" inputId="state" name="state" [options]="states" [(ngModel)]="user.stateId"
+                <p-dropdown (onChange)="onStateChange()" inputId="state" name="state" [options]="states" [(ngModel)]="user.stateId"
                     placeholder="State" optionLabel="label" optionValue="value"></p-dropdown>
             </div>
             <div class="p-field p-col-6">

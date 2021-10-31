@@ -33,6 +33,7 @@ export class OrderStatusComponent implements OnInit {
     console.log(this.orderItem);
     this.orderSvc.getOrderStatus(this.orderId).subscribe( (x) => {
       this.orderStatusList =  x;
+      console.log(this.orderStatusList);
       this.orderStatusData = [
         {
           name: "Ordered",
@@ -55,12 +56,12 @@ export class OrderStatusComponent implements OnInit {
           status: 'pending' //"#607D8B"
         }
       ];
-  
       this.orderStatusList.forEach((value,index)=>{
         this.orderStatusData[index].date = value.createdOn;
         this.orderStatusData[index].status  ="completed" 
       });
     })
+    console.log(this.orderStatusData);
   
 
     this.adminService.getAdmin().subscribe(resp => {

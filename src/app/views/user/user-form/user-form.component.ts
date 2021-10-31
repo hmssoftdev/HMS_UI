@@ -31,17 +31,12 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
-   // this.loadData();
     this.getCities();
     this.getStates();
     this.onStateChange();
   }
 
-  loadData() {
-    this.userSvc.getUserList().subscribe(res => {
-      this.userList = res;
-    });
-  }
+
 
   getCities() {
     this.commonSvc.getCities().subscribe(x => {
@@ -69,9 +64,6 @@ export class UserFormComponent implements OnInit {
         this.user.userType = this.userData.userType;
         this.userSvc.updateUser(this.user).subscribe(() => {
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Updated', life: 3000 });
-          this.loadData();
-          this.getCities();
-          this.getStates();
         })
 
       } else {
@@ -79,9 +71,6 @@ export class UserFormComponent implements OnInit {
         this.userSvc.AddUser(this.user).subscribe(() => {
           // this.userList.push(this.user);
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Created', life: 3000 });
-          this.loadData();
-          this.getCities();
-          this.getStates();
         })
       }
       this.saveEvent.emit(this.userList)
