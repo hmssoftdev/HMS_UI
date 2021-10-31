@@ -107,10 +107,14 @@ private retrieve(): ShoppingCart {
 }
 
 private save(cart: ShoppingCart): void {
-  cart.userId = this.userData.id;
+  //cart.userId = this.userData.id;
   this.storage.setItem(CART_KEY, JSON.stringify(cart));
 }
-
+public addUser(user){
+  const cart = this.retrieve();
+  cart.userId = user.id;
+  this.save(cart);
+}
 private dispatch(cart: ShoppingCart): void {
   this.subscribers
       .forEach((sub) => {
@@ -128,7 +132,6 @@ public addTable(table){
   cart.tableIds.push(table.id)
  // cart.tableId = table.id;
   this.save(cart);
-  console.log(cart, "Cart for Table save")
 }
 public addDeliveryMode(deliveryMode:string){
   const cart = this.retrieve();
