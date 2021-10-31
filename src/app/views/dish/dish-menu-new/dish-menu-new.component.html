@@ -275,18 +275,18 @@
           <!-- <label for="userName">User Name:</label> -->
           <span *ngIf="userData.userType === 3">{{ userData.username }}</span>
           <p-dropdown
-            (onChange)="userSelection(userList)"
+            (onChange)="userSelection(selectedUser)"
             *ngIf="userData.userType === 1 || userData.userType === 2"
             class="p-mr-4 p-inputtext-sm p-mb-2"
             id="userName"
-            [options]="usersList"
+            [options]="usersList | async"
             [(ngModel)]="selectedUser"
             placeholder="Search for Number"
-            optionLabel="label"
-            optionValue="value"
+            optionLabel="contact"
+            optionValue="id"
             [filter]="true"
             [showClear]="true"
-            filterBy="label"
+            filterBy="contact"
           >
           </p-dropdown>
           <button

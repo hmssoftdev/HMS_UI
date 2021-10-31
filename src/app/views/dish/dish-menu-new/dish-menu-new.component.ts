@@ -32,12 +32,12 @@ export class DishMenuNewComponent implements OnInit {
   selectedUser: number;
   userDialog: boolean;
   submitted: boolean;
-  usersList: any[];
+  usersList: any;
   user: User;
   billingDialog:boolean;
   cartItems: ShoppingCart;
   shoppingCart: ShoppingCart; 
-  subUserList: Subscription;
+  // subUserList: Subscription;
   subDishList: Subscription;
   selectedPrintType:string;
   isKOTdone: boolean = false;
@@ -123,19 +123,19 @@ export class DishMenuNewComponent implements OnInit {
     } else {
       this.KOTEnabled = true;
     }
-
+    if(!this.selectedUser || this.userData.userType){
+      this.cartService.addUser(this.userData);
+    }
     this.cartService.addDeliveryMode(s); 
   }
   
   loadUserData() {
-   this.subUserList = this.userService.getUserList().subscribe(res => {
-      this.usersList = res.map(CItem => {
-        return { label: CItem.contact, value: CItem.id }
-      })
-    });
+   this.usersList = this.userService.getUserList();
   }
   userSelection(user) {
-    this.dataService.changeMessage(this.selectedUser);
+    const userData= {id:parseInt(user)}
+    this.cartService.addUser(userData);
+   // this.dataService.changeMessage(this.selectedUser);
   }
   openNew() {
     this.user = {};
@@ -143,7 +143,7 @@ export class DishMenuNewComponent implements OnInit {
     this.userDialog = true;
   }
   fnSaveUser(event){
-    this.usersList = event;
+    //this.usersList = event;
     this.userDialog = false;
     this.loadUserData();
   }
@@ -224,7 +224,7 @@ export class DishMenuNewComponent implements OnInit {
     },2000)
   }
   ngOnDestroy(){
-    this.subUserList.unsubscribe();
+   // this.subUserList.unsubscribe();
     this.subDishList.unsubscribe();
     this.subCartItems.unsubscribe();
   }

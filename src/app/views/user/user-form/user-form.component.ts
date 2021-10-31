@@ -15,8 +15,7 @@ export class UserFormComponent implements OnInit {
   @Input() user?: User;
   @Output() saveEvent = new EventEmitter();
   // user: User;
-  submitted: boolean;
-  userList: User[] = [];
+  submitted: boolean; 
   userDialog: boolean;
   selectedUsers: User[];
   cities: any;
@@ -31,18 +30,15 @@ export class UserFormComponent implements OnInit {
 
   ngOnInit(): void {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
-    this.getCities();
     this.getStates();
-    this.onStateChange();
+    this.getCities();
+     
   }
-
-
-
   getCities() {
     this.commonSvc.getCities().subscribe(x => {
       this.cities = x;
+      this.onStateChange();
     });
-
   }
   getStates() {
     this.commonSvc.getStates().subscribe(x => {
@@ -54,7 +50,6 @@ export class UserFormComponent implements OnInit {
   onStateChange() {
     this.cityFilter = this.cities.filter((city) => city.stateId === this.user.stateId);
   }
-
   saveUser() {
     this.submitted = true;
     console.log(this.user);
@@ -68,13 +63,11 @@ export class UserFormComponent implements OnInit {
 
       } else {
         this.user.userType = this.userData.userType;
-        this.userSvc.AddUser(this.user).subscribe(() => {
-          // this.userList.push(this.user);
+        this.userSvc.AddUser(this.user).subscribe(() => { 
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Created', life: 3000 });
         })
       }
-      this.saveEvent.emit(this.userList)
-      this.userList = [...this.userList];
+      this.saveEvent.emit(this.user) 
       this.shareData.changeDialog(false);
     }
   }
@@ -83,55 +76,54 @@ export class UserFormComponent implements OnInit {
     this.user = {};
   }
 
-  deleteUser(user: User) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete ' + user.userName + '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.userSvc.deleteUserData(user.id).subscribe(() => {
-          this.userList = this.userList.filter(val => val.userName !== user.userName);
-          this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
-        });
-      }
-    });
-  }
-  deleteSelectedUser() {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete the selected Users?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      accept: () => {
-        this.userList = this.userList.filter(val => !this.selectedUsers.includes(val));
-        this.selectedUsers.map((userId: User) => {
-          this.userSvc.deleteUserData(userId.id).subscribe(() => {
-            this.selectedUsers = null;
-            this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Users Deleted', life: 3000 })
-          })
-        })
-      }
-    });
-  }
+  // deleteUser(user: User) {
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure you want to delete ' + user.userName + '?',
+  //     header: 'Confirm',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.userSvc.deleteUserData(user.id).subscribe(() => {
+  //         this.userList = this.userList.filter(val => val.userName !== user.userName);
+  //         this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'User Deleted', life: 3000 });
+  //       });
+  //     }
+  //   });
+  // }
+  // deleteSelectedUser() {
+  //   this.confirmationService.confirm({
+  //     message: 'Are you sure you want to delete the selected Users?',
+  //     header: 'Confirm',
+  //     icon: 'pi pi-exclamation-triangle',
+  //     accept: () => {
+  //       this.userList = this.userList.filter(val => !this.selectedUsers.includes(val));
+  //       this.selectedUsers.map((userId: User) => {
+  //         this.userSvc.deleteUserData(userId.id).subscribe(() => {
+  //           this.selectedUsers = null;
+  //           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Users Deleted', life: 3000 })
+  //         })
+  //       })
+  //     }
+  //   });
+  // }
 
-  findIndexById(id: number) {
-    let index = -1;
-    for (let i = 0; i < this.userList.length; i++) {
-      if (this.userList[i].id == id) {
-        index = i;
-        break;
-      }
-    }
+  // findIndexById(id: number) {
+  //   let index = -1;
+  //   for (let i = 0; i < this.userList.length; i++) {
+  //     if (this.userList[i].id == id) {
+  //       index = i;
+  //       break;
+  //     }
+  //   }
 
-    return index;
-  }
-  createId(): string {
-    let id = '';
-    var chars = '0123456789';
-    for (var i = 0; i < 5; i++) {
-      id += chars.charAt(Math.floor(Math.random() * chars.length));
-    }
-    return id;
-  }
+  //   return index;
+  // }
 
-
+  // createId(): string {
+  //   let id = '';
+  //   var chars = '0123456789';
+  //   for (var i = 0; i < 5; i++) {
+  //     id += chars.charAt(Math.floor(Math.random() * chars.length));
+  //   }
+  //   return id;
+  // }
 }

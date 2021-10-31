@@ -56,6 +56,7 @@
 </div>
 
 <p-dialog [(visible)]="userDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="User Configuration" [modal]="true">
-    <app-user-form [user]="user" *ngIf="userDialog"></app-user-form>
+    <app-user-form [user]="user" *ngIf="userDialog" 
+    (saveEvent)="fnSaveUser($event)"></app-user-form>
 </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

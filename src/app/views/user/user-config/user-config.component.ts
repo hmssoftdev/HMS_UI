@@ -104,4 +104,7 @@ export class UserConfigComponent implements OnInit {
     }
     return id;
   }
+  fnSaveUser(event){
+    this.loadData();
+  }
 }
