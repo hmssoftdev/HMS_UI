@@ -494,4 +494,4 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="shoppingCart" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" *ngIf="showKOTItems"></app-kot-items>
+<app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>

@@ -9,6 +9,8 @@ export class KOTItemsComponent implements OnInit {
 @Input() orderData: any;
 @Input() tableNames: any;
 @Input() printType: string;
+@Input() orderId:any;
+
   constructor() { }
 
   ngOnInit(): void {

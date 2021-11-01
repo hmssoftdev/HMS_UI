@@ -45,6 +45,7 @@ export class DishMenuNewComponent implements OnInit {
   selectedTableNames: Number[];
   subCartItems: Subscription;
   showKOTItems: boolean;
+  currentOrderId: any;
   constructor(
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
@@ -200,20 +201,19 @@ export class DishMenuNewComponent implements OnInit {
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
     this.cartItems.orderStatus.push(orderS) 
  // }) 
+  this.currentOrderId = null;
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    this.cartItems.orderStatus[0].orderId = resp.orderId;
-    if(this.deliveryMode === 'Dining'){
-      this.emptyCart();
-    } else {
-      this.isKOTdone = true;
-    } 
-  });
-  // this.KOTitems = this.cartItems;
+    this.currentOrderId = resp.orderId;
+    // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
-    setTimeout(function () {
+    this.isKOTdone = true; 
+    setTimeout(() => {
       window.print();
-     
+     this.deliveryMode === 'Dining' ? this.emptyCart() : '';
     },2000)
+   
+  });
+  
 
     }
   fnBillPrint(billdata){

@@ -1,9 +1,9 @@
 <ng-container *ngIf="printType === 'KOTPrintUI'">
 
   <div *ngIf="orderData">
-    <p class="orderNumber p-my-1">Order ID: <strong>{{ orderData.orderStatus[0].orderId}}</strong> | <ng-container
+    <p class="orderNumber p-my-1">Order ID: <strong>{{orderId}}</strong> | <ng-container
         *ngIf="orderData.deliveryMode==='Dining'">Table names: <strong>{{ tableNames}}</strong> |</ng-container> User
-      ID: <strong>{{ orderData.userId}}</strong></p>
+      ID: <strong>{{ orderData.userId}}</strong> Delivery Mode: <strong>{{ orderData.deliveryMode}}</strong></p>
     <h4 class="p-m-0">Order Items:</h4>
     <table cellspacing="0" cellpadding="0">
       <thead>
@@ -50,18 +50,18 @@
   <table class="tblInvoice" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
-        <th>#</th>
-        <th>Products</th>
-        <th>Qty</th>
+        <th style="width:10%">#</th>
+        <th style="width:40%">Products</th>
+        <th style="width:10%">Qty</th>
         <th class="p-text-right">Rate</th> 
         <th class="p-text-right">Value</th> 
       </tr> 
     </thead>
     <tbody>
       <tr *ngFor="let item of orderData.orderitems; let i = index;">
-        <td>{{i+1}}</td>
-        <td>{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
-        <td>{{item.quantity}}</td>
+        <td style="width:10%">{{i+1}}</td>
+        <td style="width:40%">{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
+        <td style="width:10%">{{item.quantity}}</td>
         <td class="p-text-right">{{item.price}}</td>
         <td class="p-text-right">{{item.price * item.quantity}}</td>
          
