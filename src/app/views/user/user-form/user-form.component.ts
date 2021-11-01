@@ -52,23 +52,24 @@ export class UserFormComponent implements OnInit {
   }
   saveUser() {
     this.submitted = true;
-    console.log(this.user);
+    // console.log(this.user);
     if (this.user.userName.trim()) {
       if (this.user.id) {
         this.user.id = Number(this.user.id)
         this.user.userType = this.userData.userType;
-        this.userSvc.updateUser(this.user).subscribe(() => {
+        this.userSvc.updateUser(this.user).subscribe(() => { 
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Updated', life: 3000 });
+          this.saveEvent.emit(this.user);
         })
 
       } else {
         this.user.userType = this.userData.userType;
-        this.userSvc.AddUser(this.user).subscribe(() => { 
+        this.userSvc.AddUser(this.user).subscribe(() => {  
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Created', life: 3000 });
+          this.saveEvent.emit(this.user);
         })
       }
-      this.saveEvent.emit(this.user) 
-      this.shareData.changeDialog(false);
+      // this.shareData.changeDialog(false);
     }
   }
 

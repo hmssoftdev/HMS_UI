@@ -200,11 +200,12 @@ export class DishMenuNewComponent implements OnInit {
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
     this.cartItems.orderStatus.push(orderS) 
  // }) 
-  this.cartService.postOrder(this.cartItems).subscribe(resp => {
+  this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+    this.cartItems.orderStatus[0].orderId = resp.orderId;
     if(this.deliveryMode === 'Dining'){
       this.emptyCart();
     } else {
-
+      this.isKOTdone = true;
     } 
   });
   // this.KOTitems = this.cartItems;

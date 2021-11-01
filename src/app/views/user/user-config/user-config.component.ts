@@ -30,12 +30,12 @@ export class UserConfigComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
+  //  this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authServive.showLoader = true;
     this.loadData();
   }
 
-  loadData() {
+  loadData(){
     this.userSvc.getUserList().subscribe(res => {
       this.userList = res;
     this.authServive.showLoader = false;
@@ -44,7 +44,8 @@ export class UserConfigComponent implements OnInit {
   openNew() {
     this.user = {};
     this.submitted = false;
-    this.shareData.changeDialog(true);
+    this.userDialog = true;
+    //this.shareData.changeDialog(true);
   }
   reset() {
     this.user = {}
@@ -52,7 +53,8 @@ export class UserConfigComponent implements OnInit {
   }
   editUser(user: User) {
     this.user = { ...user };
-    this.shareData.changeDialog(true);
+    this.userDialog = true;
+    // this.shareData.changeDialog(true);
   }
 
   deleteUser(user: User) {
@@ -105,6 +107,7 @@ export class UserConfigComponent implements OnInit {
     return id;
   }
   fnSaveUser(event){
+    this.userDialog = false;
     this.loadData();
   }
 }

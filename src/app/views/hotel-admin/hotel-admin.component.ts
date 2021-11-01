@@ -142,8 +142,7 @@ export class HotelAdminComponent implements OnInit {
     }); 
   }
 
-  onStateChange(){
-    debugger;
+  onStateChange(){ 
     this.cityFilter = this.cities.filter((city) => city.stateId === this.admin.stateId);
   }
 
