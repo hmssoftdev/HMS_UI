@@ -9,6 +9,9 @@ import { CartService } from '../../../service/cart.service';
 import { DishService } from '../../../service/dish.service';
 import { ShareDataService } from '../../../service/share-data.service'; 
 import { UserService } from '../../../service/user.service';
+import { Admin } from '../../../models/admin';
+import { AdminService } from '../../../service/admin.service';
+
 @Component({
   selector: 'app-dish-menu-new',
   templateUrl: './dish-menu-new.component.html',
@@ -46,6 +49,8 @@ export class DishMenuNewComponent implements OnInit {
   subCartItems: Subscription;
   showKOTItems: boolean;
   currentOrderId: any;
+  admin: Admin;
+  obs: Subscription;
   constructor(
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
@@ -53,10 +58,13 @@ export class DishMenuNewComponent implements OnInit {
     private userService: UserService,
     private authService: AuthService,
     private cartService: CartService,
-    private msgService: MessageService) { }
+    private msgService: MessageService,
+    public adminService: AdminService,
+    ) { }
 
   ngOnInit(): void {
-   
+
+    this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
     this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
       this.dishesRaw = data;
@@ -72,6 +80,15 @@ export class DishMenuNewComponent implements OnInit {
     { label: 'Price Low to High', value: 'fullPrice' }
     ];
   } 
+
+  loadClient() {
+    this.obs = this.adminService.getAdmin().subscribe(resp => {
+      if (resp.length > 0) {
+        this.admin = resp[0];
+      }
+    });
+  }
+
 
   // Get Category
   fnGetDishCategoy() {
@@ -228,6 +245,8 @@ export class DishMenuNewComponent implements OnInit {
    // this.subUserList.unsubscribe();
     this.subDishList.unsubscribe();
     this.subCartItems.unsubscribe();
+    console.log("Component Destroyed ");
+    this.obs.unsubscribe();
   }
 
   fnTableSelection(arr:Array<Number>){ 
