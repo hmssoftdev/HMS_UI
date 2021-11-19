@@ -42,7 +42,7 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
   const cart = this.retrieve();
   const prodId = product.id ? product.id : product.productId;
   const qStatus = product.isFull;
-  let item = cart.orderitems.find((p) => p.productId == prodId && p.isFull === qStatus);
+  let item = cart.orderItems.find((p) => p.productId == prodId && p.isFull === qStatus);
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
   
   if (item === undefined) {
@@ -56,12 +56,12 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
     item.gstPrice = item.price * item.gstCompliance / 100;
     item.isFull = product.isFull;
     item.kotPrinted = product.kotPrinted ? product.kotPrinted : false;
-    cart.orderitems.push(item);
+    cart.orderItems.push(item);
   }
 
   item.quantity += quantity;
-  cart.orderitems = cart.orderitems.filter((cartItem) => cartItem.quantity > 0);
-  if (cart.orderitems.length === 0) {
+  cart.orderItems = cart.orderItems.filter((cartItem) => cartItem.quantity > 0);
+  if (cart.orderItems.length === 0) {
     cart.deliveryOptionId = undefined;
   }
   this.calculateCart(cart);
@@ -76,13 +76,13 @@ public empty(): void {
 }
 
 private calculateCart(cart: ShoppingCart): void {
-  cart.itemTotal = cart.orderitems
+  cart.itemTotal = cart.orderItems
                         .map((item) => item.quantity * item.price)
                         .reduce((previous, current) => previous + current, 0);
   // cart.deliveryTotal = cart.deliveryOptionId ?
   //                       this.deliveryOptions.find((x) => x.id === cart.deliveryOptionId).price :
   //                       0;
-  cart.gstTotal = cart.orderitems
+  cart.gstTotal = cart.orderItems
   .map((item) => item.quantity * item.gstPrice)
   .reduce((previous, current) => previous + current, 0);
   cart.discountInRupees = (cart.itemTotal * cart.discountInPercent | 0) / 100; 
@@ -106,7 +106,7 @@ private retrieve(): ShoppingCart {
   return cart;
 }
 
-private save(cart: ShoppingCart): void {
+public save(cart: ShoppingCart): void {
   //cart.userId = this.userData.id;
   this.storage.setItem(CART_KEY, JSON.stringify(cart));
 }
@@ -186,12 +186,19 @@ postOrder(order: ShoppingCart): Observable<ShoppingCart> {
 
 postOrderStatus(status): Observable<OrderStatus> {
   return this.http.post<OrderStatus>(`${this.orderUrl}/Post/{AddStatus}`, status).pipe(
-    map( x => {
-      return x;
+    map( res => {
+      return res;
     })
   )
 }
-
+paymodeModeUpdate(orderData){
+  return this.http.put(`${this.orderUrl}/PaymentModeUpdate`,orderData).pipe(
+     map(resp => {
+    return orderData;
+  }),
+  catchError(this.handleError('', orderData))
+);;
+}
 handleError<T>(operation = 'operation', result?: T) {
   return (error: any): Observable<T> => {
     console.error(error);

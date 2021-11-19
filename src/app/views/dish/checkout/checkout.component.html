@@ -1,7 +1,7 @@
 
 <div class="p-card p-p-2">
-    <div *ngIf="cartItems?.orderitems.length > 0">
-        <div class="p-grid checkoutGrid" *ngFor="let item of cartItems.orderitems">
+    <div *ngIf="cartItems?.orderItems.length > 0">
+        <div class="p-grid checkoutGrid" *ngFor="let item of cartItems.orderItems">
             <div class="p-col-2"> <img [src]="item.image" alt="{{item.name}}"></div>
             <div class="p-col-4">
                 <h1>{{ item.name }}</h1>
@@ -22,7 +22,7 @@
 
     </div>
 
-    <p *ngIf="cartItems?.orderitems.length == 0">Place the order first! <a class="link" routerLink="/dish-menu"> click here
+    <p *ngIf="cartItems?.orderItems.length == 0">Place the order first! <a class="link" routerLink="/dish-menu"> click here
         </a>to visit dish menu page.</p>
 
 </div>

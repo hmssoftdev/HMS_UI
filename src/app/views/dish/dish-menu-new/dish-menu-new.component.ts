@@ -170,7 +170,11 @@ export class DishMenuNewComponent implements OnInit {
   fnLoadCartData(){
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp => this.cartItems = resp); 
-   console.log('CARTSERVICE GET fnLoadCartData', count++) 
+   if(this.cartItems.id){
+     console.log(this.cartItems.id, 'cartID');
+     this.isKOTdone = true;
+   }
+   console.log('CARTSERVICE GET fnLoadCartData', this.cartItems) 
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -254,8 +258,11 @@ export class DishMenuNewComponent implements OnInit {
     this.selectedTableNames = arr;    
   }
   fnHideDiningTableM(event){
+    console.log()
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:4000 });
+    } else {
+      this.fnLoadCartData();
     }
   }
 }

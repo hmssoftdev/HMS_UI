@@ -24,11 +24,15 @@ export class DiningTableComponent implements OnInit {
         this.tableList = res;
     })
 }
-  fnTblBook(tblItem){ 
-      debugger
+  fnTblBook(tblItem){  
       this.selectedTableID = [];
     if(tblItem.isBooked){
-
+      this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
+        if(resp){
+          console.log(resp);
+          this.cartService.save(resp); 
+        }
+      })
     } else {
       tblItem.isBooked = true;
       this.tableSvc.addTable(tblItem).subscribe(resp =>{

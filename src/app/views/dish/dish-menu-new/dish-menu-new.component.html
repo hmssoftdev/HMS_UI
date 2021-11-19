@@ -301,11 +301,11 @@
           ></button>
         </div>
         <!-- cart Items -->
-        <div *ngIf="cartItems?.orderitems.length > 0">
+        <div *ngIf="cartItems?.orderItems.length > 0">
           <ul class="ulCart">
             <li
               class="cart-item p-mt-2"
-              *ngFor="let item of cartItems.orderitems"
+              *ngFor="let item of cartItems.orderItems"
             >
               <span
                 >{{ item.name }}
@@ -449,7 +449,7 @@
           </div>
         </div>
 
-        <p *ngIf="cartItems?.orderitems.length == 0">
+        <p *ngIf="cartItems?.orderItems.length == 0">
           Order some yummy and delicious food from menu!
         </p>
         <!-- cart Item end -->
@@ -491,7 +491,7 @@
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="shoppingCart" (close)="closeModal()">
+    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">
     </app-billing>
 </p-dialog>
 <app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>

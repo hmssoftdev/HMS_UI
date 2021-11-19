@@ -26,7 +26,7 @@
                 <td>{{order.userName}}</td>
                 <td style="text-align: center;">{{order.userMobileNumber}}</td>
                 <td style="text-align: center;">{{order.grossTotal}}</td>
-                <td style="text-align: center;">{{order.deliveryOptionId === 1? 'Home Delivery': 'Take Away'}}</td>
+                <td style="text-align: center;">{{getDeliveryOptStr(order.deliveryOptionId)}}</td>
                 <td style="text-align: center;">{{order.paymentMode === 1? 'Cash': 'UPI'}}</td>
                 <td style="text-align: center;">
                     <p-tag

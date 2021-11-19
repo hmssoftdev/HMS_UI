@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
 import { catchError, map } from 'rxjs/internal/operators';
 import { ApiConfig } from '../constant/api';
+import { ShoppingCart } from '../models/shopping-cart';
 import { Hotel } from '../models/tabelConfiguration.model';
 
 @Injectable({
@@ -25,7 +26,6 @@ export class TableService {
   }
 
   addTable(table): Observable<Hotel> {
-debugger
     return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).pipe(
       map(x => {
         this.tableList.push(x);
@@ -55,5 +55,15 @@ debugger
   deleteData(id: number): Observable<Hotel> {
     return this.http.delete<Hotel>(`${this.url}?id=${id}`).pipe(
       catchError(this.handleError('', this.table)))
+  }
+
+  ///Order/Get/orderByTableId/{id}
+  getOrderDataBytblId(id:number): Observable<any>{
+    return this.http.get(`${ApiConfig.URL}${ApiConfig.ORDER}/Get/Orderbytableid/${id}`).pipe(
+      map(x => {
+        return x;
+      }),
+      catchError(this.handleError('no records', id))
+    )
   }
 }

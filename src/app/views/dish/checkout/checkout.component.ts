@@ -26,7 +26,7 @@ export class CheckoutComponent implements OnInit {
     this.shareData.currentId.subscribe(id => this.sendId =  id);
     this.loadCategory();
     this.cartService.get().subscribe(resp => this.cartItems = resp);
-    let itemPrice = this.cartItems.orderitems.map( x => x.price);
+    let itemPrice = this.cartItems.orderItems.map( x => x.price);
     console.log(itemPrice);
     let gst =  this.CategoryList.map(x => x.gstCompliance);
     console.log(gst);

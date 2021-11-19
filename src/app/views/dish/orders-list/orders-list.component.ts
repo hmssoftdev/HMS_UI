@@ -6,6 +6,7 @@ import { OrderStatus, ShoppingCart } from '../../../models/shopping-cart';
 import { OrderList } from '../../../models/orderList';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../service/auth.service';
+import { stringify } from 'querystring';
 
 @Component({
   selector: 'app-orders-list',
@@ -64,5 +65,19 @@ export class OrdersListComponent implements OnInit {
       this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Order Processed', life: 3000 });
       this.loadData();
     })
+  }
+  getDeliveryOptStr(n:number){
+    let strVal= '';
+    switch(n){
+      case 1:
+        strVal = 'Dining';
+        break;
+      case 2:
+        strVal = 'Home Delivery';
+        break;
+      case 3:
+        strVal = 'Take Away'
+    }
+    return strVal;
   }
 }

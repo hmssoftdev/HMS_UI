@@ -13,7 +13,7 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let item of orderData.orderitems">
+      <tbody *ngFor="let item of orderData.orderItems">
         <tr *ngIf="!item.kotPrinted">
           <td>
             {{ item.name }}{{item.isFull ? '' : ' (Half)'}}
@@ -58,7 +58,7 @@
       </tr> 
     </thead>
     <tbody>
-      <tr *ngFor="let item of orderData.orderitems; let i = index;">
+      <tr *ngFor="let item of orderData.orderItems; let i = index;">
         <td style="width:10%">{{i+1}}</td>
         <td style="width:40%">{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
         <td style="width:10%">{{item.quantity}}</td>

@@ -91,10 +91,16 @@ export class BillingComponent implements OnInit {
     // this.shoppingCart.orderStatus.push(orderStatus);
     // this.shoppingCart.userId = Number(this.selectedUserId);
     // this.router.navigate(['/dish/order-list']);
-    console.log(this.shoppingCart);
-    this.cartService.postOrder(this.shoppingCart).subscribe(() => {
+    console.log(this.shoppingCart, 'shopping cart');
+    const obj = {
+        id:this.shoppingCart.id,
+        paymentMode:this.paymentMode == 'Cash' ? 1 : 2 
+    }
+    this.cartService.paymodeModeUpdate(obj).subscribe((resp) => {
+      if(resp){
       this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
       this.router.navigate(['/dish/order-list']);
+    }
     })
   }
 

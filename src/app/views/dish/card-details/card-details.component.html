@@ -1,6 +1,6 @@
-<div *ngIf="cartItems?.orderitems.length > 0">
+<div *ngIf="cartItems?.orderItems.length > 0">
     <ul class="ulCart">
-        <li class="cart-item p-mt-2" *ngFor="let item of cartItems.orderitems">
+        <li class="cart-item p-mt-2" *ngFor="let item of cartItems.orderItems">
             <span>{{ item.name }} <span>{{item.isFull ? '' : '(Half)'}}</span></span>
             <span class="btnPlusMinusWrap">
                 <!-- <i class="pi pi-minus"></i>  -->
@@ -67,4 +67,4 @@
 
 </div>
 
-<p *ngIf="cartItems?.orderitems.length == 0">Order some yummy and delicious food from menu!</p>
+<p *ngIf="cartItems?.orderItems.length == 0">Order some yummy and delicious food from menu!</p>

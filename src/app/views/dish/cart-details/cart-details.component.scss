@@ -1,0 +1,77 @@
+ul.ulCart {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+ li {
+    padding: 5px 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    span:first-child{
+        width:40%;
+    }
+    span:last-child{
+        width:30%;
+        text-align: right;
+    }
+    .p-inputtext-sm .p-inputtext{
+        padding:0.2101rem 0.3255rem;
+    }
+}
+li:last-child{
+    
+    border-top: 1px solid #898989;
+    border-bottom: 1px solid #898989;
+    margin: 5px 0;
+    flex-direction: column;
+    justify-content: end;
+    align-items: flex-end;
+    > div{
+        width: 100%;
+    }
+    .gTotP{
+        font-weight: bold;
+    }
+}
+}
+.btnPlusMinusWrap {
+    border:1px solid #dcdcdc;
+    padding: 0 2px;
+    width: 30%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    button{
+        width:10px;
+        height: 10px;
+        .pi{
+        font-size:0.7rem;
+    } 
+    }
+    button:focus,button:visited,button:focus-visible{
+        border:0;
+        outline: 0;
+        box-shadow: none;
+     
+}
+   
+}
+.btnWrap{
+    display: flex;
+    justify-content: space-between;
+
+    
+}
+
+.fullWidth {
+    width: 100%;
+}
+
+.delOptbtnWrap{
+    button{ 
+        padding:5px 7px;
+        .pi{
+            margin-top:3px;
+        }
+    }
+}
