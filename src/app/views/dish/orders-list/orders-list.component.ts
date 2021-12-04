@@ -82,4 +82,17 @@ export class OrdersListComponent implements OnInit {
     }
     return strVal;
   }
+
+  getPaymentMode(n:number){
+    let strVal= '-';
+    switch(n){
+      case 1:
+        strVal = 'Cash';
+        break;
+      case 2:
+        strVal = 'UPI';
+        break;   
+    }
+    return strVal;
+  }
 }

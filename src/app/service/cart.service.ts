@@ -39,6 +39,7 @@ public get(): Observable<ShoppingCart> {
 }
 
 public addItem(product: any, quantity: number, gstCompliance?:number): void {
+  debugger
   const cart = this.retrieve();
   const prodId = product.id ? product.id : product.productId;
   const qStatus = product.isFull;
@@ -68,7 +69,12 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
   this.save(cart);
   this.dispatch(cart);
 }
-
+public addOrderId(id){
+  debugger
+  const cart = this.retrieve();
+  cart.id = id;
+  this.save(cart);
+}
 public empty(): void {
   const newCart = new ShoppingCart();
  this.save(newCart);

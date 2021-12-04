@@ -27,7 +27,7 @@
                 <td style="text-align: center;">{{order.userMobileNumber}}</td>
                 <td style="text-align: center;">{{order.grossTotal}}</td>
                 <td style="text-align: center;">{{getDeliveryOptStr(order.deliveryOptionId)}}</td>
-                <td style="text-align: center;">{{order.paymentMode === 1? 'Cash': 'UPI'}}</td>
+                <td style="text-align: center;">{{getPaymentMode(order.paymentMode)}}</td>
                 <td style="text-align: center;">
                     <p-tag
                         [value]="(order.status === 1)? 'Ordered': (order.status === 2)? 'Processing': (order.status === 3)? 'Shipped': (order.status === 4)? 'Delivered': (order.status === 10)? 'Cancelled' : '' "

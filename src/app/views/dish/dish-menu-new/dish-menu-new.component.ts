@@ -195,6 +195,7 @@ export class DishMenuNewComponent implements OnInit {
     // this.cartItems.adminId = this.userData.adminId;
 
     // this.fnBillingModal.emit(this.cartItems);
+    this.fnLoadCartData();
     this.cartItems.userId = this.selectedUser;
     console.log(this.cartItems.userId);
     this.cartItems.adminId = this.userData.adminId;
@@ -225,6 +226,7 @@ export class DishMenuNewComponent implements OnInit {
   this.currentOrderId = null;
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     this.currentOrderId = resp.orderId;
+    this.cartService.addOrderId(this.currentOrderId);
     // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
     this.isKOTdone = true; 
