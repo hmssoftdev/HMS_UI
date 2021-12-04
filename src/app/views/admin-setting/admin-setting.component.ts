@@ -8,6 +8,9 @@ import { Router } from '@angular/router';
 import { ShareDataService } from '../../service/share-data.service';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { AuthService } from '../../service/auth.service';
+import { Registration } from '../../models/registration';
+import { RegisterService } from '../../service/register.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-admin-setting',
   templateUrl: './admin-setting.component.html',
@@ -24,9 +27,11 @@ export class AdminSettingComponent implements OnInit {
   adminDialog: boolean;
   submitted: boolean;
   cityFilter: [];
+  users: Registration;
   // status: { label: string; value: string; }[];
   statusString: string;
   sendId: number;
+  regAdminDialog: boolean;
   constructor(
     public adminService: AdminService,
     private msgService: MessageService,
@@ -35,7 +40,8 @@ export class AdminSettingComponent implements OnInit {
     private router: Router,
     private shareData: ShareDataService,
     private commonMethod: CommonMethodsService,
-    private authServive: AuthService
+    private authServive: AuthService,
+    private registerService: RegisterService
   ) {
     this.admin = new Admin();
     // this.admin.bankDetails = new Bankdetails();
@@ -48,6 +54,7 @@ export class AdminSettingComponent implements OnInit {
     this.authServive.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
+    this.users = {};
     // this.status = [
     // { label: 'Lead', value: 'lead' },
     // { label: 'Pending', value: 'pending' },
@@ -63,17 +70,16 @@ export class AdminSettingComponent implements OnInit {
     this.submitted = false;
     this.adminDialog = true;
   }
-
-  editAdmin(admin: Admin) {
-    this.admin = { ...admin };
-    this.adminDialog = true;
+  editAdmin(admin: Registration) {
+    this.users = { ...admin };
+    this.regAdminDialog = true;
   }
 
   hideDialog() {
     this.adminDialog = false;
     this.submitted = false;
   }
-
+  
   loadClient() {
     this.adminService.getClientList().subscribe(res => {
       this.adminList = res;
@@ -221,6 +227,37 @@ export class AdminSettingComponent implements OnInit {
     this.router.navigate(['/dish']);
     this.shareData.sendId(14);
   }
-
+  fnAddAdmin(){
+    this.regAdminDialog = true;
+  }
+  
+  fnRegisterAdmin(users:Registration){
+    this.users.userType = 2;
+    // this.users.id = parseInt(this.users.id)
+    debugger
+    if(!this.users.id){
+    this.registerService.addAdmin(this.users).subscribe(res => { 
+      this.regAdminDialog = false;
+      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Admin Registration done!', life: 3000 });
+      this.loadClient();
+    })
+  } else{
+    this.registerService.updateAdmin(this.users).subscribe(res => { 
+      this.regAdminDialog = false;
+      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Admin Registration done!', life: 3000 });
+      this.loadClient();
+    })
+  }
+  }
+  fnHideAdminDig(){
+    this.regAdminDialog = false;
+  }
+  fnBusinessInfo(id:number){
+    this.adminService.getAdminById(id).subscribe((resp:Admin) => {
+      this.admin = resp ? resp : {};
+      this.adminDialog = true;
+    })
+   
+  }
 
 }

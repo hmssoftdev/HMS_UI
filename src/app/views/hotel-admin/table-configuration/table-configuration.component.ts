@@ -1,7 +1,8 @@
 import { Component } from "@angular/core";
+import { ConfirmationService, MessageService } from "primeng/api";
 import { TableService } from "../../../service/table.service";
 import { Hotel } from "../../../models/tabelConfiguration.model";
-import { ConfirmationService, MessageService } from "primeng/api";
+
 import { AuthService } from "../../../service/auth.service";
 @Component({
     selector: 'app-table-configuration',
@@ -58,13 +59,23 @@ export class TableConfigurationComponent {
     }
 
     deleteTable(table: Hotel) {
+        debugger
+        this.confirmationService.confirm({
+            message: 'Are you sure you want to delete the selected Users?',
+            header: 'Confirm',
+            icon: 'pi pi-exclamation-triangle',
+            accept: () => {
+            alert('TESTING')
+            }
+          });
         this.confirmationService.confirm({
             message: 'Are you sure you want to delete ' + table.name + '?',
             header: 'Confirm',
             icon: 'pi pi-exclamation-triangle',
             accept: () => {
                 this.tableSvc.deleteData(table.id).subscribe(() => {
-                    this.tableList = this.tableList.filter(val => val.id !== table.id);
+                    // this.tableList = this.tableList.filter(val => val.id !== table.id);
+                    this.loadTabaleData()
                     this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Table Deleted', life: 3000 });
                 })
             }
@@ -75,7 +86,6 @@ export class TableConfigurationComponent {
     reset() {
 
     }
-
     openNew() {
         this.table = {};
         this.submitted = false;

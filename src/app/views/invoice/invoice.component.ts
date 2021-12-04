@@ -13,12 +13,13 @@ import { CartService } from '../../service/cart.service';
 export class InvoiceComponent implements OnInit {
   @Input() adminData: Admin
   @Input() orderItem: OrderItem;
-  public cartItems: ShoppingCart; 
+  @Input() cartItems;
+  // public cartItems: ShoppingCart; 
   constructor( public adminService: AdminService,private cartService: CartService) { }
   ngOnInit(): void {
-    console.log(this.orderItem);
-    console.log(this.adminData);
-    this.cartService.get().subscribe(resp=> this.cartItems = resp);
-    console.log(this.cartItems.grossTotal);
+    console.log(this.orderItem,'ORDERITEM');
+    console.log(this.adminData, 'AdminData');
+    // this.cartService.get().subscribe(resp=> this.cartItems = resp);
+    // console.log(this.cartItems.grossTotal);
   }
 }

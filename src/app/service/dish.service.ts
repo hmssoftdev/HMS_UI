@@ -4,7 +4,7 @@ import { ApiConfig } from '../constant/api';
 import { Dish, DishCategory } from '../models/dish';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
-import { StorageService } from './storage.service';
+import { StorageService } from './storage.service'; 
 @Injectable({
   providedIn: 'root'
 })
@@ -66,7 +66,7 @@ export class DishService {
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {
-      console.error(error);
+     // console.error(error);
       //  this.log(`${operation} failed: ${error.message}`);
 
       return of(result as T);
@@ -98,18 +98,16 @@ export class DishService {
   }
 
   // add new dishcategory
-  addDishCategory(CategoryItm:DishCategory):Observable<DishCategory>{ 
+  addDishCategory(CategoryItm:DishCategory):Observable<any>{ 
       return this.httpClient.post<DishCategory>(this.categoryUrl, CategoryItm).pipe(
-        map(x => {
-          this.categoryList.push(x);
-          return this.category;
+        map(resp => {
+          return CategoryItm;
         }),
-        catchError(this.handleError('', this.category))
+        catchError(this.handleError('Add Category', CategoryItm))
       );
   }
   updateDishCategory(CategoryItm:DishCategory):Observable<DishCategory>{ 
     return this.httpClient.put<DishCategory>(this.categoryUrl, CategoryItm).pipe(
-
       map(x => {
         var index = this.categoryList.findIndex(i => i.id == x.id)
         this.dishList[index] = x;

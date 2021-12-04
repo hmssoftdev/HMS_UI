@@ -22,7 +22,6 @@ export class AdminService {
     console.log(this.url);
     return this.httpClient.post<Admin>(this.url, client).pipe(
       map(x => {
-        debugger;
         this.clientList.push(x);
         return client;
       }),
@@ -58,12 +57,13 @@ export class AdminService {
   // Get client list
   getClientList(): Observable<Admin[]> {
     console.log(this.userData);
-    return this.httpClient.get<Admin[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
-      map(x => {
-        this.clientList = x;
-        return this.clientList;
-      })
-    );
+    //return this.httpClient.get<Admin[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
+    return this.httpClient.get<Admin[]>(`${ApiConfig.URL}User/GetAllAdmin`).pipe(
+        map(resp => {
+          //this.clientList = x;
+          return resp;
+        })
+      );
   }
   getAdmin(): Observable<Admin[]> {
     return this.httpClient.get<Admin[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
@@ -80,6 +80,13 @@ export class AdminService {
         return x;
       })
     );
+  }
+  //
+  getAdminById(id:number){
+    return this.httpClient.get(`${this.url}/GetByUserId/${id}`).pipe(
+      map(resp => resp),
+      catchError(this.handleError('get Admin', id))
+    )
   }
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

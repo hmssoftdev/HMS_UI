@@ -35,7 +35,7 @@ export class DiningTableComponent implements OnInit {
       })
     } else {
       tblItem.isBooked = true;
-      this.tableSvc.addTable(tblItem).subscribe(resp =>{
+      this.tableSvc.updateSeat(tblItem).subscribe(resp =>{
     });
   } 
   this.tableList.map((res:any) => { 

@@ -14,6 +14,7 @@ import { CartService } from '../../service/cart.service';
 export class OrderStatusComponent implements OnInit {
   @Input() orderId: number;
   @Input() orderTotal: number;
+  @Input() cartItems;
   orderStatusList: OrderStatus[] = [];
   orderStatusData: OrderStatusData[] = [];
   orderItem: OrderItem[] = [];

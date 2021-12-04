@@ -54,12 +54,13 @@ export class RegisterComponent {
   register(data: NgForm) { 
     this.submitted = true; 
     if (this.users.userType === 3) {
-      this.userSvc.AddUser(this.users).subscribe(() => {
+      this.userSvc.registerUser(this.users).subscribe(() => {
         this.registeredList.push(this.users);
-        alert('Registration completed')
+        alert('User Registration completed');
+        this.router.navigate(['/login'])
       })
     } else {
-      this.regSvc.AddUser(this.users).subscribe(res => {
+      this.regSvc.registerAdmin(this.users).subscribe(res => {
         if (res) {
           this.registeredList.push(this.users);
           alert('Registration completed');

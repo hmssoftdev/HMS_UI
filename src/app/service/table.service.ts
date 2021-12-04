@@ -26,10 +26,9 @@ export class TableService {
   }
 
   addTable(table): Observable<Hotel> {
-    return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).pipe(
-      map(x => {
-        this.tableList.push(x);
-        return table;
+    return this.http.post<Hotel>(`${this.url}` ,table).pipe(
+      map(resp => { 
+        return resp;
       }),
       catchError(this.handleError('', table))
     );
@@ -44,10 +43,17 @@ export class TableService {
   }
   updateTable(table): Observable<Hotel> {
     return this.http.put<Hotel>(`${this.url}`, table).pipe(
-      map(x => {
-        var index = this.tableList.findIndex(i => i.id == x.id)
-        this.tableList[index] = x;
-        return table;
+      map(resp => {
+        return resp;
+      }),
+      catchError(this.handleError('', table))
+    );
+  }
+
+  updateSeat(table): Observable<Hotel> {
+    return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).pipe(
+      map(resp => { 
+        return resp;
       }),
       catchError(this.handleError('', table))
     );

@@ -18,6 +18,7 @@ export class RegisterService {
   ) { }
 
   AddUser(user: Registration): Observable<Registration> {
+
     return this.http.post<Registration>(this.url, user).pipe(
       map(x => {
         this.registeredList.push(x);
@@ -26,7 +27,12 @@ export class RegisterService {
       catchError(this.handleError('', user))
     );
   }
-
+  registerAdmin(admin:Registration){
+    return this.http.post(`${this.url}/PostAnonymousUser`,admin).pipe(
+      map(res => res),
+      catchError(this.handleError('',admin))
+    )
+  }
   updateUser(user: Registration): Observable<Registration> {
     return this.http.put<Registration>(`${this.url}`, user).pipe(
       map(x => {
@@ -48,6 +54,18 @@ export class RegisterService {
     );
   }
 
+  addAdmin(admin: Registration){
+    return this.http.post(`${this.url}`,admin).pipe(
+      map(resp => resp),
+      catchError(this.handleError('Admin Create', admin))
+    )
+  }
+  updateAdmin(admin: Registration){
+    return this.http.put(`${this.url}`,admin).pipe(
+      map(resp => resp),
+      catchError(this.handleError('Admin Update', admin))
+    )
+  }
 
   handleError<T>(operation = 'operation', result?: T) {
     return (error: any): Observable<T> => {

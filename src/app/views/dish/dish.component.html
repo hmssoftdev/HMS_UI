@@ -10,9 +10,9 @@
                     pTooltip="Delete Dishes" tooltipPosition="bottom"></button>
             </ng-template>
             <ng-template pTemplate="right">
-                <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+                <p-fileUpload mode="basic" disabled="true" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                     class="p-mr-2 p-d-inline-block"></p-fileUpload>
-                <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help my-2"></button>
+                <button pButton pRipple label="Export" disabled="true" icon="pi pi-upload" class="p-button-help my-2"></button>
             </ng-template>
         </p-toolbar>
     </div>
@@ -77,12 +77,10 @@
                     </td>
                 </tr>
             </ng-template>
+            
         </p-table>
     </div>
-</div>
-
-
-
+</div> 
 
 <p-dialog [(visible)]="dishDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '60vw'}"
     header="Dish Configuration" [modal]="true">

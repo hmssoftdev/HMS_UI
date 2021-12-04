@@ -61,7 +61,7 @@
     </p-table>
     <p-dialog [(visible)]="orderStatusDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
         [style]="{width: '52vw' }" header="Order Status" [modal]="true">
-        <app-order-status *ngIf="orderStatusDialog" [orderId]="selectedOrderId" [orderTotal]="selectedOrderTotal">
+        <app-order-status *ngIf="orderStatusDialog" [orderId]="selectedOrderId" [orderTotal]="selectedOrderTotal" [cartItems]="cartData">
         </app-order-status>
     </p-dialog>
 </div>

@@ -4,6 +4,7 @@ import { ApiConfig } from '../constant/api';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
 import { User, UserFeedback } from '../models/user';
+import { Registration } from '../models/registration';
 
 
 @Injectable({
@@ -32,7 +33,13 @@ export class UserService {
       catchError(this.handleError('', user))
     );
   }
-
+  // Register User through Register form
+  registerUser(user:Registration){
+    return this.http.post(`${this.url}/PostAnonymousUser`,user).pipe(
+      map(resp => resp),
+      catchError(this.handleError('', user))
+    )
+  }
   edit(id: number): User {
     return this.userList.find(i => i.id == id);
   }

@@ -21,6 +21,7 @@ export class OrdersListComponent implements OnInit {
   selectedOrderId: number = 0;
   selectedOrderTotal: number = 0;
   orderStatusDialog:boolean;
+  cartData: OrderList;
   constructor(
     private dishSvc: DishService,
     private orderService: CartService,
@@ -42,6 +43,7 @@ export class OrdersListComponent implements OnInit {
 
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
+    this.cartData = order;
     this.orderStatusDialog =true;
   }
   fnProcessing(order: OrderList){ 
@@ -74,7 +76,7 @@ export class OrdersListComponent implements OnInit {
         break;
       case 2:
         strVal = 'Home Delivery';
-        break;
+        break;                  
       case 3:
         strVal = 'Take Away'
     }
