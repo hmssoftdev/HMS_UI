@@ -53,7 +53,8 @@ import { HotelAdminModule } from './views/hotel-admin/hotel-admin.module';
 import { UserModule } from '../app/views/user/user.module';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
-import { FooterComponent } from './common/footer/footer.component'; 
+import { FooterComponent } from './common/footer/footer.component';
+import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component'; 
 @NgModule({
   imports: [
     BrowserModule,
@@ -87,7 +88,8 @@ import { FooterComponent } from './common/footer/footer.component';
     ClientConfigComponent,
     SidebarComponent,
     HeaderComponent,
-    FooterComponent
+    FooterComponent,
+    UpdatepasswrodComponent
   ],
   providers: [
     AuthService,
