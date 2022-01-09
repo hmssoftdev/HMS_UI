@@ -174,7 +174,7 @@
                     width: 33.3334%;
                 }
                 
-                td:first-child(), td:nth-child(3){
+                td:first-child, td:nth-child(3){
                     display: none;
                 }
                 td:nth-child(6), td:nth-child(7){
