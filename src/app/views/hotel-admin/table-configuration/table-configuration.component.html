@@ -13,9 +13,9 @@
         </p-toolbar>
     </div>
     <div class="card-body">
-        <p-table #d2 [value]="tableList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10"
+        <p-table #d2 [value]="tableList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10"
             [showCurrentPageReport]="true" [(selection)]="selectedTables" [rowHover]="true" dataKey="id"
-            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" respo
             [rowsPerPageOptions]="[10,25,50]">
             <ng-template pTemplate="header">
                 <tr>
@@ -47,10 +47,10 @@
                     <td>
                         <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.seat}}</td>
-                    <td>{{item.shape}}</td>
-                    <td>{{item.isAc === true? 'AC': 'Non AC'}}</td>
+                    <td><span class="p-column-title"><i class="pi pi-table"></i></span>{{item.name}}</td>
+                    <td><span class="p-column-title"><i class="pi pi-th-large"></i></span>{{item.seat}}</td>
+                    <td><span class="p-column-title"><i class="pi pi-tag"></i></span>{{item.shape}}</td>
+                    <td><span class="p-column-title"><i class="pi pi-flag"></i></span>{{item.isAc === true? 'AC': 'Non AC'}}</td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
                             (click)="editDish(item)" pTooltip="Edit Table" tooltipPosition="left"></button>
