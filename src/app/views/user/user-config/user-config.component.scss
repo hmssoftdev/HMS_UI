@@ -1,8 +1,10 @@
 
  /* Responsive */
+ :host ::ng-deep {
  .p-datatable-customcss .p-datatable-tbody > tr > td .p-column-title {
     display: none;
 }
+ }
 @media screen and (max-width: 768px) {
     :host ::ng-deep {
         .p-button.p-button-icon-only{
