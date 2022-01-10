@@ -7,7 +7,7 @@
         display: inline-flex;
         font-size: 20px;
         color: #fff;
-        margin-left: 40px;
+        margin-left:10px;
         cursor: pointer;
         i{
             font-size: 1.58rem;
@@ -78,4 +78,14 @@
     .hamBurgerIcn{
         margin-left: 20px;
     }
+}
+@media screen and (max-width: 320px) {
+               .icons{
+                   display: none;
+               } 
+        .head{
+            font-size: 10px;
+        }
+
+    
 }

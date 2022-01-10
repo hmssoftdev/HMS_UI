@@ -1,0 +1,53 @@
+<div class="container">
+    <div class="p-grid p-mt-5">
+      <div class="p-card p-col-11 p-md-6 p-lg-5 p-mx-auto p-px-4 p-text-center" >
+  
+        <h1 class="p-text-left">Change Password</h1>
+  
+  
+        <form [formGroup]="form" (ngSubmit)="submit()">
+          <div class="form-group">
+           
+  
+            <div class="p-inputgroup p-mb-4">
+              <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+              <input type="password" pInputText name="Old Password" class="form-control" placeholder="New Password"
+                autocomplete="current-password" formControlName="password" id="password" type="password" required>
+  
+            </div>
+            <div class="p-inputgroup p-mb-4">
+              <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+              <input type="password" pInputText name="New Password" formControlName="confirm_password" id="confirm_password" type="password"
+   class="form-control" placeholder="Confirm Password" autocomplete="current-password" required>
+  
+            </div>
+  
+  
+  
+  
+            
+  
+  
+  
+  
+            
+  
+            <p-button (click)=" showModalDialog()" type="submit" icon="pi pi-check" class="p-button-text" [disabled]="!form.valid" label="Change Password"></p-button>
+  
+            
+            <p-dialog header="Confirmation" [(visible)]="displayModal" [modal]="true" [style]="{width: '50vw'}" [baseZIndex]="10000"
+                      
+                      [draggable]="false" [resizable]="false">
+                      <p class="p-m-0">Are you sure want to change password.</p>
+                          <ng-template pTemplate="footer">
+                              <p-button icon="pi pi-check" (click)="changework()" label="Yes" class="p-button-text"></p-button>
+                              <p-button icon="pi pi-times" (click)="displayModal=false" label="No"></p-button>
+                          </ng-template>
+                  </p-dialog>
+          </div>
+        </form>
+      </div>
+    </div>
+  
+  </div>
+  

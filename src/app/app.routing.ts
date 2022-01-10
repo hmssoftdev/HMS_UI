@@ -11,6 +11,7 @@ import { RegisterComponent } from './views/register/register.component';
 import { InvoiceComponent } from './views/invoice/invoice.component'
 import { TableConfigurationComponent } from '../app/views/hotel-admin/table-configuration/table-configuration.component'
 import { OrderStatusComponent } from './shared/order-status/order-status.component';
+import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -60,6 +61,15 @@ export const routes: Routes = [
     {
         path: 'users',
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
+     
+      },
+      {
+        path: 'updatepassword',
+       component:UpdatepasswrodComponent,
+       data: {
+        title: 'Register Page',
+        roles: roleConfig.authRoles.guest
+      }
      
       },
       {path:'order-status', component:OrderStatusComponent, 
