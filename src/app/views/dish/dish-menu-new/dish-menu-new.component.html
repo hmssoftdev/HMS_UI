@@ -1,7 +1,7 @@
 <div class="p-card dishMenuWrapper">
   <div class="p-grid">
-    <div class="p-col-8">
-      <p-dataView
+    <div class="p-col-7 p-md-8 p-lg-8">
+      <p-dataView 
         #dv
         [value]="dishes"
         [paginator]="true"
@@ -72,7 +72,7 @@
           <div class="p-col-12" *ngIf="dish.status === 'active'">
             <div class="product-list-item">
               <div class="imgWrap">
-                <img [src]="dish.imageUrl" alt="{{ dish.name }}" />
+          <img [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
                 <span
                   class="icnBookmark"
                   (click)="fnBookmarkMenu(dish)"
@@ -237,7 +237,7 @@
         </ng-template>
       </p-dataView>
     </div>
-    <div class="p-col-4">
+    <div class="p-col-5 p-md-4 p-lg-4">
       <div class="cartHeader">Cart Order Items</div>
       <div class="cartContent">
         <div class="delOptbtnWrap">

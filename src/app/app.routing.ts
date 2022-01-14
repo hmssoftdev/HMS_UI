@@ -12,6 +12,7 @@ import { InvoiceComponent } from './views/invoice/invoice.component'
 import { TableConfigurationComponent } from '../app/views/hotel-admin/table-configuration/table-configuration.component'
 import { OrderStatusComponent } from './shared/order-status/order-status.component';
 import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -71,7 +72,11 @@ export const routes: Routes = [
         roles: roleConfig.authRoles.guest
       }
      
-      },
+      }, 
+      {
+        path: 'forgotpassword',
+       component:ForgotpasswordComponent,
+     },
       {path:'order-status', component:OrderStatusComponent, 
       data: {
         title: "Order Status",
