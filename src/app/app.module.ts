@@ -9,7 +9,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
-
+import {CaptchaModule} from 'primeng/captcha';
 import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular';
 
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
@@ -54,7 +54,8 @@ import { UserModule } from '../app/views/user/user.module';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
-import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component'; 
+import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component'; 
 @NgModule({
   imports: [
     BrowserModule,
@@ -68,6 +69,7 @@ import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.c
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
+    CaptchaModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
@@ -89,7 +91,8 @@ import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.c
     SidebarComponent,
     HeaderComponent,
     FooterComponent,
-    UpdatepasswrodComponent
+    UpdatepasswrodComponent,
+    ForgotpasswordComponent
   ],
   providers: [
     AuthService,

@@ -3,11 +3,12 @@
         <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':tblItem.isBooked}">
             <h2 class="tblHead">{{tblItem.name}}</h2>
             <p class="txtSeats"> {{tblItem.seat}}<span class="p-text-small">seats</span></p>
-            <p class="txtShape">{{tblItem.shape}} <span> - spape</span></p>
+            <p class="txtShape">{{tblItem.shape}} <span> - shape</span></p>
             <p class="txtHallType">{{tblItem.isAc === true? 'AC': 'Non AC'}}<span class="p-text-small"> - Hall type</span></p>
             <div class="btnWrapper">
                 <button pButton class="p-button-outlined p-button-text-only" (click)="fnTblBook(tblItem)">Select</button>
-                <button pButton class="p-button-outlined p-button-text-only">Join Table</button>
+                <button pButton class="p-button-outlined p-button-text-only">Join</button>
+                <button pButton class="p-button-outlined p-button-text-only"  (click)="fnTblRelease(tblItem)">Release</button>
             </div>
         </div>
     </div>
