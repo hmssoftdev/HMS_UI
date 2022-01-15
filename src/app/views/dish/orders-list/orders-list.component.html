@@ -4,12 +4,14 @@
         currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         [rowsPerPageOptions]="[10,25,50]">
         <ng-template pTemplate="header">
-            <tr>
-                <th style="width: 3rem">
-                    <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
+            <tr class="body">
+                <th class="check" style="width: 3rem">
+                    <p-tableHeaderCheckbox c>
+
+                    </p-tableHeaderCheckbox>
                 </th>
                 <th>Username
-                    <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
+                    <p-columnFilter  type="text" field="name" display="menu"></p-columnFilter>
                 </th>
                 <th style="width: 100px; text-align: center;">Mobile</th>
                 <th style="width: 50px;">Price</th>
@@ -18,9 +20,11 @@
                 <th style="text-align: center;">Order Status</th>
                 <th style="width: 250px; text-align: center;">Action </th>
         </ng-template>
+  
         <ng-template pTemplate="body" let-order let-columns="columns">
+            
             <tr>
-                <td>
+                <td class="bodycheck">
                     <p-tableCheckbox [value]="order"></p-tableCheckbox>
                 </td>
                 <td>{{order.userName}}</td>

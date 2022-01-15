@@ -89,11 +89,11 @@
                 </div>
                 <div class="p-field p-col-6 p-md-3" >
                     <label for="files"><b>Upload Owner's Signature</b></label>
-                    <input name="files" [(ngModel)]="admin.signature" (change)="signFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="signature" [(ngModel)]="admin.signature" (change)="signFile($event)" class="p-inputtext-sm" pInputText type="file">
                 </div>
                 <div class="p-field p-col-6 p-md-3" >
                     <label for="files"><b>Upload Restaurent's Seal</b></label>
-                    <input name="files" [(ngModel)]="admin.restaurentSeal" (change)="sealFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="restaurentSeal" [(ngModel)]="admin.restaurentSeal" (change)="sealFile($event)" class="p-inputtext-sm" pInputText type="file">
                 </div>
                 <div class="p-field p-col-6 p-md-3" >
                     <label for="files"><b>Upload UPI Scan Image</b></label>
@@ -116,7 +116,7 @@
                     <img [src]="admin.upiImage" alt="UPI" id="upi" width="70px" height="70px">
                 </div>
             </div>
-            <div class="p-card-footer p-text-right">
+            <div class="  p-text-right">
                 <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised p-mr-1"></button>
                 <button pButton pRipple label="Cancel" icon="pi pi-times" class="p-button-danger p-button-raised" type="reset" (click)="hideDialog()"></button>
             </div>
