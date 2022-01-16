@@ -72,7 +72,7 @@
           <div class="p-col-12" *ngIf="dish.status === 'active'">
             <div class="product-list-item">
               <div class="imgWrap">
-                <img [src]="dish.imageUrl" alt="{{ dish.name }}" />
+          <img [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
                 <span
                   class="icnBookmark"
                   (click)="fnBookmarkMenu(dish)"
@@ -502,4 +502,4 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
+<app-kot-items [adminData]="admin" [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>

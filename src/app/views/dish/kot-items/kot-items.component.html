@@ -39,58 +39,70 @@
   <table class="tblInvoice">
     <tr>
         <td>
-            <div class="p-col p-py-0"><strong>Name: </strong>{{adminData?.businessName}}</div>
-            <div class="p-col p-py-0"><strong>Address: </strong>{{adminData?.address}}</div>
-            <div class="p-col p-py-0"><strong>State: </strong>{{adminData?.state}}</div>
-            <div class="p-col p-py-0"><strong>GSTIN No./PAN No: </strong>{{adminData?.gst}}</div>
-
+          
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>Name: </strong>{{adminData?.businessName}}</div>
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>Address: </strong>{{adminData?.address}}</div>
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>State: </strong>{{adminData?.state}}</div>
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>GSTIN No./PAN No: </strong>{{adminData?.gst}}</div>
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>Customer <br> Name:</strong>   <strong>Number:</strong>    </div>
         </td>
+     
         </tr>
         </table>
   <table class="tblInvoice" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
-        <th style="width:10%">#</th>
-        <th style="width:40%">Products</th>
-        <th style="width:10%">Qty</th>
-        <th class="p-text-right">Rate</th> 
-        <th class="p-text-right">Value</th> 
+        <th style="width:10%;font-size: 10px;">#</th>
+        <th style="width:40%;font-size: 10px;">Products</th>
+        <th style="width:10%;font-size: 10px;">Qty</th>
+        <th class="p-text-right" style="font-size: 10px;">Rate</th> 
+        <th class="p-text-right" style="font-size: 10px;">Value</th> 
       </tr> 
     </thead>
     <tbody>
       <tr *ngFor="let item of orderData.orderItems; let i = index;">
-        <td style="width:10%">{{i+1}}</td>
-        <td style="width:40%">{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
-        <td style="width:10%">{{item.quantity}}</td>
-        <td class="p-text-right">{{item.price}}</td>
-        <td class="p-text-right">{{item.price * item.quantity}}</td>
+        <td style="width:10%;font-size: 10px;">{{i+1}}</td>
+        <td style="width:40%;font-size: 10px;">{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
+        <td style="width:10%;font-size: 10px;">{{item.quantity}}</td>
+        <td class="p-text-right" style="font-size: 10px;">{{item.price}}</td>
+        <td class="p-text-right" style="font-size: 10px;">{{item.price * item.quantity}}</td>
          
       </tr>
       <tr>
-        <td colspan="2" class="text-right b-dashed b-top"><strong>Total</strong></td>
-        <td class="b-dashed b-top"><strong>{{orderData.itemCount}}</strong></td>
-        <td class="b-dashed b-top"></td>
-         <td class="p-text-right b-dashed b-top"><strong>{{orderData.itemTotal | currency :'INR'}}</strong></td>
+        <td colspan="2" style="font-size: 10px;" class="text-right b-dashed b-top"><strong>Total</strong></td>
+        <td class="b-dashed b-top" style="font-size: 10px;"><strong>{{orderData.itemCount}}</strong></td>
+      
+         <td colspan="2" style="font-size: 10px;" class="p-text-right b-dashed b-top"><strong>{{orderData.itemTotal | currency :'INR'}}</strong></td>
       </tr>
       <tr *ngIf="orderData.discountInRupees">
-        <td colspan="4" class="p-text-right ">Discount in %</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center ">Discount in %</td>
         <td class="p-text-right">{{orderData.discountInRupees | currency :'INR'}}</td>
       </tr>
       <tr *ngIf="orderData.additionalAmount">
-        <td colspan="4" class="p-text-right">additionalAmount</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">additionalAmount</td>
         <td class="p-text-right">{{orderData.additionalAmount | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="4" class="p-text-right">CGST</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">CGST</td>
         <td class="p-text-right">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="4" class="p-text-right">SGST</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">SGST</td>
         <td class="p-text-right">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="4" class="b-top p-text-right p-text-bold b-dashed">Total Amount</td>
-        <td class="b-top p-text-bold p-text-right b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
+        <td style="font-size: 10px;" colspan="4" class="b-top p-text-center p-text-bold b-dashed">Total Amount</td>
+        <td style="font-size: 10px;" class="b-top p-text-bold p-text-center b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
+      </tr>
+      <tr>
+        <td colspan="2" style="font-size: 10px;" class="b-top p-text-center p-text-bold b-dashed">
+          
+         <img [src]="adminData.signature" height="50px" width="80px" src="" alt=""> </td>
+        <td colspan="3" style="font-size: 10px;" class="b-top p-text-right p-text-bold b-dashed">
+          <img [src]="adminData.restaurentSeal" height="50px" width="80px" src="" alt="" class="align-self-end">
+        </td>
+        
+
       </tr>
       <tr>
         <td class="p-text-center" colspan="5">

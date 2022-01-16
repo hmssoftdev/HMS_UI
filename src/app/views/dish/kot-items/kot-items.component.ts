@@ -1,4 +1,9 @@
 import { Component, OnInit, Input } from '@angular/core';
+import { Admin } from '../../../models/admin';
+import { OrderItem } from '../../../models/orderList';
+import { AdminService } from '../../../service/admin.service';
+import { CartService } from '../../../service/cart.service';
+
 
 @Component({
   selector: 'app-kot-items',
@@ -10,10 +15,18 @@ export class KOTItemsComponent implements OnInit {
 @Input() tableNames: any;
 @Input() printType: string;
 @Input() orderId:any;
+@Input() adminData: Admin;
 
-  constructor() { }
+@Input() orderItem: OrderItem;
+@Input() cartItems;
+
+  constructor(public adminService: AdminService,private cartService: CartService) { }
 
   ngOnInit(): void {
+   
+    console.log(this.adminData, 'AdminData');
+    // this.cartService.get().subscribe(resp=> this.cartItems = resp);
+    // console.log(this.cartItems.grossTotal);
   }
 
 }
