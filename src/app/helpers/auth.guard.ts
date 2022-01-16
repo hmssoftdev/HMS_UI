@@ -19,6 +19,7 @@ export class AuthGuard implements CanActivate {
          route.data &&
          route.data.roles && 
          route.data.roles.includes(user.userType)){
+           this.authService.pageHeadingSubject$.next(route.data.title)
         return true;
       } else {
         if( !user || user.userType === 4){ 

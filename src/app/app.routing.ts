@@ -54,10 +54,6 @@ export const routes: Routes = [
         path: 'hotel-admin',
         loadChildren: () => import('./views/hotel-admin/hotel-admin.module').then(m => m.HotelAdminModule),
       },
-      {
-        path: 'bankDetail',
-        loadChildren: () => import('./views/client/client.module').then(m => m.ClientModule)
-  },
     {
         path: 'users',
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
@@ -77,7 +73,8 @@ export const routes: Routes = [
         title: "Order Status",
         roles: roleConfig.authRoles.user
       },
-        canActivate:[AuthGuard]},
+        canActivate:[AuthGuard]
+      },
       {
         path: '404',
         component: P404Component,

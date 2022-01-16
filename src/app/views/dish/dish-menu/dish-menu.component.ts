@@ -59,25 +59,25 @@ export class DishMenuComponent implements OnInit {
     public commonSvc: CommonService,
     private msgService: MessageService,
     public userSvc: UserService,
-    private authServive: AuthService,
+    private authService: AuthService,
     public adminService: AdminService,
     public data: ShareDataService
   ) { }
   ngOnInit() {
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.data.sendObject('Hello from dish menu!');
     this.data.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.data.currentMessage.subscribe(message => this.selectedUser = message);
     this.data.currentId.subscribe(id => this.sendId = id);
     this.dishService.getList(this.sendId).subscribe(data => {
       this.dishes = data;
-      this.authServive.showLoader = false;
+      this.authService.showLoader = false;
     });
     this.sortOptions = [
       { label: 'Price High to Low', value: '!fullPrice' },
       { label: 'Price Low to High', value: 'fullPrice' }
     ];
-    this.userData = this.authServive.userData();
+    this.userData = this.authService.userData();
     this.primengConfig.ripple = true;
     this.fnGetDishCategoy();
     this.loadData()

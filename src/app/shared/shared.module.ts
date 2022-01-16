@@ -44,6 +44,7 @@ import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 @NgModule({
   declarations: [
@@ -95,7 +96,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     AvatarModule,
     TabViewModule,
     TimelineModule,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToggleButtonModule
   ],
   exports:[
     CommonModule,
@@ -140,7 +142,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     UserFormComponent,
     InvoiceComponent,
     ClickOutsideDirective,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ToggleButtonModule
   ],
   providers:[MessageService, ConfirmationService]
 })

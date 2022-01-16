@@ -25,11 +25,11 @@ export class DishCategoryConfigComponent implements OnInit {
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
     private shareData: ShareDataService,
-    private authServive: AuthService
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.status = [{ label: 'Active', value: 'active' },
     { label: 'InActive', value: 'inactive' }];
     // this.dishCategory = {};
@@ -39,7 +39,7 @@ export class DishCategoryConfigComponent implements OnInit {
     this.shareData.currentId.subscribe(id => this.sendId = id);
     this.categorySvc.getDishCategory(this.sendId).subscribe(x => {
       this.CategoryList = x;
-    this.authServive.showLoader = false;
+    this.authService.showLoader = false;
     });
   }
 

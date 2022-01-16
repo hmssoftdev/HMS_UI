@@ -24,21 +24,21 @@ export class UserConfigComponent implements OnInit {
     public commonSvc: CommonService,
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
-    private authServive: AuthService,
+    private authService: AuthService,
     private shareData: ShareDataService,
     private commonService: CommonService,
     ) { }
 
   ngOnInit(): void {
   //  this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.loadData();
   }
 
   loadData(){
     this.userSvc.getUserList().subscribe(res => {
       this.userList = res;
-    this.authServive.showLoader = false;
+    this.authService.showLoader = false;
     });
   }
   openNew() {
