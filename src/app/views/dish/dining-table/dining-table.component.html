@@ -6,9 +6,11 @@
             <p class="txtShape">{{tblItem.shape}} <span> - shape</span></p>
             <p class="txtHallType">{{tblItem.isAc === true? 'AC': 'Non AC'}}<span class="p-text-small"> - Hall type</span></p>
             <div class="btnWrapper">
-                <button pButton class="p-button-outlined p-button-text-only" (click)="fnTblBook(tblItem)">Select</button>
-                <button pButton class="p-button-outlined p-button-text-only">Join</button>
-                <button pButton class="p-button-outlined p-button-text-only"  (click)="fnTblRelease(tblItem)">Release</button>
+                
+                <button pButton class="p-button-outlined p-button-text-only" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left"></button>
+                <button pButton class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"></button>
+                
+                <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times"  (click)="fnTblRelease(tblItem)"></button>
             </div>
         </div>
     </div>
