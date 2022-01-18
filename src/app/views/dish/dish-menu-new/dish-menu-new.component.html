@@ -426,7 +426,7 @@
               pButton
               type="button"
               label="Bill Print"
-                                                                 
+              [disabled]="!isKOTdone"                                            
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
             ></button>
