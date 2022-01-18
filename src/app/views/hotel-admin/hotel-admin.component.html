@@ -49,7 +49,7 @@
                 </div>
                 <div class="p-field p-col-12 p-md-12">
                     <label for="terms"><b>Terms & Conditoins</b></label>
-                    <textarea id="terms" name="terms" type="text" [(ngModel)]="admin.termAndCondition" rows="4" pInputTextarea></textarea>
+                    <textarea id="terms" name="termAndCondition" type="text" [(ngModel)]="admin.termAndCondition" rows="4" pInputTextarea></textarea>
                 </div>
             </div>
             <div class="p-card-title">Bank Information</div>
@@ -85,7 +85,7 @@
                 </div>
                 <div class="p-field p-col-6 p-md-3" >
                     <label for="files"><b>Upload restaurent's Logo</b></label>
-                    <input name="files" [(ngModel)]="admin.restaurentLogo" (change)="logoFile($event)" class="p-inputtext-sm" pInputText type="file">
+                    <input name="restaurentLogo" [(ngModel)]="admin.restaurentLogo" (change)="logoFile($event)" class="p-inputtext-sm" pInputText type="file">
                 </div>
                 <div class="p-field p-col-6 p-md-3" >
                     <label for="files"><b>Upload Owner's Signature</b></label>

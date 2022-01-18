@@ -37,18 +37,40 @@
 
 <ng-container *ngIf="printType === 'BillPrintUI'">
   <table class="tblInvoice">
+    <thead class="p-text-center" >
+      <strong >Invoice</strong>
+    </thead>
+
+   
+ 
+ 
+  
     <tr>
-        <td>
-          
-            <div class="p-col p-py-0" style="font-size: 10px;"><strong>Name: </strong>{{adminData?.businessName}}</div>
+        <td> 
+         
+          <div class="p-col p-py-0" style="font-size: 10px;"><strong>Invoice No:</strong>{{myDate | date:'MMdd'}} <img width="20px" class="p-text-right p-ml-6" height="10px" [src]="adminData.restaurentLogo" alt=""></div> 
+          <div class="p-col p-py-0" style="font-size: 10px;"><strong>Delivery Mode: </strong>{{ orderData.deliveryMode}} </div>  
+          <div class="p-col p-py-0" style="font-size: 10px;"><strong>Name: </strong>{{adminData?.businessName}}</div>       
             <div class="p-col p-py-0" style="font-size: 10px;"><strong>Address: </strong>{{adminData?.address}}</div>
-            <div class="p-col p-py-0" style="font-size: 10px;"><strong>State: </strong>{{adminData?.state}}</div>
-            <div class="p-col p-py-0" style="font-size: 10px;"><strong>GSTIN No./PAN No: </strong>{{adminData?.gst}}</div>
-            <div class="p-col p-py-0" style="font-size: 10px;"><strong>Customer <br> Name:</strong>   <strong>Number:</strong>    </div>
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>City: </strong>{{adminData?.city}} <strong>State: </strong>{{adminData?.state}} </div>
+           
+            <div class="p-col p-py-0" style="font-size: 10px;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
+           
+            
         </td>
      
-        </tr>
+        </tr></table>
+        <table class="tblInvoice">
+          <tr>
+            <td>
+              <div class="p-col p-py-0" style="font-size: 10px;">
+                <strong>Customer <br>
+                 Name: {{userdata | json}}</strong>   <strong>Number:</strong>    </div>
+            </td>
+          </tr>
         </table>
+        
+        
   <table class="tblInvoice" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
@@ -79,7 +101,7 @@
         <td class="p-text-right">{{orderData.discountInRupees | currency :'INR'}}</td>
       </tr>
       <tr *ngIf="orderData.additionalAmount">
-        <td colspan="4" style="font-size: 10px;" class="p-text-center">additionalAmount</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">AdditionalAmount</td>
         <td class="p-text-right">{{orderData.additionalAmount | currency :'INR'}}</td>
       </tr>
       <tr>
@@ -97,9 +119,15 @@
       <tr>
         <td colspan="2" style="font-size: 10px;" class="b-top p-text-center p-text-bold b-dashed">
           
-         <img [src]="adminData.signature" height="50px" width="80px" src="" alt=""> </td>
-        <td colspan="3" style="font-size: 10px;" class="b-top p-text-right p-text-bold b-dashed">
-          <img [src]="adminData.restaurentSeal" height="50px" width="80px" src="" alt="" class="align-self-end">
+         <img [src]="adminData.signature" height="30px" width="50px">
+       
+         </td>
+        <td colspan="4" style="font-size:5px;" class="b-top p-text-left b-dashed">
+         
+         This is an electronically generated purchase bill <br>
+        <strong>Terms & Condition</strong>  <br>
+         {{adminData.termAndCondition}}
+          
         </td>
         
 

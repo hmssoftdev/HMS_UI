@@ -386,7 +386,7 @@
                 <!-- <div style="font-size:small p-my-2">Discount in &#8377;</div> -->
                 <div class="p-fluid p-formgrid p-grid">
                   <div class="p-field p-col-7">
-                    <span>Additional amount</span>
+                    <span>Additional Amount</span>
                   </div>
                   <div class="p-field p-col-5">
                     <!-- <p-inputNumber class="p-inputtext-sm" mode="currency"
@@ -426,7 +426,7 @@
               pButton
               type="button"
               label="Bill Print"
-              [disabled]="!isKOTdone"                                                    
+                                                                 
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
             ></button>
@@ -494,4 +494,4 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [adminData]="admin" [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
+<app-kot-items [userdata]="user" [adminData]="admin" [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
