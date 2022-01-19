@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from 'rxjs';
 import { roleConfig } from './constant/rolesConfig';
@@ -13,6 +13,7 @@ import { TableConfigurationComponent } from '../app/views/hotel-admin/table-conf
 import { OrderStatusComponent } from './shared/order-status/order-status.component';
 import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
+import { ReportComponent } from './views/report/report.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -51,7 +52,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
 
   }, 
-      {
+  {
+    path:'report',
+    component:ReportComponent,
+    data: {
+      roles: roleConfig.authRoles.sa
+      },
+  },
+ {
         path: 'hotel-admin',
         loadChildren: () => import('./views/hotel-admin/hotel-admin.module').then(m => m.HotelAdminModule),
       },

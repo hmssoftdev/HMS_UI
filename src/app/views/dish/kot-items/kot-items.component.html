@@ -48,7 +48,11 @@
     <tr>
         <td> 
          
-          <div class="p-col p-py-0" style="font-size: 10px;"><strong>Invoice No:</strong>{{myDate | date:'MMdd'}} <img width="20px" class="p-text-right p-ml-6" height="10px" [src]="adminData.restaurentLogo" alt=""></div> 
+          <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-between;">
+            <strong>Invoice No:</strong>
+            <b style="margin-right:20px;"> {{myDate | date:'MMdd'}}</b> <img width="20px"
+             class="p-text-right" style="margin-left:41px;" height="15px" [src]="adminData.restaurentLogo"
+              alt=""></div> 
           <div class="p-col p-py-0" style="font-size: 10px;"><strong>Delivery Mode: </strong>{{ orderData.deliveryMode}} </div>  
           <div class="p-col p-py-0" style="font-size: 10px;"><strong>Name: </strong>{{adminData?.businessName}}</div>       
             <div class="p-col p-py-0" style="font-size: 10px;"><strong>Address: </strong>{{adminData?.address}}</div>
@@ -105,11 +109,11 @@
         <td class="p-text-right">{{orderData.additionalAmount | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="4" style="font-size: 10px;" class="p-text-center">CGST</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">CGST %</td>
         <td class="p-text-right">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="4" style="font-size: 10px;" class="p-text-center">SGST</td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center">SGST %</td>
         <td class="p-text-right">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
       <tr>

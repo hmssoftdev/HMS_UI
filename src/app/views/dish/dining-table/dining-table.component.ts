@@ -10,13 +10,20 @@ import { TableService } from '../../../service/table.service';
 })
 export class DiningTableComponent implements OnInit {
   tableList:Hotel[];
+  displayModal:boolean ;
+  displayBasic:boolean;
   @Output() tableSelection = new EventEmitter<any>();
   selectedTableID:Array<any> = [];
+  tablesname :any[];
   constructor(public tableSvc: TableService, private cartService: CartService) { }
 
-  ngOnInit(): void {
+  ngOnInit(){
     this.selectedTableID = [];
     this.loadTabaleData();
+    this.tablesname = [
+      { label: '{{tblItem.name}}', value: '!fullPrice' },
+      { label: 'Price Low to High', value: 'fullPrice' }
+      ];
   }
 
   loadTabaleData() {
@@ -57,5 +64,9 @@ tableOperation(tblItem){
   }); 
     
   this.tableSelection.emit(this.selectedTableID)
+}
+
+showBasicDialog() {
+  this.displayBasic = true;
 }
 }

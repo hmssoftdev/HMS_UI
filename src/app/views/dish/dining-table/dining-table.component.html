@@ -8,7 +8,26 @@
             <div class="btnWrapper">
                 
                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left"></button>
-                <button pButton class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"></button>
+                <button pButton (click)="showBasicDialog()" class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"     
+                
+                
+                
+                
+                ></button>
+               
+<p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+    <div class="p-grid">
+        <div class="p-col-2" *ngFor="let tblItem of tableList">
+            <div class="tblBox p-shadow-1 p-p-md-2">
+           
+              <button pButton class="p-button-outlined p-button-text-only"  type="button"> {{tblItem.name}}</button>
+            </div></div></div>
+   
+    <ng-template pTemplate="footer">
+        <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text"></p-button>
+        <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
+    </ng-template>
+</p-dialog>
                 
                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times"  (click)="fnTblRelease(tblItem)"></button>
             </div>
