@@ -9,6 +9,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 import {CarouselModule} from 'primeng/carousel';
 import {TableModule} from 'primeng/table';
+import {ChartModule} from 'primeng/chart';
 import {ToastModule} from 'primeng/toast';
 import {CalendarModule} from 'primeng/calendar';
 import {SliderModule} from 'primeng/slider';
@@ -63,6 +64,7 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     ChartsModule,
     BsDropdownModule,
     CardModule,
+    ChartModule,
     CarouselModule,
     TooltipModule,
     //ButtonsModule.forRoot(),

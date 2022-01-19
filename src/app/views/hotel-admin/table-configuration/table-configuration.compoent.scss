@@ -75,3 +75,18 @@
         
     }
 }
+@media screen and (max-width:320px){
+    :host ::ng-deep {
+   .p-dialog{
+    width: 100vw!important;
+   } 
+   .p-formgroup-inline .p-field-checkbox>label, .p-formgroup-inline .p-field-radiobutton>label, .p-formgroup-inline .p-field>label {
+   
+    display: contents!important;
+}
+.p-card-footer{
+    text-align: center!important;
+}
+}
+
+}

@@ -55,7 +55,8 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
 import { HeaderComponent } from './common/header/header.component';
 import { FooterComponent } from './common/footer/footer.component';
 import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
-import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component'; 
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
+import { ReportComponent } from './views/report/report.component'; 
 @NgModule({
   imports: [
     BrowserModule,
@@ -92,7 +93,8 @@ import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.c
     HeaderComponent,
     FooterComponent,
     UpdatepasswrodComponent,
-    ForgotpasswordComponent
+    ForgotpasswordComponent,
+    ReportComponent
   ],
   providers: [
     AuthService,

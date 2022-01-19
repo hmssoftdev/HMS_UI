@@ -76,12 +76,22 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        name:'Report',
+        routing:'/report',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-inbox',
+        subItems: []
+      },
+     
+      {
         name:'Hotel Admin',
         routing:'/hotel-admin',
         access:roleConfig.authRoles.admin,
         icon:'pi pi-users',
         subItems: []
-      },
+      }, 
+     
+    
       {
         name:'Master Admin',
         routing:'/admin-setting',
