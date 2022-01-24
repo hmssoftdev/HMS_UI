@@ -1,120 +1,59 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="p-card p-mb-5">
-    <div class="p-card-body">
-        <h3 class="p-text-center">
-           
-                Today Summary
-            
-            
-        </h3>
-        <div class="p-grid">
-            <div class="p-col-12 p-md-6 p-text-center"> 
-                <strong>
-                    <p-card>
-                    Today Bill
-                    </p-card>
-                </strong>
-                <div class="p-grid">
-                    <div class="p-col-3">
-                        <p-card>
-                            Dining
-                        </p-card>
-                    </div>
-                    <div class="p-col-5">
-                         <p-card>
-                            Home Delivery
-                         </p-card>
-                    </div>
-                    <div class="p-col-4">
-                        <p-card>
-                            Take Away
-                        </p-card>
-                    </div>
-                </div>
-                
-            </div> 
-            <div class="p-col-12 p-md-6  p-text-center">
-                <strong>
-                    <p-card>
-                    Today Amount
-                    </p-card>
-                </strong>
-                <div class="p-grid">
-                    <div class="p-col-3">
-                        <p-card>
-                            Dining
-                        </p-card>
-                    </div>
-                    <div class="p-col-5">
-                         <p-card>
-                            Home Delivery
-                         </p-card>
-                    </div>
-                    <div class="p-col-4">
-                        <p-card>
-                            Take Away
-                        </p-card>
-                    </div>
-                </div>
-              
-            </div>
-        </div>
+  <div class="p-card-body">
+    <h3 class="p-text-center">
+      <span class="text-6xl">Today Summary</span>
 
 
-        
-          
-            <div class="p-grid p-mt-6">
-<div class="p-col-4 p-text-center">
-<strong>History Data</strong>
-</div><div class="p-col-4 p-text-right">
-    <p-calendar [(ngModel)]="dateValue" dateFormat="dd.mm.yy"></p-calendar>
-    To <p-calendar [(ngModel)]="dateValuee" dateFormat="dd.mm.yy"></p-calendar>
-</div><div class="p-col-4 p-text-center">
-    <p><strong>Past</strong> Week, Month, Year
-   </p>
+
+
+    </h3>
+    <router-outlet></router-outlet>
+    <app-today-summary></app-today-summary>
+    <div class="p-grid p-mt-6 align-items-center justify-content-center">
+
+      <app-bar-chart [todaySale]=todaySale></app-bar-chart>
+
+
+      <!-- <app-week-summary></app-week-summary> -->
+    </div>
+    <div class="p-grid">
+      <h3 class="text-xl">Top Customer wtih most Bill and Amount</h3>
+      <p-table [value]="sales">
+        <ng-template pTemplate="header">
+          <tr>
+
+            <th>SR NO </th>
+            <th>Name</th>
+            <th>Contact</th>
+            <th pSortableColumn="city.name">City <p-sortIcon field="city.name"></p-sortIcon>
+            </th>
+            <th>Bill No</th>
+          </tr>
+
+        </ng-template>
+        <ng-template pTemplate="body" let-sale>
+          <tr>
+            <td>{{sale.srno}}</td>
+            <td>{{sale.cusname}}</td>
+            <td>{{sale.cuscontact}}</td>
+            <td>{{sale.cuscity}}</td>
+            <td>{{sale.cusamout}}</td>
+          </tr>
+        </ng-template>
+      </p-table>>
+    </div>
+
+
+
+    <div class="p-grid align-items-center justify-content-center">
+
+
+      <div class="p-col-6 p-md-8 p-mt-6">
+        <!-- Line Chart -->
+        <h3>Number of repeated Customer</h3>
+        <p-chart type="line" [data]="data"></p-chart>
+      </div>
+    </div>
+  </div>
 </div>
-                <div class="p-col-4 p-md-4 p-mt-6">
-                  <!-- Bar Chart -->
-                  <p-chart type="bar" [data]="databar"></p-chart>
-              </div>
-              <div class="p-col-4 p-md-4 p-mt-6">
-               <!-- Doughnut Chart -->
-                <p-chart type="doughnut" [data]="datadoughnut"></p-chart>
-              </div>
-              <div class="p-col-4 p-md-4 p-mt-6">
-              <!-- Line Chart -->
-                <p-chart type="line" [data]="dataline"></p-chart>
-              </div>
-              
-              </div>
-              
-              <div class="p-grid p-p-4 p-mt-6">
-                
-                <div class="p-col-4 p-md-6 p-mt-6">
-              <!-- Polar Chart -->
-                  <p-chart type="polarArea" [data]="datapolar"></p-chart>
-              </div>
-                <div class="p-col-4 p-md-6 p-mt-6">
-              <!-- Pie Chart -->
-                  <p-chart type="pie" [data]="datapie"></p-chart>
-                </div>
-                <div class="p-col-4 p-md-6 p-mt-6">
-              <!-- Radar Chart -->
-                  <p-chart type="radar" [data]="dataradar"></p-chart>
-                </div>
-              
-              </div>
-              <div class="p-grid p-p-4 p-mt-6">
-                <div class="p-col-12">
-              <!-- Combo Line & Bar Chart -->
-                  <p-chart type="bar" [data]="datacombo" [options]="chartOptions"></p-chart>
-              
-                  </div>
-              </div>
-
-
-
-        </div>
-
-        </div>
-

@@ -15,9 +15,9 @@ import { IconModule, IconSetModule, IconSetService } from '@coreui/icons-angular
 const DEFAULT_PERFECT_SCROLLBAR_CONFIG: PerfectScrollbarConfigInterface = {
   suppressScrollX: true
 };
-
+import {ChartModule} from 'primeng/chart';
 import { AppComponent } from './app.component';
-
+import {CalendarModule} from 'primeng/calendar';
 import { P404Component } from './views/error/404.component';
 import { P500Component } from './views/error/500.component';
  import { LoginComponent } from './views/login/userLogin.component';
@@ -57,9 +57,15 @@ import { FooterComponent } from './common/footer/footer.component';
 import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 import { ReportComponent } from './views/report/report.component'; 
+import {CardModule} from 'primeng/card';
+import {TabViewModule} from 'primeng/tabview';
+import { TodaySummaryComponent } from './views/report/today-summary/today-summary.component';
+import { BarChartComponent } from './views/report/bar-chart/bar-chart.component';
+
 @NgModule({
   imports: [
     BrowserModule,
+    TabViewModule,
     BrowserAnimationsModule,
     HotelAdminModule,
     AppRoutingModule,
@@ -70,19 +76,24 @@ import { ReportComponent } from './views/report/report.component';
     AppFooterModule,
     AppHeaderModule,
     AppSidebarModule,
+    CardModule,
     CaptchaModule,
     PerfectScrollbarModule,
     BsDropdownModule.forRoot(),
     TabsModule.forRoot(),
     ChartsModule,
+    ChartModule,
     IconModule,
     IconSetModule.forRoot(),
     HttpClientModule,
     FormsModule,
+    CalendarModule,
     MasterAdminModule, 
   ],
   declarations: [
     AppComponent, 
+    ReportComponent,
+    TodaySummaryComponent,
     P404Component,
     P500Component,
     LoginComponent,
@@ -94,7 +105,7 @@ import { ReportComponent } from './views/report/report.component';
     FooterComponent,
     UpdatepasswrodComponent,
     ForgotpasswordComponent,
-    ReportComponent
+    BarChartComponent
   ],
   providers: [
     AuthService,

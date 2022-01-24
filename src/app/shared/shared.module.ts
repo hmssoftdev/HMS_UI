@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
 import {HttpClientModule } from '@angular/common/http';
-import { ChartsModule } from 'ng2-charts';
+
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 // import { ButtonsModule } from 'ngx-bootstrap/buttons'; 
@@ -45,6 +45,7 @@ import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
+import { ChartsModule } from 'ng2-charts';
 
 @NgModule({
   declarations: [
@@ -97,7 +98,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     AvatarModule,
     TabViewModule,
     TimelineModule,
-    ProgressSpinnerModule
+        ChartModule,
+    ProgressSpinnerModule,
   ],
   exports:[
     CommonModule,
@@ -142,7 +144,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
     UserFormComponent,
     InvoiceComponent,
     ClickOutsideDirective,
-    ProgressSpinnerModule
+    ProgressSpinnerModule,
+    ChartModule
   ],
   providers:[MessageService, ConfirmationService]
 })
