@@ -206,34 +206,95 @@
         }
     }
 }
-@media screen and (max-width: 576px) {
-    :host ::ng-deep .product-list-item {
-        flex-direction: column;
+@media screen and (max-width: 768px) {
+    :host ::ng-deep {
+        .p-button.p-button-icon-only{
+            height: 1.667rem;
+            width: 1.667rem;
+        }
+        .p-button{
+            padding: 0.3rem;
+            font-size: 0.75rem;
+        }
+        .pi{
+            font-size: 0.75rem;
+        }  
+
+.cartWrap{
+    display: none;
+    position: absolute;
+    bottom: 0;
+    height: auto;
+    background: #fff;
+    border: 1px solid #dcdcdc;
+    border-radius: 5px;
+}
+.cartWrap.active{
+    display: block;
+}
+.btnCartToggle{
+    display: block;
+    position: fixed;
+    bottom: 10px;
+    right: 10px;
+}
+        .p-inputswitch{
+    height: 1.25rem;
+}
+        .p-inputswitch .p-inputswitch-slider:before{content:"";
+            width: 1rem;
+            height: 1rem;
+            left: 0.25rem;
+            margin-top: -0.5rem;}
+            .p-inputswitch.p-inputswitch-checked .p-inputswitch-slider:before {
+                transform: translateX(1.625rem);
+            }
+    .product-list-item {
+        // flex-direction: column;
         align-items: center;
+        flex-wrap: wrap;
+        padding: 0.5rem;
+        .imgWrap{
+            width:110px;
+        }
         img {
-            width: 100%;
+            width: 80px;
             margin: 0.75rem 0;
             // min-height: 180px;
             // max-height: 180px;
         }
         .product-list-detail {
-            text-align: center;
+            text-align: left;
         }
         .product-price {
             align-self: center;
         }
         .product-list-action {
             display: flex;
-            flex-direction: column;
-        }
-        .product-list-action {
-            margin-top: 2rem;
+            flex-direction: column; 
+            margin-top: 1rem;
             flex-direction: row;
             justify-content: space-between;
             align-items: center;
             width: 100%;
         }
     }
+    .dataViewOpt, p-paginator{
+        display: none;
+    }
+    .p-dataview .p-dataview-header{
+        padding:0.5rem;
+        p-dropdown{
+            width: 32%;
+            margin-right: 5px;
+            .p-dropdown{
+                width:100%; 
+            }
+        }
+    }
+
+
+}
 }
 
 .visibility div {

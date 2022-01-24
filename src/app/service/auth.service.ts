@@ -14,6 +14,7 @@ export class AuthService {
   storage: Storage;
   public showLoader = false;
   public uLoggedInSubject$ = new BehaviorSubject(null);
+  public pageHeadingSubject$ = new BehaviorSubject('Dish Menu')
   constructor(private http: HttpClient, private storageService: StorageService) { 
     this.storage = this.storageService.get();
   }

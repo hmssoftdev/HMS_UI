@@ -39,7 +39,7 @@ export const navItems: INavData[] = [
   },
   {
     name: 'Tables',
-    url: '/table-configuration',
+    url: '/hotel-admin/table-configuration',
     icon: 'icon-drop'
   }
 

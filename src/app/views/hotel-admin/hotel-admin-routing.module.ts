@@ -29,9 +29,10 @@ const routes: Routes = [
   path: 'table-configuration',
   component: TableConfigurationComponent,
   data: {
-    title: 'table-configuration',
+    title: 'Table Configuration',
     roles: roleConfig.authRoles.guest
-  }
+  },
+  canActivate:[AuthGuard]
 }
 ]
 @NgModule({

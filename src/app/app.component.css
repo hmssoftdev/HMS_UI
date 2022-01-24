@@ -26,3 +26,10 @@ overflow-x: hidden;
     border-bottom: 1px solid #c8ced3;
 
 }
+@media screen and (max-width: 768px) {
+    .breacrumbWrap{
+        padding: 0.5rem 1rem;
+        margin-bottom: 0.5rem;
+    }
+}
+

@@ -12,7 +12,7 @@
         <!-- breaking change 'cui-breadcrumb' -->
         <!-- <div class="breacrumbWrap p-grid" *ngIf="authService.loggedIn()">
             <div class="p-col-6">
-
+                    <h4 class="p-my-0">{{authService.pageHeadingSubject$ | async}}</h4>
             </div>
             <div class="p-col-6 p-text-right">
                 <a class="btn">

@@ -54,6 +54,8 @@ export class DishMenuNewComponent implements OnInit {
   currentOrderId: any;
   admin: Admin;
   obs: Subscription;
+  cartToggle:boolean;
+  lblCartToggle = ''
   cartData: OrderList;
   orderList: OrderList[] = [];
   constructor(
@@ -270,5 +272,8 @@ export class DishMenuNewComponent implements OnInit {
     } else {
       this.fnLoadCartData();
     }
+  }
+  fnCartToggle(){
+    this.lblCartToggle = this.lblCartToggle == 'Active' ? 'inActive':'Active'
   }
 }

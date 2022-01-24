@@ -40,7 +40,7 @@ export class AdminSettingComponent implements OnInit {
     private router: Router,
     private shareData: ShareDataService,
     private commonMethod: CommonMethodsService,
-    private authServive: AuthService,
+    private authService: AuthService,
     private registerService: RegisterService
   ) {
     this.admin = new Admin();
@@ -51,7 +51,7 @@ export class AdminSettingComponent implements OnInit {
   isEdit: boolean;
 
   ngOnInit(): void {
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
     this.users = {};
@@ -91,7 +91,7 @@ export class AdminSettingComponent implements OnInit {
         aItem.age = diffDays;
         console.log(diffTime + " milliseconds");
         console.log(diffDays + " days");
-        this.authServive.showLoader = false;
+        this.authService.showLoader = false;
       })
     });
   }

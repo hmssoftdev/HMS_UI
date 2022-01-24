@@ -20,10 +20,10 @@ export class TableConfigurationComponent implements OnInit {
     constructor(public tableSvc: TableService,
         private msgService: MessageService,
         private confirmationService: ConfirmationService,
-        private authServive: AuthService
+        private authService: AuthService
     ) { }
     ngOnInit(): void {
-        this.authServive.showLoader = true;
+        this.authService.showLoader = true;
         this.hallType = [{ label: 'AC', value: true },
         { label: 'Non AC', value: false }];
         this.tableShape = [{ label: 'Square', value: 'square' },
@@ -34,7 +34,7 @@ export class TableConfigurationComponent implements OnInit {
     loadTabaleData() {
         this.tableSvc.getTableData().subscribe(res => {
             this.tableList = res;
-            this.authServive.showLoader = false;
+            this.authService.showLoader = false;
 
         })
     }

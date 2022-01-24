@@ -19,7 +19,7 @@ export class CheckoutComponent implements OnInit {
   totCartPrice: any;
   userData: any;
   CategoryList: DishCategory[];
-  constructor( private categorySvc: DishService, private cartService: CartService, private authServive: AuthService, private storageService: StorageService,
+  constructor( private categorySvc: DishService, private cartService: CartService, private authService: AuthService, private storageService: StorageService,
     private shareData: ShareDataService) { }
 
   ngOnInit(): void {
@@ -33,7 +33,7 @@ export class CheckoutComponent implements OnInit {
     // this.cartService.get().subscribe(res => {
     //   this.cartItems = res.items.map(x => x.price * )
     // })
-    this.userData = this.authServive.userData(); 
+    this.userData = this.authService.userData(); 
   }
   loadCategory(){
     this.categorySvc.getDishCategory(this.sendId).subscribe(x => {
