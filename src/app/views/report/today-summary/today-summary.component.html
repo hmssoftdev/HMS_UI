@@ -1,0 +1,87 @@
+<div class="p-grid">
+    <div class="p-col-12 p-md-6 p-text-center"> 
+        <strong>
+            <p-card [style]="{'background':'var(--blue-200)'}">
+                
+                <b><span class="text-2xl">Today Bill</span></b>
+            
+            </p-card>
+        </strong>
+        <div class="p-grid">
+            <div class="p-col-3">
+                <p-card [style]="{'background':'var(--teal-200)'}">
+                   <b><span class="text-xl">Dining</span></b> 
+
+                </p-card>
+            </div>
+            <div class="p-col-5">
+                 <p-card [style]="{'background':'var(--yellow-200)'}">
+                   <b><span class="text-xl">Home Delivery</span></b> 
+                 </p-card>
+            </div>
+            <div class="p-col-4">
+                <p-card [style]="{'background':'var(--indigo-200)'}">
+                    
+                  <b><span class="text-xl">TakeAway</span></b>
+
+                </p-card>
+            </div>
+        </div>
+        
+    </div> 
+    <div class="p-col-12 p-md-6  p-text-center">
+        <strong>
+            <p-card [style]="{'background':'var(--blue-200)'}">
+                <b><span class="text-2xl">Today Amount</span></b>
+            </p-card>
+        </strong>
+        <div class="p-grid">
+            <div class="p-col-3">
+                <p-card [style]="{'background':'var(--teal-200)'}">
+                 
+                   <b> <span class="text-xl"> Dining</span></b>
+                    
+                </p-card>
+            </div>
+            <div class="p-col-5">
+                 <p-card [style]="{'background':'var(--yellow-200)'}">
+                     <b><span class="text-xl">Home Delivery</span> </b>
+                    
+                 </p-card>
+            </div>
+            <div class="p-col-4">
+                <p-card [style]="{'background':'var(--indigo-200)'}">
+                    <b><span class="text-xl">TakeAway</span></b>
+                    
+                </p-card>
+            </div>
+        </div>
+      
+    </div>
+</div>
+
+
+
+  
+    <div class="p-grid p-mt-6">
+
+<div class="p-col-3 p-text-center">
+<strong class="text-2xl">History Data</strong>
+</div><div class="p-col-6 p-text-center">
+<p-calendar [(ngModel)]="dateValue" dateFormat="dd.mm.yy"></p-calendar>
+To <p-calendar [(ngModel)]="dateValuee" dateFormat="dd.mm.yy"></p-calendar>
+</div><div class="p-col-3 p-text-center">
+<p-tabView>
+
+<p-tabPanel header="Week">
+
+</p-tabPanel>
+<p-tabPanel header="Month">
+ 
+</p-tabPanel>
+<p-tabPanel header="Year">
+
+</p-tabPanel>
+</p-tabView>
+</div>
+
