@@ -9,6 +9,7 @@ import {TooltipModule} from 'primeng/tooltip';
 import { ModalModule } from 'ngx-bootstrap/modal'; 
 import {CarouselModule} from 'primeng/carousel';
 import {TableModule} from 'primeng/table';
+import {DynamicDialogModule} from 'primeng/dynamicdialog';
 import {ChartModule} from 'primeng/chart';
 import {ToastModule} from 'primeng/toast';
 import {CalendarModule} from 'primeng/calendar';
@@ -93,6 +94,7 @@ import { ChartsModule } from 'ng2-charts';
     SelectButtonModule,
     TagModule,
     InputMaskModule,
+    DynamicDialogModule,
     RippleModule,
     DataViewModule,
     AvatarModule,
@@ -126,6 +128,7 @@ import { ChartsModule } from 'ng2-charts';
     FileUploadModule,
     ToolbarModule,
     RatingModule,
+    DynamicDialogModule,
     FormsModule,
     RadioButtonModule,
     InputNumberModule,

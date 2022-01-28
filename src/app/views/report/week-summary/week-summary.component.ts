@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { TodaySale } from '../../../models/report';
 
 @Component({
   selector: 'app-week-summary',
@@ -10,13 +11,13 @@ export class WeekSummaryComponent implements OnInit {
 
   chartOptionss: any;
   constructor() { }
-
+  @Input() todaySale :TodaySale; 
   ngOnInit(): void {
     this.dataa = {
       labels: ['Dinning','Home Delivery','Takeaway'],
       datasets: [
           {
-              data: [300, 50, 100],
+              data: [this.todaySale.dine,this.todaySale.hd, this.todaySale.takeaway],
               backgroundColor: [
                   "#42A5F5",
                   "#66BB6A",

@@ -9,7 +9,12 @@ import { TodaySale } from '../../models/report';
 export class ReportComponent implements OnInit {
     dateValuee:Date;
     dateValue:Date;
-    todaySale: TodaySale = {Dining: 10 ,HD : 41, Takeaway:5}
+    todaySale: TodaySale = {
+      Dining: 20, HD: 41, Takeaway: 25,
+      dine: 100,
+      hd: 320,
+      takeaway: 250
+    }
     dataa: any;
 
     chartOptionss: any;
