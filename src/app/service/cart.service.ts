@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 // import { resourceUsage } from 'process';
-import { Observable, Observer, of } from 'rxjs';
+import { Observable, Observer, of, Subject } from 'rxjs';
 import { catchError, map } from 'rxjs/internal/operators';
 import { ApiConfig } from '../constant/api';
 import { Dish } from '../models/dish';
@@ -18,6 +18,9 @@ export class CartService {
   orderList: OrderList[] = [];
   // orderList: Array<any>;
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
+
+  tableSubject = new Subject<Array<string>>();
+  tableObservable = this.tableSubject.subscribe();
 
   private storage: Storage;
   private subscriptionObservable: Observable<ShoppingCart>;
@@ -214,5 +217,8 @@ handleError<T>(operation = 'operation', result?: T) {
   };
 }
 
+tableOperation(stringArray : Array<string>) {
+  this.tableSubject.next(stringArray);
+}
 
 }

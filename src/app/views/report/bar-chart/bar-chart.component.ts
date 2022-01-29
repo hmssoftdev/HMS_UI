@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { graph, graphs } from '../../../models/graphs';
 import { TodaySale } from '../../../models/report';
 
 @Component({
@@ -8,7 +9,10 @@ import { TodaySale } from '../../../models/report';
 })
 export class BarChartComponent implements OnInit {
   @Input() todaySale :TodaySale; 
-  basicData: any;
+  @Input() datagraph:graphs;
+ 
+  basicData: graph;
+  // this is default setting
   basicOptions:any;
   constructor() { }
 
@@ -18,17 +22,17 @@ export class BarChartComponent implements OnInit {
       labels: ['Today Sale'],
       datasets: [
           {
-              label: 'Dinning',
-              backgroundColor: '#42A5F5',
+              label: this.datagraph.labeldine,
+              backgroundColor:this.datagraph.bgdine,
               data: [this.todaySale.Dining]
           },
            {
-              label: 'Home Delivery',
-              backgroundColor: '#36A2EB',
+              label: this.datagraph.labelhd,
+              backgroundColor: this.datagraph.bgdh,
               data: [this.todaySale.HD]
           }, {
-              label: 'Takeaway',
-              backgroundColor: '#FFCE56',
+              label: this.datagraph.labeltakeaway,
+              backgroundColor:this.datagraph.bgtake,
               data: [this.todaySale.Takeaway]
           }
           

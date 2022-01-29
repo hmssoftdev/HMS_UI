@@ -1,4 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { graph, graphs } from '../../../models/graphs';
 import { TodaySale } from '../../../models/report';
 
 @Component({
@@ -7,26 +8,27 @@ import { TodaySale } from '../../../models/report';
   styleUrls: ['./week-summary.component.scss']
 })
 export class WeekSummaryComponent implements OnInit {
-  dataa: any;
+  dataa: graph;
+  @Input() datagraph:graphs;
 
   chartOptionss: any;
   constructor() { }
   @Input() todaySale :TodaySale; 
   ngOnInit(): void {
     this.dataa = {
-      labels: ['Dinning','Home Delivery','Takeaway'],
+      labels: [this.datagraph.labeldine,this.datagraph.labelhd,this.datagraph.labeltakeaway],
       datasets: [
           {
               data: [this.todaySale.dine,this.todaySale.hd, this.todaySale.takeaway],
-              backgroundColor: [
-                  "#42A5F5",
-                  "#66BB6A",
-                  "#FFA726"
+              backgroundColors: [
+                  this.datagraph.bgdine,
+                  this.datagraph.bgdh,
+                  this.datagraph.bgtake
               ],
               hoverBackgroundColor: [
-                  "#64B5F6",
-                  "#81C784",
-                  "#FFB74D"
+                this.datagraph.bgdine,
+                this.datagraph.bgdh,
+                this.datagraph.bgtake
               ]
           }
       ]

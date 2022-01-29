@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core'; 
+import { Component, Input, OnInit} from '@angular/core'; 
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
@@ -12,6 +12,7 @@ import { UserService } from '../../../service/user.service';
 import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
 import { OrderList } from '../../../models/orderList';
+import { DiningTableComponent } from '../dining-table/dining-table.component';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -56,6 +57,9 @@ export class DishMenuNewComponent implements OnInit {
   obs: Subscription;
   cartData: OrderList;
   orderList: OrderList[] = [];
+  selectedTableID : string[] = [];
+ selectedTableidd : DiningTableComponent;
+  selectedTableid:Array<any> = [];
   constructor(
   
     private dishService: DishService,
@@ -69,7 +73,6 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
     this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
@@ -85,8 +88,12 @@ export class DishMenuNewComponent implements OnInit {
     { label: 'Price High to Low', value: '!fullPrice' },
     { label: 'Price Low to High', value: 'fullPrice' }
     ];
+    this.cartService.tableSubject.subscribe(x=>{
+        console.log(x);
+        this.selectedTableID = x;
+    });
   } 
-
+table 
   loadClient() {
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {

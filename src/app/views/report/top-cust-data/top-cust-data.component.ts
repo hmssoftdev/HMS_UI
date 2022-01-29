@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { graph, graphs } from '../../../models/graphs';
+import { TodaySale } from '../../../models/report';
 
 @Component({
   selector: 'app-top-cust-data',
@@ -6,23 +8,27 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./top-cust-data.component.scss']
 })
 export class TopCustDataComponent implements OnInit {
-  data: any;
+  data: graph;
+  @Input() 
+  datagraph:graphs;
+  @Input() todaySale :TodaySale;
   constructor() { }
 
   ngOnInit(): void {
     this.data = {
-      labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July'],
+      labels:[this.datagraph.labeldine,this.datagraph.labelhd,this.datagraph.labeltakeaway ],
       datasets: [
           {
-              label: 'First Dataset',
-              borderColor: '#42A5F5',
-              data: [65, 59, 80, 81, 56, 55, 40]
+              label: 'Customer Name',
+              borderColor: this.datagraph.bgdine,
+              
+              data: [this.todaySale.Dining,this.todaySale.HD, this.todaySale.Takeaway,this.todaySale.dine,this.todaySale.hd,this.todaySale.takeaway]
           },
           {
-              label: 'Second Dataset',
+              label: 'Customer Name',
               data: [28, 48, 40, 19, 86, 27, 90],
-              borderColor: '#FFA726',
-              fill: false,
+              borderColor: this.datagraph.bgtake,
+          
           }
       ]
   }

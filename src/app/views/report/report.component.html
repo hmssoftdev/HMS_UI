@@ -1,22 +1,17 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="p-card p-mb-5">
   <div class="p-card-body">
-    <h3 class="p-text-center">
-      <span class="text-6xl">Today Summary</span>
-
-
-
-
-    </h3>
+    <h4 class="p-text-center">
+      <span class="text-6xl">Today Summary</span></h4>
   
     <app-today-summary></app-today-summary>
     <div class="p-grid p-mt-6 align-items-center justify-content-center">
-<div class="p-col-12 p-md-6">
-  <app-bar-chart [todaySale]=todaySale></app-bar-chart>
+<div class="p-col-12 p-md-6 p-text-center">
+  <app-bar-chart [datagraph]=datagraph [todaySale]=todaySale></app-bar-chart>
 
 </div> 
 <div class="p-col-12 p-md-6 p-text p-text-center" >
-  <app-week-summary [todaySale]=todaySale></app-week-summary>
+  <app-week-summary [datagraph]=datagraph [todaySale]=todaySale></app-week-summary>
 
 </div>
 
@@ -50,12 +45,12 @@
 
 
 
-    <div class="p-grid align-items-center justify-content-center">
+    <div class="p-grid align-items-center justify-content-center p-text-center">
 
 
-      <div class="p-col-6 p-md-8 p-mt-6">
+      <div class="p-col-6 p-md-8 p-mt-6 p-text-center">
         <!-- Line Chart -->
-        <app-top-cust-data></app-top-cust-data>
+        <app-top-cust-data [datagraph]=datagraph [todaySale]=todaySale> </app-top-cust-data>
       </div>
     </div>
   </div>
