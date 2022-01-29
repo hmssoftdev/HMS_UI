@@ -1,4 +1,4 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { TableService } from "../../../service/table.service";
 import { Hotel } from "../../../models/tabelConfiguration.model";
@@ -7,8 +7,9 @@ import { AuthService } from "../../../service/auth.service";
 @Component({
     selector: 'app-table-configuration',
     templateUrl: './table-configuration.component.html',
+    styleUrls:['./table-configuration.compoent.scss']
 })
-export class TableConfigurationComponent {
+export class TableConfigurationComponent implements OnInit {
     table: Hotel;
     tableList: Hotel[] = [];
     hallType: { label: string; value: boolean; }[];

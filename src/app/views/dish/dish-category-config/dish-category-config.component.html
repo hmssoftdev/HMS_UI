@@ -31,8 +31,8 @@
                     <td>
                         <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
-                    <td>{{item.name}}</td>
-                    <td>{{item.gstCompliance}}</td>
+                    <td><span class="p-column-title"><i class="pi pi-tag"></i></span>{{item.name}}</td>
+                    <td>{{item.gstCompliance}}<span class="p-column-title">(GST Compliance)</span></td>
                     <td>
                         <p-tag [value]="item.status" *ngIf="item.status" class="p-text-uppercase" [severity]="item.isActive === true ? 'success':'danger'"></p-tag>
                     </td>

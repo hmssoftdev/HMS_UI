@@ -1,7 +1,7 @@
 <div class="p-card dishMenuWrapper">
   <div class="p-grid">
-    <div class="p-col-8">
-      <p-dataView
+    <div class="p-col-7 p-md-8 p-lg-8">
+      <p-dataView 
         #dv
         [value]="dishes"
         [paginator]="true"
@@ -72,7 +72,7 @@
           <div class="p-col-12" *ngIf="dish.status === 'active'">
             <div class="product-list-item">
               <div class="imgWrap">
-                <img [src]="dish.imageUrl" alt="{{ dish.name }}" />
+          <img [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
                 <span
                   class="icnBookmark"
                   (click)="fnBookmarkMenu(dish)"
@@ -237,7 +237,7 @@
         </ng-template>
       </p-dataView>
     </div>
-    <div class="p-col-4">
+    <div class="p-col-5 p-md-4 p-lg-4">
       <div class="cartHeader">Cart Order Items</div>
       <div class="cartContent">
         <div class="delOptbtnWrap">
@@ -386,7 +386,7 @@
                 <!-- <div style="font-size:small p-my-2">Discount in &#8377;</div> -->
                 <div class="p-fluid p-formgrid p-grid">
                   <div class="p-field p-col-7">
-                    <span>Additional amount</span>
+                    <span>Additional Amount</span>
                   </div>
                   <div class="p-field p-col-5">
                     <!-- <p-inputNumber class="p-inputtext-sm" mode="currency"
@@ -426,7 +426,7 @@
               pButton
               type="button"
               label="Bill Print"
-              [disabled]="!isKOTdone"                                                    
+              [disabled]="!isKOTdone"                                            
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
             ></button>
@@ -477,12 +477,14 @@
 <!-- Dining Table View -->
 <p-dialog
   [(visible)]="diningTableDialog"
-  header="Dining Table List"
   [modal]="true"
   (onHide)="fnHideDiningTableM('diningTable')"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
   [style]="{ width: '75vw' }"
 >
+<ng-template pTemplate="header">
+ <span> Dining Table List <strong >{{selectedTableID}}</strong></span>
+</ng-template>
   <app-dining-table 
     (tableSelection)="fnTableSelection($event)"
   ></app-dining-table>
@@ -494,4 +496,4 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [printType]="selectedPrintType" [orderData]="cartItems" [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
+<app-kot-items [userdata]="user" [adminData]="admin" [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>

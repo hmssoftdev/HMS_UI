@@ -1,4 +1,4 @@
-import { Component, OnInit} from '@angular/core'; 
+import { Component, Input, OnInit} from '@angular/core'; 
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
@@ -11,6 +11,8 @@ import { ShareDataService } from '../../../service/share-data.service';
 import { UserService } from '../../../service/user.service';
 import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
+import { OrderList } from '../../../models/orderList';
+import { DiningTableComponent } from '../dining-table/dining-table.component';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -40,18 +42,26 @@ export class DishMenuNewComponent implements OnInit {
   billingDialog:boolean;
   cartItems: ShoppingCart;
   shoppingCart: ShoppingCart; 
+  selectedOrderTotal: number = 0;
   // subUserList: Subscription;
   subDishList: Subscription;
   selectedPrintType:string;
   isKOTdone: boolean = false;
   KOTEnabled: boolean = false;
+  selectedOrderId: number = 0;
   selectedTableNames: Number[];
   subCartItems: Subscription;
   showKOTItems: boolean;
   currentOrderId: any;
   admin: Admin;
   obs: Subscription;
+  cartData: OrderList;
+  orderList: OrderList[] = [];
+  selectedTableID : string[] = [];
+ selectedTableidd : DiningTableComponent;
+  selectedTableid:Array<any> = [];
   constructor(
+  
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
     private dataService: ShareDataService,
@@ -63,7 +73,6 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
     this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
@@ -79,8 +88,12 @@ export class DishMenuNewComponent implements OnInit {
     { label: 'Price High to Low', value: '!fullPrice' },
     { label: 'Price Low to High', value: 'fullPrice' }
     ];
+    this.cartService.tableSubject.subscribe(x=>{
+        console.log(x);
+        this.selectedTableID = x;
+    });
   } 
-
+table 
   loadClient() {
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {
@@ -190,11 +203,6 @@ export class DishMenuNewComponent implements OnInit {
     this.isKOTdone = false;
   }
   fnMakePayment(){
-    // this.fnBillingModal.emit();
-    // this.cartItems.userId = this.selectedUserId;
-    // this.cartItems.adminId = this.userData.adminId;
-
-    // this.fnBillingModal.emit(this.cartItems);
     this.fnLoadCartData();
     this.cartItems.userId = this.selectedUser;
     console.log(this.cartItems.userId);
@@ -233,19 +241,22 @@ export class DishMenuNewComponent implements OnInit {
     setTimeout(() => {
       window.print();
      this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-    },2000)
+    },1000)
    
   });
   
 
     }
-  fnBillPrint(billdata){
+  fnBillPrint(order: OrderList){
     
     this.selectedPrintType = 'BillPrintUI';
-    this.fnLoadCartData(); 
+    debugger;
+    this.selectedOrderId = order.id;
+    this.selectedOrderTotal = order.grossTotal;
+    this.cartData = order;
     setTimeout(function () {
       window.print();
-    },2000)
+    },1000)
   }
   ngOnDestroy(){
    // this.subUserList.unsubscribe();

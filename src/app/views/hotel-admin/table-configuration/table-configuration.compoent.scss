@@ -1,0 +1,92 @@
+:host ::ng-deep {
+ /* Responsive */
+ .p-datatable-customcss .p-datatable-tbody > tr > td .p-column-title {
+    display: none;
+}
+}
+@media screen and (max-width: 768px) {
+    :host ::ng-deep {
+        .p-button.p-button-icon-only{
+            height: 1.667rem;
+            width: 1.667rem;
+        }
+        .p-button{
+            padding: 0.3rem;
+            font-size: 0.75rem;
+        }
+        .pi{
+            font-size: 0.75rem;
+        }
+    .p-datatable-customcss {
+        table {
+            .p-datatable-thead > tr > th,
+            .p-datatable-tfoot > tr > td {
+                display: none !important;
+            }
+            tr{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        background: #f9f9f9;
+        border-radius: 2px;
+        justify-content: space-between;
+                td{
+                    width:33.3334%; 
+                    padding:0.3rem !important;
+                    border:0;
+                  
+                    .p-tag-value{
+                        font-size: 0.625rem;
+                        padding: 0;
+                        line-height: 12px;
+                    }
+                    .p-column-title {
+                         display: inline-block !important; 
+                         margin-right: 5px;
+                         color:#222b94;
+                                                }
+                }
+                td:nth-child(2) {
+                    font-size: .9rem;
+                    font-weight: 600;
+                    width: 33.3334%;
+                }
+                
+                td:first-child{
+                    display: none;
+                }
+               
+            }
+    }
+    .p-paginator{display: none;}
+}
+    }
+ }
+ @media screen and (max-width:475px) {
+    :host ::ng-deep {
+        .p-button.p-button-icon-only{
+            height: 1.367rem;
+            width: 1.367rem;
+        }
+        .p-button{
+            padding: 0.2rem;
+
+        }
+        
+    }
+}
+@media screen and (max-width:320px){
+    :host ::ng-deep {
+   .p-dialog{
+    width: 100vw!important;
+   } 
+   .p-formgroup-inline .p-field-checkbox>label, .p-formgroup-inline .p-field-radiobutton>label, .p-formgroup-inline .p-field>label {
+   
+    display: contents!important;
+}
+.p-card-footer{
+    text-align: center!important;
+}
+}
+
+}

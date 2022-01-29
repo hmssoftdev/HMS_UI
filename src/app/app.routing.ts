@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { Component, NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { config } from 'rxjs';
 import { roleConfig } from './constant/rolesConfig';
@@ -11,6 +11,9 @@ import { RegisterComponent } from './views/register/register.component';
 import { InvoiceComponent } from './views/invoice/invoice.component'
 import { TableConfigurationComponent } from '../app/views/hotel-admin/table-configuration/table-configuration.component'
 import { OrderStatusComponent } from './shared/order-status/order-status.component';
+import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
+import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
+import { ReportComponent } from './views/report/report.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -49,7 +52,14 @@ export const routes: Routes = [
     canActivate: [AuthGuard]
 
   }, 
-      {
+  {
+    path:'report',
+    component:ReportComponent,
+    data: {
+      roles: roleConfig.authRoles.sa
+      },
+  },
+ {
         path: 'hotel-admin',
         loadChildren: () => import('./views/hotel-admin/hotel-admin.module').then(m => m.HotelAdminModule),
       },
@@ -62,6 +72,19 @@ export const routes: Routes = [
         loadChildren: () => import('./views/user/user.module').then(m => m.UserModule),
      
       },
+      {
+        path: 'updatepassword',
+       component:UpdatepasswrodComponent,
+       data: {
+        title: 'Register Page',
+        roles: roleConfig.authRoles.guest
+      }
+     
+      }, 
+      {
+        path: 'forgotpassword',
+       component:ForgotpasswordComponent,
+     },
       {path:'order-status', component:OrderStatusComponent, 
       data: {
         title: "Order Status",

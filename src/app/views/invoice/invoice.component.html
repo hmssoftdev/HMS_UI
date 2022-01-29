@@ -118,11 +118,16 @@
             <div class="p-col-9 smTxt">
                 {{adminData.termAndCondition}}
             </div>
+           
+
 
         </div>
         <div class="p-col-3 text-right p-text-bold smTxt">
             For, XYZ <br>
             <img [src]="adminData.signature" width="100" [alt]="adminData.businessName">
+            <br>
+            <button pButton type="button" label="Print" onclick="window.print()" class="p-button-outlined p-mt-2"></button>
         </div>
+
     </div>
 </div>

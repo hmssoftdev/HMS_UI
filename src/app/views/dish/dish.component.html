@@ -56,19 +56,33 @@
                     <td>
                         <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
-                    <td><span class="p-column-title">Name</span>{{item.name}}</td>
-                    <td><span class="p-column-title">Dish Image</span>
+                    <td>
+                        <!-- <span class="p-column-title">Name</span> -->
+                        <span class="p-column-title"><i class="pi pi-money-bill"></i></span>{{item.name}}</td>
+                    <td>
+                        <!-- <span class="p-column-title">Dish Image</span> -->
                         <img src="{{item.imageUrl}}" [alt]="item.name" width="100" class="p-shadow-4" />
                     </td>
                     <!-- <td title="{{item.description}} ">{{item.description}}</td> -->
-                    <td><span class="p-column-title">Half Price</span>{{item.halfPrice | currency:'INR'}}</td>
-                    <td><span class="p-column-title">FullPrice</span>{{item.fullPrice | currency:'INR'}}</td>
-                    <td><span class="p-column-title">Dish Category</span>{{item.dishCategory}}</td>
-                    <td><span class="p-column-title">Time For Cook</span>{{item.timeForCook}} mins</td>
-                    <td><span class="p-column-title">Status</span>
+                    <td>
+                        <!-- <span class="p-column-title">Half Price</span> -->
+                        <span class="p-column-title"><i class="pi pi-wallet"></i></span> {{item.halfPrice | currency:'INR'}}</td>
+                    <td>
+                        <!-- <span class="p-column-title">FullPrice</span> -->
+                        <span class="p-column-title">/</span>
+                        {{item.fullPrice | currency:'INR'}}</td>
+                    <td>
+                        <!-- <span class="p-column-title">Dish Category</span> -->
+                        <span class="p-column-title"><i class="pi pi-tag"></i></span>{{item.dishCategory}}</td>
+                    <td>
+                        <!-- <span class="p-column-title">Time For Cook</span> -->
+                        <span class="p-column-title"><i class="pi pi-clock"></i></span>{{item.timeForCook}} mins</td>
+                    <td>
+                        <!-- <span class="p-column-title">Status</span> -->
                         <p-tag [value]="item.status" *ngIf="item.status" class="p-text-uppercase"
                             [severity]="item.status =='active' ? 'success':'danger'"></p-tag>
-                    <td><span class="p-column-title">Action</span>
+                    <td>
+                        <!-- <span class="p-column-title">Action</span> -->
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
                             (click)="editDish(item)" pTooltip="Edit Dish" tooltipPosition="left"></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"

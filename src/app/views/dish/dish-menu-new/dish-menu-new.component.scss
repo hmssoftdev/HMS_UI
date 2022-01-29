@@ -327,3 +327,82 @@ li:last-child{
 .fullWidth {
     width: 100%;
 }
+@media screen and (max-width:320px) {
+    .delOptbtnWrap{
+        display: block; 
+        width: 100%;
+    }
+    :host ::ng-deep .product-list-item {
+        flex-direction: column;
+        align-items: center;
+        img {
+            width: 100%;
+            margin: 0.75rem 0;
+            // min-height: 180px;
+            // max-height: 180px;
+        }
+        .product-list-detail {
+            text-align: center;
+        }
+        .product-price {
+            align-self: center;
+        }
+        .product-list-action {
+            display: flex;
+            flex-direction: column;
+        }
+        .product-list-action {
+            margin-top: 2rem;
+            flex-direction: row;
+            justify-content: space-between;
+            align-items: center;
+            width: 100%;
+        }
+
+
+
+    }
+    :host ::ng-deep{
+        .product-list-item img {
+            display: none;
+        }
+        .p-button.p-button-sm .p-button-icon {
+            font-size: 0.5rem;
+        }
+        .mAvailibility span{
+            display: none;
+        }
+   .product-list-item .product-list-action {
+            margin-top: 0rem!important;
+        }
+    .p-component {
+            font-size: .5rem!important;
+            max-width: 100%!important;
+        }
+       .p-inputtext {
+            font-size: .5rem;
+        }
+        .p-component {
+           font-size: .5rem!important;
+        }
+        .p-input-icon-left>.p-inputtext {
+            padding-left: 2.1rem;
+        }
+     .product-list-item .product-list-detail {
+            text-align: center;
+            display: flex!important;
+            margin-top: 0rem;
+          
+        }
+        .mAvailibility {
+            margin-right: 0%!important;
+            text-align: center;
+            margin-top: -10px;
+            color: #4dbd74;
+            margin-bottom: 10px;
+        }
+        .p-dropdown-label {
+            font-size: 0.5rem;
+        }
+    }
+}

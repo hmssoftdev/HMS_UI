@@ -1,0 +1,47 @@
+@media screen and(max-width:320px){
+  .check{
+      display: none;
+  }
+  .body{
+      display: none!important;
+  }
+    :host ::ng-deep
+     {
+        .p-column-filter-menu{
+            display: none;
+        }
+        .p-button.p-button-icon-only {
+            width: 2rem;
+            padding: 0.5rem 0;
+        }
+        .p-tag.p-tag-warning {
+           
+            font-size: x-small;
+        }
+        
+    .p-datatable table{
+        display: flex;
+        flex-wrap:wrap ;
+        font-size: 0.5rem;
+        .p-datatable-tbody>tr{
+            display: flex;
+           
+            flex-wrap: wrap;
+            align-content: center;
+          
+            align-items: center;
+        }
+        .p-checkbox{
+            display: none!important;
+        }
+    }
+    .p-checkbox{
+        display: none!important;
+    }
+    .p-checkbox-box{
+        display: none!important;
+    }
+    
+  
+}
+}

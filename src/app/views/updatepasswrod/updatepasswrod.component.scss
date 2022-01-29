@@ -1,0 +1,37 @@
+@media screen and (max-width:320px) {
+    h1{
+        font-size: 1.5rem;
+    }
+    :host ::ng-deep {
+        .p-dialog-mask{
+            background-color: rgb(84, 86, 87);
+        }
+        .p-dialog-header{
+             font-size: 0.5rem;
+             justify-content: space-evenly;
+             padding: 0;
+        }
+        .p-dialog .p-dialog-header .p-dialog-title{
+            font-size: 0.9rem;
+        }
+        .p-dialog-footer{
+            display: flex;
+        }
+        .p-dialog .p-dialog-footer button{
+            align-items: center;
+            margin: 0 1px 0 0;
+            padding: 0.6rem;
+        }
+     }
+    
+}
+
+@media screen and (max-width:768px) {
+    h1{
+        font-size: 1.5rem;
+    }
+    
+}
+h1{
+    font-size: 1.5rem;
+}
