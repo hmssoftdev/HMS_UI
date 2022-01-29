@@ -1,25 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-today-summary',
-  templateUrl: './today-summary.component.html',
-  styleUrls: ['./today-summary.component.scss']
+  selector: 'app-historydata',
+  templateUrl: './historydata.component.html',
+  styleUrls: ['./historydata.component.scss']
 })
-export class TodaySummaryComponent implements OnInit {
-  powercount:number=0;
+export class HistorydataComponent implements OnInit {
+  sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
   constructor() { }
-  dateValue:Date;
-  dateValuee:Date;
 
-  powercountstop:any= setInterval(()=>{
-    this.powercount++;
-    if(this.powercount==10)
-    {
-      clearInterval(this.powercountstop);
-
-    }
-  },1000)
   ngOnInit(): void {
     this.sales = [
       { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
@@ -34,3 +24,4 @@ export class TodaySummaryComponent implements OnInit {
   }
 
 
+  

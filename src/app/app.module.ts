@@ -61,8 +61,12 @@ import {CardModule} from 'primeng/card';
 import {TabViewModule} from 'primeng/tabview';
 import { TodaySummaryComponent } from './views/report/today-summary/today-summary.component';
 import { BarChartComponent } from './views/report/bar-chart/bar-chart.component';
+
 import { TopCustDataComponent } from './views/report/top-cust-data/top-cust-data.component';
 import { WeekSummaryComponent } from './views/report/week-summary/week-summary.component';
+
+import { HistorydataComponent } from './views/report/historydata/historydata.component';
+import { TopdataComponent } from './views/report/topdata/topdata.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -94,6 +98,7 @@ import { WeekSummaryComponent } from './views/report/week-summary/week-summary.c
   declarations: [
     AppComponent, 
     ReportComponent,
+    WeekSummaryComponent,
     TodaySummaryComponent,
     P404Component,
     P500Component,
@@ -106,7 +111,11 @@ import { WeekSummaryComponent } from './views/report/week-summary/week-summary.c
     FooterComponent,
     UpdatepasswrodComponent,
     ForgotpasswordComponent,
-    BarChartComponent,TopCustDataComponent,WeekSummaryComponent
+    BarChartComponent,
+    HistorydataComponent,
+    TopdataComponent,
+    WeekSummaryComponent,
+    TopCustDataComponent
   ],
   providers: [
     AuthService,

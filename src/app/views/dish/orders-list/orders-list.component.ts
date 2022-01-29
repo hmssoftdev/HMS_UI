@@ -26,17 +26,17 @@ export class OrdersListComponent implements OnInit {
     private dishSvc: DishService,
     private orderService: CartService,
     private msgService: MessageService,
-    private authServive: AuthService
+    private authService: AuthService
     ) { }
 
   ngOnInit(): void {
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.loadData();
   }
   loadData() {
     this.orderService.getOrder().subscribe(res => {
       this.orderList = res;
-    this.authServive.showLoader = false;
+    this.authService.showLoader = false;
     });
   }
   fnViewOrder(order: OrderList){

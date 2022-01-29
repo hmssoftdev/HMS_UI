@@ -27,7 +27,7 @@ export class DishComponent implements OnInit {
     private shareData: ShareDataService,
     private http: HttpClient,
     private commonMethod: CommonMethodsService,
-    private authServive: AuthService) { }
+    private authService: AuthService) { }
   dishList: Dish[] = [];
   uploadedFiles: any[] = [];
   dish: Dish;
@@ -41,7 +41,7 @@ export class DishComponent implements OnInit {
   isVeg = true;
   subDish: Subscription;
   ngOnInit(): void {
-    this.authServive.showLoader = true;
+    this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
     this.loadData();
@@ -62,7 +62,7 @@ export class DishComponent implements OnInit {
   loadData() {
     this.subDish = this.dishSvc.getList(this.sendId).subscribe(res => {
       this.dishList = res; 
-    this.authServive.showLoader = false;
+    this.authService.showLoader = false;
     });
   }
   files;

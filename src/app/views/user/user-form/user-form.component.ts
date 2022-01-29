@@ -4,6 +4,7 @@ import { ConfirmationService, MessageService } from 'primeng/api';
 import { UserService } from './../../../service/user.service';
 import { CommonService } from './../../../service/common.service'
 import { ShareDataService } from '../../../service/share-data.service';
+import { FormsModule  } from "@angular/forms";
 
 @Component({
   selector: 'app-user-form',

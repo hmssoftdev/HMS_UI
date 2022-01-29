@@ -6,6 +6,7 @@ import { CommonService } from '../../service/common.service';
 import { AdminService } from '../../service/admin.service';
 import { Form } from '@angular/forms';
 import { CommonMethodsService } from '../../service/common-methods.service';
+import { AuthService } from '../../service/auth.service';
 
 @Component({
   selector: 'app-hotel-admin',
@@ -29,7 +30,8 @@ export class HotelAdminComponent implements OnInit {
     private msgService: MessageService,
     private commonService: CommonService,
     private confirmationService: ConfirmationService,
-    private commonMethod: CommonMethodsService
+    private commonMethod: CommonMethodsService,
+    private authService: AuthService
   ) {
     this.admin = new Admin();
     // this.admin.bankDetails = new Bankdetails();

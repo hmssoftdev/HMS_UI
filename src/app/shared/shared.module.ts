@@ -46,7 +46,8 @@ import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-import { ChartsModule } from 'ng2-charts';
+
+import {ToggleButtonModule} from 'primeng/togglebutton';
 
 @NgModule({
   declarations: [
@@ -63,7 +64,7 @@ import { ChartsModule } from 'ng2-charts';
     HttpClientModule,
     ReactiveFormsModule,
     InputSwitchModule,
-    ChartsModule,
+    ChartModule,
     BsDropdownModule,
     CardModule,
     ChartModule,
@@ -100,15 +101,16 @@ import { ChartsModule } from 'ng2-charts';
     AvatarModule,
     TabViewModule,
     TimelineModule,
-        ChartModule,
+    ChartModule,
     ProgressSpinnerModule,
+    ToggleButtonModule
   ],
   exports:[
     CommonModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule,
+    ChartModule,
     BsDropdownModule,
     TooltipModule,
     // ButtonsModule,
@@ -148,7 +150,9 @@ import { ChartsModule } from 'ng2-charts';
     InvoiceComponent,
     ClickOutsideDirective,
     ProgressSpinnerModule,
-    ChartModule
+    ChartModule,
+    ToggleButtonModule
+
   ],
   providers:[MessageService, ConfirmationService]
 })

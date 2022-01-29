@@ -1,0 +1,24 @@
+<h2>Hello</h2>
+<p-table [value]="sales">
+    <ng-template pTemplate="header">
+      <tr>
+
+        <th>SR NO </th>
+        <th>Name</th>
+        <th>Contact</th>
+        <th pSortableColumn="city.name">City <p-sortIcon field="city.name"></p-sortIcon>
+        </th>
+        <th>Bill No</th>
+      </tr>
+
+    </ng-template>
+    <ng-template pTemplate="body" let-sale>
+      <tr>
+        <td>{{sale.srno}}</td>
+        <td>{{sale.cusname}}</td>
+        <td>{{sale.cuscontact}}</td>
+        <td>{{sale.cuscity}}</td>
+        <td>{{sale.billno}}</td>
+      </tr>
+    </ng-template>
+  </p-table>
