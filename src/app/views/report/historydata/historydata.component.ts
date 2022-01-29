@@ -1,17 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'app-today-summary',
-  templateUrl: './today-summary.component.html',
-  styleUrls: ['./today-summary.component.scss']
+  selector: 'app-historydata',
+  templateUrl: './historydata.component.html',
+  styleUrls: ['./historydata.component.scss']
 })
-export class TodaySummaryComponent implements OnInit {
+export class HistorydataComponent implements OnInit {
   sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
   constructor() { }
-  dateValue:Date;
-  dateValuee:Date;
-
 
   ngOnInit(): void {
     this.sales = [
@@ -27,3 +24,4 @@ export class TodaySummaryComponent implements OnInit {
   }
 
 
+  

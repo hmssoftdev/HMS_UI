@@ -63,7 +63,7 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     HttpClientModule,
     ReactiveFormsModule,
     InputSwitchModule,
-    ChartsModule,
+    ChartModule,
     BsDropdownModule,
     CardModule,
     ChartModule,
@@ -108,7 +108,7 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
-    ChartsModule,
+    ChartModule,
     BsDropdownModule,
     TooltipModule,
     // ButtonsModule,
@@ -147,7 +147,7 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     InvoiceComponent,
     ClickOutsideDirective,
     ProgressSpinnerModule,
-    ChartModule
+    ChartModule,
     ToggleButtonModule
 
   ],

@@ -8,43 +8,30 @@
 
 
     </h3>
-    <router-outlet></router-outlet>
+
     <app-today-summary></app-today-summary>
+
+    <app-historydata></app-historydata>
     <div class="p-grid p-mt-6 align-items-center justify-content-center">
+<div class="p-col-12 p-md-6 p-text-center">
 
-      <app-bar-chart [todaySale]=todaySale></app-bar-chart>
+ <div class="p-col-12 p-md-6 p-text-center">
+  <app-bar-chart [todaySale]=todaySale></app-bar-chart>
+</div> 
+<div class="p-col-12 p-md-6 p-text-center">
+  <app-week-summary></app-week-summary>
+</div>
+      
+      
 
-
-      <!-- <app-week-summary></app-week-summary> -->
+  
     </div>
     <div class="p-grid">
       <h3 class="text-xl">Top Customer wtih most Bill and Amount</h3>
-      <p-table [value]="sales">
-        <ng-template pTemplate="header">
-          <tr>
-
-            <th>SR NO </th>
-            <th>Name</th>
-            <th>Contact</th>
-            <th pSortableColumn="city.name">City <p-sortIcon field="city.name"></p-sortIcon>
-            </th>
-            <th>Bill No</th>
-          </tr>
-
-        </ng-template>
-        <ng-template pTemplate="body" let-sale>
-          <tr>
-            <td>{{sale.srno}}</td>
-            <td>{{sale.cusname}}</td>
-            <td>{{sale.cuscontact}}</td>
-            <td>{{sale.cuscity}}</td>
-            <td>{{sale.cusamout}}</td>
-          </tr>
-        </ng-template>
-      </p-table>>
+     
     </div>
 
-
+<app-topdata></app-topdata>
 
     <div class="p-grid align-items-center justify-content-center">
 
