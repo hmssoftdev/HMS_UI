@@ -1,18 +1,7 @@
-import {
-  Component,
-  EventEmitter,
-  OnInit,
-  Output
-} from '@angular/core';
-import {
-  Hotel
-} from '../../../models/tabelConfiguration.model';
-import {
-  CartService
-} from '../../../service/cart.service';
-import {
-  TableService
-} from '../../../service/table.service';
+import {Component, EventEmitter,OnInit,Output} from '@angular/core';
+import {Hotel} from '../../../models/tabelConfiguration.model';
+import {CartService} from '../../../service/cart.service';
+import {TableService} from '../../../service/table.service';
 
 @Component({
   selector: 'app-dining-table',

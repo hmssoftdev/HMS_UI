@@ -7,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 })
 export class TodaySummaryComponent implements OnInit {
   powercount:number=0;
+  sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
   constructor() { }
   dateValue:Date;
