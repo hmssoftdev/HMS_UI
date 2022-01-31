@@ -9,11 +9,11 @@
                     (click)="deleteSelectedDishes()" [disabled]="!selectedDishes || !selectedDishes.length"
                     pTooltip="Delete Dishes" tooltipPosition="bottom"></button>
             </ng-template>
-            <ng-template pTemplate="right">
+            <!-- <ng-template pTemplate="right">
                 <p-fileUpload mode="basic" disabled="true" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                     class="p-mr-2 p-d-inline-block"></p-fileUpload>
                 <button pButton pRipple label="Export" disabled="true" icon="pi pi-upload" class="p-button-help my-2"></button>
-            </ng-template>
+            </ng-template> -->
         </p-toolbar>
     </div>
     <div class="card-body">
