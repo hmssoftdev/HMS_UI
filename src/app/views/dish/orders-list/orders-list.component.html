@@ -6,7 +6,7 @@
         <ng-template pTemplate="header">
             <tr class="body">
                 <th class="check" style="width: 3rem">
-                    <p-tableHeaderCheckbox c>
+                    <p-tableHeaderCheckbox >
 
                     </p-tableHeaderCheckbox>
                 </th>
@@ -65,8 +65,8 @@
         </ng-template>
         <ng-template pTemplate="emptymessage" let-order>
             <tr>
-                <td colspan="5" [attr.colspan]="order.length">
-                   <span> No records found</span>
+                <td colspan="8" [attr.colspan]="order.length" class="p-text-center">
+                   <span> No Order Today</span>
                 </td>
             </tr>
         </ng-template>
