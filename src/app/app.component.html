@@ -1,5 +1,5 @@
 
-<app-header-new (fnMenuSidebar)="fnMenuSBarClick()" (logOut)="fnLogout()"></app-header-new>
+<app-header-new (fnMenuSidebar)="fnMenuSBarClick()" *ngIf="authService.loggedIn()" (logOut)="fnLogout()"></app-header-new>
 <div class="app-body">
     
 

@@ -40,14 +40,34 @@
                     <td>
                         <p-tableCheckbox [value]="item"></p-tableCheckbox>
                     </td>
-                    <td><span class="p-column-title"><i class="pi pi-user"></i></span>{{item.userName}}</td>
-                    <td><span class="p-column-title"><i class="pi pi-envelope"></i></span>{{item.email}}</td>
-                    <td><span class="p-column-title"><i class="pi pi-phone"></i></span>{{item.contact}}</td>
-                    <td>{{item.city}}</td>
-                    <td><span class="p-column-title"><i class="pi pi-map-marker"></i></span>{{item.pinCode}}</td>
+                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-user"></i></span>
+                        <span *ngIf="item.userName">{{item.userName}}</span>
+                        <span *ngIf="!item.userName">-</span>
+                        </td>
+                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-envelope"></i></span>
+                        <span *ngIf="item.email">{{item.email}}</span>
+                        <span *ngIf="!item.email">-</span></td>
+                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-phone"></i></span>
+                        <span *ngIf="item.contact">{{item.contact}}</span>
+                        <span *ngIf="!item.contact">-</span>
+                        </td>
+                    <td ng-repeat="item in item">
+                        <span *ngIf="item.city">{{item.city}}</span>
+                        <span *ngIf="!item.city">-</span>
+                    </td>
+                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-map-marker"></i></span>
+                        <span *ngIf="item.pinCode">{{item.pinCode}}</span>
+                        <span *ngIf="!item.pinCode">-</span></td>
                     <td>
                         <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2" (click)="editUser(item)" pTooltip="Edit User" tooltipPosition="left"></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning" (click)="deleteUser(item)" pTooltip="Delete User" tooltipPosition="left"></button>
+                    </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-item>
+                <tr>
+                    <td colspan="5" [attr.colspan]="item.length">
+                       <span> No records found</span>
                     </td>
                 </tr>
             </ng-template>

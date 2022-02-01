@@ -38,9 +38,6 @@
         </form>
     </div>
 </div> -->
-
-
-
 <p-toast position="bottom-right"></p-toast>
 
 <p-dialog header="Add Review" [(visible)]="displayDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
@@ -146,6 +143,13 @@
         </div>
     </div>
 </div>
+<ng-template pTemplate="emptymessage" let-list>
+    <tr>
+        <td colspan="5" [attr.colspan]="list.length">
+           <span> No records found</span>
+        </td>
+    </tr>
+</ng-template>
 
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

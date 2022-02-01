@@ -23,7 +23,8 @@
   
         <ng-template pTemplate="body" let-order let-columns="columns">
             
-            <tr>
+            <tr >
+                
                 <td class="bodycheck">
                     <p-tableCheckbox [value]="order"></p-tableCheckbox>
                 </td>
@@ -59,6 +60,13 @@
                     <button [disabled]="order.status === 10 || order.status === 4" pButton pRipple icon="pi pi-times" class="p-button-rounded p-button-danger p-button-sm"
                         (click)="fnCancelOrder(order)" pTooltip="Cancel Order" tooltipPosition="left"></button>
                     <!-- <p-checkbox name="groupname{{order.id}}" [value]="order.selectedDish" [inputId]="order.id" [(ngModel)]="selectedValues" (change)="onCheckboxChange(order.id, $event)"></p-checkbox> -->
+                </td>
+            </tr>
+        </ng-template>
+        <ng-template pTemplate="emptymessage" let-order>
+            <tr>
+                <td colspan="5" [attr.colspan]="order.length">
+                   <span> No records found</span>
                 </td>
             </tr>
         </ng-template>
