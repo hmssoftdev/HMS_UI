@@ -91,7 +91,7 @@ export class DishMenuNewComponent implements OnInit {
     { label: 'Price Low to High', value: 'fullPrice' }
     ];
     this.cartService.tableSubject.subscribe(x=>{
-       
+        console.log(x);
         this.selectedTableID = x;
     });
   } 
