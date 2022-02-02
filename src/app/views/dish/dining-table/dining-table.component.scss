@@ -43,7 +43,7 @@
         margin: 5px -7px -7px;
         padding: 5px 5px;
         display: flex;
-        justify-content: space-between;
+        justify-content: space-around;
             button {
                 padding: 2px 5px;
                 color:#fff;
@@ -54,3 +54,37 @@
 .tblBox.booked{
     background-color: #28a745; 
 }
+@media screen and (max-width:320px) {
+    .btnWrapper{
+        background-color:rgba(0,0,0,0)!important; 
+    }
+    span
+    {
+        font-size: .6rem !important;
+    }
+    :host::ng-deep{
+        .tblBox .txtSeats .tblBox .txtShape .tblBox .txtHallType
+        {
+            font-size: 0rem!important;
+        }
+        .tblBox .tblHead{
+            margin: 0 -10px;
+            padding: 0 0 5px 10px;
+            border-bottom: 1px solid #f1f1f1;
+            font-size: 1rem!important;
+            line-height: 1.22rem;
+        }
+        span
+        {
+            font-size: .6rem !important;
+        }
+        .tblBox.tblHead{
+            font-size: 1rem !important;
+        }
+        .p-button.p-button-icon-only{
+            width: 1rem!important;
+            height: 1rem!important;
+        }
+    }
+}
+
