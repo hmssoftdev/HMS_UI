@@ -7,7 +7,7 @@
             <p class="txtHallType"><span class="p-text-small">Hall type - </span> <span> {{tblItem.isAc === true? 'AC': 'Non AC'}} </span> </p>
             <div class="btnWrapper">
                 
-                <button pButton class="p-button-outlined p-button-text-only" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left">
+                <button pButton class="p-button-outlined p-button-text-only" closable="true" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left">
 
                 </button>
                 <button pButton (click)="showBasicDialog()" class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"      ></button>
