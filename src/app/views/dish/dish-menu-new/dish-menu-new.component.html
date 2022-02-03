@@ -399,10 +399,10 @@
               </div>
               <div class="p-flex-md-row">
                 <div class="p-fluid p-formgrid p-grid">
-                  <div class="p-field p-col-7">
-                    <span> Discount in % </span>
+                  <div class="p-field p-col-6">
+                    <span> Discount in  </span>
                   </div>
-                  <div class="p-field p-col-5">
+                  <div class="p-field p-col-3">
                     <!-- <p-inputNumber
                       class="p-inputtext-sm fullWidth"
                       name="discount"
@@ -425,6 +425,21 @@
                     pInputText
                     id="discount"
                     (blur)="fnDiscountCal($event)"
+                    placeholder="%"
+                  />
+                </div>
+                <div class="p-field p-col-3">
+                  <input
+                    type="number"
+                    [(ngModel)]="cartItems.discountInRupees"
+                    name="discount"
+                    currency="INR"
+                    locale="en-IN"
+                    class="p-inputtext-sm"
+                    pInputText
+                    id="discount"
+                    (blur)="fnDiscountCal($event)"
+                    placeholder="Rs"
                   />
                   </div>
                 </div>
