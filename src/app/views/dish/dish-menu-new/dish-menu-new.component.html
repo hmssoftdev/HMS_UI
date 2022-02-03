@@ -242,7 +242,7 @@
         </ng-template>
       </p-dataView>
    
-      <p-toggleButton class="btnCartToggle" onIcon="pi pi-times" offIcon="pi pi-shopping-cart" (click)="fnCartToggle()" iconPos="right" [(ngModel)]="cartToggle"></p-toggleButton>
+      <p-toggleButton class="btnCartToggle" onIcon="pipi-times" offIcon="pi pi-shopping-cart" (click)="fnCartToggle()" iconPos="right" [(ngModel)]="cartToggle"></p-toggleButton>
    
     </div>
     <div class="p-col-10 p-md-4 p-lg-4 cartWrap" [ngClass]="lblCartToggle =='Active' ? 'active':''">
@@ -281,7 +281,7 @@
         </div>
         <div class="p-d-flex p-ai-center pborder p-mt-2">
           <!-- <label for="userName">User Name:</label> -->
-          <span *ngIf="userData.userType === 3">{{ userData.username }}</span>
+          <span *ngIf="userData.userType === 3">{{ userData.userName }}</span>
           <p-dropdown
             (onChange)="userSelection(selectedUser)"
             *ngIf="userData.userType === 1 || userData.userType === 2"
@@ -297,6 +297,7 @@
             filterBy="contact"
           >
           </p-dropdown>
+
           <button
             *ngIf="userData.userType === 1 || userData.userType === 2"
             pButton
@@ -307,6 +308,42 @@
             pTooltip="Add new user"
             (click)="openNew()"
           ></button>
+          
+        </div>
+        <div class="p-grid">
+          <p-table #d2 [value]="userList" styleClass="p-datatable-customcss">
+            <ng-template pTemplate="header">
+                <tr>
+                    
+                    <th style="width: 100px;">Name
+                        
+                    </th>
+                    
+                    <th style="width: 100px;">Contact
+                    </th>
+            </ng-template>
+            <ng-template pTemplate="body" let-item>
+                <tr>
+                    
+                    <td ng-repeat="item in item"><span class="p-column-title"></span>
+                        <span *ngIf="item.userName">{{item.userName}}</span>
+                        <span *ngIf="!item.userName">-</span>
+                        </td>
+                   
+                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-phone"></i></span>
+                        <span *ngIf="item.contact">{{item.contact}}</span>
+                        <span *ngIf="!item.contact">-</span>
+                        </td>
+                </tr>
+            </ng-template>
+            <ng-template pTemplate="emptymessage" let-item>
+                <tr>
+                    <td colspan="5" [attr.colspan]="item.length">
+                       <span> No records found</span>
+                    </td>
+                </tr>
+            </ng-template>
+        </p-table>
         </div>
         <!-- cart Items -->
         <div *ngIf="cartItems?.orderItems.length > 0">
@@ -498,7 +535,7 @@
   ></app-dining-table>
 </p-dialog>
 <!-- Billing View -->
-<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}"
+<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100%'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">

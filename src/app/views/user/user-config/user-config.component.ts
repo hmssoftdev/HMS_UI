@@ -95,7 +95,6 @@ export class UserConfigComponent implements OnInit {
         break;
       }
     }
-
     return index;
   }
   createId(): string {
@@ -104,7 +103,9 @@ export class UserConfigComponent implements OnInit {
     for (var i = 0; i < 5; i++) {
       id += chars.charAt(Math.floor(Math.random() * chars.length));
     }
+    console.log("Hello");
     return id;
+    
   }
   fnSaveUser(event){
     this.userDialog = false;

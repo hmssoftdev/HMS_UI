@@ -62,6 +62,7 @@ export class DishMenuNewComponent implements OnInit {
   selectedTableID : string[] = [];
  selectedTableidd : DiningTableComponent;
   selectedTableid:Array<any> = [];
+    userList: User[] = [];
   constructor(
   
     private dishService: DishService,
@@ -72,9 +73,11 @@ export class DishMenuNewComponent implements OnInit {
     private cartService: CartService,
     private msgService: MessageService,
     public adminService: AdminService,
+    public userSvc: UserService,
     ) { }
 
   ngOnInit(): void {
+    this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
     this.subDishList = this.dishService.getList(this.sendId).subscribe(data => {
@@ -95,6 +98,12 @@ export class DishMenuNewComponent implements OnInit {
         this.selectedTableID = x;
     });
   } 
+  loadData(){
+    this.userSvc.getUserList().subscribe(res => {
+      this.userList = res;
+    this.authService.showLoader = false;
+    });
+  }
 table 
   loadClient() {
     this.obs = this.adminService.getAdmin().subscribe(resp => {
