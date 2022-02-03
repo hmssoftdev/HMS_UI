@@ -102,6 +102,11 @@ public calcDiscountRupees(cart:ShoppingCart){
   cart.grossTotal = (cart.itemTotal - cart.discountInRupees + (cart.additionalAmount | 0)) + cart.gstTotal ;
   this.save(cart)
 }
+public calcDiscountRupeess(cart:ShoppingCart){
+  cart.discountInRupees = (cart.itemTotal - cart.discountInrupes)   |100; 
+  cart.grossTotal = (cart.itemTotal - cart.discountInRupees + (cart.additionalAmount | 0)) + cart.gstTotal ;
+  this.save(cart)
+}
 public calcAdditionalAmount(cart:ShoppingCart){ 
   cart.grossTotal = (cart.itemTotal - cart.discountInRupees+ (cart.additionalAmount | 0)) + cart.gstTotal ;
   this.save(cart)
