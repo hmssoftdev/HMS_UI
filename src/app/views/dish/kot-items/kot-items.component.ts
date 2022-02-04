@@ -19,15 +19,16 @@ export class KOTItemsComponent implements OnInit {
 @Input() orderId:any;
 @Input() adminData: Admin;
 @Input() userdata:User;
-selectedUser : DishMenuNewComponent;
-myDate = new Date();
 
+myDate = new Date();
+selectedTableID: Array < any > = [];
 @Input() orderItem: OrderItem;
 @Input() cartItems;
 
   constructor(public adminService: AdminService,private cartService: CartService,private userservice:UserService) { }
 
   ngOnInit(): void {
+    this.selectedTableID = [];
    
     console.log(this.adminData, 'AdminData');
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);

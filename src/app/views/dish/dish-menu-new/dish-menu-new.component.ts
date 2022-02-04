@@ -183,9 +183,10 @@ table
   loadUserData() {
    this.usersList = this.userService.getUserList();
   }
-  userSelection(user) 
+  userSelection(usercombine) 
   {
-    const userData= {id:parseInt(user)}
+    const userData= {no:parseInt(usercombine)}
+    console.log(userData,"hii");
     this.cartService.addUser(userData);
    
   }
@@ -240,8 +241,8 @@ table
     this.cartService.calcDiscountRupees(this.cartItems); 
    }
    fnDiscountCall(event){
-    const per = parseInt(event.target.value) | 0;
-    this.cartItems.discountInrupes  = per;
+    const perr = parseInt(event.target.value) | 0;
+    this.cartItems.discountInrupes  = perr;
     this.cartService.calcDiscountRupeess(this.cartItems); 
    }
   fnAdditionalAmount(event){
@@ -277,6 +278,7 @@ table
     
     this.selectedPrintType = 'BillPrintUI';
     debugger;
+    this.usercombine;
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;
