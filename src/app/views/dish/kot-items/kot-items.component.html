@@ -67,9 +67,9 @@
         <table class="tblInvoice">
           <tr>
             <td>
-              <div class="p-col p-py-0" style="font-size: 10px;">
+              <div class="p-col p-py-0" style="font-size:10px;">
                 <strong>Customer <br>
-                 Name/Number: {{userdata}} </strong>   </div>
+                 Name/Number: <span style="text-transform: capitalize;">{{userdata}}</span> </strong></div>
             </td>
           </tr>
         </table>
@@ -101,7 +101,7 @@
          <td colspan="2" style="font-size: 10px;" class="p-text-right b-dashed b-top"><strong>{{orderData.itemTotal | currency :'INR'}}</strong></td>
       </tr>
       <tr *ngIf="orderData.discountInRupees">
-        <td colspan="4" style="font-size: 10px;" class="p-text-center ">Discount in </td>
+        <td colspan="4" style="font-size: 10px;" class="p-text-center ">Discount price </td>
         <td class="p-text-right">{{orderData.discountInRupees | currency :'INR'}}</td>
       </tr>
       <tr *ngIf="orderData.additionalAmount">

@@ -81,9 +81,7 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.usercombine = [
-      { label:"", value: "" }
-    ];
+    
     this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
@@ -109,8 +107,14 @@ export class DishMenuNewComponent implements OnInit {
     this.userSvc.getUserList().subscribe(res => {
 
       this.userLists = res;
-      this.usercombine = this.userLists.map(itm => itm.userName + " - "+ itm.contact)
-      console.log(this.usercombine,"user")
+      this.usercombine = this.userLists.map(itm =>
+        {
+          const nObj = {contact : itm.userName + " - "+ itm.contact}  
+          return nObj;
+          
+        }
+      )
+      console.log(this.usercombine,"Hello");  
     });
   }
 table 

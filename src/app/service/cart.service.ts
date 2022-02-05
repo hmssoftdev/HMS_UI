@@ -20,6 +20,7 @@ export class CartService {
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
 
   tableSubject = new Subject<Array<string>>();
+  
   tableObservable = this.tableSubject.subscribe();
 
   private storage: Storage;
