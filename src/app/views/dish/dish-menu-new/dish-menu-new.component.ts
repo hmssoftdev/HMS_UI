@@ -34,6 +34,7 @@ export class DishMenuNewComponent implements OnInit {
   deliveryMode: string;
   diningTableDialog:boolean;
   userData:any;
+  selectedUsers='';
   selectedUser: number;
   userDialog: boolean;
   submitted: boolean;
@@ -62,7 +63,10 @@ export class DishMenuNewComponent implements OnInit {
   selectedTableID : string[] = [];
  selectedTableidd : DiningTableComponent;
   selectedTableid:Array<any> = [];
-    userList: User[] = [];
+    userLists:User[] = [];
+  usercimbine: string[];
+  usercombine:  Array<any>;
+   
   constructor(
   
     private dishService: DishService,
@@ -77,6 +81,9 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.usercombine = [
+      { label:"", value: "" }
+    ];
     this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
@@ -100,8 +107,10 @@ export class DishMenuNewComponent implements OnInit {
   } 
   loadData(){
     this.userSvc.getUserList().subscribe(res => {
-      this.userList = res;
-    this.authService.showLoader = false;
+
+      this.userLists = res;
+      this.usercombine = this.userLists.map(itm => itm.userName + " - "+ itm.contact)
+      console.log(this.usercombine,"user")
     });
   }
 table 
@@ -174,10 +183,11 @@ table
   loadUserData() {
    this.usersList = this.userService.getUserList();
   }
-  userSelection(user) {
+  userSelection(user) 
+  {
     const userData= {id:parseInt(user)}
     this.cartService.addUser(userData);
-   // this.dataService.changeMessage(this.selectedUser);
+   
   }
   openNew() {
     this.user = {};
@@ -228,6 +238,11 @@ table
     const per = parseInt(event.target.value) | 0;
     this.cartItems.discountInPercent  = per;
     this.cartService.calcDiscountRupees(this.cartItems); 
+   }
+   fnDiscountCall(event){
+    const per = parseInt(event.target.value) | 0;
+    this.cartItems.discountInrupes  = per;
+    this.cartService.calcDiscountRupeess(this.cartItems); 
    }
   fnAdditionalAmount(event){
     const amt = parseInt(event.target.value) | 0;

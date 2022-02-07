@@ -27,6 +27,7 @@ export class ShoppingCart {
   public itemCount: number = 0;
   public paymentMode: number;
   public discountInPercent: number ;
+  public discountInrupes: number ;
   public discountInRupees: number;
   public additionalAmount: number;
   public deliveryMode: string;
@@ -44,6 +45,7 @@ export class ShoppingCart {
       this.itemCount = src.itemCount;
       this.paymentMode = src.paymentMode;
       this.discountInPercent = src.discountInPercent;
+      this.discountInrupes= src.discountInrupes
       this.discountInRupees = src.discountInRupees;
       this.additionalAmount = src.additionalAmount;
       this.deliveryMode = src.deliveryMode;

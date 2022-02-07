@@ -287,31 +287,36 @@
             *ngIf="userData.userType === 1 || userData.userType === 2"
             class="p-mr-4 p-inputtext-sm p-mb-2"
             id="userName"
-            [options]="usersList | async"
-            [(ngModel)]="selectedUser"
-            placeholder="Search for Number"
-            optionLabel="contact"
-            optionValue="id"
+            [options]="usercombine"
+            [(ngModel)]="selectedUsers"
+            placeholder="Search for Number/Name"
+         
+            optionValue="usercombine"
             [filter]="true"
             [showClear]="true"
             filterBy="contact"
           >
           </p-dropdown>
-
-          <button
+         <button
             *ngIf="userData.userType === 1 || userData.userType === 2"
             pButton
             pRipple
             label=""
             icon="pi pi-plus"
-            class="p-button-success p-mr-2 p-button-sm my-2 p-mb-2"
+            class="p-button-success p-mr-2 p-button-sm p-mb-2"
             pTooltip="Add new user"
             (click)="openNew()"
           ></button>
           
         </div>
         <div class="p-grid">
-          <p-table #d2 [value]="userList" styleClass="p-datatable-customcss">
+          <div class="p-col-6 p-text-center">
+
+           <span></span>
+          </div>
+         
+          
+         <!-- <p-table #d2 [value]="selectedUsers" styleClass="p-datatable-customcss"> 
             <ng-template pTemplate="header">
                 <tr>
                     
@@ -321,29 +326,29 @@
                     
                     <th style="width: 100px;">Contact
                     </th>
-            </ng-template>
-            <ng-template pTemplate="body" let-item>
+            </ng-template> 
+             <ng-template pTemplate="body" let-item>
                 <tr>
                     
-                    <td ng-repeat="item in item"><span class="p-column-title"></span>
+                    <td ng-repeat="item in selectedUsers"><span class="p-column-title"></span>
                         <span *ngIf="item.userName">{{item.userName}}</span>
                         <span *ngIf="!item.userName">-</span>
-                        </td>
+                        </td> 
                    
-                    <td ng-repeat="item in item"><span class="p-column-title"><i class="pi pi-phone"></i></span>
+                     <td ng-repeat="item in item">
                         <span *ngIf="item.contact">{{item.contact}}</span>
                         <span *ngIf="!item.contact">-</span>
                         </td>
                 </tr>
-            </ng-template>
-            <ng-template pTemplate="emptymessage" let-item>
+            </ng-template> 
+          <ng-template pTemplate="emptymessage" let-item>
                 <tr>
                     <td colspan="5" [attr.colspan]="item.length">
                        <span> No records found</span>
                     </td>
                 </tr>
-            </ng-template>
-        </p-table>
+            </ng-template> 
+      </p-table>  -->
         </div>
         <!-- cart Items -->
         <div *ngIf="cartItems?.orderItems.length > 0">
@@ -401,6 +406,7 @@
                 <div class="p-fluid p-formgrid p-grid">
                   <div class="p-field p-col-6">
                     <span> Discount in  </span>
+
                   </div>
                   <div class="p-field p-col-3">
                     <!-- <p-inputNumber
@@ -427,11 +433,12 @@
                     (blur)="fnDiscountCal($event)"
                     placeholder="%"
                   />
-                </div>
-                <div class="p-field p-col-3">
-                  <input
+                  </div>
+                   <div class="p-field p-col-3">
+                
+                    <input
                     type="number"
-                    [(ngModel)]="cartItems.discountInRupees"
+                    [(ngModel)]="cartItems.discountInrupes"
                     name="discount"
                     currency="INR"
                     locale="en-IN"
@@ -526,6 +533,7 @@
   [style]="{ width: '50vw' }"
   header="User Configuration"
   [modal]="true"
+  closeOnEscape="true"
 >
   <app-user-form
     [user]="user"
@@ -541,13 +549,14 @@
   (onHide)="fnHideDiningTableM('diningTable')"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
   [style]="{ width: '75vw' }"
+  closeOnEscape="true"
 >
 <ng-template pTemplate="header">
- <span> Dining Table List <strong >{{selectedTableID}}</strong></span>
+<span>  <h4>Dining Table List</h4><strong >{{selectedTableID}}</strong></span>
 </ng-template>
   <app-dining-table 
-    (tableSelection)="fnTableSelection($event)"
-  ></app-dining-table>
+    (tableSelection)="fnTableSelection($event)">
+  </app-dining-table>
 </p-dialog>
 <!-- Billing View -->
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100%'}"
