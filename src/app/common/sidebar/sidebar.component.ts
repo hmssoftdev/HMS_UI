@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { routingComponents } from '../../app.routing';
 import { roleConfig } from '../../constant/rolesConfig';
 import { AuthService } from '../../service/auth.service';
-
+import { LanguageComponent } from '../../views/language/language.component';
 @Component({
   selector: 'app-sidebar-new',
   templateUrl: './sidebar.component.html',
@@ -82,7 +82,27 @@ export class SidebarComponent implements OnInit {
         icon:'pi pi-inbox',
         subItems: []
       },
-     
+      {
+        name:'Setting',
+        routing:'/setting',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-shield',
+        subItems: []
+      },
+      {
+        name:'Help',
+        routing:'/help',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-slack',
+        subItems: []
+      },
+      {
+        name:'Language',
+        routing:'/language',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-book',
+        subItems: []
+      },
       {
         name:'Hotel Admin',
         routing:'/hotel-admin',
@@ -100,6 +120,7 @@ export class SidebarComponent implements OnInit {
         subItems: []
       }
     ]
+
   }
 
   fnToggle(n:number){
