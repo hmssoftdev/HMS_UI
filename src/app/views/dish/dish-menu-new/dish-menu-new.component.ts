@@ -81,9 +81,7 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.usercombine = [
-      { label:"", value: "" }
-    ];
+    
     this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
@@ -109,8 +107,14 @@ export class DishMenuNewComponent implements OnInit {
     this.userSvc.getUserList().subscribe(res => {
 
       this.userLists = res;
-      this.usercombine = this.userLists.map(itm => itm.userName + " - "+ itm.contact)
-      console.log(this.usercombine,"user")
+      this.usercombine = this.userLists.map(itm =>
+        {
+          const nObj = {contact : itm.userName + " - "+ itm.contact}  
+          return nObj;
+          
+        }
+      )
+      console.log(this.usercombine,"Hello");  
     });
   }
 table 
@@ -183,9 +187,10 @@ table
   loadUserData() {
    this.usersList = this.userService.getUserList();
   }
-  userSelection(user) 
+  userSelection(usercombine) 
   {
-    const userData= {id:parseInt(user)}
+    const userData= {no:parseInt(usercombine)}
+    console.log(userData,"hii");
     this.cartService.addUser(userData);
    
   }
@@ -240,8 +245,8 @@ table
     this.cartService.calcDiscountRupees(this.cartItems); 
    }
    fnDiscountCall(event){
-    const per = parseInt(event.target.value) | 0;
-    this.cartItems.discountInrupes  = per;
+    const perr = parseInt(event.target.value) | 0;
+    this.cartItems.discountInrupes  = perr;
     this.cartService.calcDiscountRupeess(this.cartItems); 
    }
   fnAdditionalAmount(event){
@@ -277,6 +282,7 @@ table
     
     this.selectedPrintType = 'BillPrintUI';
     debugger;
+    this.usercombine;
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;

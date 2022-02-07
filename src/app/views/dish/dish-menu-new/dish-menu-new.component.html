@@ -290,11 +290,12 @@
             [options]="usercombine"
             [(ngModel)]="selectedUsers"
             placeholder="Search for Number/Name"
-         
-            optionValue="usercombine"
             [filter]="true"
             [showClear]="true"
+            optionLabel="contact"
             filterBy="contact"
+            filterMatchMode="contains"
+          
           >
           </p-dropdown>
          <button
@@ -310,9 +311,9 @@
           
         </div>
         <div class="p-grid">
-          <div class="p-col-6 p-text-center">
+          <div class="p-col-12 p-text-left" style="text-transform: uppercase;">
 
-           <span></span>
+           <span> <strong>{{selectedUsers}}</strong> </span>
           </div>
          
           
@@ -405,8 +406,7 @@
               <div class="p-flex-md-row">
                 <div class="p-fluid p-formgrid p-grid">
                   <div class="p-field p-col-6">
-                    <span> Discount in  </span>
-
+                    <span> Discount</span>
                   </div>
                   <div class="p-field p-col-3">
                     <!-- <p-inputNumber
@@ -565,4 +565,5 @@
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [userdata]="user" [adminData]="admin" [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
+<app-kot-items [userdata]="selectedUsers" [adminData]="admin" 
+[printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>
