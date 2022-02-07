@@ -5,7 +5,7 @@ import { User } from '../../../models/user';
 import { AdminService } from '../../../service/admin.service';
 import { CartService } from '../../../service/cart.service';
 import { UserService } from './../../../service/user.service';
-import { DatePipe } from '@angular/common'
+import { DatePipe, formatDate } from '@angular/common'
 import { DishMenuNewComponent } from '../dish-menu-new/dish-menu-new.component';
 @Component({
   selector: 'app-kot-items',
@@ -21,11 +21,15 @@ export class KOTItemsComponent implements OnInit {
 @Input() userdata:User;
 
 myDate = new Date();
+todaysDataTime = '';
 selectedTableID: Array < any > = [];
 @Input() orderItem: OrderItem;
 @Input() cartItems;
 
-  constructor(public adminService: AdminService,private cartService: CartService,private userservice:UserService) { }
+  constructor(public adminService: AdminService,private cartService: CartService,private userservice:UserService 
+    ) {
+      this.todaysDataTime = formatDate(this.myDate, 'hh:mm:ss a', 'en-US', '+0530');
+     }
 
   ngOnInit(): void {
     this.selectedTableID = [];

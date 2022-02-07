@@ -12,6 +12,7 @@ import { cibDynatrace } from '@coreui/icons';
 export class UserFeedbackComponent implements OnInit {
   userFeedback: UserFeedback;
   terms: boolean = true;
+  timeStamp = new Date();
   displayDialog: boolean;
   disableBTN: boolean = false;
   feedback: UserFeedback;

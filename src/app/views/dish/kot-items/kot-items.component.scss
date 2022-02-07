@@ -7,7 +7,7 @@ table{
    
 
     width:100%; 
-    border: 1px solid #dcdcdc;
+    border: 1px solid #020202;
     tr {
         // th,td{
         //     border:1px solid #2c1616; 
@@ -16,10 +16,10 @@ table{
         //     padding:0 2px;
         // }
         th{
-            background-color: #f8f9fa;
+            background-color: #070707;
             font-weight: 600;
             color: #495057;
-            border-bottom: 1px solid #dcdcdc;
+            border-bottom: 1px solid #070707;
           
         }
        th:first-child, td:first-child{
@@ -28,7 +28,7 @@ table{
        th:last-child, td:last-child{
            
        }
-        .b-top {border-top:1px solid #dcdcdc;}
-        .b-dashed {border-bottom:1px dashed #dcdcdc;}
+        .b-top {border-top:1px solid #070707;}
+        .b-dashed {border-bottom:1px dashed #050505;}
     }
 }

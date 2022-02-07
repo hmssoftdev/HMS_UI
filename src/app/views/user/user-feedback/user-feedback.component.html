@@ -54,6 +54,7 @@
                     <i class="pi pi-pencil"></i>
                     <input name="titleText" #rTitle="ngModel" [(ngModel)]="userFeedback.reviewTitle" type="text"
                         pInputText required />
+
                 </span>
             </div>
         </div>
@@ -61,7 +62,7 @@
         <div class="p-grid p-flex-column">
             <div class="p-col">
                 <h5>Your Review</h5>
-                <textarea name="opinion" #opText="ngModel" [(ngModel)]="userFeedback.opinionText" rows="5" cols="30" style="width: 100%;" pInputTextarea required></textarea>
+                <textarea name="opinion" size="10" #opText="ngModel" [(ngModel)]="userFeedback.opinionText" rows="5" cols="30" style="width: 100%;" pInputTextarea required></textarea>
                 <!-- <small id="username-help" class="p-error"></small> -->
             </div>
 
@@ -90,8 +91,9 @@
 <a class="p-link" (click)="showFeedbackDialog()">Write your review</a>
 <br>
 <br>
-<div class="p-card" *ngFor="let list of feedbackList" style="width: 50%; margin-bottom: 1.2rem;">
+<div class="p-card" *ngFor="let list of feedbackList" style="width: 40%; margin-bottom: 1.2rem;">
     <div class="card-body">
+       
         <div class="p-grid">
             <span>
                 <div class="p-col">
@@ -143,13 +145,7 @@
         </div>
     </div>
 </div>
-<ng-template pTemplate="emptymessage" let-list>
-    <tr>
-        <td colspan="5" [attr.colspan]="list.length">
-           <span> No records found</span>
-        </td>
-    </tr>
-</ng-template>
+
 
 
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>
