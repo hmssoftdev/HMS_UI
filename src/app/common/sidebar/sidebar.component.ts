@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output, VERSION } from '@angular/core';
 import { routingComponents } from '../../app.routing';
 import { roleConfig } from '../../constant/rolesConfig';
 import { AuthService } from '../../service/auth.service';
+import { ViewChild, ElementRef, ViewEncapsulation, AfterViewInit} from '@angular/core';
 
 @Component({
   selector: 'app-sidebar-new',
@@ -13,6 +14,7 @@ export class SidebarComponent implements OnInit {
   navMenu: Array<any>;
   userType:number;
   lblsidebar = true;
+  @Output() fnMenuSidebar = new EventEmitter();
   constructor(private authService:AuthService) { }
 
   ngOnInit(): void {
@@ -101,12 +103,14 @@ export class SidebarComponent implements OnInit {
       }
     ]
   }
-
+  
   fnToggle(n:number){
     this.lblMenuToggle = this.lblMenuToggle == n ? 0 : n;
+   
   }
   fnToggleSidebar(){
     this.lblsidebar = !this.lblsidebar;
+    
   }
   
 }
