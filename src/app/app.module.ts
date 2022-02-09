@@ -67,6 +67,9 @@ import { WeekSummaryComponent } from './views/report/week-summary/week-summary.c
 
 import { HistorydataComponent } from './views/report/historydata/historydata.component';
 import { TopdataComponent } from './views/report/topdata/topdata.component';
+import { SettingComponent } from './views/setting/setting.component';
+import { LanguageComponent } from './views/language/language.component';
+import { HelpComponent } from './views/help/help.component';
 @NgModule({
   imports: [
     BrowserModule,
@@ -115,7 +118,10 @@ import { TopdataComponent } from './views/report/topdata/topdata.component';
     HistorydataComponent,
     TopdataComponent,
     WeekSummaryComponent,
-    TopCustDataComponent
+    TopCustDataComponent,
+    SettingComponent,
+    LanguageComponent,
+    HelpComponent
   ],
   providers: [
     AuthService,

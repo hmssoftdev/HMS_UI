@@ -14,6 +14,9 @@ import { OrderStatusComponent } from './shared/order-status/order-status.compone
 import { UpdatepasswrodComponent } from './views/updatepasswrod/updatepasswrod.component';
 import { ForgotpasswordComponent } from './views/forgotpassword/forgotpassword.component';
 import { ReportComponent } from './views/report/report.component';
+import { LanguageComponent } from './views/language/language.component';
+import { SettingComponent } from './views/setting/setting.component';
+import { HelpComponent } from './views/help/help.component';
 export const routes: Routes = [
   {
     path: 'login',
@@ -55,6 +58,27 @@ export const routes: Routes = [
   {
     path:'report',
     component:ReportComponent,
+    data: {
+      roles: roleConfig.authRoles.sa
+      },
+  },
+  {
+    path:'language',
+    component:LanguageComponent,
+    data: {
+      roles: roleConfig.authRoles.sa
+      },
+  },
+  {
+    path:'setting',
+    component:SettingComponent,
+    data: {
+      roles: roleConfig.authRoles.sa
+      },
+  },
+  {
+    path:'help',
+    component:HelpComponent,
     data: {
       roles: roleConfig.authRoles.sa
       },
