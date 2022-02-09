@@ -48,7 +48,7 @@
                             </div>
                         </div>
                     </div>
-                    
+              
                 </div>
                 <p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
                     <div class="p-grid">
@@ -63,6 +63,8 @@
                         <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
                     </ng-template>
                 </p-dialog>
+
+            </div>
                 <p *ngIf="selectedTableID.length"> Selected Table name's : <strong>
                     {{selectedTableID}}
                 
@@ -103,10 +105,12 @@
         <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
     </ng-template>
 </p-dialog>
+
 <p *ngIf="selectedTableID.length"> Selected Table name's : <strong>
     {{selectedTableID}}
 
 </strong></p>
+
 
                 </div>
             </p-tabPanel>
@@ -125,4 +129,3 @@
         </p-tabView>
     </div>
 </div>
-<!-- </div> -->

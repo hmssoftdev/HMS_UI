@@ -53,6 +53,7 @@
             <b style="margin-right:20px;"> {{myDate | date:'MMdd'}}</b> <img width="20px"
              class="p-text-right" style="margin-left:41px;" height="15px" [src]="adminData.restaurentLogo"
               alt=""></div> 
+              <div class="p-col p-py-0" style="font-size: 10px;"> <strong>Date: </strong> {{myDate | date:'MM/dd/yyyy'}}  <strong style="margin-left: 20px;">Time: </strong>{{todaysDataTime}}</div>
           <div class="p-col p-py-0" style="font-size: 10px;"><strong>Delivery Mode: </strong>{{ orderData.deliveryMode}} </div>  
           <div class="p-col p-py-0" style="font-size: 10px;"><strong>Name: </strong>{{adminData?.businessName}}</div>       
             <div class="p-col p-py-0" style="font-size: 10px;"><strong>Address: </strong>{{adminData?.address}}</div>

@@ -24,5 +24,9 @@ export class HeaderComponent implements OnInit {
   fnhmBurgerClick(){
 this.fnMenuSidebar.emit();
   }
-
+  fnhidedd(){
+    this.lbluserProfleShow == false;
+  this.lbluserProfleShow = false;
+  console.log("Hello");
+}
 }

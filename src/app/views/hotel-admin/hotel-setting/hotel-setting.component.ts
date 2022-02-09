@@ -1,4 +1,3 @@
-
 import { Hotel } from "../../../models/tabelConfiguration.model";
 import {Component, EventEmitter,OnInit,Output} from '@angular/core';
 
