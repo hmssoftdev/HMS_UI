@@ -88,63 +88,78 @@
         <p-button [disabled]="disableBTN" label="Post Your Review" icon="pi pi-check" iconPos="left"></p-button>
     </ng-template> -->
 </p-dialog>
-<a class="p-link" (click)="showFeedbackDialog()">Write your review</a>
-<br>
-<br>
-<div class="p-card" *ngFor="let list of feedbackList" style="width: 40%; margin-bottom: 1.2rem;">
-    <div class="card-body">
-       
-        <div class="p-grid">
-            <span>
-                <div class="p-col">
-                    <img src="https://png.pngtree.com/png-vector/20190710/ourlarge/pngtree-user-vector-avatar-png-image_1541962.jpg"
-                        alt="Sample_User_Icon" style="border-radius: 50%; width:50px">
-                </div>
+<div class="p-card p-mb-5">
+    <div class="p-card-body">
+      <h4 class="p-text-center">
+        <span class="text-6xl">Customers Feedback</span><br>
+        <span class="p-text-center">
+            <button pButton type="button" (click)="showFeedbackDialog()" label="Write your review" class="p-button-outlined"></button>
             </span>
-            <div class="p-col">
-                <div class="box">
-                    <section>
-                        <b>User Name</b><br><span>Number_of_Reviews</span>
-                    </section>
-                </div>
-            </div>
-        </div>
-        <hr>
-        <div class="p-grid">
-            <div class="p-col">
-                <p-rating [ngModel]="list.rating" readonly="true" stars="5" [cancel]="false"></p-rating>
-            </div>
-            <div class="p-jc-end">
-                {{list.timeStamp}}
-            </div>
-        </div>
-        <div class="p-grid p-flex-column">
-            <div class="p-col">
-                <h5>
-                    {{list.reviewTitle}}
-                </h5>
-            </div>
-            <div class="p-col">
-                <p>{{list.opinionText}}</p>
-            </div>
-        </div>
-        <hr>
-        <div class="p-grid p-jc-star">
-            <div class="p-col-2">
-                <a href="#"><i class="pi pi-pencil" style="width:1.2rem" id="edit"></i><label
-                        for="edit">Reply</label></a>
-            </div>
-            <div class="p-col-2">
-                <a href="#"><i class="pi pi-thumbs-up" style="width:1.2rem" id="edit"></i><label
-                        for="edit">Useful</label></a>
-            </div>
-            <div class="p-col-2">
-                <a href="#"><i class="pi pi-share-alt" style="width:1.2rem" id="edit"></i><label
-                        for="edit">Share</label></a>
-            </div>
-        </div>
+    </h4><br>
+        
+      
+        
     </div>
 </div>
+<div class="p-gird"> 
+   
+        <div class="p-card"*ngFor="let list of feedbackList"  style="width: 40%; margin-bottom: 1.2rem;">
+            <div class="card-body">
+               
+                <div class="p-grid">
+                    <span>
+                        <div class="p-col">
+                            <img src="https://png.pngtree.com/png-vector/20190710/ourlarge/pngtree-user-vector-avatar-png-image_1541962.jpg"
+                                alt="Sample_User_Icon" style="border-radius: 50%; width:50px">
+                        </div>
+                    </span>
+                    <div class="p-col">
+                        <div class="box">
+                            <section>
+                                <b>User Name</b><br><span>Number_of_Reviews</span>
+                            </section>
+                        </div>
+                    </div>
+                </div>
+                <hr>
+                <div class="p-grid">
+                    <div class="p-col">
+                        <p-rating [ngModel]="list.rating" readonly="true" stars="5" [cancel]="false"></p-rating>
+                    </div>
+                    <div class="p-jc-end">
+                        {{list.timeStamp}}
+                    </div>
+                </div>
+                <div class="p-grid p-flex-column">
+                    <div class="p-col">
+                        <h5>
+                            {{list.reviewTitle}}
+                        </h5>
+                    </div>
+                    <div class="p-col">
+                        <p>{{list.opinionText}}</p>
+                    </div>
+                </div>
+                <hr>
+                <div class="p-grid p-jc-star">
+                    <div class="p-col-2">
+                        <a href="#"><i class="pi pi-pencil" style="width:1.2rem" id="edit"></i><label
+                                for="edit">Reply</label></a>
+                    </div>
+                    <div class="p-col-2">
+                        <a href="#"><i class="pi pi-thumbs-up" style="width:1.2rem" id="edit"></i><label
+                                for="edit">Useful</label></a>
+                    </div>
+                    <div class="p-col-2">
+                        <a href="#"><i class="pi pi-share-alt" style="width:1.2rem" id="edit"></i><label
+                                for="edit">Share</label></a>
+                    </div>
+                </div>
+            </div>
+    
+    </div>
+</div>
+
 
 
 

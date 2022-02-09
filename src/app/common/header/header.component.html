@@ -12,16 +12,17 @@
                 <a class="btn head" style="color: white;
                 margin-right: 2px;text-transform: capitalize;">
                      &nbsp;Hello : <strong>{{authService.userData().name}} </strong></a> 
-                <div class="profilWrap p-mr-4 p-mt-2" (clickOutside)="lbluserProfleShow=true">
+                <div class="profilWrap p-mr-4 p-mt-2" (clickOutside)="lbluserProfleShow=false">
                 <p-avatar icon="pi pi-user" (click)="fnToggleUProfile()" *ngIf="authService.loggedIn()"></p-avatar> 
                 <ul class="dropdownMenu" *ngIf="lbluserProfleShow">
                     <li class="dropdownHeader">Account</li>
-                    <li><a routerLink="/hotel-admin" ><i></i>Profile</a></li>
-                    <li><a routerLink="/settings">Billing Category</a></li>
-                    <li><a routerLink="/dish/order-list">Setting</a></li>
-                   <li><a routerLink="/language" (clickOutside)="lbluserProfleShow=false">Language</a></li>
-                   <li><a routerLink="/Help">Help</a></li>
-                    <li><a (click)="fnhidedd()" routerLink="/updatepassword">Change Password</a></li>              
+                    <li (click)="fnhidedd()"><a class="profilWrap" routerLink="/hotel-admin" ><i></i>Profile</a></li>
+                    <li (click)="fnhidedd()"><a routerLink="/settings">Billing Category</a></li>
+                    <li (click)="fnhidedd()"><a routerLink="/dish/order-list">Setting</a></li>
+                   <li (click)="fnhidedd()"><a routerLink="/language">Language</a></li>
+                   <li (click)="fnhidedd()"><a routerLink="/Help">Help</a></li>
+                    <li (click)="fnhidedd()"><a  routerLink="/updatepassword">Change Password</a></li>
+
                     <li><a (click)="fnLogout()">Logout</a></li>
                     
                 </ul>
