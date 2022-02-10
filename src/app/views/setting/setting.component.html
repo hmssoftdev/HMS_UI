@@ -1,0 +1,47 @@
+<div class="p-card p-mb-5">
+    <div class="p-card-body">
+        <h4 class="p-text-center">
+            Profile
+        </h4>
+        <div class="p-grid ">
+            
+            <div class="p-col-6 p-text-right">
+                <button pButton type="button" label="Change Username" class="p-button-outlined"></button>
+            </div>
+            <div class="p-col-6 ">
+                <button pButton type="button" label="Change Password" class="p-button-outlined"></button>
+            </div>
+        </div>
+
+<br>
+<h4 class="p-text-center">
+    Theme
+</h4>
+<div class="p-grid">
+    
+    <div class="p-col-6 p-text-right">
+        <button pButton type="button" label="Dark" class="p-button-outlined"></button>
+        
+    </div>
+    <div class="p-col-6">
+        <button pButton type="button" label="Light" class="p-button-outlined"></button>
+        
+    </div>
+</div>
+<br>
+<div class="p-grid">
+   
+    <div class="p-col-3">
+        <h4 class="p-text-center">
+            Menu Option
+        </h4>
+     
+    </div>
+    <div class="p-col-7" style="display: flex!important;justify-content: space-around;
+    align-items: center;">
+       <span class="text-xl">Display menu with images</span> 
+        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value"></p-selectButton>  
+    </div>
+</div>
+    </div>
+</div>

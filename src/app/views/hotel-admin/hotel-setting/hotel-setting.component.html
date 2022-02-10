@@ -1,34 +1,6 @@
 <div class="row">
     <div class="p-card">
-        <!-- <div class="col-md-12">
-            <nav>
-                <ul>
-                    <li (click)="fnSwitchView('advTblBooking')"><a>Advanced Table Booking</a></li>
-                    <li (click)="fnSwitchView('dining')"><a>Dining</a></li>
-                    <li (click)="fnSwitchView('homeDelivery')"><a>Home Delivery</a></li>
-                    <li (click)="fnSwitchView('takeAway')"><a>Take Away</a></li>
-                </ul>
-            </nav>
-            <div class="tab-content" [ngSwitch]="currentView">
-                <div id="advTblBooking" *ngSwitchCase="'advTblBooking'">
-                    <div class="col-md-12">
-                        Adavanced Booking 
-                    </div>
-                </div>
-                <div id="dining" *ngSwitchCase="'dining'">
-                    Dining
-                </div>
-                <div id="homeDelivery" *ngSwitchCase="'homeDelivery'">
-                    <p>Home Delivery</p>
-                </div>
-                <div id="takeAway" *ngSwitchCase="'takeAway'">
-                    <p>Take Away</p>
-                </div>
-
-            </div>
-        </div> -->
-
-        <!-- <div>     -->
+       
         <p-tabView class="col-md-12 p-m-3">
             <p-tabPanel header="Advanced Table Booking">
                 <div class="p-grid">
@@ -48,8 +20,7 @@
                             </div>
                         </div>
                     </div>
-                    
-               
+                </div>
                 <p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
                     <div class="p-grid">
                         <div class="p-col-2" *ngFor="let tblItem of tableList">
@@ -57,16 +28,15 @@
                            
                               <button pButton class="p-button-outlined p-button-text-only"  type="button"> {{tblItem.name}}</button>
                             </div></div></div>
-                   
                     <ng-template pTemplate="footer">
                         <p-button icon="pi pi-check" (click)="displayBasic=false" label="Yes" styleClass="p-button-text"></p-button>
                         <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
                     </ng-template>
                 </p-dialog>
+
+       
                 
                 
-              
-            </div>
             </p-tabPanel>
             <p-tabPanel header="Dining">
                 <div class="col-md-12">
@@ -88,8 +58,8 @@
         </div>
     </div>
     
-</div>
-<p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
+</div></div>
+        <p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <div class="p-grid">
         <div class="p-col-2" *ngFor="let tblItem of tableList">
             <div class="tblBox p-shadow-1 p-p-md-2">
@@ -103,7 +73,10 @@
     </ng-template>
 </p-dialog>
 
-                </div>
+
+
+
+            
             </p-tabPanel>
             <p-tabPanel header="Home Delivery">
                 <div class="col-md-12">

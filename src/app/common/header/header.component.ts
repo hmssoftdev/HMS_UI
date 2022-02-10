@@ -25,8 +25,8 @@ export class HeaderComponent implements OnInit {
 this.fnMenuSidebar.emit();
   }
   fnhidedd(){
-    this.lbluserProfleShow == false;
+
   this.lbluserProfleShow = false;
-  console.log("Hello");
+  
 }
 }
