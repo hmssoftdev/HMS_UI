@@ -16,15 +16,13 @@
                 <p-avatar icon="pi pi-user" (click)="fnToggleUProfile()" *ngIf="authService.loggedIn()"></p-avatar> 
                 <ul class="dropdownMenu" *ngIf="lbluserProfleShow">
                     <li class="dropdownHeader">Account</li>
-
                     <li (click)="fnhidedd()"><a class="profilWrap" routerLink="/hotel-admin" ><i></i>Profile</a></li>
                     <li (click)="fnhidedd()"><a routerLink="/settings">Billing Category</a></li>
                     <li (click)="fnhidedd()"><a routerLink="/dish/order-list">Setting</a></li>
-                    <li (click)="fnhidedd()"><a routerLink="/language">Language</a></li>
-                    <li (click)="fnhidedd()"><a routerLink="/Help">Help</a></li>
-                    <li (click)="fnhidedd()"><a  routerLink="/updatepassword">Change Password</a></li> 
-                    <li><a (click)="fnLogout()">Logout</a></li>
-                    
+                   <li (click)="fnhidedd()"><a routerLink="/language">Language</a></li>
+                   <li (click)="fnhidedd()"><a routerLink="/Help">Help</a></li>
+                    <li (click)="fnhidedd()"><a  routerLink="/updatepassword">Change Password</a></li>
+                  <li><a (click)="fnLogout()">Logout</a></li>                   
                 </ul>
                 </div>
             </div>
