@@ -80,7 +80,10 @@ export class UserService {
     )
   }
   getUserList(): Observable<User[]> {
+  this.userData = JSON.parse(localStorage.getItem('HMSUserData'));
+
     console.log(this.userData.adminId);
+
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
       map(x => {
         this.userList = x;
