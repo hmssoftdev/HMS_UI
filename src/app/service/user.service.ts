@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Observable, of, Subject } from 'rxjs';
+import { observable, Observable, of, Subject } from 'rxjs';
 import { ApiConfig } from '../constant/api';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
@@ -12,6 +12,7 @@ import { Registration } from '../models/registration';
 })
 export class UserService {
   url = `${ApiConfig.URL}${ApiConfig.USER}`;
+  orderUrl = `${ApiConfig.URL}${ApiConfig.ORDER}`;
   cityUrl = `${ApiConfig.URL}${ApiConfig.CITY}`
   stateUrl = `${ApiConfig.URL}${ApiConfig.STATE}`
   feedbackUrl = `${ApiConfig.URL}${ApiConfig.USERFEEDBACK}`
@@ -58,6 +59,26 @@ export class UserService {
       catchError(this.handleError('', this.user)));
   }
 
+  // pass values as a parameter
+  updatepassword(oldpwd:string , newpwd : string,id: number): Observable<boolean> {
+    return this.http.put(`${this.url}/updatePassword/?oldPwd=${oldpwd}&newPwd=${newpwd}&userId=${id}`,{}).pipe(
+      map(x => {
+          console.log(x)
+       return false;
+      }),
+      catchError(this.handleError('',true))
+    );
+  }
+  forgotpassword(emailid :string):Observable<boolean>{
+    return this.http.put(`${this.url}/ForgetPassword?email=${emailid}`,{}).pipe(
+      map(resp => 
+        {
+          console.log(resp)
+        return false}
+          ),
+      catchError(this.handleError('', true))
+    )
+  }
   getUserList(): Observable<User[]> {
     console.log(this.userData.adminId);
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
@@ -73,6 +94,14 @@ export class UserService {
       map(x => {
         this.feedbackList = x;
         return this.feedbackList;
+      })
+    )
+  }
+  // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
+  getBillHistory(userid :number,maxdate :string,mindate:string): Observable<any> {
+    return this.http.get<any>(`${this.orderUrl}/GetOrderByDateRange?userId=${userid}&maxDate=${maxdate}$minDate=${mindate}`,{}).pipe(
+      map(x => {
+        console.log(x);
       })
     )
   }
