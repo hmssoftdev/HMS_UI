@@ -6,10 +6,13 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./setting.component.scss']
 })
 export class SettingComponent implements OnInit {
-
+  stateOptions: any[];
   constructor() { }
-
+  value1: string = 'off';
   ngOnInit(): void {
+    this.stateOptions = [
+      { label: 'Yes', value: 'yes' },
+      { label: 'No', value: 'no' },
+    ];
   }
-
 }
