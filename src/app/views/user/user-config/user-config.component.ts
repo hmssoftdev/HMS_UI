@@ -45,6 +45,7 @@ export class UserConfigComponent implements OnInit {
     this.user = {};
     this.submitted = false;
     this.userDialog = true;
+    this.user.contact='0';
     //this.shareData.changeDialog(true);
   }
   reset() {
