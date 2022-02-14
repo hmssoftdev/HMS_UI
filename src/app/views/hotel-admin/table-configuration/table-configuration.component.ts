@@ -91,6 +91,7 @@ export class TableConfigurationComponent implements OnInit {
         this.table = {};
         this.submitted = false;
         this.tableDialog = true;
+        this.table.seat=0;
     }
     editDish(table: Hotel) {
         this.table = { ...table };

@@ -40,7 +40,10 @@ export class DishComponent implements OnInit {
   nonVegTypes: Array<any>;
   isVeg = true;
   subDish: Subscription;
+
+ 
   ngOnInit(): void {
+
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
@@ -102,6 +105,10 @@ export class DishComponent implements OnInit {
   // to Open fresh form  
   openNew() {
     this.dish = {};
+    this.dish.fullPrice=0;
+    this.dish.halfPrice=0;
+    this.dish.quantity=0;
+    this.dish.timeForCook=0;
     this.submitted = false;
     this.dishDialog = true;
   }

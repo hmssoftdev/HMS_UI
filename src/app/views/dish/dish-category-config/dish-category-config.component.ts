@@ -47,6 +47,7 @@ export class DishCategoryConfigComponent implements OnInit {
     this.category = new DishCategory();
     this.submitted = false;
     this.categoryDialog = true;
+    this.category.gstCompliance=0;
   }
   hideDialog() {
     this.categoryDialog = false;
