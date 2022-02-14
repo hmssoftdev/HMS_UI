@@ -77,7 +77,8 @@ export class UserService {
       map(resp => 
         {
           let op = JSON.parse(JSON.stringify(resp))
-          return op.result}
+          return op.result
+        }
           ),
       catchError(this.handleError('', true))
     )
