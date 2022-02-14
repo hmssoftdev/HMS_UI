@@ -44,8 +44,6 @@ export class DishComponent implements OnInit {
  
   ngOnInit(): void {
 
-9
-    
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
