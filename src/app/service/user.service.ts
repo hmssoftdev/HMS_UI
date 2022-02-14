@@ -5,6 +5,8 @@ import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
 import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
+import { OrderList } from '../models/orderList';
+import { Historydata } from '../models/historydata';
 
 
 @Injectable({
@@ -21,9 +23,10 @@ export class UserService {
   public user: User | undefined;
   public userList: User[] = [];
   modalSubject = new Subject();
+  histdata :Historydata[]=[];
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
-
+  orderList: OrderList[] = [];
   constructor(private http: HttpClient) { }
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(
@@ -73,17 +76,15 @@ export class UserService {
     return this.http.put(`${this.url}/ForgetPassword?email=${emailid}`,{}).pipe(
       map(resp => 
         {
-          console.log(resp)
-        return false}
+          let op = JSON.parse(JSON.stringify(resp))
+          return op.result
+        }
           ),
       catchError(this.handleError('', true))
     )
   }
   getUserList(): Observable<User[]> {
   this.userData = JSON.parse(localStorage.getItem('HMSUserData'));
-
-    console.log(this.userData.adminId);
-
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
       map(x => {
         this.userList = x;
@@ -101,10 +102,12 @@ export class UserService {
     )
   }
   // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
-  getBillHistory(userid :number,maxdate :string,mindate:string): Observable<any> {
-    return this.http.get<any>(`${this.orderUrl}/GetOrderByDateRange?userId=${userid}&maxDate=${maxdate}$minDate=${mindate}`,{}).pipe(
+  getBillHistory(userid :number,maxdate :string,mindate:string): Observable<Historydata[]> {
+    return this.http.get<Historydata[]>
+    (`${this.orderUrl}/GetOrderByDateRange?userId=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
       map(x => {
-        console.log(x);
+        this.histdata = x;
+        return this.histdata;
       })
     )
   }
