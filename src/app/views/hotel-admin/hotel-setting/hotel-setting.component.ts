@@ -1,8 +1,13 @@
 import { Hotel } from "../../../models/tabelConfiguration.model";
-import {Component, EventEmitter,OnInit,Output} from '@angular/core';
+import {Component, EventEmitter,Input,OnInit,Output} from '@angular/core';
+
 
 import {CartService} from '../../../service/cart.service';
 import {TableService} from '../../../service/table.service';
+import { AuthService } from "../../../service/auth.service";
+import { HistorydataComponent } from "../../report/historydata/historydata.component";
+import { UserService } from "../../../service/user.service";
+import { Historydata } from "../../../models/historydata";
 @Component({
   selector: 'app-hotel-setting',
   templateUrl: './hotel-setting.component.html',
@@ -11,12 +16,37 @@ import {TableService} from '../../../service/table.service';
 export class HotelSettingComponent implements OnInit {
   tableList: Hotel[];
   displayModal: boolean;
+ 
+  maxdate :string='2022-02-14';
+  mindate :string ='2022-02-01';
+  adminId :number;
+  date=new Date();
   displayBasic: boolean;
+  
   @Output() tableSelection = new EventEmitter < any > ();
   selectedTableID: Array < any > = [];
   tablesname: any[];
-  constructor(public tableSvc: TableService, private cartService: CartService) {}
+  sale:any[]=[];
+ 
+  historydata: Historydata []=[];
+  constructor(public authservice: AuthService,public tableSvc: TableService, private cartService: CartService,private auth : AuthService,private user:UserService) {}
   ngOnInit() {
+  //   this.sale = [
+  //     { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
+  //     { srno: '2', cusname: 'Owais',    cuscontact: '993021364', cuscity: 'Mumbai', billno: '17010006',cusamout:'1500' },
+  //     { srno: '3', cusname: 'Abrar',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010010',cusamout:'1930' },
+  //     { srno: '4', cusname: 'Musab',    cuscontact: '7788996655', cuscity: 'Mumbai', billno: '17010062',cusamout:'5360' },
+  //     { srno: '5', cusname: 'Sadiq',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010100',cusamout:'1320' },
+     
+  // ];
+  this.date=new Date();
+  // this.authservice.showLoader=true;
+ 
+
+  
+  console.log(this.date);
+this.adminId=this.auth.userData().adminId;
+
     this.selectedTableID = [];
     this.loadTabaleData();
     this.tablesname = [{
@@ -35,6 +65,7 @@ export class HotelSettingComponent implements OnInit {
       this.tableList = res;
     })
   }
+
   fnTblBook(tblItem) {
     this.selectedTableID = [];
     if (tblItem.isBooked) {
@@ -81,3 +112,4 @@ export class HotelSettingComponent implements OnInit {
     this.displayBasic = true;
   }
 }
+

@@ -1,8 +1,79 @@
-<h2>Hello</h2>
-<p-table [value]="sales">
+<div class="p-grid p-mt-6">
+
+  <div class="p-col-3 p-text-center">
+  <strong class="text-2xl">History Data</strong>
+  </div>
+  <div class="p-col-6 p-text-center">
+    
+  <p-calendar [(ngModel)]="maxdate" dateFormat="yy-mm-dd" ptooltip="Start Date"></p-calendar>
+  To <p-calendar [(ngModel)]="mindate" dateFormat="yy-mm-dd" ptooltip="End Date"></p-calendar>
+  <!-- <div class="p-fluid grid">
+    <div class="field col-12 md:col-2">
+        <span class="p-float-label">
+            <input type="text" id="inputtext" pInputText [(ngModel)]="maxdate"> 
+            <label for="inputtext">Max Date</label>
+        </span>
+      </div> 
+    <div class="field col-12 md:col-2">
+        <span class="p-float-label">
+            <input type="text" id="inputtext" pInputText [(ngModel)]="mindate"> 
+            <label for="inputtext">Min Date</label>
+        </span>
+    </div></div> -->
+  <button pButton pRipple type="button"  (click)="getHistorydata()" class="p-button-raised p-button-success mr-2">Get Data</button>
+  </div>
+  <div class="p-col-3 p-text-center">
+
+    <button pButton type="button" (click)="getweekdata()" label="Week" class="p-button-outlined"></button>
+    <button pButton type="button" label="Month" (click)="getmonthdata()" class="p-button-outlined"></button>
+    
+  <!-- <p-tabView>
+  
+  <p-tabPanel header="Week" (click)="getweekdata()">
+    
+     </p-tabPanel>
+  <p-tabPanel header="Month" (click)="getmonthdata()">
+   
+  </p-tabPanel>
+  <p-tabPanel header="Year" (click)="getyeardata()">
+  
+  </p-tabPanel>
+  </p-tabView> -->
+  </div>
+  <div *ngIf="showhistorydata">
+    
+    <app-backdata [maxDate]="maxdate" [minDate]="mindate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div>
+
+  <div *ngIf="showweekdata">
+    
+    <app-backdata [maxDate]="weekstartdate" [minDate]="weekenddate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div> 
+  <div *ngIf="showmonthdata">
+    
+    <app-backdata [maxDate]="monthstartdate" [minDate]="monthenddate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div>
+
+  
+  
+  </div>
+
+<!-- 
+  
     <ng-template pTemplate="header">
       <tr>
-
         <th>SR NO </th>
         <th>Name</th>
         <th>Contact</th>
@@ -10,15 +81,14 @@
         </th>
         <th>Bill No</th>
       </tr>
-
     </ng-template>
-    <ng-template pTemplate="body" let-sale>
+    <ng-template pTemplate="body" let-data>
       <tr>
-        <td>{{sale.srno}}</td>
-        <td>{{sale.cusname}}</td>
-        <td>{{sale.cuscontact}}</td>
-        <td>{{sale.cuscity}}</td>
-        <td>{{sale.billno}}</td>
+        <td>{{data.userName}}</td>
+        <td>{{data.userName}}</td>
+        <td>{{data.userMobileNumber}}</td>
+        <td>{{data.userName}}</td>
+        <td>{{data.userName}}</td>
       </tr>
     </ng-template>
-  </p-table>
+  </p-table> -->
