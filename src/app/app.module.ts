@@ -70,6 +70,8 @@ import { TopdataComponent } from './views/report/topdata/topdata.component';
 import { SettingComponent } from './views/setting/setting.component';
 import { LanguageComponent } from './views/language/language.component';
 import { HelpComponent } from './views/help/help.component';
+import { BackdataComponent } from './views/report/backdata/backdata.component';
+
 @NgModule({
   imports: [
     BrowserModule,
@@ -106,6 +108,7 @@ import { HelpComponent } from './views/help/help.component';
     P404Component,
     P500Component,
     LoginComponent,
+    BackdataComponent,
     RegisterComponent,
     routingComponents,
     ClientConfigComponent,

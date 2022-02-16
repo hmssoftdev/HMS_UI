@@ -22,6 +22,7 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 export class DishMenuNewComponent implements OnInit {
   dishes: Dish[];
   sendId: number;
+  Deliverymode:string[]=[];
   rawDishCategoyItems: DishCategory[];
   dishCategory: any;
   sortField: string;
@@ -118,7 +119,7 @@ export class DishMenuNewComponent implements OnInit {
     });
   }
 table 
-  loadClient() {
+  loadClient(){
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {
         this.admin = resp[0];
