@@ -3,7 +3,9 @@
   <strong class="text-2xl">History Data</strong>
   </div>
   <div class="p-col-6 p-text-center">
+
  <p-calendar [(ngModel)]="mindate" placeholder="Select From" class="p-text-center mr-2" dateFormat="yy-mm-dd">
+
     <ng-template pTemplate="header"><span class="text-2xl">From</span></ng-template>
   </p-calendar>
   <p-calendar [(ngModel)]="maxdate" placeholder="Select To" class="p-text-center ml-2" dateFormat="yy-mm-dd"
@@ -11,6 +13,7 @@
 </p-calendar>
   <button pButton pRipple type="button" (click)="getHistorydata()" class="p-button-raised p-button-success p-button-outlined ml-2">Get Data</button>
 </div>
+
   <div class="p-col-3 p-text-center">
     <button pButton type="button" (click)="getweekdata()" label="Week" class="p-button-outlined mr-2"></button>
     <button pButton type="button" label="Month" (click)="getmonthdata()" class="p-button-outlined ml-2"></button>
