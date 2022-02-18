@@ -1,47 +1,222 @@
-<div class="p-card p-mb-5">
-    <div class="p-card-body">
-        <h4 class="p-text-center">
-            Profile
-        </h4>
-        <div class="p-grid ">
-            
-            <div class="p-col-6 p-text-right">
-                <button pButton type="button" label="Change Username" class="p-button-outlined"></button>
+<h1> </h1>
+<p-accordion [multiple]="true">
+    <p-accordionTab header="Profile">
+        <div class="form-group">
+            <form [formGroup]="form" >
+        <div class="grid">
+                
+            <div class="col-12 md:col-6 lg:col-4">
+                <div class="p-inputgroup p-mb-4">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input type="password" pInputText name="Old Password" class="form-control" placeholder="Old Password"
+                    formControlName="oldpwsd" id="passwordd" type="password" required>
+                </div> 
             </div>
-            <div class="p-col-6 ">
-                <button pButton type="button" label="Change Password" class="p-button-outlined"></button>
+            <div class="col-12 md:col-6 lg:col-4">
+                <div class="p-inputgroup p-mb-4">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input type="password" pInputText name="NewPassword" class="form-control" placeholder="New Password"
+                autocomplete="current-password" formControlName="newpassword" id="password" type="password" pTooltip="Should Match to Confirm Password" required>
+        
+                  </div>
+            </div>
+            <div class="col-12 md:col-6 lg:col-4">
+                <div class="p-inputgroup p-mb-4">
+                    <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
+                    <input type="password" pInputText name="ConfirmPassword" formControlName="confirm_password" pTooltip="Should Match to New Password" id="confirm_password" type="password"
+                    class="form-control" placeholder="Confirm Password" autocomplete="current-password" required>
+        
+                  </div>
+            </div>
+        
+    </div>
+</form>
+<div class="grid">
+    <div class="col-12 p-text-center">
+
+            <p-button (click)="updatingpass()" type="submit"  class="p-button-text" 
+            [disabled]="!form.valid" label="Change Password" ></p-button>
+        </div>
+        </div>
+        </div>
+    </p-accordionTab>
+
+    <p-accordionTab header="Theme">
+        <div class="grid">
+            <div class="col-12 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">Colour </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Dark</label>
+                </span>
             </div>
         </div>
+    </p-accordionTab>
+    <p-accordionTab header="Menu Display">
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>Menu Display Card With Images?</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">No </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Yes</label>
+                </span>
+            </div>
+        </div>
+      
+    </p-accordionTab>
+    <p-accordionTab header="Invoice">
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>Invoice Bill generate with GST?</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">No </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Yes</label>
+                </span>
+            </div>
+        </div>
+        
+        <div>
+            <div class="grid">
+                <div class="col-6 ">
+                    <span class="float left">
+                        <label>Invoice Bill generate with Customer?</label>
+                    </span>
+                </div>
+                <div class="col-6 p-text-center">
+                    <span class="float right">
+                        <label for="isVeg">No </label>
+                        <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                        <label for="isVeg">Yes</label>
+                    </span>
+                </div>
+            </div>
+        </div>
+<div class="grid">
+    <div class="col-6">
+        <span class="float left">
+            <label>Invoice Bill generate with Restaurant logo?</label>
+        </span>
+    </div>
+    <div class="col-6 p-text-center">
+        <span class="float right">
+            <label for="isVeg">No </label>
+            <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+            <label for="isVeg">Yes</label>
+        </span>
+    </div>
+</div>
+        <div>
+            <div class="grid">
+                <div class="col-6">
+                    <span class="float left">
+                        <label>Invoice Bill generate with Seal?</label>
+                    </span>
+                </div>
+                <div class="col-6 p-text-center">
+                    <span class="float right">
+                        <label for="isVeg">No </label>
+                        <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                        <label for="isVeg">Yes</label>
+                    </span>
+                </div>
+                
+            </div>
+        </div>
+        <div>
+            <div class="grid">
+                <div class="col-6">
+                    <span class="float left">
+                        <label>Invoice Bill generate with Sign?</label>
+                    </span>
+                </div>
+                <div class="col-6 p-text-center">
+                        
+        <span class="float right">
+            <label for="isVeg">No </label>
+            <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+            <label for="isVeg">Yes</label>
+        </span>
+                </div>
+              
+            </div>
+        
+        </div>
+    </p-accordionTab>
+    <p-accordionTab header="Order Status">
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>Do you want to active order list flow?</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">No </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Yes</label>
+                </span>
+            </div>
+        </div>
+      
+    </p-accordionTab>
+    <p-accordionTab header="Printer Setting">
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>Configuration of Printer Setup </label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <button pButton type="button" label="Print"></button>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label> Do you want direct KOT / Bill print without Pop up?</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">No </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Yes</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label> Do you want both KOT / Bill print at same time.?</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label for="isVeg">No </label>
+                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <label for="isVeg">Yes</label>
+                </span>
+            </div>
+        </div>
+      
+    </p-accordionTab>
 
-<br>
-<h4 class="p-text-center">
-    Theme
-</h4>
-<div class="p-grid">
-    
-    <div class="p-col-6 p-text-right">
-        <button pButton type="button" label="Dark" class="p-button-outlined"></button>
-        
-    </div>
-    <div class="p-col-6">
-        <button pButton type="button" label="Light" class="p-button-outlined"></button>
-        
-    </div>
-</div>
-<br>
-<div class="p-grid">
-   
-    <div class="p-col-3">
-        <h4 class="p-text-center">
-            Menu Option
-        </h4>
-     
-    </div>
-    <div class="p-col-7" style="display: flex!important;justify-content: space-around;
-    align-items: center;">
-       <span class="text-xl">Display menu with images</span> 
-        <p-selectButton [options]="stateOptions" [(ngModel)]="value1" optionLabel="label" optionValue="value"></p-selectButton>  
-    </div>
-</div>
+</p-accordion>
+
+<div class="grid">
+    <div class="col-12 p-text-center mt-2">
+<button pButton type="button" label="Submit"></button>
     </div>
 </div>

@@ -48,13 +48,14 @@ import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
 
 import {ToggleButtonModule} from 'primeng/togglebutton';
-
+import {AccordionModule} from 'primeng/accordion';
 @NgModule({
   declarations: [
     OrderStatusComponent,
     UserFormComponent,
     InvoiceComponent,
     ClickOutsideDirective,
+    
     
 
   ],
@@ -103,7 +104,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     TimelineModule,
     ChartModule,
     ProgressSpinnerModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    AccordionModule
   ],
   exports:[
     CommonModule,
@@ -151,7 +153,8 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
     ClickOutsideDirective,
     ProgressSpinnerModule,
     ChartModule,
-    ToggleButtonModule
+    ToggleButtonModule,
+    AccordionModule
 
   ],
   providers:[MessageService, ConfirmationService]
