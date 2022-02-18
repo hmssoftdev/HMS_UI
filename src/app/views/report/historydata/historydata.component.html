@@ -4,24 +4,17 @@
   <strong class="text-2xl">History Data</strong>
   </div>
   <div class="p-col-6 p-text-center">
-    
-  <p-calendar [(ngModel)]="maxdate" dateFormat="yy-mm-dd" ptooltip="Start Date"></p-calendar>
-  To <p-calendar [(ngModel)]="mindate" dateFormat="yy-mm-dd" ptooltip="End Date"></p-calendar>
-  <!-- <div class="p-fluid grid">
-    <div class="field col-12 md:col-2">
-        <span class="p-float-label">
-            <input type="text" id="inputtext" pInputText [(ngModel)]="maxdate"> 
-            <label for="inputtext">Max Date</label>
-        </span>
-      </div> 
-    <div class="field col-12 md:col-2">
-        <span class="p-float-label">
-            <input type="text" id="inputtext" pInputText [(ngModel)]="mindate"> 
-            <label for="inputtext">Min Date</label>
-        </span>
-    </div></div> -->
-  <button pButton pRipple type="button"  (click)="getHistorydata()" class="p-button-raised p-button-success mr-2">Get Data</button>
-  </div>
+   
+  <p-calendar [(ngModel)]="mindate" class="p-text-center mr-2" dateFormat="yy-mm-dd">
+    <ng-template pTemplate="header"><span class="text-2xl">From</span></ng-template>
+  </p-calendar>
+  
+  <p-calendar [(ngModel)]="maxdate" class="p-text-center ml-2" dateFormat="yy-mm-dd"
+  > <ng-template pTemplate="header"><span class="text-2xl">To</span></ng-template>
+</p-calendar>
+  <button pButton pRipple type="button" (click)="getHistorydata()" class="p-button-raised p-button-success p-button-outlined ml-2">Get Data</button>
+
+</div>
   <div class="p-col-3 p-text-center">
 
     <button pButton type="button" (click)="getweekdata()" label="Week" class="p-button-outlined"></button>
@@ -51,7 +44,7 @@
 
   <div *ngIf="showweekdata">
     
-    <app-backdata [maxDate]="weekstartdate" [minDate]="weekenddate"  [ID]="id">
+    <app-backdata [maxDate]="allstartdate9" [minDate]="weekenddate"  [ID]="id">
       
     </app-backdata>
    
@@ -59,15 +52,12 @@
   </div> 
   <div *ngIf="showmonthdata">
     
-    <app-backdata [maxDate]="monthstartdate" [minDate]="monthenddate"  [ID]="id">
+    <app-backdata [maxDate]="allstartdate" [minDate]="monthenddate"  [ID]="id">
       
     </app-backdata>
    
    
   </div>
-
-  
-  
   </div>
 
 <!-- 

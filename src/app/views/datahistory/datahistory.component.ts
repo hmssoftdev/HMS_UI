@@ -1,8 +1,12 @@
 import { Component, Input, OnInit, Output } from '@angular/core';
 import * as moment from 'moment';
 import { ConfirmationService, MessageService } from 'primeng/api';
+import { Admin } from '../../models/admin';
 
 import { Historydata } from '../../models/historydata';
+import { OrderItem, OrderList } from '../../models/orderList';
+import { AdminService } from '../../service/admin.service';
+import { CartService } from '../../service/cart.service';
 import { EnumService } from '../../service/enum.service';
 import { UserService } from '../../service/user.service';
 
@@ -16,15 +20,24 @@ export class DatahistoryComponent implements OnInit {
   @Input() minDate :string;
   @Input() ID :number;
   @Input() deliveryMode : number = 0;
+  @Input() cartItems;
   historydata: Historydata[] = [];
   data: Historydata[]=[];
   loading :boolean = true;
-
-  constructor(private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
+  Dialog:boolean;
+  orderItem: OrderItem[] = [];
+  adminData: Admin;
+  cartData: OrderList;
+  
+ 
+  selectedOrderId: number = 0;
+  selectedOrderTotal: number=0;
+  constructor(public adminService: AdminService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getHistorydata();
     console.log("Hello Data");
+
   }
   getHistorydata(){
     let maxnewDate = moment(this.maxDate).format('YYYY-MM-DD').toString();
@@ -45,6 +58,14 @@ export class DatahistoryComponent implements OnInit {
 getDeliveryMode(id:number) : string{
  return this.enumService.getDeliveryOptStr(id);
 }
+
+fnViewOrder(data){
+  console.log(data);
+ this.selectedOrderId=data.id;
+this.selectedOrderTotal = data.grossTotal;
+this.cartData=data;
+this.Dialog=true;
+}
 delete(item:string) {
   this.confirmationService.confirm({
     message: 'Are you sure you want to delete '+ '?',
@@ -53,6 +74,7 @@ delete(item:string) {
     
     });
   }
+
 
 
 

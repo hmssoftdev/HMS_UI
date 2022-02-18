@@ -25,14 +25,19 @@ import {
   styleUrls: ['./historydata.component.scss']
 })
 export class HistorydataComponent implements OnInit {
-  showhistorydata = false;
+  
   maxdate: string = '';
   mindate: string = '';
   id: number;
-  showmonthdata = false;
-  today = new Date();
+  
+  allstartdate:string='';
+  weekenddate:string='';
+  monthenddate:string='';
+  yearenddate:string='';
   showyeardata = false;
   showweekdata = false;
+  showhistorydata = false;
+  showmonthdata = false;
   constructor(private auth: AuthService) {}
 
 
@@ -43,27 +48,27 @@ export class HistorydataComponent implements OnInit {
   }
   getDates() {
     var currentDate = new Date();
-    let weekstartdate = this.getFormatedDate(currentDate);
+   this.allstartdate = this.getFormatedDate(currentDate);
+
+
     var day = currentDate.getDay()
     var pastDate = new Date(currentDate)
     pastDate.setDate(pastDate.getDate() - day);
-    let weekenddate = moment(pastDate).format('YYYY-MM-DD').toString();
-
-    var currentDate = new Date();
+    this.weekenddate = this.getFormatedDate(pastDate);
+    console.log(this.weekenddate)
+ 
     var date = currentDate.getDate()
-    let monthstartdate = moment(currentDate).format('YYYY-MM-DD').toString();
-
     var pastDate = new Date(currentDate)
     pastDate.setDate(pastDate.getDate() - date);
-    let monthenddate = moment(pastDate).format('YYYY-MM-DD').toString();
-
+    this.monthenddate = this.getFormatedDate(pastDate);
+    console.log(this.monthenddate);
 
     var year = currentDate.getFullYear()
-    let yearstartdate = moment(currentDate).format('YYYY-MM-DD').toString();
+    
 
     var pastDate = new Date(currentDate)
     pastDate.setDate(pastDate.getDate() - year);
-    let yearenddate = moment(pastDate).format('YYYY-MM-DD').toString();
+    let yearenddate = this.getFormatedDate(pastDate);
   }
   getFormatedDate(date: Date) {
     return moment(date).format('YYYY-MM-DD').toString();
