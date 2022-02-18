@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
+import { AuthService } from '../../../service/auth.service';
 
 @Component({
   selector: 'app-topdata',
@@ -6,19 +8,15 @@ import { Component, OnInit } from '@angular/core';
  styleUrls: ['./topdata.component.scss']
 })
 export class TopdataComponent implements OnInit {
-  sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
-
-  constructor() { }
+  strtdate=new Date();
+  startdate:string='';
+  enddate:string='';
+  id:number;
+  constructor(private auth:AuthService) { }
     ngOnInit(): void {
-    this.sales = [
-    { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
-    { srno: '2', cusname: 'Owais',    cuscontact: '993021364', cuscity: 'Mumbai', billno: '17010006',cusamout:'1500' },
-    { srno: '3', cusname: 'Abrar',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010010',cusamout:'1930' },
-    { srno: '4', cusname: 'Musab',    cuscontact: '7788996655', cuscity: 'Mumbai', billno: '17010062',cusamout:'5360' },
-    { srno: '5', cusname: 'Sadiq',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010100',cusamout:'1320' },
-     
-  ];
-  
+      this.startdate=moment(this.strtdate).format('YYYY-MM-DD').toString();
+      this.enddate=moment(this.strtdate).format('YYYY-MM-DD').toString();
+      this.id=this.auth.userData().adminId;
 }
-  }
+}
   

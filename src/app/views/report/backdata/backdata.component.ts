@@ -16,9 +16,16 @@ export class BackdataComponent implements OnInit {
   @Input() minDate :string;
   @Input() ID :number;
   @Input() deliveryMode : number = 0;
+  @Input() cartItems;
+
   historydata: Historydata[] = [];
-  data: Historydata[]=[];
+  order: Historydata[]=[];
+  cartData:Historydata[]=[];
   loading :boolean = true;
+  date =new Date();
+  selectedOrderId: number = 0;
+  selectedOrderTotal: number=0;
+  Dialog: boolean;
   constructor(private auth :AuthService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
@@ -41,4 +48,21 @@ export class BackdataComponent implements OnInit {
     }
   )
   }
+  fnViewOrder(data){
+
+   this.selectedOrderId=data.id;
+  this.selectedOrderTotal = data.grossTotal;
+  this.cartData=data;
+  
+  this.Dialog=true;
+  }
+  delete(item:string) {
+    this.confirmationService.confirm({
+      message: 'Are you sure you want to delete '+ '?',
+      header: 'Confirm',
+      icon: 'pi pi-exclamation-triangle',
+      
+      });
+    }
 }
+
