@@ -7,6 +7,7 @@ import { OrderList } from '../../../models/orderList';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../service/auth.service';
 import { stringify } from 'querystring';
+import { Historydata } from '../../../models/historydata';
 
 @Component({
   selector: 'app-orders-list',
@@ -39,7 +40,7 @@ export class OrdersListComponent implements OnInit {
     this.authService.showLoader = false;
     });
   }
-  fnViewOrder(order: OrderList){
+  fnViewOrder(order: Historydata){
 
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
