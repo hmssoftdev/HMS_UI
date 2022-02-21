@@ -14,7 +14,7 @@
 
             </td>
             <td>
-                <img [src]="adminData.restaurentLogo" [alt]="adminData.restaurentLogo" width="120" class="resLogo">
+                <img [src]="adminData.restaurentLogo" *ngIf="adminData?.restaurentLogo" [alt]="adminData.restaurentLogo" width="120" class="resLogo">
                 <div class="p-col p-py-0"><strong>GSTIN: </strong>{{adminData.state}}</div>
                 <div class="p-col p-py-0"><strong>Voucher No: </strong>{{adminData.state}}</div>
                 <div class="p-col p-py-0"><strong>Date: </strong></div>
@@ -124,7 +124,7 @@
         </div>
         <div class="p-col-3 text-right p-text-bold smTxt">
             For, XYZ <br>
-            <img [src]="adminData.signature" width="100" [alt]="adminData.businessName">
+            <img [src]="adminData.signature" *ngIf="adminData?.signature" width="100" [alt]="adminData.businessName">
             <br>
             <button pButton type="button" label="Print" onclick="window.print()" class="p-button-outlined p-mt-2"></button>
         </div>

@@ -42,7 +42,7 @@
         align-items: center;
     }
     .p-dropdown {
-        width: 18rem;
+        // width: 18rem;
         font-weight: normal;
         .p-dropdown-label {
             font-size: 0.813rem;
@@ -320,6 +320,15 @@
     background-color: red;
 }
 
+.userFltrWrap{
+    justify-content: space-between;
+    .userFltr {
+        width: 70%;
+        .p-dropdown{
+            width: 100%;
+    }
+}
+}
 // Cart Items CSS
 ul.ulCart {
     list-style: none;

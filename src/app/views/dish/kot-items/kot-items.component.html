@@ -51,7 +51,7 @@
           <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-between;">
             <strong>Invoice No:</strong>
             <b style="margin-right:20px;"> {{myDate | date:'MMdd'}}</b> <img width="20px"
-             class="p-text-right" style="margin-left:41px;" height="15px" [src]="adminData.restaurentLogo"
+             class="p-text-right" style="margin-left:41px;" height="15px" *ngIf="adminData?.restaurentLogo" [src]="adminData.restaurentLogo"
               alt=""></div> 
               <div class="p-col p-py-0" style="font-size: 10px;"> <strong>Date: </strong> {{myDate | date:'MM/dd/yyyy'}}  <strong style="margin-left: 20px;">Time: </strong>{{todaysDataTime}}</div>
           <div class="p-col p-py-0" style="font-size: 10px;"><strong>Delivery Mode: </strong>{{ orderData.deliveryMode}} </div>  
@@ -124,7 +124,7 @@
       <tr>
         <td colspan="2" style="font-size: 10px;" class="b-top p-text-center p-text-bold b-dashed">
           
-         <img [src]="adminData.signature" height="30px" width="50px">
+         <img [src]="adminData.signature" *ngIf="adminData.signature" height="30px" width="50px">
        
          </td>
         <td colspan="4" style="font-size:5px;" class="b-top p-text-left b-dashed">
