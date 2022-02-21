@@ -185,7 +185,7 @@
                 }
             }
     }
-    .p-paginator{display: none;}
+    .p-paginator{}
 }
     }
  }
@@ -221,6 +221,23 @@
         }
         .custom-spinner{
             width: 50%;
+        }
+        .p-paginator .p-paginator-current {
+             margin-left: 0;
+            font-size: 0.6rem!important;
+        }
+     .p-paginator-page {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            color: #007bff;
+            min-width: 1.357rem;
+            height: 1.357rem;
+            margin: 0 0 0 -1px;
+        }
+        .p-inputtext {
+           
+            padding: 0.2rem 0.75rem !important;
+           
         }
     }
 }
