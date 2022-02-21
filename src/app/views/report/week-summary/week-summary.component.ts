@@ -10,6 +10,7 @@ import { TodaySale } from '../../../models/report';
 export class WeekSummaryComponent implements OnInit {
   dataa: graph;
   @Input() datagraph:graphs;
+  
 
   chartOptionss: any;
   constructor() { }
