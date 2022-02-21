@@ -288,12 +288,12 @@
             class="p-mr-4 p-inputtext-sm p-mb-2"
             id="userName"
             [options]="usercombine"
-            [(ngModel)]="selectedUsers"
+            [(ngModel)]="selectedUser"
             placeholder="Search for Number/Name"
             [filter]="true"
             [showClear]="true"
             optionLabel="contact"
-            optionValue="contact"
+            optionValue="id"
             filterBy="contact"
             filterMatchMode="contains"
           
@@ -312,10 +312,10 @@
           
         </div>
         <div class="p-grid">
-          <div class="p-col-12 p-text-left" style="text-transform: uppercase;">
+            <div class="p-col-12 p-text-left p-text-uppercase">
 
            <span> <strong>{{selectedUsers}}</strong> </span>
-          </div>
+          </div> 
          
           
          <!-- <p-table #d2 [value]="selectedUsers" styleClass="p-datatable-customcss"> 
@@ -550,18 +550,18 @@
   (onHide)="fnHideDiningTableM('diningTable')"
   [breakpoints]="{ '960px': '75vw', '640px': '100vw' }"
   [style]="{ width: '75vw' }"
-  closeOnEscape="true"
+ 
 >
 <ng-template pTemplate="header">
-<span>  <h4>Dining Table List</h4><strong> 
-  {{selectedTableID}}</strong></span>
+  <h4 class="p-m-0">Dining Table List<strong> 
+  {{selectedTableID}}</strong> </h4>
 </ng-template>
   <app-dining-table 
     (tableSelection)="fnTableSelection($event)">
   </app-dining-table>
 </p-dialog>
 <!-- Billing View -->
-<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '100%'}"
+<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
     <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeModal()">

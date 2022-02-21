@@ -124,14 +124,14 @@
       <tr>
         <td colspan="2" style="font-size: 10px;" class="b-top p-text-center p-text-bold b-dashed">
           
-         <img [src]="adminData.signature" *ngIf="adminData.signature" height="30px" width="50px">
+         <img [src]="adminData.signature" *ngIf="adminData?.signature" height="30px" width="50px">
        
          </td>
         <td colspan="4" style="font-size:5px;" class="b-top p-text-left b-dashed">
          
          This is an electronically generated purchase bill <br>
         <strong>Terms & Condition</strong>  <br>
-         {{adminData.termAndCondition}}
+         {{adminData?.termAndCondition}}
           
         </td>
         

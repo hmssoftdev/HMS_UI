@@ -26,32 +26,48 @@ export class DiningTableComponent implements OnInit {
     })
 }
   fnTblBook(tblItem){  
-    debugger
-      this.selectedTableID = [];
+    this.selectedTableID = [];
     if(tblItem.isBooked){
       this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
         if(resp){
-          console.log(resp);
-          this.cartService.save(resp); 
+          this.cartService.save(resp);
+          this.tableList.map((res:any) => { 
+            if(res.name === tblItem.name ){
+              tblItem.isBooked = true; 
+              this.selectedTableID.push(tblItem.name)
+             this.cartService.addTable(tblItem); 
+            }
+          });  
+         this.tableSelection.emit(this.selectedTableID)
+
         }
       })
     } else {
       tblItem.isBooked = true;
       this.tableSvc.updateSeat(tblItem).subscribe(resp =>{
+        this.tableList.map((res:any) => { 
+  this.tableList.map((res:any) => { 
+        this.tableList.map((res:any) => { 
+          if(res.name === tblItem.name ){
+            tblItem.isBooked = true; 
+      tblItem.isBooked = true; 
+            tblItem.isBooked = true; 
+            this.selectedTableID.push(tblItem.name)
+           this.cartService.addTable(tblItem); 
+     this.cartService.addTable(tblItem); 
+           this.cartService.addTable(tblItem); 
+          }
+        }); 
+  }); 
+        }); 
+      this.tableSelection.emit(this.selectedTableID)
+
     });
   } 
-  this.tableList.map((res:any) => { 
-    if(res.name === tblItem.name ){
-      tblItem.isBooked = true; 
-      this.selectedTableID.push(tblItem.name)
-     this.cartService.addTable(tblItem); 
-    }
-  }); 
-  this.tableSelection.emit(this.selectedTableID)
+  
 }
 fnTblRelease(tblItem) {
   tblItem.isBooked = false;
-  debugger
   // const index = this.selectedTableID.indexOf(tblItem.name, 0);
   // if (index > -1) {
   //   this.selectedTableID.splice(index, 1);

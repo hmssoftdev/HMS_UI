@@ -110,7 +110,7 @@ export class DishMenuNewComponent implements OnInit {
       this.userLists = res;
       this.usercombine = this.userLists.map(itm =>
         {
-          const nObj = {contact : itm.userName + " - "+ itm.contact}  
+          const nObj = {contact : itm.userName + " - "+ itm.contact, id:itm.id}  
           return nObj;
           
         }
@@ -118,7 +118,7 @@ export class DishMenuNewComponent implements OnInit {
       console.log(this.usercombine,"Hello");  
     });
   }
-table 
+  
   loadClient(){
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {
@@ -179,7 +179,7 @@ table
     } else {
       this.KOTEnabled = true;
     }
-    if(!this.selectedUser || this.userData.userType){
+    if(!this.selectedUser && this.userData.userType == 2){ 
       this.cartService.addUser(this.userData);
     }
     this.cartService.addDeliveryMode(s); 
@@ -188,11 +188,12 @@ table
   loadUserData() {
    this.usersList = this.userService.getUserList();
   }
-  userSelection(usercombine) 
+  userSelection(selectedUserId) 
   {
-    const userData= {no:parseInt(usercombine)}
-    console.log(userData,"hii");
-    this.cartService.addUser(userData);
+     let uContact = this.usercombine.filter((uItm:any) => selectedUserId== uItm.id)
+     this.selectedUsers = uContact[0].contact;
+     const uData = {id:parseInt(selectedUserId)} 
+     this.cartService.addUser(uData);
    
   }
   openNew() {
@@ -257,7 +258,7 @@ table
    }
 
   fnKOTPrint(resp) { 
-    this.fnLoadCartData();
+    this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
@@ -282,8 +283,7 @@ table
   fnBillPrint(order: OrderList){
     
     this.selectedPrintType = 'BillPrintUI';
-    debugger;
-    this.usercombine;
+   
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;
@@ -301,10 +301,11 @@ table
 
   fnTableSelection(arr:Array<Number>){ 
     this.KOTEnabled = true;
-    this.selectedTableNames = arr;    
+    this.selectedTableNames = arr;
+    this.diningTableDialog = false; 
+    this.fnLoadCartData();   
   }
-  fnHideDiningTableM(event){
-    console.log()
+  fnHideDiningTableM(event){ 
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:4000 });
     } else {
