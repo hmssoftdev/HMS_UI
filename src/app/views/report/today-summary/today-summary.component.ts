@@ -10,9 +10,9 @@ export class TodaySummaryComponent implements OnInit {
   sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
   constructor() { }
-  dateValue:Date;
-  dateValuee:Date;
-
+  startdate=new Date();
+  enddate=new Date();
+  allstartdate
   powercountstop:any= setInterval(()=>{
     this.powercount++;
     if(this.powercount==10)

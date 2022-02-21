@@ -7,10 +7,10 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         
         <th>Name</th>
         <th>Contact</th>
-        
+        <th>Date</th>
         <th>InvoiceNo</th>
-        <th>City</th>
-    
+        <th>Payment</th>
+        <th>Action</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
@@ -20,12 +20,20 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         <td>{{data.userMobileNumber}}</td>
        
         <td>
-         
+         {{date | date:'MM-dd-yy'}}
         </td>
         <td>
 
         </td>
-        
+        <td>
+
+        </td>
+        <td>
+          <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
+                             pTooltip="View"  tooltipPosition="left" (click)="fnViewOrder(data)"></button>
+                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
+                        (click)="delete(item)"  pTooltip="Delete " tooltipPosition="left"></button>
+        </td>
       </tr>
     </ng-template>
     <ng-template pTemplate="emptymessage"  >
@@ -36,4 +44,11 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       </tr>
   </ng-template>
   </p-table>
+  <p-dialog  [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+  [style]="{width: '52vw' }" [modal]="true" [(visible)]="Dialog">
+  <app-order-status *ngIf="Dialog" [orderId]="selectedOrderId"
+  [orderTotal]="selectedOrderTotal" [cartItems]="cartData">
+ </app-order-status>
+
+</p-dialog>
 

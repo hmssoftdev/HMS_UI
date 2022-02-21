@@ -16,3 +16,9 @@ table.tblInvoice tr th,table.tblInvoice tr td {
 .resLogo{
     float:right;
 }
+@media print {
+    .nonprintable{
+        display: none;
+    }
+
+}
