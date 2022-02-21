@@ -23,7 +23,8 @@
             label="UPI Payments" icon="pi pi-briefcase" (click)="fnUPIProceed()" class="p-px-5 p-py-3"></button>
     </div>
     <div *ngIf="paymentMode === 'UPI'" class="p-col-6" style="margin: auto;">
-        <img [src]="adminData.upiImage" alt="UPI" style="width: 200px; height: 200px;">
+        <img [src]="adminData.upiImage" *ngIf="adminData.upiImage" alt="UPI" style="width: 200px; height: 200px;">
+        <p class="p-text-danger p-text-small" *ngIf="!adminData.upiImage">UPI /QR code is not available. Kindly upload UPI code in the admin setting page.</p>
     </div>
 
     <div class="billing-separator p-col-12 p-my-2 p-p-0"></div>

@@ -1,22 +1,25 @@
 <div class="p-grid">
-    <div class="p-col-4 p-md-2 p-lg-2" *ngFor="let tblItem of tableList">
-        <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':!tblItem.isBooked}">
+    <div class="p-col-2" *ngFor="let tblItem of tableList">
+        <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':tblItem.isBooked}">
             <h2 class="tblHead">{{tblItem.name}}</h2>
-            <p class="txtSeats"><span class="p-text-small">Seats-</span> <span>{{tblItem.seat}}</span> </p>
-            <p class="txtShape"><span> Shape - </span> <span> {{tblItem.shape}} </span>  </p>
-            <p class="txtHallType"><span class="p-text-small">Hall type - </span> <span> {{tblItem.isAc === true? 'AC': 'Non AC'}} </span> </p>
+            <p class="txtSeats"> {{tblItem.seat}}<span class="p-text-small">seats</span></p>
+            <p class="txtShape">{{tblItem.shape}} <span> - spape</span></p>
+            <p class="txtHallType">{{tblItem.isAc === true? 'AC': 'Non AC'}}<span class="p-text-small"> - Hall type</span></p>
             <div class="btnWrapper">
-                
-                <button pButton class="p-button-outlined p-button-text-only" closable="true" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left">
+                <!-- <button pButton class="p-button-outlined p-button-text-only" (click)="fnTblBook(tblItem)">Select</button>
+                <button pButton class="p-button-outlined p-button-text-only">Join Table</button> -->
 
-                </button>
+                <button pButton class="p-button-outlined p-button-text-only" closable="true" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left"></button>
                 <button pButton (click)="showBasicDialog()" class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"></button>
-                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times"  (click)="fnTblRelease(tblItem)"></button>
+                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times" (click)="fnTblRelease(tblItem)"></button>
+           
             </div>
         </div>
     </div>
     
 </div>
+<!-- <p *ngIf="selectedTableID.length"> Selected Table name's : <strong>{{selectedTableID}}</strong></p> -->
+
 <p-dialog header="Select Table"  [(visible)]="displayBasic" [style]="{width: '50vw'}" [baseZIndex]="10000">
     <div class="p-grid">
         <div class="p-col-2" *ngFor="let tblItem of tableList">
@@ -30,7 +33,3 @@
         <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
     </ng-template>
 </p-dialog>
-<p *ngIf="selectedTableID.length"> Selected Table name's : <strong>
-    {{selectedTableID}}
-
-</strong></p>
