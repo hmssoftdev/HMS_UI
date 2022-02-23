@@ -1,8 +1,10 @@
+
 <div class="p-grid p-mt-6">
-  <div class="p-col-3 p-text-center">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <div class="p-col-3 md:col-12 p-text-center">
   <strong class="text-2xl">History Data</strong>
   </div>
-  <div class="p-col-6 p-text-center">
+  <div class="p-col-6 md:col-12 p-text-center">
 
  <p-calendar [(ngModel)]="mindate" placeholder="Select From" class="p-text-center mr-2" dateFormat="yy-mm-dd">
 
@@ -14,7 +16,7 @@
   <button pButton pRipple type="button" (click)="getHistorydata()" class="p-button-raised p-button-success p-button-outlined ml-2">Get Data</button>
 </div>
 
-  <div class="p-col-3 p-text-center">
+  <div class="p-col-3 md:col-4 p-text-center">
     <button pButton type="button" (click)="getweekdata()" label="Week" class="p-button-outlined mr-2"></button>
     <button pButton type="button" label="Month" (click)="getmonthdata()" class="p-button-outlined ml-2"></button>
   </div>
