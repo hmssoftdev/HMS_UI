@@ -1,0 +1,21 @@
+@media all and (max-width: 320px) {
+    .text-xl{
+        font-size: 1rem !important;
+    }
+    .text-6xl {
+        font-size: 1.8rem !important;
+    }
+    :host::ng-deep{
+        .p-card-content {
+               padding: 0% !important;
+           }
+   .p-card-body{
+   padding: 0% !important;
+   
+           }
+          
+   
+       }
+
+}
+

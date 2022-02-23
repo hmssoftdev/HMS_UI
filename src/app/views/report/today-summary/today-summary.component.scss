@@ -1,0 +1,58 @@
+// @media all and (max-width: 768px) {
+//     body {
+//       width: 20%;
+//     }
+//     .dining{
+//         width: 20%;
+//     }
+//   }
+@media all and (max-width: 768px) {
+    .col-4 {
+      
+        padding: 0.1rem !important ;
+  
+    }
+    .text-3xl {
+        font-size: 0.8rem !important;
+    }
+    :host::ng-deep{
+        
+        .p-card .p-card-body {
+            padding: 0% !important;
+        }
+        .text-xl{
+            font-size: 0.8rem !important ;
+        }
+
+    }
+   
+}
+@media all and (max-width: 320px) {
+    .p-card  {
+        padding: -0.25rem;
+    }
+    .col-4 {
+      
+        padding: 0.1rem !important ;
+  
+    }
+    .text-3xl {
+        font-size: 0.8rem !important;
+    }
+    :host::ng-deep{
+     .p-card-content {
+            padding: 0% !important;
+        }
+.p-card-body{
+padding: 0% !important;
+
+        }
+        .text-xl{
+            font-size:.6rem !important ;
+        }
+
+    }
+   
+}
+
+
