@@ -9,21 +9,21 @@
                 <div class="p-inputgroup p-mb-4">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                     <input type="password" pInputText name="Old Password" class="form-control" placeholder="Old Password"
-                    formControlName="oldpwsd" id="passwordd" type="password" required>
+                    formControlName="oldpwsd" tooltipPosition="bottom" id="passwordd" pTooltip="Should Match to Old Password" type="password" required>
                 </div> 
             </div>
             <div class="col-12 md:col-6 lg:col-4">
                 <div class="p-inputgroup p-mb-4">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                     <input type="password" pInputText name="NewPassword" class="form-control" placeholder="New Password"
-                autocomplete="current-password" formControlName="newpassword" id="password" type="password" pTooltip="Should Match to Confirm Password" required>
+                autocomplete="current-password" tooltipPosition="right" formControlName="newpassword" id="password" type="password" pTooltip="Should Match to Confirm Password" required>
         
                   </div>
             </div>
             <div class="col-12 md:col-6 lg:col-4">
                 <div class="p-inputgroup p-mb-4">
                     <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
-                    <input type="password" pInputText name="ConfirmPassword" formControlName="confirm_password" pTooltip="Should Match to New Password" id="confirm_password" type="password"
+                    <input type="password" tooltipPosition="right" pInputText name="ConfirmPassword" formControlName="confirm_password" pTooltip="Should Match to New Password" id="confirm_password" type="password"
                     class="form-control" placeholder="Confirm Password" autocomplete="current-password" required>
         
                   </div>
@@ -44,9 +44,9 @@
     <p-accordionTab header="Theme">
         <div class="grid">
             <div class="col-12 p-text-center">
-                <span class="float right">
-                    <label for="isVeg">Colour </label>
-                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                <span class="float right" >
+                    <label for="isVeg">Colour</label>
+                    <p-inputSwitch [(ngModel)]="setting.theme" class="p-mx-2"></p-inputSwitch>
                     <label for="isVeg">Dark</label>
                 </span>
             </div>
@@ -56,13 +56,13 @@
         <div class="grid">
             <div class="col-6">
                 <span class="float left">
-                    <label>Menu Display Card With Images?</label>
+                    <label >Menu Display Card With Images?</label>
                 </span>
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
                     <label for="isVeg">No </label>
-                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <p-inputSwitch [(ngModel)]="setting.menuDisplay" class="p-mx-2"></p-inputSwitch>
                     <label for="isVeg">Yes</label>
                 </span>
             </div>
@@ -79,7 +79,7 @@
             <div class="col-6 p-text-center">
                 <span class="float right">
                     <label for="isVeg">No </label>
-                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                    <p-inputSwitch [(ngModel)]="setting.billWithGST" class="p-mx-2"></p-inputSwitch>
                     <label for="isVeg">Yes</label>
                 </span>
             </div>
@@ -95,7 +95,7 @@
                 <div class="col-6 p-text-center">
                     <span class="float right">
                         <label for="isVeg">No </label>
-                        <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                        <p-inputSwitch [(ngModel)]="setting.billWithCustomer" class="p-mx-2"></p-inputSwitch>
                         <label for="isVeg">Yes</label>
                     </span>
                 </div>
@@ -110,7 +110,7 @@
     <div class="col-6 p-text-center">
         <span class="float right">
             <label for="isVeg">No </label>
-            <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+            <p-inputSwitch [(ngModel)]="setting.billWithLOGO" class="p-mx-2"></p-inputSwitch>
             <label for="isVeg">Yes</label>
         </span>
     </div>
@@ -125,7 +125,7 @@
                 <div class="col-6 p-text-center">
                     <span class="float right">
                         <label for="isVeg">No </label>
-                        <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+                        <p-inputSwitch  [(ngModel)]="setting.billWithSeal" class="p-mx-2"></p-inputSwitch>
                         <label for="isVeg">Yes</label>
                     </span>
                 </div>
@@ -143,7 +143,7 @@
                         
         <span class="float right">
             <label for="isVeg">No </label>
-            <p-inputSwitch class="p-mx-2"></p-inputSwitch>
+            <p-inputSwitch [(ngModel)]="setting.billWithSign" class="p-mx-2"></p-inputSwitch>
             <label for="isVeg">Yes</label>
         </span>
                 </div>
@@ -190,9 +190,9 @@
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
-                    <label for="isVeg">No </label>
-                    <p-inputSwitch class="p-mx-2"></p-inputSwitch>
-                    <label for="isVeg">Yes</label>
+                    <label for="want">No </label>
+                    <p-inputSwitch class="p-mx-2" name="want"></p-inputSwitch>
+                    <label for="want">Yes</label>
                 </span>
             </div>
         </div>
@@ -217,6 +217,6 @@
 
 <div class="grid">
     <div class="col-12 p-text-center mt-2">
-<button pButton type="button" label="Submit"></button>
+<button pButton type="button" (click)="saveSettings()" label="Submit"></button>
     </div>
 </div>

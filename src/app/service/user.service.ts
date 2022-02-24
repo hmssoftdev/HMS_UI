@@ -7,13 +7,17 @@ import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
 import { Historydata } from '../models/historydata';
+import { setting } from '../models/setting';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   url = `${ApiConfig.URL}${ApiConfig.USER}`;
+  usersetting=`${ApiConfig.URL}${ApiConfig.USERSETTING}`;
   orderUrl = `${ApiConfig.URL}${ApiConfig.ORDER}`;
   cityUrl = `${ApiConfig.URL}${ApiConfig.CITY}`
   stateUrl = `${ApiConfig.URL}${ApiConfig.STATE}`
@@ -21,12 +25,14 @@ export class UserService {
   public feedback: UserFeedback | undefined;
   public feedbackList: UserFeedback[] = []
   public user: User | undefined;
+  public userssetting:setting;
   public userList: User[] = [];
   modalSubject = new Subject();
   histdata :Historydata[]=[];
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
+  setting:setting[]=[];
   constructor(private http: HttpClient) { }
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(
@@ -101,6 +107,16 @@ export class UserService {
       })
     )
   }
+  getusersetting(userid:number):Observable<setting>{
+    return this.http.get<setting>(`${this.usersetting}?UserId=${userid}`).pipe(
+      map(x => {
+        this.userssetting = x;
+        return this.userssetting;
+      })
+    )
+  }
+
+
   // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
   getBillHistory(userid :number,maxdate :string,mindate:string): Observable<Historydata[]> {
     return this.http.get<Historydata[]>
@@ -135,4 +151,25 @@ export class UserService {
       catchError(this.handleError('', feedback))
     );
   }
+
+  postusersetting(settings:setting):Observable<setting>{
+    return this.http.post<setting>(`${this.usersetting}`,settings).pipe(
+      map(x =>{
+       
+        return settings;
+      }),
+      catchError(this.handleError('',settings))
+    );
+  }
+  putusersetting(setting:setting){
+    return this.http.put(`${this.usersetting}`,setting).pipe(
+      map(resp => 
+        {
+         console.log(resp);
+        }
+          ),
+      catchError(this.handleError('',))
+    )
+  }
+
 }

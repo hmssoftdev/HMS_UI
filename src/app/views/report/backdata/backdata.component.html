@@ -2,32 +2,48 @@
 [rows]="10" [showCurrentPageReport]="true" [loading]="loading"  [rowHover]="true" dataKey="id"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
 [rowsPerPageOptions]="[10,25,50]">
-    <ng-template pTemplate="header">
+    <ng-template pTemplate="header" class="text-center">
       <tr>
         
         <th>Name</th>
         <th>Contact</th>
-        <th>Date</th>
-        <th>InvoiceNo</th>
+        <th >Date</th>
+        <th >InvoiceNo</th>
         <th>Payment</th>
+        <th>Amount</th>
         <th>Action</th>
       </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-data>
+    <ng-template pTemplate="body" class="text-center" let-data>
       <tr>
         
-        <td>{{data.userName}}</td>
+        
+        <td ng-repeat="data in data">
+          <span *ngIf="data.userName">{{data.userName}}</span>
+          <span *ngIf="!data.userName">-</span>
+          </td>
         <td>{{data.userMobileNumber}}</td>
        
         <td>
-         {{date | date:'MM-dd-yy'}}
+          
+         {{date | date:'dd-MM-yy'}}
         </td>
-        <td>
-
-        </td>
-        <td>
-
-        </td>
+      
+          <td  ng-repeat="data in data">
+            <span *ngIf="data.invoice">{{data.invoice}}</span>
+            <span *ngIf="!data.invoice">-</span>
+            </td>
+      
+     
+          <td  ng-repeat="data in data">
+            <span *ngIf="data.payment">{{data.payment}</span>
+            <span *ngIf="!data.payment">-</span>
+            </td>
+            <td  ng-repeat="data in data">
+              <span *ngIf="data.itemTotal">{{data.itemTotal}}</span>
+              <span *ngIf="!data.itemTotal">-</span>
+              </td>
+      
         <td>
           <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                              pTooltip="View"  tooltipPosition="left" (click)="fnViewOrder(data)"></button>
