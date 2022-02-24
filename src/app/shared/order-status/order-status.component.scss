@@ -10,6 +10,13 @@
     background: #6c757d;
     border: 1px solid #6c757d;
 }
+:host::ng-deep{
+    .p-tabview-panel{
+        display: flex;
+        justify-content: center;
+        align-items: center;
+    }
+}
 .custom-marker.status-completed{
     color: #ffffff;
     background: #28a745;
@@ -34,4 +41,29 @@
 }
 .dashedBorderT{
     border-top: 1px dashed #dcdcdc;
+}
+@media print {
+    .status{
+        display: none;
+
+    }
+    :host::ng-deep{
+        .p-dialog{ .p-dialog-header{
+            display: none;
+        }
+        .p-dialog-header-icon{
+            display: none;
+        }
+    }
+        .p-tabview .p-tabview-nav{
+            display: none;
+        }
+    }
+    .invoice
+{
+    margin: 0%;
+    display: block;
+    width: 100% !important;
+}
+
 }

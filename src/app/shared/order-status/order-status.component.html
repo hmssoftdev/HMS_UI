@@ -1,7 +1,7 @@
 <div class="p-card">
 
 	<p-tabView>
-		<p-tabPanel header="Order Status" >
+		<p-tabPanel header="Order Status" class="status">
 			<div class="p-grid"  >
 				<div class="p-col-6 borderR" >
 					<h2 class="orderNumber p-my-2">Order: {{orderId}}</h2>
@@ -52,14 +52,16 @@
 					<div class="p-d-flex p-jc-end p-m-2 dashedBorderT">
 						<button pButton pRipple label="Cancel Order" type="button" icon="pi pi-times"
 							class="p-button-danger p-button-raised p-mt-3" (click)="fnCancelOrder()"></button>
+							
 					</div>
 				</div>
 
 			</div>
+			
 		</p-tabPanel>
-		<p-tabPanel header="Invoice">
-			<div class="p-col-12">
-
+		<p-tabPanel header="Invoice" class="invoice" >
+			<div class="p-col-6">
+				
 				<app-invoice *ngIf="adminData" [adminData]="adminData" [orderItem]="orderItem" [cartItems]="cartItems"></app-invoice>
 			</div>
 		</p-tabPanel>

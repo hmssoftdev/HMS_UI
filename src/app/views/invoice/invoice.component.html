@@ -1,4 +1,4 @@
-<div class="" *ngIf="adminData">
+<div class="invoice" *ngIf="adminData" >
     <table class="tblInvoice">
         <tr>
             <td colspan="2" class="p-text-center">
@@ -126,7 +126,7 @@
             For, XYZ <br>
             <img [src]="adminData.signature" *ngIf="adminData?.signature" width="100" [alt]="adminData.businessName">
             <br>
-            <button pButton type="button" label="Print" onclick="window.print()" class="p-button-outlined p-mt-2"></button>
+            <button pButton type="button" label="Print" (click)="printing()" class="p-button-outlined p-mt-2 print"></button>
         </div>
 
     </div>

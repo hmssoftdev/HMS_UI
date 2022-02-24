@@ -22,7 +22,7 @@ export class OrderStatusComponent implements OnInit {
   showInvoice: boolean = false;
   constructor(private adminService: AdminService,
     private orderSvc: CartService) { }
-
+    showKOTItems:boolean=true;
   ngOnInit(): void {
     console.log(this.orderId);
     console.log(this.orderTotal);
@@ -69,6 +69,13 @@ export class OrderStatusComponent implements OnInit {
       this.adminData = resp[0];
     })
   }
+  printinvoice()
+  {
+    setTimeout(function () {
+      window.print();
+    },1000)
+  }
+  
 
   fnCancelOrder() {
     // Do something

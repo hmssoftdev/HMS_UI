@@ -64,7 +64,7 @@ import { BarChartComponent } from './views/report/bar-chart/bar-chart.component'
 
 import { TopCustDataComponent } from './views/report/top-cust-data/top-cust-data.component';
 import { WeekSummaryComponent } from './views/report/week-summary/week-summary.component';
-
+import { FooditemComponent } from './views/report/fooditem/fooditem.component';
 import { HistorydataComponent } from './views/report/historydata/historydata.component';
 import { TopdataComponent } from './views/report/topdata/topdata.component';
 import { SettingComponent } from './views/setting/setting.component';
@@ -103,6 +103,7 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
   declarations: [
     AppComponent, 
     ReportComponent,
+    FooditemComponent,
     WeekSummaryComponent,
     TodaySummaryComponent,
     P404Component,

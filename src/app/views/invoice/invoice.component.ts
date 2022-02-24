@@ -22,4 +22,10 @@ export class InvoiceComponent implements OnInit {
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
     // console.log(this.cartItems.grossTotal);
   }
+  printing(){
+    setTimeout(function () {
+      window.print();
+    },1000)
+  }
+  
 }
