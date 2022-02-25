@@ -144,7 +144,11 @@ private dispatch(cart: ShoppingCart): void {
 public addTable(table){
   const cart = this.retrieve();
   cart.tableIds = [];
+  if(table.isBooked){
   cart.tableIds.push(table.id)
+  } else {
+    cart.tableIds = [];
+  }
  // cart.tableId = table.id;
   this.save(cart);
 }
@@ -158,9 +162,11 @@ public addDeliveryMode(deliveryMode:string){
       break;
     case 'Home Delivery':
       dMid = 2;
+      cart.tableIds = [];
       break;
     case 'Take Away':
       dMid = 3;
+      cart.tableIds = [];
       break;
   }
   cart.deliveryOptionId = dMid;

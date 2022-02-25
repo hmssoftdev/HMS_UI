@@ -11,7 +11,7 @@
 
                 <button pButton class="p-button-outlined p-button-text-only" closable="true" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left"></button>
                 <button pButton (click)="showBasicDialog()" class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"></button>
-                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times" (click)="fnTblRelease(tblItem)"></button>
+                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times" [disabled]="!tblItem.isBooked" (click)="fnTblRelease(tblItem)"></button>
            
             </div>
         </div>

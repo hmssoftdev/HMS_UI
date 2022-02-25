@@ -50,13 +50,8 @@ export class TableService {
     );
   }
 
-  updateSeat(table): Observable<Hotel> {
-    return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).pipe(
-      map(resp => { 
-        return resp;
-      }),
-      catchError(this.handleError('', table))
-    );
+  updateSeat(table) {
+    return this.http.put<Hotel>(`${this.url}/updateSeat` ,table).toPromise();
   }
   deleteData(id: number): Observable<Hotel> {
     return this.http.delete<Hotel>(`${this.url}?id=${id}`).pipe(

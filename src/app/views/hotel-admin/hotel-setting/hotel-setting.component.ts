@@ -77,7 +77,9 @@ this.adminId=this.auth.userData().adminId;
       })
     } else {
       tblItem.isBooked = true;
-      this.tableSvc.updateSeat(tblItem).subscribe(resp => {});
+      this.tableSvc.updateSeat(tblItem).then(resp => {
+        console.log('Seat updates')
+      }, err => {console.log("seat upadates error", err)});
       this.tableOperation(tblItem);
     }
     // this.ref.close(tblItem);
@@ -89,7 +91,9 @@ this.adminId=this.auth.userData().adminId;
     if (index > -1) {
       this.selectedTableID.splice(index, 1);
       this.cartService.tableOperation(this.selectedTableID);
-      this.tableSvc.updateSeat(tblItem).subscribe(resp => {});
+      this.tableSvc.updateSeat(tblItem).then(resp => {
+        console.log('Seat updates')
+      }, err => {console.log("seat upadates error", err)});
     }
   }
 

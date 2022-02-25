@@ -26,43 +26,41 @@ export class DiningTableComponent implements OnInit {
     })
 }
   fnTblBook(tblItem){  
-    this.selectedTableID = [];
+   
     if(tblItem.isBooked){
       this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
         if(resp){
           this.cartService.save(resp);
-          this.tableList.map((res:any) => { 
-            if(res.name === tblItem.name ){
+           this.selectedTableID = [];
+          this.tableList.map((res:any,i) => { 
+            
+            if(res.name === tblItem.name ){ 
               tblItem.isBooked = true; 
               this.selectedTableID.push(tblItem.name)
              this.cartService.addTable(tblItem); 
             }
           });  
-         this.tableSelection.emit(this.selectedTableID)
+           const tblData = {tblArr:this.selectedTableID, tblSelectionType:'addUpdateTbl'}
+           this.tableSelection.emit(tblData) 
 
         }
       })
     } else {
       tblItem.isBooked = true;
-      this.tableSvc.updateSeat(tblItem).subscribe(resp =>{
-        this.tableList.map((res:any) => { 
-  this.tableList.map((res:any) => { 
-        this.tableList.map((res:any) => { 
-          if(res.name === tblItem.name ){
-            tblItem.isBooked = true; 
-      tblItem.isBooked = true; 
-            tblItem.isBooked = true; 
-            this.selectedTableID.push(tblItem.name)
-           this.cartService.addTable(tblItem); 
-     this.cartService.addTable(tblItem); 
-           this.cartService.addTable(tblItem); 
-          }
-        }); 
-  }); 
-        }); 
-      this.tableSelection.emit(this.selectedTableID)
-
-    });
+      this.tableSvc.updateSeat(tblItem).then(resp =>{
+        this.selectedTableID = [];
+        if(resp){
+          this.tableList.map((res:any,i) => { 
+            if(res.name === tblItem.name ){ 
+              tblItem.isBooked = true; 
+              this.selectedTableID.push(tblItem.name)
+             this.cartService.addTable(tblItem); 
+            }
+          });  
+           const tblData = {tblArr:this.selectedTableID, tblSelectionType:'addUpdateTbl'}
+           this.tableSelection.emit(tblData) 
+        }
+    }, err => {console.log(err)});
   } 
   
 }
@@ -72,7 +70,9 @@ fnTblRelease(tblItem) {
   // if (index > -1) {
   //   this.selectedTableID.splice(index, 1);
     // this.cartService.tableOperation(this.selectedTableID);
-    this.tableSvc.updateSeat(tblItem).subscribe(resp => {});
+    this.tableSvc.updateSeat(tblItem).then(resp => {
+        console.log('Seat updates')
+      }, err => {console.log("seat upadates error", err)});;
     this.tableList.map((res:any) => { 
       if(res.name === tblItem.name ){
         tblItem.isBooked = false; 
@@ -80,7 +80,8 @@ fnTblRelease(tblItem) {
       //  this.cartService.addTable(tblItem); 
       }
     }); 
-    this.tableSelection.emit(this.selectedTableID)
+    const tblData = {tblArr:this.selectedTableID, tblSelectionType:'releaseTbl'}
+    this.tableSelection.emit(tblData)
   // }
 } 
 showBasicDialog() {

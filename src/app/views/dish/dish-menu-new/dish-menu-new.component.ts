@@ -21,8 +21,7 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 })
 export class DishMenuNewComponent implements OnInit {
   dishes: Dish[];
-  sendId: number;
-  Deliverymode:string[]=[];
+  sendId: number; 
   rawDishCategoyItems: DishCategory[];
   dishCategory: any;
   sortField: string;
@@ -114,8 +113,7 @@ export class DishMenuNewComponent implements OnInit {
           return nObj;
           
         }
-      )
-      console.log(this.usercombine,"Hello");  
+      ) 
     });
   }
   
@@ -190,7 +188,7 @@ export class DishMenuNewComponent implements OnInit {
   }
   userSelection(selectedUserId) 
   {
-     let uContact = this.usercombine.filter((uItm:any) => selectedUserId== uItm.id)
+     let uContact = this.usercombine.filter((uItm:any) => selectedUserId== uItm.id) 
      this.selectedUsers = uContact[0].contact;
      const uData = {id:parseInt(selectedUserId)} 
      this.cartService.addUser(uData);
@@ -212,10 +210,9 @@ export class DishMenuNewComponent implements OnInit {
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp => this.cartItems = resp); 
    if(this.cartItems.id){
-     console.log(this.cartItems.id, 'cartID');
+     
      this.isKOTdone = true;
-   }
-   console.log('CARTSERVICE GET fnLoadCartData', this.cartItems) 
+   } 
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -226,14 +223,15 @@ export class DishMenuNewComponent implements OnInit {
   emptyCart(){
     this.cartService.empty();
     //this.subCartItems.unsubscribe();
+    this.selectedUser = null;
+    this.selectedUsers = '';
     this.deliveryMode = '';
     this.KOTEnabled = false;
     this.isKOTdone = false;
   }
   fnMakePayment(){
     this.fnLoadCartData();
-    this.cartItems.userId = this.selectedUser;
-    console.log(this.cartItems.userId);
+    this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
     // console.log(this.cartItems);
@@ -299,11 +297,15 @@ export class DishMenuNewComponent implements OnInit {
     this.obs.unsubscribe();
   }
 
-  fnTableSelection(arr:Array<Number>){ 
-    this.KOTEnabled = true;
-    this.selectedTableNames = arr;
-    this.diningTableDialog = false; 
-    this.fnLoadCartData();   
+  fnTableSelection(arr:any){ 
+      const tblArr = arr.tblArr;
+      this.KOTEnabled = true; 
+      this.selectedTableNames = tblArr;
+      if(arr.tblSelectionType != 'releaseTbl'){ 
+      this.diningTableDialog = false;
+      }
+      this.fnLoadCartData();
+    
   }
   fnHideDiningTableM(event){ 
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
