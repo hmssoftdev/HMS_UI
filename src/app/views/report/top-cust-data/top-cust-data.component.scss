@@ -1,7 +1,8 @@
 @media screen and (max-width: 320px){
-    .chartjs-size-monitor{
-            flex: 1 0 auto;
-        }
+    .line{
+        flex: 1rem !important;
+        padding: 0.5rem;
+    }
     .text-6xl {
         font-size: 1.4rem !important;
     }
