@@ -13,7 +13,9 @@
                                 (click)="fnToggle(i+1)" [ngClass]="{'open':lblMenuToggle == (i+1)}">
                                 <div class="pro-inner-item" role="button" tabindex="0"><span class="pro-icon-wrapper">
                                         <span class="pro-icon"><i class="{{mItem.icon}}"></i></span></span>
-                                    <span class="pro-item-content">{{mItem.name}}</span> <span
+                                    <span class="pro-item-content">{{mItem.name}}</span>
+
+                                     <span
                                         class="pro-arrow-wrapper"><span class="pro-arrow"></span></span>
                                 </div>
                                 <div class="react-slidedown pro-inner-list-item"
@@ -21,11 +23,15 @@
                                     <div>
                                         <ul>
                                             <ng-container *ngFor="let subItem of mItem.subItems">
-                                            <li class="pro-menu-item" routerLinkActive="active" 
+                                            <li  class="pro-menu-item" routerLinkActive="active" 
                                             *ngIf="subItem.access.indexOf(userType) > -1"
-                                                [routerLink]="subItem.routing">
-                                                <div class="pro-inner-item" tabindex="0" role="button"><span
-                                                        class="pro-item-content">{{subItem.name}}</span></div>
+                                                [routerLink]="subItem.routing" >
+                                                <div class="pro-inner-item" tabindex="0" role="button">
+                                                    <span (click)="lblMenuToggle=1"
+                                                        class="pro-item-content">{{subItem.name}}
+                                                        </span>
+                                                        <span class="itemtitle">{{subItem.title}}</span>
+                                                    </div>
                                             </li>                                           
 
                                         </ng-container>
@@ -39,10 +45,11 @@
                                 <div class="pro-inner-item" role="button" tabindex="0"><span class="pro-icon-wrapper">
                                         <span class="pro-icon"><i class="{{mItem.icon}}"></i></span></span>
                                     <span class="pro-item-content">{{mItem.name}}</span>
+                                    <span class="itemtitle">{{mItem.title}}</span>
                                 </div>
                             </li>
                         </ng-container>
-
+                       
                     </ul>
                 </nav>
             </div>
