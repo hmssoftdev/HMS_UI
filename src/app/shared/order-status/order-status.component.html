@@ -1,7 +1,7 @@
 <div class="p-card">
 
 	<p-tabView>
-		<p-tabPanel header="Order Status" class="status">
+		<p-tabPanel header="Order Status">
 			<div class="p-grid"  >
 				<div class="p-col-6 borderR" >
 					<h2 class="orderNumber p-my-2">Order: {{orderId}}</h2>
@@ -59,7 +59,7 @@
 			</div>
 			
 		</p-tabPanel>
-		<p-tabPanel header="Invoice" class="invoice" >
+		<p-tabPanel header="Invoice" >
 			<div class="p-col-6">
 				
 				<app-invoice *ngIf="adminData" [adminData]="adminData" [orderItem]="orderItem" [cartItems]="cartItems"></app-invoice>

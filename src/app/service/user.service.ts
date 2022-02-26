@@ -32,7 +32,7 @@ export class UserService {
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
-  setting:setting[]=[];
+
   constructor(private http: HttpClient) { }
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(
