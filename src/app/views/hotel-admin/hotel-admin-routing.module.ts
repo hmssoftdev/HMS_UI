@@ -18,7 +18,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-  path: 'settings',
+  path: 'billingcategory',
   component: HotelSettingComponent,
   data: {
     title: 'Hotel Admin Setting',

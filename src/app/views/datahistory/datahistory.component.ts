@@ -28,7 +28,7 @@ export class DatahistoryComponent implements OnInit {
   orderItem: OrderItem[] = [];
   adminData: Admin;
   cartData: OrderList;
-  
+  id:number;
  
   selectedOrderId: number = 0;
   selectedOrderTotal: number=0;
@@ -54,9 +54,22 @@ export class DatahistoryComponent implements OnInit {
       return this.historydata;
     }
   )
+  this.enumService.getPaymentMode(this.id);
   }
 getDeliveryMode(id:number) : string{
  return this.enumService.getDeliveryOptStr(id);
+}
+getPaymentMode(n:number){
+  let strVal= '-';
+  switch(n){
+    case 1:
+      strVal = 'Cash';
+      break;
+    case 2:
+      strVal = 'UPI';
+      break;   
+  }
+  return strVal;
 }
 
 fnViewOrder(data){

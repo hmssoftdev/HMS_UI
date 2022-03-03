@@ -201,17 +201,17 @@
                 <div class="p-field p-col-12">                                        
                     <label for="description">Description</label>
                     <textarea id="description" #desc="ngModel" name="description" pInputTextarea
-                        [(ngModel)]="dish.description" required rows="3" cols="20"></textarea>
+                        [(ngModel)]="dish.description"  rows="3" cols="20"></textarea>
                     <div *ngIf="desc.touched && desc.invalid && f.submitted"><small class="p-error"
                             *ngIf="desc.errors.required">Description is required.</small></div>
 
                 </div>
             </div>
-            <div class="p-d-flex p-jc-end">
+            <div class="p-d-flex justify-content-center">
                 <button pButton pRipple label="Save" icon="pi pi-check"
-                    class="p-button p-button-raised p-mx-1"></button>
-                <button pButton pRipple label="Cancel" type="reset" icon="pi pi-times"
-                    class="p-button-danger p-button-raised" (click)="hideDialog()"></button>
+                    class="p-button p-button-raised p-mx-1 mr-2"></button>
+                <button pButton pRipple label="Reset" type="reset" icon="pi pi-times"
+                   class="p-button-danger p-button-raised ml-1"></button>   <!--(click)="hideDialog()" -->
             </div>
         </form>
     </ng-template>

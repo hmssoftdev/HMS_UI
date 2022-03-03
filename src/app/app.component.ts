@@ -7,6 +7,10 @@ import { freeSet } from '@coreui/icons';
 import { AuthService } from './service/auth.service';
 import { StorageService } from './service/storage.service';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { UserService } from './service/user.service';
+import { setting } from './models/setting';
+import { CommonService } from './service/common.service';
+import { SettingComponent } from './views/setting/setting.component';
 
 @Component({
   // tslint:disable-next-line
@@ -19,11 +23,13 @@ export class AppComponent implements OnInit {
   @ViewChild(SidebarComponent) private sideBarComp:SidebarComponent;
   storage: Storage;
   isLoggedin:boolean; 
+  // setting:setting;
   constructor(
     private router: Router,
     public iconSet: IconSetService,
     public authService:AuthService,
-    private storageService: StorageService
+    private user:UserService,
+    private storageService: StorageService,private users: UserService,private cmser:CommonService
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
@@ -43,6 +49,7 @@ export class AppComponent implements OnInit {
       this.authService.uLoggedInSubject$.subscribe(resp => this.uLoggedIn = resp)
   } else {
     this.storage.setItem('HMSUserData',JSON.stringify({userType:4}))
+    
   }
     
     this.router.events.subscribe((evt) => {
@@ -51,8 +58,14 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-  }
+    // this.fnFetchingApi();
+// this.user.getusersetting(this.authService.userData().adminId).subscribe(x=>{
+// this.setting=x;
+// console.log(this.setting);
+// })
+//  this.setting=this.cmser.getsettingData();
 
+  }
   fnMenuSBarClick(){
     this.sideBarComp.fnToggleSidebar(); 
   }
