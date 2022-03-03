@@ -13,6 +13,8 @@ import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
 import { OrderList } from '../../../models/orderList';
 import { DiningTableComponent } from '../dining-table/dining-table.component';
+import { CommonService } from '../../../service/common.service';
+import { setting } from '../../../models/setting';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -66,9 +68,10 @@ export class DishMenuNewComponent implements OnInit {
     userLists:User[] = [];
   usercimbine: string[];
   usercombine:  Array<any>;
-   
+  image:boolean=true;
+   data:setting;
   constructor(
-  
+    private comset:CommonService,
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
     private dataService: ShareDataService,
@@ -78,10 +81,38 @@ export class DishMenuNewComponent implements OnInit {
     private msgService: MessageService,
     public adminService: AdminService,
     public userSvc: UserService,
+    private auth:AuthService
     ) { }
 
   ngOnInit(): void {
     
+  this.userService.getusersetting(this.auth.userData().adminId).subscribe
+  (x=>{
+    this.data=x
+  })
+  // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
+  //   this.data=x;
+  //   console.log(this.data);
+  //   if(this.data.menuDisplay===0){
+  //     this.image=false
+  //   }
+  //   })
+//  this.comset.CommonSetting$.subscribe(x=>{
+//   this.data=x;
+
+// })
+
+
+// if(this.data.menuDisplay === 0)
+// {
+//   this.image=false;
+// }
+
+// else if(this.data === null){
+//   this.image=true
+// }
+    
+      
     this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
@@ -103,6 +134,7 @@ export class DishMenuNewComponent implements OnInit {
         this.selectedTableID = x;
     });
   } 
+  
   loadData(){
     this.userSvc.getUserList().subscribe(res => {
 
@@ -198,6 +230,8 @@ export class DishMenuNewComponent implements OnInit {
     this.user = {};
     this.submitted = false;
     this.userDialog = true;
+   
+
   }
   fnSaveUser(event){
     //this.usersList = event;

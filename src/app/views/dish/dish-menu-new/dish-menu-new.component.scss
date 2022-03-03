@@ -281,7 +281,7 @@
         }
     }
     .dataViewOpt, p-paginator{
-        display: none;
+        
     }
     .p-dataview .p-dataview-header{
         padding:0.5rem;
@@ -406,6 +406,18 @@ li:last-child{
     :host ::ng-deep .product-list-item {
         flex-direction: column;
         align-items: center;
+        .p-paginator .p-paginator-current {
+            margin-left: 0;
+           font-size: 0.6rem!important;
+       }
+    .p-paginator-page {
+           background-color: #fff;
+           border: 1px solid #dee2e6;
+           color: #007bff;
+           min-width: 1.357rem;
+           height: 1.357rem;
+           margin: 0 0 0 -1px;
+       }
         img {
             width: 100%;
             margin: 0.75rem 0;

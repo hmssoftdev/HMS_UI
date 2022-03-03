@@ -7,10 +7,11 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         
         <th>Name</th>
         <th>Contact</th>
-        <th>Price
+        <th>Item Count
         </th>
-        <th>Mode</th>
-        <th>Total Bill</th>
+        <!-- <th>Mode</th> -->
+        <th>Amount</th>
+        <th>Payment Mode</th>
         <th>Action</th>
       </tr>
     </ng-template>
@@ -19,11 +20,12 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         
         <td>{{data.userName}}</td>
         <td>{{data.userMobileNumber}}</td>
-        <td>{{data.grossTotal}}</td>
-        <td>
+        <td>{{data.itemCount}}</td>
+        <!-- <td>
           {{getDeliveryMode(data.deliveryOptionId)}}
-        </td>
-        <td>{{data.itemTotal}}</td>
+        </td> -->
+        <td>  {{data.grossTotal}} </td>
+        <td> {{getPaymentMode(data.paymentMode)}}</td>
         <td>
           <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                              pTooltip="View"  tooltipPosition="left" (click)="fnViewOrder(data)"></button>

@@ -28,6 +28,10 @@ import {
 import {
   setting
 } from '../../models/setting';
+import {
+  CommonService
+} from '../../service/common.service';
+import { Observable } from 'rxjs';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -37,9 +41,10 @@ export class SettingComponent implements OnInit {
   mssg: Message[];
   form: FormGroup;
   userid: number;
-  setting: setting ;
-  want=true;
-  constructor(private users: UserService, private authService: AuthService,
+  setting:setting;
+  want = true;  
+  set:setting;
+  constructor(private users: UserService, private authService: AuthService, private comset: CommonService,
     private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
     this.form = fb.group({
 
@@ -61,7 +66,7 @@ export class SettingComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
   }
   fnFetchingApi() {
@@ -70,20 +75,18 @@ export class SettingComponent implements OnInit {
         if (x != null)
           this.setting = x;
         else {
-          this.setting =this.getDefaultSetting()
+          this.setting = this.getDefaultSetting()
         }
       }
     )
 
   }
 
-  postdata() {
 
-  }
-
-  getDefaultSetting():setting{
-    let s:setting = {
-      id:0,theme:0
+getDefaultSetting(): setting {
+    let s: setting = {
+      id:0,
+      theme:0
     }
     return s;
   }
@@ -97,20 +100,21 @@ export class SettingComponent implements OnInit {
     this.setting.billWithLOGO =Number(this.setting.billWithLOGO);
     this.setting.billWithSeal =Number(this.setting.billWithSeal);
     this.setting.billWithSign =Number(this.setting.billWithSign);
-    if(this.setting.id==0)
-    this.user.postusersetting(this.setting).subscribe(
-      x=>{
-        console.log(x);
-      }
-    );
-    else 
-    this.user.putusersetting(this.setting).subscribe(
-      x=>{
-        console.log(x);
-      }
-    );
-    
+    if (this.setting.id==0)
+      this.user.postusersetting(this.setting).subscribe(
+        x => {
+          console.log(x);
+        }
+      );
+    else
+      this.user.putusersetting(this.setting).subscribe(
+        x => {
+          console.log(x);
+        }
+      );
+
     console.log(this.setting);
+    // this.comset.CommonSetting$.next(this.setting);
   }
 
   changework() {
@@ -121,21 +125,15 @@ export class SettingComponent implements OnInit {
 
   }
   updatingpass() {
-
-    let userdetail = {
+        let userdetail = {
       npwd: this.form.value.newpassword,
       oldpwd: this.form.value.oldpwsd,
-      Id: this.userid
-    }
+      Id: this.userid}
     let newpwd = {
       npwd: this.form.value.newpassword
     }as any;
-    let opwd = {
-      oldpwd: this.form.value.oldpwsd
-    }as any;
-    let id = {
-      Id: this.userid
-    }as any;
+    let opwd = {oldpwd: this.form.value.oldpwsd}as any;let id = {
+      Id: this.userid}as any;
     console.log(userdetail, "hello");
     this.user.updatepassword(this.form.value.oldpwsd, this.form.value.newpassword, this.userid).subscribe(x => {
       console.log(x);

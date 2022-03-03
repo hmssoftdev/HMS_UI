@@ -4,12 +4,12 @@
         <p-tabView class="col-md-12 p-m-3">
             <p-tabPanel header="Advanced Table Booking">
                 <div class="p-grid">
-                    <div class="p-col-2" *ngFor="let tblItem of tableList">
+                    <div class="p-col-4 p-md-3 p-lg-2" *ngFor="let tblItem of tableList">
                         <div class="tblBox p-shadow-1 p-p-md-2" [ngClass]="{'booked':!tblItem.isBooked}">
                             <h2 class="tblHead">{{tblItem.name}}</h2>
-                            <p class="txtSeats"> {{tblItem.seat}}<span class="p-text-small">seats</span></p>
-                            <p class="txtShape">{{tblItem.shape}} <span> - shape</span></p>
-                            <p class="txtHallType">{{tblItem.isAc === true? 'AC': 'Non AC'}}<span class="p-text-small"> - Hall type</span></p>
+                            <p class="txtSeats"><span class="p-text-small">Seats</span>{{tblItem.seat}}</p>
+                            <p class="txtShape"><span class="p-text-small">Shape -</span>{{tblItem.shape}}</p>
+                            <p class="txtHallType"><span class="p-text-small">Hall type -</span>{{tblItem.isAc === true? 'AC': 'Non AC'}}</p>
                             <div class="btnWrapper">
                                 
                                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left">

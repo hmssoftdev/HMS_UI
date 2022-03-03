@@ -71,8 +71,8 @@
         <ng-template let-dish pTemplate="listItem">
           <div class="p-col-12" *ngIf="dish.status === 'active'">
             <div class="product-list-item">
-              <div class="imgWrap">
-          <img [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
+              <div *ngIf="image" class="imgWrap">
+          <img  [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
                 <span
                   class="icnBookmark"
                   (click)="fnBookmarkMenu(dish)"
@@ -165,7 +165,7 @@
                 <!-- <span [class]="'product-badge status-' + dish.statuses.toLowerCase()">{{dish.statuses}}</span> -->
               </div>
               <div class="product-grid-item-content">
-                <div class="p-mb-2 imgWrap">
+                <div *ngIf="image" class="p-mb-2 imgWrap">
                   <img [src]="dish.imageUrl" alt="{{ dish.name }}" />
                   <span
                     class="icnBookmark"

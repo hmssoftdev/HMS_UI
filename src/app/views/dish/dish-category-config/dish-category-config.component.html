@@ -74,9 +74,9 @@
                     <div *ngIf="gstCompliance.touched && gstCompliance.invalid && f.submitted"> <small class="p-error" *ngIf="gstCompliance.errors.required">GST compliance is required.</small></div>
                 </div>
             </div>
-            <div class="p-d-flex p-jc-end">
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised p-mx-1"></button>
-                <button pButton pRipple label="Cancel" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" (click)="hideDialog()"></button>
+            <div class="p-d-flex justify-content-center">
+                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised p-mx-1 p-mr-2"></button>
+                <button pButton pRipple label="Reset" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" ></button> <!--(click)="hideDialog()"-->
             </div>
         </form>
     </ng-template>
