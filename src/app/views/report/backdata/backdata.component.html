@@ -1,8 +1,12 @@
-<p-table responsiveLayout="stack" [value]="historydata" [responsive]="true" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
+<div class="p-grid">
+<p-table responsiveLayout="stack" [value]="historydata" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
 [rows]="10" [showCurrentPageReport]="true" [loading]="loading"  [rowHover]="true" dataKey="id"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-[rowsPerPageOptions]="[10,25,50]">
+[rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="250px"
+[virtualScroll]="true" [virtualRowHeight]="40">
+
     <ng-template pTemplate="header" class="text-center">
+     
       <tr>
         
         <th>Name</th>
@@ -19,9 +23,10 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
         
         
         <td ng-repeat="data in data">
-          <span *ngIf="data.userName">{{data.userName}}</span>
+        <span *ngIf="data.userName">{{data.userName}}</span>
           <span *ngIf="!data.userName">-</span>
           </td>
+          
         <td>{{data.userMobileNumber}}</td>
        
         <td>
@@ -29,14 +34,14 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
          {{date | date:'dd-MM-yy'}}
         </td>
       
-          <td  ng-repeat="data in data">
+          <td class="date"  ng-repeat="data in data">
             <span *ngIf="data.invoice">{{data.invoice}}</span>
             <span *ngIf="!data.invoice">-</span>
             </td>
       
      
           <td  ng-repeat="data in data">
-            <span *ngIf="data.payment">{{data.payment}</span>
+            <span *ngIf="data.payment">{{data.payment}}</span>
             <span *ngIf="!data.payment">-</span>
             </td>
             <td  ng-repeat="data in data">
@@ -44,7 +49,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
               <span *ngIf="!data.itemTotal">-</span>
               </td>
       
-        <td>
+        <td class="but">
           <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                              pTooltip="View"  tooltipPosition="left" (click)="fnViewOrder(data)"></button>
                         <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
@@ -60,6 +65,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
       </tr>
   </ng-template>
   </p-table>
+</div>
   <p-dialog  [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
   [style]="{width: '52vw' }" [modal]="true" [(visible)]="Dialog">
   <app-order-status *ngIf="Dialog" [orderId]="selectedOrderId"
