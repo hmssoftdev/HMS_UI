@@ -45,10 +45,10 @@
                         *ngIf="pincode.errors.required">User Address is required.</small></div>
             </div>
         </div>
-        <div class="p-card-footer p-text-right">
-            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised"></button>
+        <div class="p-card-footer p-d-flex justify-content-center">
+            <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised p-mr-2"></button>
             <button pButton pRipple label="Reset" icon="pi pi-refresh" class="p-button-danger p-button-raised"
-                (click)="reset()"></button>
+                type="reset"></button>
         </div>
     </form>
 </div>

@@ -33,7 +33,7 @@ export class UserFormComponent implements OnInit {
     this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.getStates();
     this.getCities();
-     
+     this.user.contact='0';
   }
   getCities() {
     this.commonSvc.getCities().subscribe(x => {
