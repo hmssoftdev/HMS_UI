@@ -31,6 +31,12 @@ export class SidebarComponent implements OnInit {
         style:'Font-size:1rem',
         subItems: [
           {
+            name:'Dish Category Config',
+            routing:'/dish/dish-category-config',
+            access:roleConfig.authRoles.admin,
+            title:'Dish Category Config'
+          },
+          {
             name:'Dish Config',
             routing:'/dish',
             access:roleConfig.authRoles.admin,
@@ -42,11 +48,12 @@ export class SidebarComponent implements OnInit {
             access:roleConfig.authRoles.guest,
             title:'Dish Menu'
           },
+          
           {
-            name:'Dish Category Config',
-            routing:'/dish/dish-category-config',
+            name:'Table Config',
+            routing:'/table-configuration',
             access:roleConfig.authRoles.admin,
-            title:'Dish Category Config'
+            title:'Table Config'
           },
           {
             name:'Order List',
@@ -68,24 +75,24 @@ export class SidebarComponent implements OnInit {
             access:roleConfig.authRoles.admin,
             title:'User Config'
           },
-          {
-            name:'Table Config',
-            routing:'/table-configuration',
-            access:roleConfig.authRoles.admin,
-            title:'Table Config'
-          },
+          // {
+          //   name:'Table Config',
+          //   routing:'/table-configuration',
+          //   access:roleConfig.authRoles.admin,
+          //   title:'Table Config'
+          // },
           {
             name:'User Feedback',
             routing:'/users/user-feedback',
             access:roleConfig.authRoles.user,
             title:'User Feedback'
-          },
-          {
-            name:'Order Status',
-            routing:'/order-status',
-            access:roleConfig.authRoles.user,
-            title:'Order Status'
-          } 
+          }
+          // {
+          //   name:'Order Status',
+          //   routing:'/order-status',
+          //   access:roleConfig.authRoles.user,
+          //   title:'Order Status'
+          // } 
         ]
       },
       {
@@ -104,14 +111,14 @@ export class SidebarComponent implements OnInit {
         title:'Setting',
         subItems: []
       },
-      {
-        name:'Help',
-        routing:'/help',
-        access:roleConfig.authRoles.admin,
-        icon:'pi pi-slack',
-        title:'Help',
-        subItems: []
-      },
+      // {
+      //   name:'Help',
+      //   routing:'/help',
+      //   access:roleConfig.authRoles.admin,
+      //   icon:'pi pi-slack',
+      //   title:'Help',
+      //   subItems: []
+      // },
       {
         name:'Language',
         routing:'/language',
@@ -121,23 +128,31 @@ export class SidebarComponent implements OnInit {
         subItems: []
       },
       {
-        name:'Hotel Admin',
-        routing:'/hotel-admin',
+        name:'Help',
+        routing:'/help',
         access:roleConfig.authRoles.admin,
-        icon:'pi pi-users',
-        title:'Hotel Admin',
+        icon:'pi pi-slack',
+        title:'Help',
         subItems: []
-      }, 
+      },
+      // {
+      //   name:'Hotel Admin',
+      //   routing:'/hotel-admin',
+      //   access:roleConfig.authRoles.admin,
+      //   icon:'pi pi-users',
+      //   title:'Hotel Admin',
+      //   subItems: []
+      // }, 
      
     
-      {
-        name:'Master Admin',
-        routing:'/admin-setting',
-        access:roleConfig.authRoles.sa,
-        icon:'pi pi-id-card',
-        title:'Master Admin',
-        subItems: []
-      }
+      // {
+      //   name:'Master Admin',
+      //   routing:'/admin-setting',
+      //   access:roleConfig.authRoles.sa,
+      //   icon:'pi pi-id-card',
+      //   title:'Master Admin',
+      //   subItems: []
+      // }
     ]
 
   }
