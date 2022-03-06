@@ -297,6 +297,9 @@ export class DishMenuNewComponent implements OnInit {
     this.cartItems.orderStatus.push(orderS) 
  // }) 
   this.currentOrderId = null;
+  // this.cartItems.orderItems.map(oItm => {
+  //   oItm.kotPrinted = true; 
+  // })
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     this.currentOrderId = resp.orderId;
     this.cartService.addOrderId(this.currentOrderId);

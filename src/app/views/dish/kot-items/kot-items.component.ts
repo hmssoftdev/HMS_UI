@@ -34,7 +34,7 @@ selectedTableID: Array < any > = [];
   ngOnInit(): void {
     this.selectedTableID = [];
    
-    console.log(this.adminData, 'AdminData');
+    console.log(this.adminData, 'AdminData', this.orderData);
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
     // console.log(this.cartItems.grossTotal);
   }
