@@ -11,7 +11,7 @@
 
                 <button pButton class="p-button-outlined p-button-text-only" closable="true" pTooltip="Select" type="button" icon="pi pi-table" (click)="fnTblBook(tblItem)" iconPos="left"></button>
                 <button pButton (click)="showBasicDialog()" class="p-button-outlined p-button-text-only" pTooltip="Join" type="button" icon="pi pi-user-plus" iconPos="left"></button>
-                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times" [disabled]="!tblItem.isBooked" (click)="fnTblRelease(tblItem)"></button>
+                 <button pButton class="p-button-outlined p-button-text-only" pTooltip="Unselect" type="button" icon="pi pi-times" [disabled]="!tblItem.isBooked" (click)="fnTblReleaseConfirm(tblItem)"></button>
            
             </div>
         </div>
@@ -33,3 +33,5 @@
         <p-button icon="pi pi-times" (click)="displayBasic=false" styleClass="p-button-text" label="No"></p-button>
     </ng-template>
 </p-dialog>
+
+<p-confirmDialog header="Confirmation" icon="pi pi-exclamation-triangle"></p-confirmDialog>

@@ -369,6 +369,7 @@
                   pButton
                   type="button"
                   icon="pi pi-minus"
+                  [disabled]="item.kotPrinted"
                   (click)="removeItem(item)"
                   class="
                     p-button-secondary
@@ -385,6 +386,7 @@
                   pButton
                   type="button"
                   icon="pi pi-plus"
+                  [disabled]="item.kotPrinted"
                   (click)="addItem(item)"
                   class="
                     p-button-success
