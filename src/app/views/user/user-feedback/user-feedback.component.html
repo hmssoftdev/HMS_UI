@@ -39,11 +39,12 @@
     </div>
 </div> -->
 <p-toast position="bottom-right"></p-toast>
-
-<p-dialog header="Add Review" [(visible)]="displayDialog" [style]="{width: '50vw'}" [baseZIndex]="10000">
-    <ng-template pTemplate="content">
+<div class="form">
+<p-dialog header="Add Review" [(visible)]="displayDialog" [style]="{width: '50vw'}" [baseZIndex]="10000" >
+    <ng-template pTemplate="content" >
         <div class="p-grid">
             <div class="p-col">
+                
                 <h5>Rating</h5>
                 <p-rating name="rating" #rating="ngModel" [(ngModel)]="userFeedback.rating" [cancel]="false" required>
                 </p-rating>
@@ -154,12 +155,12 @@
                         <a href="#"><i class="pi pi-share-alt" style="width:1.2rem" id="edit"></i><label
                                 for="edit">Share</label></a>
                     </div>
+           
                 </div>
             </div>
-    
+       
     </div>
 </div>
-
 
 
 
