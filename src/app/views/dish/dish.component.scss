@@ -1,12 +1,15 @@
 
 
-
+.p-inputtext {
+    margin: 8px;
+}
   :host ::ng-deep {
     .card {
         .card-header{
             padding:0 0.75rem;
         }
     }
+    
     .pToolbar{
         .p-toolbar{
             background-color:transparent;
