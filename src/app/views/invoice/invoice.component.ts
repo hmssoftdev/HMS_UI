@@ -1,3 +1,4 @@
+import { formatDate } from '@angular/common';
 import { Component, Input, OnInit } from '@angular/core';
 import { Admin } from '../../models/admin';
 import { OrderItem } from '../../models/orderList';
@@ -14,6 +15,10 @@ export class InvoiceComponent implements OnInit {
   @Input() adminData: Admin
   @Input() orderItem: OrderItem;
   @Input() cartItems;
+ 
+
+  myDate = new Date();
+  todaysDataTime:string= '';
   // public cartItems: ShoppingCart; 
   constructor( public adminService: AdminService,private cartService: CartService) { }
   ngOnInit(): void {
@@ -21,6 +26,7 @@ export class InvoiceComponent implements OnInit {
     console.log(this.adminData, 'AdminData');
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
     // console.log(this.cartItems.grossTotal);
+    this.todaysDataTime = formatDate(this.myDate, 'hh:mm:ss a', 'en-US', '+0530');
   }
   printing(){
     setTimeout(function () {

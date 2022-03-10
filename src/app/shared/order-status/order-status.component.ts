@@ -19,6 +19,7 @@ export class OrderStatusComponent implements OnInit {
   orderStatusData: OrderStatusData[] = [];
   orderItem: OrderItem[] = [];
   adminData: Admin;
+  label:boolean=false;
   showInvoice: boolean = false;
   constructor(private adminService: AdminService,
     private orderSvc: CartService) { }
@@ -68,6 +69,9 @@ export class OrderStatusComponent implements OnInit {
     this.adminService.getAdmin().subscribe(resp => {
       this.adminData = resp[0];
     })
+  }
+  invoiceshow(){
+    this.label=true;
   }
   printinvoice()
   {

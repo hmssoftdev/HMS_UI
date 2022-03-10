@@ -10,13 +10,13 @@
     background: #6c757d;
     border: 1px solid #6c757d;
 }
-:host::ng-deep{
-    .p-tabview-panel{
-        display: flex;
-        justify-content: center;
-        align-items: center;
-    }
-}
+// :host::ng-deep{
+//     .p-tabview-panel{
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//     }
+// }
 .custom-marker.status-completed{
     color: #ffffff;
     background: #28a745;
@@ -47,8 +47,16 @@
         display: none;
 
     }
+    body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
+        display: none !important;
+    }
+
+   
     :host::ng-deep{
         .p-dialog{ .p-dialog-header{
+            display: none;
+        }
+        .p-dialog-header-close-icon{
             display: none;
         }
         .p-dialog-header-icon{
@@ -58,12 +66,13 @@
         .p-tabview .p-tabview-nav{
             display: none;
         }
-    }
+    
     .invoice
 {
     margin: 0%;
     display: block;
-    width: 100% !important;
+    
 }
+    }
 
 }
