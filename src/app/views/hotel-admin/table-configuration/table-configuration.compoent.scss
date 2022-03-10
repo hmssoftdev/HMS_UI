@@ -102,3 +102,40 @@
 }
 
 }
+@media screen and (max-width:160px){
+    :host ::ng-deep {
+   .p-dialog{
+    width: 100vw!important;
+   } 
+   .p-radiobutton {
+    width: 2px;
+    height: 2px;
+}
+.p-radiobutton-box {
+    border: 2px solid #ced4da;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    color: #212529;
+    border-radius: 50%;
+    transition: background-color .15s,border-color .15s,box-shadow .15s;
+}
+   .p-field>label {
+    display: inline-block!important ;
+    font-size: xx-small!important;
+    margin-bottom: 0%!important;
+}
+.p-formgroup-inline .p-field-checkbox>label{
+    display: inline-flex!important;
+    font-size: xx-small;
+}
+    .p-formgroup-inline .p-field-radiobutton>label, .p-formgroup-inline .p-field>label {
+   
+    display: contents!important;
+}
+.p-card-footer{
+    text-align: center!important;
+}
+}
+
+}
