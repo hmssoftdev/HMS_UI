@@ -9,13 +9,13 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
      
       <tr>
         
-        <th>Name</th>
-        <th>Contact</th>
-        <th >Date</th>
-        <th >InvoiceNo</th>
-        <th>Payment</th>
-        <th>Amount</th>
-        <th>Action</th>
+        <th>{{'Name'|translate}}</th>
+        <th>{{'Contact'|translate}}</th>
+        <th >{{'Date'|translate}}</th>
+        <th >{{'InvoiceNo'|translate}}</th>
+        <th>{{'Payment'|translate}}</th>
+        <th>{{'Amount'|translate}}</th>
+        <th>{{'Action'|translate}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" class="text-center" let-data>
@@ -60,7 +60,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     <ng-template pTemplate="emptymessage"  >
       <tr>
           <td colspan="6" class="p-text-center">
-             <span> No records found</span>
+             <span> {{'No records found'|translate}}</span>
           </td>
       </tr>
   </ng-template>

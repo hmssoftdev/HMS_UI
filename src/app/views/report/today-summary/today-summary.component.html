@@ -1,9 +1,12 @@
 <div class="p-grid">
     <div class="p-col-12 p-md-6 p-text-center"> 
         <strong>
+
+
+            
             <p-card [style]="{'background':'var(--blue-200)'}">
                 
-                <b><span class="text-2xl">Today Bill</span> <br>
+                <b><span class="text-2xl">{{'Total Bill' | translate}}</span> <br>
                 <strong class="text-3xl">{{powercount}}</strong></b>
             
             </p-card>
@@ -13,7 +16,7 @@
                 <p-card [style]="{'background':'var(--teal-200)'}" 
                 [ngClass]="'dining'"
                 >
-                   <b><span class="text-xl">Dining</span>
+                   <b><span class="text-xl">{{'Dining' | translate}}</span>
                     <br>
                     <strong class="text-3xl">{{powercount}}</strong></b> 
 
@@ -21,7 +24,7 @@
             </div>
             <div class="col-4 md:col-5">
                  <p-card [style]="{'background':'var(--yellow-200)'}">
-                   <b><span class="text-xl">Home Delivery</span>
+                   <b><span class="text-xl">{{'Home Delivery'| translate}}</span>
                     <br>
                     <strong class="text-3xl">{{powercount}}</strong></b> 
                  </p-card>
@@ -29,7 +32,7 @@
             <div class="col-4 md:col-4">
                 <p-card [style]="{'background':'var(--indigo-200)'}">
                     
-                  <b><span class="text-xl">TakeAway</span>
+                  <b><span class="text-xl">{{'TakeAway'| translate}}</span>
                     <br>
                     <strong class="text-3xl">{{powercount}}</strong></b>
 
@@ -41,7 +44,7 @@
     <div class="p-col-12 p-md-6  p-text-center">
         <strong>
             <p-card [style]="{'background':'var(--blue-200)'}">
-                <b><span class="text-2xl">Today Amount</span><br>
+                <b><span class="text-2xl">{{'Today Amount'| translate}}</span><br>
                     <strong class="text-3xl">{{powercount}}</strong></b>
             </p-card>
         </strong>
@@ -49,7 +52,7 @@
             <div class="col-4 md:col-3">
                 <p-card [style]="{'background':'var(--teal-200)'}">
                  
-                   <b> <span class="text-xl"> Dining</span>
+                   <b> <span class="text-xl">{{'Dining'| translate}}</span>
                     <br>
                     <strong class="text-3xl">{{powercount}}</strong></b>
                     
@@ -57,7 +60,7 @@
             </div>
             <div class="col-4 md:col-5">
                  <p-card [style]="{'background':'var(--yellow-200)'}">
-                     <b><span class="text-xl">Home Delivery</span>
+                     <b><span class="text-xl">{{'Home Delivery'| translate}}</span>
                         <br>
                         <strong class="text-3xl">{{powercount}}</strong> </b>
                     
@@ -65,7 +68,7 @@
             </div>
             <div class="col-4 md:col-4">
                 <p-card [style]="{'background':'var(--indigo-200)'}">
-                    <b><span class="text-xl">TakeAway</span>
+                    <b><span class="text-xl">{{'TakeAway'|translate}}</span>
                         <br>
                         <strong class="text-3xl">{{powercount}}</strong></b>
                     

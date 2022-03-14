@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpClientModule } from '@angular/common/http';
-
+import {HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 // import { ButtonsModule } from 'ngx-bootstrap/buttons'; 
@@ -105,7 +106,14 @@ import {AccordionModule} from 'primeng/accordion';
     ChartModule,
     ProgressSpinnerModule,
     ToggleButtonModule,
-    AccordionModule
+    AccordionModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports:[
     CommonModule,
@@ -160,3 +168,6 @@ import {AccordionModule} from 'primeng/accordion';
   providers:[MessageService, ConfirmationService]
 })
 export class SharedModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

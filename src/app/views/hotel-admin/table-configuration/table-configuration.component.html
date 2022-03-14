@@ -1,5 +1,6 @@
 <div class="p-card">
     <div class="card-header">
+        
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
@@ -22,7 +23,7 @@
                     <th>
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th>Name
+                    <th>{{'Name' | translate}}
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
                     <th>Seat</th>

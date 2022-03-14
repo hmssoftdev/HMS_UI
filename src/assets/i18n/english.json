@@ -1,0 +1,54 @@
+{
+    
+    "Total Bill": "Total Bill",
+    "Dining":"Dining",
+    "Home Delivery":"Home Delivery",
+    "TakeAway":"TakeAway",
+    "Today Amount":"Today Amount",
+    "History Data":"History Data",
+    "Most Food Item Sale":"Most Food Item Sale",
+    "Food Item":"Food Item",
+    "Total Quantity":"Total Quantity",
+    "Total Amount":"Total Amount",
+    "Today Summary":"Today Summary",
+    "Number of repeated customer":"Number of repeated customer",
+    "Month Summary":"Month Summary",
+    "Top Customer wtih most Bill and Amount":"Top Customer wtih most Bill and Amount",
+    "Week Summary":"Week Summary",
+    "Name":"Name",
+    "Contact":"Contact",
+    "Date":"Date",
+    "InvoiceNo":"InvoiceNo",
+    "Payment":"Payment",
+    "Amount":"Amount",
+    "Action":"Action",
+    "No records found":"No records found",
+    "Email":"Email",
+    "City":"City",
+    "Pincode":"Pincode",
+
+
+    "Light":"Light",
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    "NameError": "I am sure you must have a name!",
+ 
+    "PhoneNo": "Phone No",
+    "Password": "Password",
+    "Bio": "Enter bio",
+    "TermsConditions": "I agree to terms and conditions.",
+    "Submit": "Submit"
+}

@@ -6,6 +6,7 @@ import { HotelAdminRoutingModule } from './hotel-admin-routing.module';
 import { HotelSettingComponent } from './hotel-setting/hotel-setting.component';
 import { TableConfigurationComponent } from './table-configuration/table-configuration.component';
 import { DatahistoryComponent } from '../datahistory/datahistory.component'
+import { TranslateModule } from '@ngx-translate/core';
 
 
 @NgModule({
@@ -13,7 +14,8 @@ import { DatahistoryComponent } from '../datahistory/datahistory.component'
   imports: [
     CommonModule,
     SharedModule,
-    HotelAdminRoutingModule
+    HotelAdminRoutingModule,
+    TranslateModule
   ]
 })
 export class HotelAdminModule { }
