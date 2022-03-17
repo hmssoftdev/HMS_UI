@@ -7,7 +7,7 @@ import { ShareDataService } from '../../service/share-data.service';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
-
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'dish-Component',
   templateUrl: './dish.component.html',
@@ -27,7 +27,23 @@ export class DishComponent implements OnInit {
     private shareData: ShareDataService,
     private http: HttpClient,
     private commonMethod: CommonMethodsService,
-    private authService: AuthService) { }
+    private authService: AuthService,
+    public translate:TranslateService) { 
+      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+      
+
+
+      translate.use('english')
+      translate.use('hindi')
+      translate.use('gujrati')
+      translate.use('bengali')
+
+
+
+    }
+    // switchLang(lang) {
+    //   this.translate.use(lang);
+    // }
   dishList: Dish[] = [];
   uploadedFiles: any[] = [];
   dish: Dish;

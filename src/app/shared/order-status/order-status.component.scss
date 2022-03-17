@@ -43,34 +43,59 @@
     border-top: 1px dashed #dcdcdc;
 }
 @media print {
-    .status{
+ .noprint{
+     display: none;
+ }
+    app-invoice{
+        position: relative;
+        display :flex;
+        padding: 0%;
+    }
+    .nonprint{
         display: none;
+    }
+    .status{
+        visibility: hidden;
 
     }
+
     body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
-        display: none !important;
+        visibility: hidden;
     }
 
    
     :host::ng-deep{
-        .p-dialog{ .p-dialog-header{
-            display: none;
+        .p-dialog{
+                padding: 0%!important;
+            
+            .p-dialog-header{
+            visibility: hidden;
+
+        }
+        .p-button.p-button-outlined{
+            visibility: hidden;
+        }
+        .p-button-outlined{
+            display:none !important;
+        }
+        .p-dialog-content{
+           visibility: hidden !important;
         }
         .p-dialog-header-close-icon{
-            display: none;
+            visibility: hidden;
         }
         .p-dialog-header-icon{
-            display: none;
+            visibility: hidden;
         }
     }
         .p-tabview .p-tabview-nav{
-            display: none;
+            visibility: hidden;
         }
     
     .invoice
 {
     margin: 0%;
-    display: block;
+    visibility: visible;
     
 }
     }

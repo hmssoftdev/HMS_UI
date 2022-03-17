@@ -135,6 +135,7 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
     LanguageComponent,
     HelpComponent
   ],
+  exports:[TranslateModule],
   providers: [
     AuthService,
     AuthGuard,

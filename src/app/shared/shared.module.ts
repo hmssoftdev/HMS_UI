@@ -162,8 +162,8 @@ import {AccordionModule} from 'primeng/accordion';
     ProgressSpinnerModule,
     ChartModule,
     ToggleButtonModule,
-    AccordionModule
-
+    AccordionModule,
+    TranslateModule,
   ],
   providers:[MessageService, ConfirmationService]
 })

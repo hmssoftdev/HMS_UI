@@ -11,9 +11,9 @@
             <div class="p-col-6 p-text-right"> 
               
                     <span class="form-inline">
-                      <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)">
+                      <select class="form-control" #selectedLang (change)="switchLang(selectedLang.value)" (click)="msgToSib()">
                         <option *ngFor="let language of translate.getLangs()" [value]="language"
-                          [selected]="language === translate.currentLang">
+                          [selected]="language === translate.currentLang" >
                           {{ language }}
                         </option>
                       </select>

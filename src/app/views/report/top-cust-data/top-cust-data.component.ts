@@ -3,6 +3,8 @@ import * as moment from 'moment';
 import { graph, graphs } from '../../../models/graphs';
 import { TodaySale } from '../../../models/report';
 import { AuthService } from '../../../service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+import { updateConstructor } from 'typescript';
 
 @Component({
   selector: 'app-top-cust-data',
@@ -15,7 +17,7 @@ export class TopCustDataComponent implements OnInit {
   datagraph:graphs;
   id:number;
   @Input() todaySale :TodaySale;
-  constructor(private auth:AuthService) { }
+  constructor(private auth: AuthService ,private translate:TranslateService) {}
   startdate:string='';
   enddate:string='';
   date= new Date;

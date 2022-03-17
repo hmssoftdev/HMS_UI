@@ -6,8 +6,9 @@ import { OrderStatus, ShoppingCart } from '../../../models/shopping-cart';
 import { OrderList } from '../../../models/orderList';
 import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../service/auth.service';
-import { stringify } from 'querystring';
+
 import { Historydata } from '../../../models/historydata';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-orders-list',
@@ -27,8 +28,17 @@ export class OrdersListComponent implements OnInit {
     private dishSvc: DishService,
     private orderService: CartService,
     private msgService: MessageService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,
+   public translate:TranslateService,
+    ) { 
+      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+    translate.setDefaultLang('english');
+        
+             
+    }
+    switchLang(lang: string) {
+      this.translate.use(lang);
+    }
 
   ngOnInit(): void {
     this.authService.showLoader = true;

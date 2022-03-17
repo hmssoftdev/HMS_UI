@@ -73,6 +73,11 @@ export class OrderStatusComponent implements OnInit {
   invoiceshow(){
     this.label=true;
   }
+  printing(){
+    setTimeout(x=>{
+      window.print()
+    },1000)
+  }
   printinvoice()
   {
     setTimeout(function () {

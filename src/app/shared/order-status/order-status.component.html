@@ -1,7 +1,7 @@
 <div class="p-card">
 
 	<p-tabView>
-		<p-tabPanel header="Order Status">
+		<p-tabPanel header="Order Status" class="noprint">
 			<div class="p-grid"  >
 				<div class="p-col-6 borderR" >
 					<h2 class="orderNumber p-my-2">Order: {{orderId}}</h2>
@@ -10,7 +10,7 @@
 						<table class="p-col-12" >
 							<thead>
 								<tr>
-									<th>Name</th>
+									<th>{{'Name' | translate}}</th>
 									<th class="p-text-right">Qty</th>
 								</tr>
 							</thead>
@@ -60,9 +60,14 @@
 			
 		</p-tabPanel>
 		<p-tabPanel header="Invoice" class="flex justify-content-center" >
+			<div class="p-grid" style="display: inline-flex!important;justify-content: end;align-content: flex-end;">
 			<div class="p-col-6 invoice">	
 				<app-invoice *ngIf="adminData" [adminData]="adminData" [orderItem]="orderItem" [cartItems]="cartItems"></app-invoice>
 			</div>
+			<div class="p-col-6 nonprint" >
+				<button pButton type="button" label="Print" (click)=" printing()" class="p-button-outlined p-mt-2 print">  </button>
+			</div>
+		</div>
 		</p-tabPanel>
 	</p-tabView>
 </div>

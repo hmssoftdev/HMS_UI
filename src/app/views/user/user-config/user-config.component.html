@@ -1,6 +1,8 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="p-card">
     <div class="card-header">
+        {{'Name' | translate }} 
+        {{'Light' | translate}}
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
@@ -20,12 +22,15 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th style="width: 100px;">Name
+                    <th style="width: 100px;">{{'Name' | translate }}
+                        <!-- {{'Name' | translate }} -->
                         <p-columnFilter type="text" field="userName" display="menu"></p-columnFilter>
                     </th>
                     <th style="width: 150px;">Email
+                        <!-- {{'Email' | translate}} -->
                     </th>
                     <th style="width: 100px;">Contact
+                        <!-- {{'Contact' | translate}} -->
                     </th>
                     <th style="width: 80px;">City
                         <p-columnFilter type="text" field="city" display="menu"></p-columnFilter>

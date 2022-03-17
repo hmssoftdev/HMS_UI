@@ -21,12 +21,13 @@ export class TableConfigurationComponent implements OnInit {
     constructor(public tableSvc: TableService,
         private msgService: MessageService,
         private confirmationService: ConfirmationService,
-        private authService: AuthService,public translate:TranslateService
+        private authService: AuthService,public translate: TranslateService
     ) {
-        translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-    translate.setDefaultLang('english');
+    //     translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+    // translate.setDefaultLang('english');
      }
     ngOnInit(): void {
+        
         this.authService.showLoader = true;
         this.hallType = [{ label: 'AC', value: true },
         { label: 'Non AC', value: false }];

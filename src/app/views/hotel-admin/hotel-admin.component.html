@@ -10,7 +10,7 @@
                     <div *ngIf="bName.touched && bName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="bName.errors.required">Business name is required.</small> </div>
                 </div>
                 <div class="p-field p-col-12 p-md-6">
-                    <label for="email"><b>Email</b></label>
+                    <label for="email"><b>{{ 'Email' | translate }}</b></label>
                     <input type="email" name="email" class="p-inputtext-sm" pInputText id="email" [(ngModel)]="admin.email" placeholder="Email" #email="ngModel" required autofocus />
                     <div *ngIf="email.touched && email.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="email.errors.required">Email name is required.</small> </div>
                 </div>
