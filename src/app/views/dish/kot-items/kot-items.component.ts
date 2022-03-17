@@ -19,7 +19,7 @@ export class KOTItemsComponent implements OnInit {
 @Input() orderId:any;
 @Input() adminData: Admin;
 @Input() userdata:User;
-
+index :string='0001';
 myDate = new Date();
 todaysDataTime = '';
 selectedTableID: Array < any > = [];
@@ -33,7 +33,9 @@ selectedTableID: Array < any > = [];
 
   ngOnInit(): void {
     this.selectedTableID = [];
-   
+    for (let i = 0; i < this.index.length; i++) {
+      i++
+    }
     console.log(this.adminData, 'AdminData', this.orderData);
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
     // console.log(this.cartItems.grossTotal);
