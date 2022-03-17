@@ -5,25 +5,49 @@
             <ng-template pTemplate="left">
                 <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
                     (click)="openNew()"></button>
+                    <div class="p-d-flex">
+                        <span class="p-input-icon-left p-ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                        </span>
+                    </div>
+                 
+                   
+                        
+                     
             </ng-template>
+          
+           
+              
+               
+            
             <!-- <ng-template pTemplate="right">
                 <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                     class="p-mr-2 p-d-inline-block"></p-fileUpload>
                 <button pButton pRipple label="Export" (click)="fnCheck()" icon="pi pi-upload" class="p-button-help my-2"></button>
             </ng-template> -->
         </p-toolbar>
+      
     </div>
     <div class="card-body">
-        <p-table #d2 [value]="tableList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10"
+        <p-table #dt [value]="tableList" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10"
             [showCurrentPageReport]="true" [(selection)]="selectedTables" [rowHover]="true" dataKey="id"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" respo
-            [rowsPerPageOptions]="[10,25,50]">
+            [rowsPerPageOptions]="[10,25,50]" [globalFilterFields]="['name',]">
             <ng-template pTemplate="header">
                 <tr>
+                    <td>
+                       
+                    </td>
+                </tr>
+                <tr>
+                    
                     <th>
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
+
                     <th>{{'Name' | translate}}
+
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
                     <th>Seat</th>

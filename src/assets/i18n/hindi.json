@@ -27,7 +27,7 @@
   "Email":"ईमेल",
   "City":"शहर",
   "Pincode":"पिन कोड",
-
+"Change Password":"कोड",
 
 
 
@@ -37,5 +37,6 @@
     "Password": "कुंजिका",
     "Bio": "जैव दर्ज करें",
     "TermsConditions": "मैं नियमों और शर्तों से सहमत हूँ।",
-    "Submit": "प्रस्तुत करना"
+    "Submit": "प्रस्तुत करना",
+    "Seats":"Seats"
 }
