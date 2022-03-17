@@ -4,6 +4,7 @@ import { Dish, DishCategory } from '../../../models/dish';
 import { AuthService } from '../../../service/auth.service';
 import { DishService } from '../../../service/dish.service';
 import { ShareDataService } from '../../../service/share-data.service';
+import { TranslateService } from "@ngx-translate/core";
 
 @Component({
   selector: 'app-dish-category-config',
@@ -25,8 +26,13 @@ export class DishCategoryConfigComponent implements OnInit {
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
     private shareData: ShareDataService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,
+    public translate:TranslateService
+    ) {
+        translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+    translate.setDefaultLang('english');
+     }
+   
 
   ngOnInit(): void {
     this.authService.showLoader = true;

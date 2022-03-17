@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-today-summary',
@@ -9,7 +10,10 @@ export class TodaySummaryComponent implements OnInit {
   powercount:number=0;
   sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
-  constructor() { }
+  constructor(private translate:TranslateService) {
+   
+   }
+ 
   startdate=new Date();
   enddate=new Date();
   allstartdate

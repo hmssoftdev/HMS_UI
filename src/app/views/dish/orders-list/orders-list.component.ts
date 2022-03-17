@@ -8,6 +8,8 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../service/auth.service';
 import { stringify } from 'querystring';
 import { Historydata } from '../../../models/historydata';
+import { TranslateService } from "@ngx-translate/core";
+import { LanguageComponent } from '../../language/language.component';
 
 @Component({
   selector: 'app-orders-list',
@@ -27,8 +29,13 @@ export class OrdersListComponent implements OnInit {
     private dishSvc: DishService,
     private orderService: CartService,
     private msgService: MessageService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,public translate:TranslateService
+    ) {
+        translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+    translate.setDefaultLang('english');
+     }
+    
+    
 
   ngOnInit(): void {
     this.authService.showLoader = true;
