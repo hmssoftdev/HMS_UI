@@ -15,6 +15,7 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     UserRoutingModule,
     SharedModule,
     TranslateModule,
-  ]
+  ],
+  exports:[TranslateModule]
 })
 export class UserModule { }

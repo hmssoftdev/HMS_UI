@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { observable, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, observable, Observable, of, Subject } from 'rxjs';
 import { ApiConfig } from '../constant/api';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
@@ -32,8 +32,23 @@ export class UserService {
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
+  data:string='';
+public langdata = new Subject<string>();
+
+
+  // public language$ = new BehaviorSubject('english');
+  //  public Obslangauge = this.language$.asObservable();  
 
   constructor(private http: HttpClient) { }
+ 
+ 
+  getlanguage(data){
+    
+    this.langdata.next(data);
+}
+
+
+
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(
       map(x => {
@@ -43,6 +58,7 @@ export class UserService {
       catchError(this.handleError('', user))
     );
   }
+  
   // Register User through Register form
   registerUser(user:Registration){
     return this.http.post(`${this.url}/PostAnonymousUser`,user).pipe(

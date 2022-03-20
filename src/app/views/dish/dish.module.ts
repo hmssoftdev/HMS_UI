@@ -21,6 +21,7 @@ import { TranslateModule } from '@ngx-translate/core';
     DishRoutingModule,
     TranslateModule,
   ],
+  exports:[TranslateModule],
   declarations: [DishComponent,DishMenuComponent, CardDetailsComponent, CheckoutComponent, DishCategoryConfigComponent, BillingComponent, OrdersListComponent, KOTItemsComponent, DiningTableComponent, DishMenuNewComponent, CardDetailsComponent],
  
 })

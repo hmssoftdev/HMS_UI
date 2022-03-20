@@ -1,6 +1,10 @@
 import { Component, OnInit, Output,EventEmitter} from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+
+import { language } from '../../models/setting';
 import { AuthService } from '../../service/auth.service';
+import { CommonService } from '../../service/common.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-header-new',
@@ -11,12 +15,17 @@ export class HeaderComponent implements OnInit {
 
 @Output() fnMenuSidebar = new EventEmitter();
 @Output() logOut = new EventEmitter();
-  constructor(public authService: AuthService,public translate: TranslateService) { 
+    language:language;
+    lang:string='';
+  constructor(public authService: AuthService,public translate: TranslateService,public comlan:UserService) { 
     translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-    translate.setDefaultLang('english');
+    
   }
-  switchLang(lang: string) {
+  switchLang(lang) {
+    this.comlan.langdata.next(lang.value)
     this.translate.use(lang);
+    this.translate.setDefaultLang(lang.value);
+   
   }
   lbluserProfleShow = false;
   ngOnInit(): void {
@@ -24,6 +33,7 @@ export class HeaderComponent implements OnInit {
   fnLogout(){
     this.logOut.emit();
     this.lbluserProfleShow = false;
+    
   }
   fnToggleUProfile(){
     this.lbluserProfleShow = !this.lbluserProfleShow;
