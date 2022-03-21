@@ -47,7 +47,7 @@ import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-
+import { TranslateService } from "@ngx-translate/core";
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {AccordionModule} from 'primeng/accordion';
 @NgModule({
@@ -165,7 +165,7 @@ import {AccordionModule} from 'primeng/accordion';
     AccordionModule,
     TranslateModule,
   ],
-  providers:[MessageService, ConfirmationService]
+  providers:[MessageService, ConfirmationService,TranslateService]
 })
 export class SharedModule { }
 export function httpTranslateLoader(http: HttpClient) {

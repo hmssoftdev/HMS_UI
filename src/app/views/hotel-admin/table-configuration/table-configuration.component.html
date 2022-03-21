@@ -46,13 +46,15 @@
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
 
+
                     <th>{{'Name' | translate}}
+
 
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
-                    <th>Seat</th>
-                    <th>Shape</th>
-                    <th>AC / Non AC
+                    <th>{{'Seat' | translate}}</th>
+                    <th>{{'Shape' | translate}}</th>
+                    <th>{{'AC / Non AC' | translate}}
                         <p-columnFilter type="text" field="isAc" display="menu"></p-columnFilter>
                         <!-- <p-columnFilter type="text" field="tableShape" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
@@ -65,7 +67,7 @@
                             </ng-template>
                         </p-columnFilter> -->
                     </th>
-                    <th>Action </th>
+                    <th>{{'Action' | translate}} </th>
             </ng-template>
             <ng-template pTemplate="body" let-item>
                 <tr>
@@ -87,7 +89,7 @@
             <ng-template pTemplate="emptymessage">
                 <tr>
                     <td colspan="6">
-                       <span> No records found</span>
+                       <span>{{ 'No records found' | translate}}</span>
                     </td>
                 </tr>
             </ng-template>
@@ -95,19 +97,19 @@
     </div>
 </div>
 
-<p-dialog [(visible)]="tableDialog" [style]="{width: '40vw'}" header="Table Configuration" [modal]="true">
+<p-dialog [(visible)]="tableDialog" [style]="{width: '40vw'}" header="{{'Table Configuration' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
         <form name="userForm" #tableForm="ngForm" novalidate (ngSubmit)="saveTableData(tableForm)">
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-6">
-                    <label for="tableName">Table Name</label>
+                    <label for="tableName">{{'Table Name' | translate}}</label>
                     <input type="text" #tableName="ngModel" name="tableName" class="p-inputtext-sm" pInputText
                         id="tableName" [(ngModel)]="table.name" placeholder="Name" required autofocus />
                     <div *ngIf="tableName.touched && tableName.invalid && tableForm.submitted"> <small class="p-error"
                             *ngIf="tableName.errors.required">Table name is required.</small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="shape">Shape</label>
+                    <label for="shape">{{'Shape' | translate}}</label>
                     <p-dropdown [(ngModel)]="table.shape" class="p-inputtext-sm" #shape="ngModel" name="shape"
                         optionLabel="label" optionValue="value" inputId="shape" [options]="tableShape"
                         placeholder="Select Table Shape" required>
@@ -116,7 +118,7 @@
                             *ngIf="shape.errors.required">Table shape is required.</small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="seat">Seat</label>
+                    <label for="seat">{{'Seat' | translate}}</label>
                     <input type="number" #seat="ngModel" name="seat" class="p-inputtext-sm" pInputText inputId="seat"
                         [(ngModel)]="table.seat" placeholder="Seat" />
                     <!-- <p-inputNumber pInputText #seat="ngModel" [(ngModel)]="table.seat" minlength="6" maxlength="6" mode="decimal"
@@ -126,17 +128,17 @@
                             *ngIf="seat.errors.required">Seat number is required.</small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="isAC">Hall type</label>
+                    <label for="isAC">{{'Hall type' | translate}}</label>
                     <div class="p-formgroup-inline">
                         <div class="p-field-checkbox">
                             <p-radioButton name="hallType" [value]="true" [(ngModel)]="table.isAc" inputId="hallType1">
                             </p-radioButton>
-                            <label for="nonVegCategory1">AC</label>
+                            <label for="nonVegCategory1">{{'AC'| translate}}</label>
                         </div>
                         <div class="p-field-checkbox">
                             <p-radioButton name="hallType" [value]="false" [(ngModel)]="table.isAc" inputId="hallType2">
                             </p-radioButton>
-                            <label for="nonVegCategory2">Non AC</label>
+                            <label for="nonVegCategory2">{{'Non AC' | translate}}</label>
                         </div>
                     </div>
                 </div>

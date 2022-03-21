@@ -7,7 +7,7 @@ import { AdminService } from '../../service/admin.service';
 import { Form } from '@angular/forms';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { AuthService } from '../../service/auth.service';
-
+import { TranslateService } from "@ngx-translate/core";
 @Component({
   selector: 'app-hotel-admin',
   templateUrl: './hotel-admin.component.html',
@@ -31,7 +31,8 @@ export class HotelAdminComponent implements OnInit {
     private commonService: CommonService,
     private confirmationService: ConfirmationService,
     private commonMethod: CommonMethodsService,
-    private authService: AuthService
+    private authService: AuthService,
+    public translate:TranslateService
   ) {
     this.admin = new Admin();
     // this.admin.bankDetails = new Bankdetails();

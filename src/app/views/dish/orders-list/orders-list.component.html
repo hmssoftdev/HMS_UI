@@ -10,15 +10,15 @@
 
                     </p-tableHeaderCheckbox>
                 </th>
-                <th>Username
+                <th>{{ 'Username' | translate }}
                     <p-columnFilter  type="text" field="name" display="menu"></p-columnFilter>
                 </th>
-                <th style="width: 100px; text-align: center;">Mobile</th>
-                <th style="width: 50px;">Price</th>
-                <th style="text-align: center;">Order Type</th>
-                <th style="text-align: center;">Payment Mode</th>
-                <th style="text-align: center;">Order Status</th>
-                <th style="width: 250px; text-align: center;">Action </th>
+                <th style="width: 100px; text-align: center;"> {{ 'Mobile' | translate }} </th>
+                <th style="width: 50px;"> {{ 'Price' | translate }} </th>
+                <th style="text-align: center;"> {{ 'Order Type' | translate }} </th>
+                <th style="text-align: center;"> {{ 'Payment Mode' | translate }} </th>
+                <th style="text-align: center;"> {{ 'Order Status' | translate }} </th>
+                <th style="width: 250px; text-align: center;"> {{ 'Action' | translate }} </th>
         </ng-template>
   
         <ng-template pTemplate="body" let-order let-columns="columns">

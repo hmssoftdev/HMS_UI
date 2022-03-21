@@ -13,7 +13,6 @@ import { DiningTableComponent } from './dining-table/dining-table.component';
 import { DishMenuNewComponent } from './dish-menu-new/dish-menu-new.component';
 import { TranslateModule } from '@ngx-translate/core';
 
-
 // import { CardDetailsComponent } from './card-details/card-details.component';
 @NgModule({
   imports: [
@@ -23,5 +22,6 @@ import { TranslateModule } from '@ngx-translate/core';
   ],
   declarations: [DishComponent,DishMenuComponent, CardDetailsComponent, CheckoutComponent, DishCategoryConfigComponent, BillingComponent, OrdersListComponent, KOTItemsComponent, DiningTableComponent, DishMenuNewComponent, CardDetailsComponent],
  
+
 })
 export class DishModule { }
