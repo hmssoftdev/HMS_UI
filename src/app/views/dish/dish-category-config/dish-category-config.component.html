@@ -7,7 +7,7 @@
                 <div class="p-d-flex">
                     <span class="p-input-icon-left p-ml-auto">
                         <i class="pi pi-search"></i>
-                        <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                        <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
                     </span>
                 </div>
                 <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" pTooltip="Delete categories"></button> -->

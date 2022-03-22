@@ -9,7 +9,12 @@
             padding:0 0.75rem;
         }
     }
-    
+    .p-input-icon-left>i, .p-input-icon-right>i {
+        position: absolute;
+        top: 50%;
+        margin-top: -0.5rem;
+        margin-left: 5px;
+    }
     .pToolbar{
         .p-toolbar{
             background-color:transparent;
@@ -193,6 +198,7 @@
     }
  }
  @media screen and (max-width:475px) {
+     
     :host ::ng-deep {
         .p-datatable table{
             display: block;
@@ -237,11 +243,23 @@
             height: 1.357rem;
             margin: 0 0 0 -1px;
         }
-        .p-inputtext {
-           
-            padding: 0.2rem 0.75rem !important;
-           
+        .p-input-icon-left>i, .p-input-icon-right>i {
+            position: absolute;
+            top: 50%;
+            margin-top: -0.3rem !important;
+            margin-right: 2px;
+
         }
+        // .p-inputtext {
+        //     padding: 0.1rem 1.6rem!important;
+         
+           
+        // }
+       
     }
 }
-
+@media screen and (max-width:320px) {
+    .search {
+        width: 150px!important;
+    }
+}

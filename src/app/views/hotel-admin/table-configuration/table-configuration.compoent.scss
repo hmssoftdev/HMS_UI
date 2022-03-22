@@ -88,6 +88,9 @@
     }
 }
 @media screen and (max-width:320px){
+    .search{
+        width: 150px;
+    }
     :host ::ng-deep {
    .p-dialog{
     width: 100vw!important;
