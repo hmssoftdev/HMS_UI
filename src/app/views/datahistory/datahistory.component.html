@@ -5,14 +5,14 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     <ng-template pTemplate="header">
       <tr>
         
-        <th>Name</th>
-        <th>Contact</th>
-        <th>Item Count
+        <th>{{'Name' | translate}}</th>
+        <th>{{'Contact' | translate}}</th>
+        <th>{{'Item Count' | translate}}
         </th>
         <!-- <th>Mode</th> -->
-        <th>Amount</th>
-        <th>Payment Mode</th>
-        <th>Action</th>
+        <th>{{'Amount' | translate}}</th>
+        <th>{{'Payment Mode' | translate}}</th>
+        <th>{{'Action' | translate}}</th>
       </tr>
     </ng-template>
     <ng-template pTemplate="body" let-data>
@@ -37,7 +37,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     <ng-template pTemplate="emptymessage"  >
       <tr>
           <td colspan="6" class="p-text-center">
-             <span> No records found</span>
+             <span>{{'No records found' | translate}}</span>
           </td>
       </tr>
   </ng-template>

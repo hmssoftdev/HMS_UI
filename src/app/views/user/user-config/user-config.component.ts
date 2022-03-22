@@ -5,7 +5,8 @@ import { UserService } from './../../../service/user.service';
 import { CommonService } from './../../../service/common.service'
 import { AuthService } from '../../../service/auth.service';
 import { ShareDataService } from '../../../service/share-data.service';
-
+import { TranslateService } from '@ngx-translate/core';
+import {  TranslateModule } from '@ngx-translate/core';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
@@ -27,7 +28,14 @@ export class UserConfigComponent implements OnInit {
     private authService: AuthService,
     private shareData: ShareDataService,
     private commonService: CommonService,
-    ) { }
+    public translate:TranslateService,
+    
+    ) {
+      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+      translate.setDefaultLang('english');
+      translate.use('enlgish');
+     }
+    
 
   ngOnInit(): void {
   //  this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);

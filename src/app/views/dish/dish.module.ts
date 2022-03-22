@@ -11,13 +11,16 @@ import { OrdersListComponent } from './orders-list/orders-list.component';
 import { KOTItemsComponent } from './kot-items/kot-items.component';
 import { DiningTableComponent } from './dining-table/dining-table.component';
 import { DishMenuNewComponent } from './dish-menu-new/dish-menu-new.component';
+import { TranslateModule } from '@ngx-translate/core';
 // import { CardDetailsComponent } from './card-details/card-details.component';
 @NgModule({
   imports: [
     SharedModule,
     DishRoutingModule,
+    TranslateModule
+  
   ],
   declarations: [DishComponent,DishMenuComponent, CardDetailsComponent, CheckoutComponent, DishCategoryConfigComponent, BillingComponent, OrdersListComponent, KOTItemsComponent, DiningTableComponent, DishMenuNewComponent, CardDetailsComponent]
- 
+  
 })
 export class DishModule { }

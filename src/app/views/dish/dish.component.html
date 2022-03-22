@@ -9,10 +9,10 @@
                     (click)="deleteSelectedDishes()" [disabled]="!selectedDishes || !selectedDishes.length"
                     pTooltip="Delete Dishes" tooltipPosition="bottom"></button>
                     
-                    <div class="p-d-flex">
+                    <div class="p-d-flex p-ml-2">
                         <span class="p-input-icon-left p-ml-auto">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                            <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
                         </span>
                     </div>
                   
@@ -35,7 +35,7 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th style="width: 10%;">Name
+                    <th style="width: 10%;">{{'Name' | translate}}
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
                     <th style="width:12%;">Image</th>

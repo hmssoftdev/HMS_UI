@@ -5,6 +5,9 @@
     display: none;
 }
  }
+ .p-inputtext {
+    margin: 8px;
+}
 @media screen and (max-width: 768px) {
     :host ::ng-deep {
         .p-button.p-button-icon-only{
