@@ -12,7 +12,7 @@
                     <div class="p-d-flex">
                         <span class="p-input-icon-left p-ml-auto">
                             <i class="pi pi-search"></i>
-                            <input pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                            <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
                         </span>
                     </div>
                   
@@ -35,17 +35,17 @@
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th style="width: 10%;"> {{ 'Name' | translate}}
+                    <th style="width: 10%;">  {{ 'Name' | translate}}
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
-                    <th style="width:12%;">Image</th>
-                    <th>Half Price</th>
-                    <th>Full Price</th>
-                    <th style="width:16%;">Category
+                    <th style="width:12%;">{{'Image' | translate}}</th>
+                    <th>{{'Half Price' | translate}}</th>
+                    <th>{{'Full Price' | translate}}</th>
+                    <th style="width:16%;">{{'Category' | translate}}
                         <p-columnFilter type="text" field="dishCategory" display="menu"></p-columnFilter>
                     </th>
-                    <th>Time for Cook</th>
-                    <th>Status
+                    <th>{{'Time for Cook' | translate}}</th>
+                    <th>{{'Status' | translate}}
                         <p-columnFilter type="text" field="status" display="menu">
                             <ng-template pTemplate="filter" let-value let-filter="filterCallback">
                                 <p-dropdown [ngModel]="value" [options]="status" (onChange)="filter($event.value)"
@@ -57,7 +57,7 @@
                             </ng-template>
                         </p-columnFilter>
                     </th>
-                    <th style="width:14%;">Action </th>
+                    <th style="width:14%;">{{'Action' | translate}} </th>
             </ng-template>
             <ng-template pTemplate="body" let-item let-columns="columns">
         
@@ -103,7 +103,7 @@
             <ng-template pTemplate="emptymessage">
                 <tr>
                     <td colspan="9" class="p-text-center" >
-                       <span> No Result found</span>
+                       <span> {{'No Result found' | translate}}</span>
                     </td>
                 </tr>
             </ng-template>
@@ -112,20 +112,20 @@
 </div> 
 
 <p-dialog [(visible)]="dishDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '60vw'}"
-    header="Dish Configuration" [modal]="true">
+    header="{{'Dish Configuration' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
         <form name="dishform" #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
             <!-- <img [src]="'assets/showcase/images/demo/dish/' + dish.image" [alt]="dish.image" class="dish-image" *ngIf="dish.image"> -->
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-6">
-                    <label for="name">Dish Name</label>
+                    <label for="name">{{'Dish Name' | translate}}</label>
                     <input type="text" name="name" #name="ngModel" class="p-inputtext-sm" pInputText id="name"
                         [(ngModel)]="dish.name" required autofocus />
                     <div *ngIf="name.touched && name.invalid && f.submitted"> <small class="p-error"
-                            *ngIf="name.errors.required">Dish name is required.</small></div>
+                            *ngIf="name.errors.required">{{'Dish name is required.' | translate}}</small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="files">Upload Dish Image</label>
+                    <label for="files">{{'Upload Dish Image' | translate}}</label>
                     <input name="files" [(ngModel)]="dish.imageUrl" (change)="fileChange($event)" class="p-inputtext-sm"
                         pInputText type="file" maxFileSize="50000">
                         {{dish.imageUrl}}
@@ -134,21 +134,21 @@
                 <!-- <div>Dish image</div>-->
 
                 <div class="p-field p-col-6">
-                    <label for="inventoryStatus">Inventory Status</label>
+                    <label for="inventoryStatus">{{'Inventory Status' | translate}}</label>
                     <p-dropdown [(ngModel)]="dish.status" class="p-inputtext-sm" #invStatus="ngModel"
                         name="inventoryStatus" optionLabel="label" optionValue="value" inputId="inventoryStatus"
                         [options]="status" name="statuses" placeholder="Select" required>
                     </p-dropdown>
                     <div *ngIf="invStatus.touched && invStatus.invalid && f.submitted"><small class="p-error"
-                            *ngIf="invStatus.errors.required">Inventory Status is required.</small></div>
+                            *ngIf="invStatus.errors.required">{{'Inventory Status is required.' | translate}} </small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="categories">Select Category</label>
+                    <label for="categories">{{'Select Category' | translate}}</label>
                     <p-dropdown [(ngModel)]="dish.mainCategoryId" class="p-inputtext-sm" name="dishCategory"
                         inputId="dishCategory" optionLabel="label" optionValue="value" [options]="dishCategory"
                         placeholder="Type for new or Select" required #category="ngModel"></p-dropdown>
                     <div *ngIf="category.touched && category.invalid && f.submitted"><small class="p-error"
-                            *ngIf="category.errors.required">Category is required.</small></div>
+                            *ngIf="category.errors.required">{{'Category is required.' | translate}}</small></div>
 
                 </div>
                 <!-- <div class="p-field p-col-2 p-pt-5 p-pl-3"><strong>OR</strong></div> -->
@@ -158,9 +158,9 @@
             </div> -->
                 <div class="p-field p-col-12 p-md-4">
                     <div class="p-formgroup-inline">
-                        <label for="isVeg">Non-Veg </label>
+                        <label for="isVeg">{{'Non-Veg' | translate}} </label>
                         <p-inputSwitch [(ngModel)]="dish.isVeg" name="isVeg" class="p-mx-2"></p-inputSwitch>
-                        <label for="isVeg">Veg</label>
+                        <label for="isVeg">{{'Veg' | translate}}</label>
                     </div>
                 </div>
                 <div class="p-field p-col-12 p-md-8">
@@ -168,22 +168,22 @@
                         <div class="p-field-checkbox">
                             <p-radioButton name="nonVegCategory" value="chicken" [(ngModel)]="dish.nonVegCategory"
                                 inputId="nonVegCategory1"></p-radioButton>
-                            <label for="nonVegCategory1">Chicken</label>
+                            <label for="nonVegCategory1">{{'Chicken' | translate}}</label>
                         </div>
                         <div class="p-field-checkbox">
                             <p-radioButton name="nonVegCategory" value="mutton" [(ngModel)]="dish.nonVegCategory"
                                 inputId="nonVegCategory2"></p-radioButton>
-                            <label for="nonVegCategory2">Mutton</label>
+                            <label for="nonVegCategory2">{{'Mutton' | translate}}</label>
                         </div>
                         <div class="p-field-checkbox">
                             <p-radioButton name="nonVegCategory" value="seaFood" [(ngModel)]="dish.nonVegCategory"
                                 inputId="nonVegCategory3"></p-radioButton>
-                            <label for="nonVegCategory3">Sea Food</label>
+                            <label for="nonVegCategory3">{{'Sea Food' | translate}}</label>
                         </div>
                     </div>
                 </div>
                 <div class="p-field p-col-6 p-md-3">
-                    <label for="fullPrice">Full dish price</label>
+                    <label for="fullPrice">{{'Full dish price' | translate}}</label>
                     <div class="p-inputgroup">
                         <p-inputNumber required id="fullPrice" name="fullPrice" class="p-inputtext-sm"
                             [(ngModel)]="dish.fullPrice"></p-inputNumber>
@@ -191,35 +191,35 @@
                 </div>
 
                 <div class="p-field p-col-6 p-md-3">
-                    <label for="halfPrice">Half dish price {{dish.isHalf}}</label>
+                    <label for="halfPrice">{{'Half dish price' | translate}} {{dish.isHalf}}</label>
                     <div class="p-inputgroup">
                         <p-inputNumber min="0" mode="decimal" id="halfPrice" name="halfPrice" class="p-inputtext-sm"
                             [(ngModel)]="dish.halfPrice"></p-inputNumber>
                     </div>
                 </div>
                 <div class="p-field p-col-6 p-md-3">
-                    <label for="quantity">Quantity</label>
+                    <label for="quantity">{{'Quantity' | translate}}</label>
                     <p-inputNumber type="number" class="p-inputtext-sm" name="quantity" id="quantity"
                         [(ngModel)]="dish.quantity"></p-inputNumber>
                 </div>
                 <div class="p-field p-col-6 p-md-3">
-                    <label for="serviceTime">Time for Cook</label>
+                    <label for="serviceTime">{{'Time for Cook' | translate}}</label>
                     <p-inputNumber type="time" class="p-inputtext-sm" name="timeForCook" id="timeForCook" suffix=" mins"
                         [(ngModel)]="dish.timeForCook"></p-inputNumber>
                 </div>
                 <div class="p-field p-col-12">                                        
-                    <label for="description">Description</label>
+                    <label for="description">{{'Description' | translate}}</label>
                     <textarea id="description" #desc="ngModel" name="description" pInputTextarea
                         [(ngModel)]="dish.description"  rows="3" cols="20"></textarea>
                     <div *ngIf="desc.touched && desc.invalid && f.submitted"><small class="p-error"
-                            *ngIf="desc.errors.required">Description is required.</small></div>
+                            *ngIf="desc.errors.required">{{'Description is required.' | translate}}</small></div>
 
                 </div>
             </div>
             <div class="p-d-flex justify-content-center">
-                <button pButton pRipple label="Save" icon="pi pi-check"
+                <button pButton pRipple label="{{'Save' | translate}}" icon="pi pi-check"
                     class="p-button p-button-raised p-mx-1 mr-2"></button>
-                <button pButton pRipple label="Reset" type="reset" icon="pi pi-times"
+                <button pButton pRipple label="{{'Reset' | translate}}" type="reset" icon="pi pi-times"
                    class="p-button-danger p-button-raised ml-1"></button>   <!--(click)="hideDialog()" -->
             </div>
         </form>

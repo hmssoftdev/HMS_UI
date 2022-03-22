@@ -21,7 +21,7 @@ export class UserConfigComponent implements OnInit {
   cities: any;
   states: any;
   cityFilter: [];
-  lang:string='';
+  lang:any;
   constructor(public userSvc: UserService,
     public commonSvc: CommonService,
     private msgService: MessageService,
@@ -35,10 +35,9 @@ export class UserConfigComponent implements OnInit {
      userSvc.langdata.subscribe(x=>{
        this.lang=x
        console.log(this.lang);
+       translate.use(this.lang);
      })
-     translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-     translate.setDefaultLang(this.lang);
-     translate.use(this.lang);
+     
  
      }
     

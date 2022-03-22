@@ -33,7 +33,7 @@ export class UserService {
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
   data:string='';
-public langdata = new Subject<string>();
+public langdata = new Subject();
 
 
   // public language$ = new BehaviorSubject('english');

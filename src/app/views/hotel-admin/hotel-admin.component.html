@@ -2,7 +2,7 @@
 <div class="p-card p-mb-5">
     <div class="p-card-body">
         <form name="aForm" #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
-            <div class="p-card-title">Business Information</div>
+            <div class="p-card-title">{{'Business Information' | translate}}</div>
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-12 p-md-6">
                     <label for="businessName"><b>Business Name</b></label>
@@ -10,7 +10,9 @@
                     <div *ngIf="bName.touched && bName.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="bName.errors.required">Business name is required.</small> </div>
                 </div>
                 <div class="p-field p-col-12 p-md-6">
+
                     <label for="email"><b>{{ 'Email' | translate }}</b></label>
+
                     <input type="email" name="email" class="p-inputtext-sm" pInputText id="email" [(ngModel)]="admin.email" placeholder="Email" #email="ngModel" required autofocus />
                     <div *ngIf="email.touched && email.invalid && f.submitted"> <small class="p-error p-error-danger" *ngIf="email.errors.required">Email name is required.</small> </div>
                 </div>
