@@ -5,6 +5,7 @@ import { AuthService } from '../../../service/auth.service';
 import { DishService } from '../../../service/dish.service';
 import { ShareDataService } from '../../../service/share-data.service';
 import { TranslateService } from "@ngx-translate/core";
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-dish-category-config',
@@ -22,15 +23,21 @@ export class DishCategoryConfigComponent implements OnInit {
   sendId:number;
   dishList: Dish[];
   dish: Dish;
+  lang:any;
   constructor(private categorySvc: DishService,
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
     private shareData: ShareDataService,
     private authService: AuthService,
-    public translate:TranslateService
+    public translate:TranslateService,
+    public user:UserService
     ) {
+      user.langdata.subscribe(x=>{
+        this.lang=x;
+        translate.use(this.lang);
+      })
         translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-    translate.use('hindi');
+   
      }
    
 

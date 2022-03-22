@@ -14,3 +14,6 @@ export interface setting{
     billWithSign?: number,
     billWithSeal?: number
 }
+export interface language{
+    lang?:string;
+}

@@ -35,7 +35,7 @@ export class OrdersListComponent implements OnInit {
     private authService: AuthService,public translate:TranslateService
     ) {
         translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-    translate.setDefaultLang('english');
+        translate.use('hindi');
      }
 
 

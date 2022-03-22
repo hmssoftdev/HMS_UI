@@ -51,7 +51,7 @@
             <ng-template pTemplate="emptymessage" >
                 <tr>
                     <td colspan="4" class="p-text-center">
-                       <span> No records found</span>
+                       <span>{{'No records found' | translate}}</span>
                     </td>
                 </tr>
             </ng-template>
@@ -60,29 +60,29 @@
 </div>
 
 
-<p-dialog [(visible)]="categoryDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="Dish Category" [modal]="true">
+<p-dialog [(visible)]="categoryDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="{{'Dish Category' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
         <form name="categoryForm" #f="ngForm" novalidate (ngSubmit)="onSubmit(f)">
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field p-col-6">
-                    <label for="name">Category Name</label>
+                    <label for="name">{{'Category Name' | translate}}</label>
                     <input type="text" name="name" #name="ngModel" class="p-inputtext-sm" pInputText id="name" [(ngModel)]="category.name" placeholder="Category Name" required autofocus />
                     <div *ngIf="name.touched && name.invalid && f.submitted"> <small class="p-error" *ngIf="name.errors.required">Category name is required.</small></div>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="inventoryStatus">Inventory Status</label>
+                    <label for="inventoryStatus">{{'Inventory Status' | translate}}</label>
                     <p-dropdown [(ngModel)]="category.status" class="p-inputtext-sm" #invStatus="ngModel" name="inventoryStatus" optionLabel="label" optionValue="value" inputId="inventoryStatus" [options]="status" placeholder="Select" required>
                     </p-dropdown>
                 </div>
                 <div class="p-field p-col-6">
-                    <label for="gstCompliance">GST Compliance</label>
+                    <label for="gstCompliance">{{'GST Compliance' | translate}}</label>
                     <input type="number" name="gstCompliance" #gstCompliance="ngModel" class="p-inputtext-sm" pInputText id="gstCompliance" [(ngModel)]="category.gstCompliance" placeholder="GST Compliance Number" required />
                     <div *ngIf="gstCompliance.touched && gstCompliance.invalid && f.submitted"> <small class="p-error" *ngIf="gstCompliance.errors.required">GST compliance is required.</small></div>
                 </div>
             </div>
             <div class="p-d-flex justify-content-center">
-                <button pButton pRipple label="Save" icon="pi pi-check" class="p-button p-button-raised p-mx-1 p-mr-2"></button>
-                <button pButton pRipple label="Reset" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" ></button> <!--(click)="hideDialog()"-->
+                <button pButton pRipple label="{{'Save' | translate}}" icon="pi pi-check" class="p-button p-button-raised p-mx-1 p-mr-2"></button>
+                <button pButton pRipple label="{{'Reset' | translate}}" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" ></button> <!--(click)="hideDialog()"-->
             </div>
         </form>
     </ng-template>

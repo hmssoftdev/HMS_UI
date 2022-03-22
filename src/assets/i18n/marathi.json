@@ -34,7 +34,7 @@
    "Order Type":"ऑर्डर प्रकार",
    "Payment Mode":"पेमेंट मोड",
    "Order Status":"आदेश स्थिती",
-   "Username":"वापरकर्तानाव",
+   "Username":"नाव",
    "GST Compliance":"जीएसटी अनुपालन",
    "Status":"स्थिती",
    "Table Name":" टेबलचे नाव",
@@ -84,6 +84,50 @@
    "Display Tables in Billing Category":"बिलिंग श्रेणीमध्ये टेबल प्रदर्शित करा",
    "Create Table Configuration":"टेबल कॉन्फिगरेशन तयार करा",
    "Rating":" रेटिंग",
-   "Give your review a title":"तुमच्या पुनरावलोकनाला शीर्षक द्या"
+   "Give your review a title":"तुमच्या पुनरावलोकनाला शीर्षक द्या",
+   "No Order Today":"आज ऑर्डर नाही",
+   "Customers Feedback":"ग्राहकांचा अभिप्राय",
+   "Your Review":"तुमचे पुनरावलोकन",
+   "Reply":"उत्तर द्या",
+   "I confirm this review is about my own genuine experience. I am eligible to leave this review, and have not been offered any incentive or payment to leave a review for this company.":" मी पुष्टी करतो की हे पुनरावलोकन माझ्या स्वतःच्या वास्तविक अनुभवाबद्दल आहे. मी हे पुनरावलोकन सोडण्यास पात्र आहे आणि मला या कंपनीसाठी पुनरावलोकन सोडण्यासाठी कोणतेही प्रोत्साहन किंवा पेमेंट ऑफर केलेले नाही.",
+   "Useful":"उपयुक्त",
+   "Share":"शेअर करा",
+   "Add Review":"पुनरावलोकन जोडा",
+   "Write your review": "तुमचे पुनरावलोकन लिहा",
+   "Post your review":"तुमचे पुनरावलोकन पोस्ट करा",
+   "Image":"प्रतिमा",
+   "Half Price":"अर्ध्या किमतीत",
+   "Full Price":"पूर्ण किंमत",
+   "Category":"श्रेणी",
+   "Time for Cook":"कूक साठी वेळ",
+   "Dish Name":"डिशचे नाव",
+   "Dish name is required.":"डिशचे नाव आवश्यक आहे.",
+   "Upload Dish Image":"डिश प्रतिमा अपलोड करा",
+   "Inventory Status":"इन्व्हेंटरी स्थिती",
+   "Inventory Status is required.":"इन्व्हेंटरी स्थिती आवश्यक आहे.",
+   "Select Category":"श्रेणी निवडा",
+   "Non-Veg":"मांसाहार",
+   "Veg":"व्हेज",
+   "Chicken":"चिकन",
+   "Mutton":"मटण",
+   "Sea Food":"सी फूड",
+   "Full dish price":"पूर्ण डिश किंमत",
+   "Half dish price":" डिशची अर्धी किंमत",
+   "Quantity":"प्रमाण",
+   "Description":"वर्णन",
+   "Description is required.":"वर्णन आवश्यक आहे.",
+   "Category is required.":"श्रेणी आवश्यक आहे.",
+   "Save":"जतन करा",
+   "Reset":"रीसेट करा",
+   "No Result found":"कोणताही परिणाम आढळला नाही",
+   "Category Name":"श्रेणीचे नाव",
+   "Dish Category":"डिश श्रेणी",
+   "Business Information":"व्यवसाय माहिती"
+
+
+
+
+
+
 }
 
