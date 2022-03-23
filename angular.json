@@ -41,7 +41,7 @@
                         ]
                     },
                     "configurations": {
-                        "production": {
+                        "development": {
                             "budgets": [{
                                 "type": "anyComponentStyle",
                                 "maximumWarning": "6kb"
@@ -67,7 +67,7 @@
                         "browserTarget": "ng:build"
                     },
                     "configurations": {
-                        "production": {
+                        "development": {
                             "browserTarget": "ng:build:production"
                         }
                     }

@@ -46,6 +46,7 @@
  .noprint{
      display: none;
  }
+
  .invoice{
 
  }
@@ -57,6 +58,12 @@
         left:0;
         top:0;
         
+
+    app-invoice{
+        position: relative;
+        display :block;
+        padding: 0%;
+
     }
     .nonprint{
         display: none;
@@ -74,6 +81,7 @@
     :host::ng-deep{
         .p-dialog{
                 padding: 0%!important;
+
                 width: 100%!important;
             .p-dialog-header{
             visibility: hidden;
@@ -81,6 +89,12 @@
             .p-dialog-header{
                 display: none!important ;
             }
+
+            
+            .p-dialog-header{
+            visibility: hidden;
+
+
         }
         .p-button.p-button-outlined{
             visibility: hidden;
@@ -110,4 +124,6 @@
 }
     }
 
+    }
+    }
 }

@@ -69,6 +69,7 @@ export class DishMenuNewComponent implements OnInit {
   usercimbine: string[];
   usercombine:  Array<any>;
   image:boolean=true;
+  lang:string;
    data:setting;
   constructor(
     private comset:CommonService,
@@ -89,7 +90,13 @@ export class DishMenuNewComponent implements OnInit {
   this.userService.getusersetting(this.auth.userData().adminId).subscribe
   (x=>{
     this.data=x
+
   })
+  // this.userService.language$.subscribe(x=>
+  //   {
+  //     this.lang=x
+  //     console.log("test" , this.lang)
+  //   })
   // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
   //   this.data=x;
   //   console.log(this.data);

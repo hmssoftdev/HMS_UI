@@ -7,10 +7,10 @@ import { ShareDataService } from '../../service/share-data.service';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
 
-import { TranslateService } from "@ngx-translate/core";
-
-
+import { UserService } from '../../service/user.service';
+import { language } from '../../models/setting';
 
 @Component({
   selector: 'dish-Component',
@@ -18,37 +18,6 @@ import { TranslateService } from "@ngx-translate/core";
   styleUrls: ['./dish.component.scss']
 })
 export class DishComponent implements OnInit {
-  selectedUser: string;
-  sendId: number;
-  dishDialog: boolean;
-  checked: boolean = true;
-  isEdit: boolean;
-  status: { label: string; value: string; }[];
-  selectedFile: File;
-  constructor(public dishSvc: DishService, 
-    private confirmationService: ConfirmationService, 
-    private msgService: MessageService,
-    private shareData: ShareDataService,
-    private http: HttpClient,
-    private commonMethod: CommonMethodsService,
-
-   
-
-    private authService: AuthService,
-    public translate:TranslateService) { 
-      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-      
-
-
-     
-
-
-
-    }
-    // switchLang(lang) {
-    //   this.translate.use(lang);
-    // }
-
   dishList: Dish[] = [];
   uploadedFiles: any[] = [];
   dish: Dish;
@@ -61,7 +30,36 @@ export class DishComponent implements OnInit {
   nonVegTypes: Array<any>;
   isVeg = true;
   subDish: Subscription;
+   language:language;
+  selectedUser: string;
+  sendId: number;
+  dishDialog: boolean;
+  checked: boolean = true;
+  isEdit: boolean;
+  status: { label: string; value: string; }[];
+  selectedFile: File;
+  lang:any;
+  constructor(public dishSvc: DishService, 
+    private confirmationService: ConfirmationService, 
+    private msgService: MessageService,
+    private shareData: ShareDataService,
+    private http: HttpClient,
+    private commonMethod: CommonMethodsService,
+    private authService: AuthService,
+    public translate:TranslateService,
+    public userservice:UserService) { 
+     
+      
+      userservice.langdata.subscribe(x=>{
+        this.lang=x
+        translate.use(this.lang);
+        console.log("1",this.lang,"2",x)
+      }
+      )
 
+
+    }
+    
  
   ngOnInit(): void {
 

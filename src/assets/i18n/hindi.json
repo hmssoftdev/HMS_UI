@@ -27,6 +27,12 @@
   "Email":"ईमेल",
   "City":"शहर",
   "Pincode":"पिन कोड",
+
+
+
+"Change Password":"कोड",
+
+
   "Shape":"आकार",
   "Seat":"सीट",
   "AC / Non AC":" एसी / गैर एसी",
@@ -35,7 +41,7 @@
   "Order Type":"आदेश प्रकार",
   "Payment Mode":"भुगतान का प्रकार",
   "Order Status":"आदेश की स्थिति",
-  "Username":"उपयोगकर्ता नाम",
+  "Username":" नाम",
   "GST Compliance":"जीएसटी अनुपालन",
   "Status":"स्थिति",
   "Table Name":"तालिका नाम",
@@ -86,6 +92,7 @@
   "Create Table Configuration":"तालिका कॉन्फ़िगरेशन बनाएं",
   "Rating":"रेटिंग",
   "Give your review a title":"अपनी समीक्षा को एक शीर्षक दें",
+
   "Business Name":"व्यवास्यक नाम",
   "Business Category":"व्यापार वर्ग",
   "Food License Number":"खाद्य लाइसेंस संख्या",
@@ -95,6 +102,20 @@
   "Address":"पता",
   "Terms & Conditoins":"नियम और शर्तें",
 
+  "Customers Feedback":"ग्राहकों की प्रतिक्रिया",
+  "Your Review":"आपकी समीक्षा",
+  "I confirm this review is about my own genuine experience. I am eligible to leave this review, and have not been offered any incentive or payment to leave a review for this company.":"मैं पुष्टि करता हूं कि यह समीक्षा मेरे अपने वास्तविक अनुभव के बारे में है। मैं इस समीक्षा को छोड़ने के योग्य हूं, और मुझे इस कंपनी के लिए समीक्षा छोड़ने के लिए कोई प्रोत्साहन या भुगतान की पेशकश नहीं की गई है।",
+  "Reply":"जवाब",
+  "Useful":"उपयोगी",
+  "Share":"साझा करना",
+  "Add Review":"समीक्षा जोड़ें",
+  "Write your review": "अपनी समीक्षा लिखिए",
+  "Post your review":"अपनी समीक्षा पोस्ट करें",
+  "Image":"छवि",
+  "Half Price":"आधी कीमत",
+  "Full Price":"पूरी कीमत",
+  "Category":"श्रेणी",
+  "Time for Cook":"पकाने का समय",
 
     "NameError": "मुझे यकीन है कि आपके पास एक नाम होना चाहिए",
     
@@ -102,6 +123,55 @@
     "Password": "कुंजिका",
     "Bio": "जैव दर्ज करें",
     "TermsConditions": "मैं नियमों और शर्तों से सहमत हूँ।",
-    "Submit": "प्रस्तुत करना"
+
+    "Submit": "प्रस्तुत करना",
+
+
+  
+    "Seats":"Seats",
+    
+    "No Order Today":"आज कोई आदेश नहीं",
+    "Dish Name":"डिश का नाम",
+    "Dish name is required.":"पकवान का नाम ज़रूरी है.",
+    "Upload Dish Image":"डिश छवि अपलोड करें",
+    "Inventory Status":"माल सूची स्थिति",
+    "Inventory Status is required.":"वस्तु सूची स्थिति की आवश्यकता है।",
+    "Select Category":"श्रेणी का चयन करें",
+    "Non-Veg":"मांसाहारी",
+    "Veg":"शाकाहारी",
+    "Chicken":"मुर्गी",
+    "Mutton":"भेड़े का मांस",
+    "Sea Food":"समुद्री भोजन",
+    "Full dish price":"पूरी डिश कीमत",
+    "Half dish price":"आधा पकवान मूल्य",
+    "Quantity":"मात्रा",
+    "Description":"विवरण",
+    "Description is required.":"विवरण आवश्यक है।",
+    "Category is required.":"श्रेणी की आवश्यकता है।",
+    "Save":"सहेजें",
+    "Reset":"रीसेट",
+    "No Result found":"कोई परिणाम नहीं मिला",
+    "Category Name":" श्रेणी नाम",
+    "Dish Category":" डिश श्रेणी",
+    "Business Information":"व्यवसाय जानकारी",
+    "State":"राज्य",
+    "Account Number":"खाता संख्या",
+    "Bank Name":"बैंक का नाम",
+    "IFCS Code":"आईएफएससी कोड",
+    "UPI Code(Number)":"यूपीआई कोड (संख्या)",
+    "Upload restaurents Logo":"रेस्टोरेंट लोगो अपलोड करें",
+    "Upload Owners Signature":"स्वामियों के हस्ताक्षर अपलोड करें",
+    "Upload Restaurents Seal":"रेस्टोरेंट सील अपलोड करें",
+    "Upload UPI Scan Image":"UPI स्कैन इमेज अपलोड करें",
+    "Logo":"प्रतीक चिन्ह",
+    "Sign":"हस्ताक्षर",
+    "Seal":"मोहर",
+    "UPI":"है मैं",
+    "GST Number":"जीएसटी नंबर",
+    "Cancel":"रद्द करें",
+    "New":"नया"
+
    
+
+
 }
