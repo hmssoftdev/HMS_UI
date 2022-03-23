@@ -72,6 +72,8 @@ import { SettingComponent } from './views/setting/setting.component';
 import { LanguageComponent } from './views/language/language.component';
 import { HelpComponent } from './views/help/help.component';
 import { BackdataComponent } from './views/report/backdata/backdata.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -106,7 +108,12 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
         useFactory: httpTranslateLoader,
         deps: [HttpClient]
       }
-    })
+    }), ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   declarations: [
     AppComponent, 
