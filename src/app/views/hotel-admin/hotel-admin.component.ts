@@ -8,6 +8,7 @@ import { Form } from '@angular/forms';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { AuthService } from '../../service/auth.service';
 import { TranslateService } from "@ngx-translate/core";
+import { UserService } from '../../service/user.service';
 @Component({
   selector: 'app-hotel-admin',
   templateUrl: './hotel-admin.component.html',
@@ -24,6 +25,7 @@ export class HotelAdminComponent implements OnInit {
   adminDialog: boolean;
   submitted: boolean;
   dataId: number;
+  lang:any;
   cityFilter: [];
   constructor(
     public adminService: AdminService,
@@ -32,8 +34,15 @@ export class HotelAdminComponent implements OnInit {
     private confirmationService: ConfirmationService,
     private commonMethod: CommonMethodsService,
     private authService: AuthService,
-    public translate:TranslateService
-  ) {
+    public translate:TranslateService,
+    public user:UserService,
+   
+    ) {
+      user.langdata.subscribe(x=>{
+        this.lang=x;
+        translate.use(this.lang)
+      })
+   
     this.admin = new Admin();
     // this.admin.bankDetails = new Bankdetails();
    }
