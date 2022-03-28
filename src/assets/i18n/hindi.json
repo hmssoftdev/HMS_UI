@@ -28,7 +28,10 @@
   "City":"शहर",
   "Pincode":"पिन कोड",
 
+
+
 "Change Password":"कोड",
+
 
   "Shape":"आकार",
   "Seat":"सीट",
@@ -89,6 +92,16 @@
   "Create Table Configuration":"तालिका कॉन्फ़िगरेशन बनाएं",
   "Rating":"रेटिंग",
   "Give your review a title":"अपनी समीक्षा को एक शीर्षक दें",
+
+  "Business Name":"व्यवास्यक नाम",
+  "Business Category":"व्यापार वर्ग",
+  "Food License Number":"खाद्य लाइसेंस संख्या",
+  "Bank Information":"बैंक जानकारी",
+  "Enter bank details":"बैंक विवरण दर्ज करें",
+  "Account Name":"खाता नाम",
+  "Address":"पता",
+  "Terms & Conditoins":"नियम और शर्तें",
+
   "Customers Feedback":"ग्राहकों की प्रतिक्रिया",
   "Your Review":"आपकी समीक्षा",
   "I confirm this review is about my own genuine experience. I am eligible to leave this review, and have not been offered any incentive or payment to leave a review for this company.":"मैं पुष्टि करता हूं कि यह समीक्षा मेरे अपने वास्तविक अनुभव के बारे में है। मैं इस समीक्षा को छोड़ने के योग्य हूं, और मुझे इस कंपनी के लिए समीक्षा छोड़ने के लिए कोई प्रोत्साहन या भुगतान की पेशकश नहीं की गई है।",
@@ -104,8 +117,6 @@
   "Category":"श्रेणी",
   "Time for Cook":"पकाने का समय",
 
-
-
     "NameError": "मुझे यकीन है कि आपके पास एक नाम होना चाहिए",
     
     "PhoneNo": "फोन नंबर",
@@ -113,9 +124,12 @@
     "Bio": "जैव दर्ज करें",
     "TermsConditions": "मैं नियमों और शर्तों से सहमत हूँ।",
 
+    "Submit": "प्रस्तुत करना",
+
+
   
     "Seats":"Seats",
-    "Submit": "प्रस्तुत करना",
+    
     "No Order Today":"आज कोई आदेश नहीं",
     "Dish Name":"डिश का नाम",
     "Dish name is required.":"पकवान का नाम ज़रूरी है.",
@@ -139,8 +153,25 @@
     "No Result found":"कोई परिणाम नहीं मिला",
     "Category Name":" श्रेणी नाम",
     "Dish Category":" डिश श्रेणी",
-    "Business Information":"व्यवसाय जानकारी"
+    "Business Information":"व्यवसाय जानकारी",
+    "State":"राज्य",
+    "Account Number":"खाता संख्या",
+    "Bank Name":"बैंक का नाम",
+    "IFCS Code":"आईएफएससी कोड",
+    "UPI Code(Number)":"यूपीआई कोड (संख्या)",
+    "Upload restaurents Logo":"रेस्टोरेंट लोगो अपलोड करें",
+    "Upload Owners Signature":"स्वामियों के हस्ताक्षर अपलोड करें",
+    "Upload Restaurents Seal":"रेस्टोरेंट सील अपलोड करें",
+    "Upload UPI Scan Image":"UPI स्कैन इमेज अपलोड करें",
+    "Logo":"प्रतीक चिन्ह",
+    "Sign":"हस्ताक्षर",
+    "Seal":"मोहर",
+    "UPI":"है मैं",
+    "GST Number":"जीएसटी नंबर",
+    "Cancel":"रद्द करें",
+    "New":"नया"
 
    
+
 
 }

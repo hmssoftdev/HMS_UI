@@ -32,6 +32,11 @@ export class UserConfigComponent implements OnInit {
     public translate:TranslateService,
     
     ) {
+
+      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+      translate.setDefaultLang('english');
+      translate.use('enlgish');
+
      userSvc.langdata.subscribe(x=>{
        this.lang=x
        console.log(this.lang);
@@ -39,6 +44,7 @@ export class UserConfigComponent implements OnInit {
      })
      
  
+
      }
     
 

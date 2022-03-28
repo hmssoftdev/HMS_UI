@@ -1,15 +1,18 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="p-card">
     <div class="card-header">
-       
+
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                <button pButton pRipple label="{{'New' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
                 <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUser(item)" [disabled]="!selectedUsers || !selectedUsers.length" pTooltip="Delete Users" tooltipPosition="bottom"></button>
                 <div class="p-d-flex">
                     <span class="p-input-icon-left p-ml-auto">
                         <i class="pi pi-search"></i>
-                        <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+
+                        <input class="search" pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                        
+
                     </span>
                 </div>
             </ng-template>
@@ -36,6 +39,7 @@
                         <!-- {{'Email' | translate}} -->
                     </th>
                     <th style="width: 100px;">{{'Contact' | translate}}
+
                         <!-- {{'Contact' | translate}} -->
                     </th>
                     <th style="width: 80px;">{{'City' | translate}}

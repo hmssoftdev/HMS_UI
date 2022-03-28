@@ -145,14 +145,14 @@ export class SidebarComponent implements OnInit {
       // }, 
      
     
-      // {
-      //   name:'Master Admin',
-      //   routing:'/admin-setting',
-      //   access:roleConfig.authRoles.sa,
-      //   icon:'pi pi-id-card',
-      //   title:'Master Admin',
-      //   subItems: []
-      // }
+      {
+        name:'Master Admin',
+        routing:'/admin-setting',
+        access:roleConfig.authRoles.sa,
+        icon:'pi pi-id-card',
+        title:'Master Admin',
+        subItems: []
+      }
     ]
 
   }

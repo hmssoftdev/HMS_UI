@@ -27,7 +27,7 @@
                                             *ngIf="subItem.access.indexOf(userType) > -1"
                                                 [routerLink]="subItem.routing" >
                                                 <div class="pro-inner-item" tabindex="0" role="button">
-                                                    <span (click)="lblMenuToggle=1"
+                                                    <span (click)="lblMenuToggle=0"
                                                         class="pro-item-content">{{subItem.name}}
                                                         </span>
                                                         <span class="itemtitle">{{subItem.title}}</span>

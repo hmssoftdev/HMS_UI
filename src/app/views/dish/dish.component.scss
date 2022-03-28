@@ -1,12 +1,14 @@
 
-
-.p-inputtext {
-    margin: 8px;
-}
   :host ::ng-deep {
     .card {
         .card-header{
             padding:0 0.75rem;
+        }
+        .p-input-icon-left>i, .p-input-icon-right>i {
+            position: absolute;
+            top: 50%;
+            margin-top: -0.5rem;
+            margin-left: 5px;
         }
     }
     .p-input-icon-left>i, .p-input-icon-right>i {
@@ -197,8 +199,12 @@
 }
     }
  }
+
+ @media screen and (max-width:425px) {
+
  @media screen and (max-width:475px) {
      
+
     :host ::ng-deep {
         .p-datatable table{
             display: block;
@@ -249,6 +255,12 @@
             margin-top: -0.3rem !important;
             margin-right: 2px;
 
+
+        }
+        .p-inputtext {
+            padding: 0.1rem 1.6rem!important; 
+
+
         }
         // .p-inputtext {
         //     padding: 0.1rem 1.6rem!important;
@@ -258,8 +270,12 @@
        
     }
 }
+
+
+
 @media screen and (max-width:320px) {
     .search {
         width: 150px!important;
     }
 }
+ }

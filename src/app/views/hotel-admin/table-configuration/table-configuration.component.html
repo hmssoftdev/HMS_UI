@@ -3,7 +3,7 @@
         
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2"
+                <button pButton pRipple label="{{'New' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2"
                     (click)="openNew()"></button>
                     <div class="p-d-flex">
                         <span class="p-input-icon-left p-ml-auto">
@@ -46,10 +46,8 @@
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
 
-
                     <th>{{'Name' | translate}}
-
-
+                    
                         <p-columnFilter type="text" field="name" display="menu"></p-columnFilter>
                     </th>
                     <th>{{'Seat' | translate}}</th>

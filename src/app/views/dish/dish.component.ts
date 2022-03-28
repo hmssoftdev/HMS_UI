@@ -10,7 +10,7 @@ import { AuthService } from '../../service/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from '../../service/user.service';
-import { language } from '../../models/setting';
+
 
 @Component({
   selector: 'dish-Component',
@@ -30,7 +30,7 @@ export class DishComponent implements OnInit {
   nonVegTypes: Array<any>;
   isVeg = true;
   subDish: Subscription;
-   language:language;
+  //  language:language;
   selectedUser: string;
   sendId: number;
   dishDialog: boolean;
@@ -52,8 +52,8 @@ export class DishComponent implements OnInit {
       
       userservice.langdata.subscribe(x=>{
         this.lang=x
-        translate.use(this.lang);
-        console.log("1",this.lang,"2",x)
+        translate.use(this.lang.value);
+       
       }
       )
 

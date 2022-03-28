@@ -34,9 +34,9 @@ export class DishCategoryConfigComponent implements OnInit {
     ) {
       user.langdata.subscribe(x=>{
         this.lang=x;
-        translate.use(this.lang);
+        translate.use(this.lang.value);
       })
-        translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+       
    
      }
    
