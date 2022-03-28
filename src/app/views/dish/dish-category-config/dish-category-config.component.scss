@@ -65,7 +65,11 @@
  }
  @media screen and (max-width:475px) {
      .search{
+
+        width: 150px;
+
          width:150px;
+
      }
     :host ::ng-deep {
         .p-button.p-button-icon-only{
@@ -74,9 +78,10 @@
         }
         .p-button{
             padding: 0.2rem;
-
         }
-        
+        // .p-inputtext{
+        //     width: 150px;
+        // }
         .p-paginator .p-paginator-current {
             margin-left: 0;
            font-size: 0.6rem!important;

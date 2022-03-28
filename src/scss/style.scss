@@ -122,6 +122,12 @@ app-kot-items{
 }
 
 @media print{
+    :host ::ng-deep{
+        .p-dialog{
+            display: none!important;
+        }
+    }
+    
 
    body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
         display: none !important;
@@ -134,3 +140,18 @@ app-kot-items{
         display: block !important;
     }
 }
+#installContainer {
+    position: absolute;
+    bottom: 1em;
+    display: flex;
+    justify-content: center;
+    width: 100%;
+  }
+  
+  #installContainer button {
+    background-color: inherit;
+    border: 1px solid white;
+    color: white;
+    font-size: 1em;
+    padding: 0.75em;
+  }

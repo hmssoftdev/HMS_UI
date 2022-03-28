@@ -45,7 +45,7 @@
                         "ngswConfigPath": "e2e/ngsw-config.json"
                     },
                     "configurations": {
-                        "development": {
+                        "production": {
                             "budgets": [{
                                 "type": "anyComponentStyle",
                                 "maximumWarning": "6kb"
@@ -71,7 +71,7 @@
                         "browserTarget": "ng:build"
                     },
                     "configurations": {
-                        "development": {
+                        "production": {
                             "browserTarget": "ng:build:production"
                         }
                     }

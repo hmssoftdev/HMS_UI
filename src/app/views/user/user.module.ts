@@ -16,6 +16,9 @@ import { UserDetailComponent } from './user-detail/user-detail.component';
     SharedModule,
     TranslateModule,
   ],
+
+  
   exports:[TranslateModule]
+
 })
 export class UserModule { }

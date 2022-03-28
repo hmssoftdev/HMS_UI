@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { navItems } from './_nav';
-
+import { TranslateService } from "@ngx-translate/core";
 import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
 import { AuthService } from './service/auth.service';
@@ -29,7 +29,8 @@ export class AppComponent implements OnInit {
     public iconSet: IconSetService,
     public authService:AuthService,
     private user:UserService,
-    private storageService: StorageService,private users: UserService,private cmser:CommonService
+    private storageService: StorageService,private users: UserService,private cmser:CommonService,
+    public translate:TranslateService
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };

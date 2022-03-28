@@ -230,7 +230,9 @@ export class AdminSettingComponent implements OnInit {
   fnAddAdmin(){
     this.regAdminDialog = true;
   }
-  
+  fnMssgPush(id:number){
+    this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Message Sent!', life: 3000 });
+  }
   fnRegisterAdmin(users:Registration){
     this.users.userType = 2;
     // this.users.id = parseInt(this.users.id)
