@@ -32,10 +32,7 @@ export class DishCategoryConfigComponent implements OnInit {
     public translate:TranslateService,
     public user:UserService
     ) {
-      user.langdata.subscribe(x=>{
-        this.lang=x;
-        translate.use(this.lang.value);
-      })
+     
        
    
      }
@@ -47,6 +44,15 @@ export class DishCategoryConfigComponent implements OnInit {
     { label: 'InActive', value: 'inactive' }];
     // this.dishCategory = {};
     this.loadCategory();
+
+    this.user.langdata.subscribe( (x:any)=>{
+     
+      this.translate.use(x);
+      console.log(x)
+
+    })
+    console.log("Hitting Language")
+   
   }
   loadCategory() {
     this.shareData.currentId.subscribe(id => this.sendId = id);

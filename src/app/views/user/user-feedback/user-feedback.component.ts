@@ -20,14 +20,18 @@ export class UserFeedbackComponent implements OnInit {
   feedbackList: UserFeedback[] = [];
   lang: any;
   constructor(public userSvc: UserService, public msgService: MessageService,public translate :TranslateService) { 
-    userSvc.langdata.subscribe(x=>{
-    this.lang=x
-    translate.use(this.lang);
-    console.log("1",this.lang,"2",x)
-  }
-  )
+  //   userSvc.langdata.subscribe(x=>{
+  //   this.lang=x
+  //   translate.use(this.lang);
+  //   console.log("1",this.lang,"2",x)
+  // }
+  // )
 }
   ngOnInit(): void {
+    this.userSvc.langdata.subscribe((x:any)=>{
+     
+      this.translate.use(x);
+    })
     this.getFeedback();
     this.userFeedback = { rating: 0, opinionText: '', reviewTitle: '' , timeStamp: 'none'}
     console.log(this.userFeedback);

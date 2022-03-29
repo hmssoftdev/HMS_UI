@@ -12,8 +12,9 @@ export interface setting{
     billWithCustomer?: number,
     billWithLOGO?: number,
     billWithSign?: number,
-    billWithSeal?: number
+    billWithSeal?: number,
+    language?:string,
 }
 export interface language{
-    lang?:string;
+    name:string;
 }

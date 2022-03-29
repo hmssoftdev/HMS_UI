@@ -36,10 +36,7 @@ export class OrdersListComponent implements OnInit {
     public user:UserService,
     private authService: AuthService,public translate:TranslateService
     ) {
-      user.langdata.subscribe(x=>{
-        this.lang=x;
-        translate.use(this.lang)
-      })
+      
        
      }
 
@@ -47,6 +44,10 @@ export class OrdersListComponent implements OnInit {
   ngOnInit(): void {
     this.authService.showLoader = true;
     this.loadData();
+    this.user.langdata.subscribe((x:any)=>{
+      this.translate.use(x);
+    })
+    
   }
   loadData() {
     this.orderService.getOrder().subscribe(res => {

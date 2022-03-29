@@ -13,14 +13,14 @@ lang:string='';
 @Output() fnMenuSidebar = new EventEmitter();
 @Output() logOut = new EventEmitter();
   constructor(public authService: AuthService,public translate: TranslateService,public user:UserService) { 
-    translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-    translate.setDefaultLang('english');
+    translate.addLangs(['English', 'Hindi','Gujrati','Marathi','Bengali']);
+    // translate.setDefaultLang('english');
   }
   switchLang(lang) {
     // this.user.langdata.next(lang.value);
     this.translate.use(lang);
     this.user.langdata.next(lang.value)
-    this.translate.use(lang);
+    // this.translate.use(lang);
     this.translate.setDefaultLang(lang.value);
   }
   lbluserProfleShow = false;

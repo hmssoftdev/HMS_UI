@@ -119,14 +119,14 @@ export class SidebarComponent implements OnInit {
       //   title:'Help',
       //   subItems: []
       // },
-      {
-        name:'Language',
-        routing:'/language',
-        access:roleConfig.authRoles.admin,
-        icon:'pi pi-book',
-        title:'Language',
-        subItems: []
-      },
+      // {
+      //   name:'Language',
+      //   routing:'/language',
+      //   access:roleConfig.authRoles.admin,
+      //   icon:'pi pi-book',
+      //   title:'Language',
+      //   subItems: []
+      // },
       {
         name:'Help',
         routing:'/help',

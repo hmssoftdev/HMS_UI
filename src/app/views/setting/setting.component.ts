@@ -26,12 +26,14 @@ import {
   AuthService
 } from '../../service/auth.service';
 import {
+  language,
   setting
 } from '../../models/setting';
 import {
   CommonService
 } from '../../service/common.service';
 import { Observable } from 'rxjs';
+import { TranslateService } from '@ngx-translate/core';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -44,7 +46,9 @@ export class SettingComponent implements OnInit {
   setting:setting;
   want = true;  
   set:setting;
-  constructor(private users: UserService, private authService: AuthService, private comset: CommonService,
+  langa:language[];
+  langchange:string;
+  constructor(public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
     private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
     this.form = fb.group({
 
@@ -62,12 +66,21 @@ export class SettingComponent implements OnInit {
     })
     this.userid = authService.userData().adminId;
     this.setting = this.getDefaultSetting();
+   
   }
 
 
   ngOnInit(): void {
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
+    this.langa=[
+      {name:'English'},
+      {name:'Hindi'},
+      {name:'Marathi'},
+      {name:'Gujrati'},
+      {name:'Bengali'},
+      
+    ];
   }
   fnFetchingApi() {
     this.users.getusersetting(this.userid).subscribe(
@@ -82,7 +95,20 @@ export class SettingComponent implements OnInit {
 
   }
 
+  onChange(event) {
+    
+      this.translate.use(event.value);
+      // this.user.langdata.next(event.value)
+      this.user.langdata.next(event.value)
+      this.langchange=event.value;
+    this.translate.setDefaultLang(event.value)
+     console.log(this.langchange)
+     console.log("Mubashir",event.value);
+    
+    // this.translate.addLangs(['English', 'Hindi','Gujrati','Marathi','Bengali']);
 
+    
+}
 getDefaultSetting(): setting {
     let s: setting = {
       id:0,
@@ -90,7 +116,10 @@ getDefaultSetting(): setting {
     }
     return s;
   }
-
+  savelang(){
+    console.log("Hello",this.langchange)
+    this.user.langdata.next(this.langchange);
+  }
   saveSettings() {
     this.setting.userId = this.userid;
     this.setting.theme = Number(this.setting.theme);
@@ -100,6 +129,10 @@ getDefaultSetting(): setting {
     this.setting.billWithLOGO =Number(this.setting.billWithLOGO);
     this.setting.billWithSeal =Number(this.setting.billWithSeal);
     this.setting.billWithSign =Number(this.setting.billWithSign);
+    this.setting.language=this.langchange;
+
+// this.user.setting.next(this.setting);
+
     if (this.setting.id==0)
       this.user.postusersetting(this.setting).subscribe(
         x => {
