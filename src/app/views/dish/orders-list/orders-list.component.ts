@@ -12,6 +12,7 @@ import { Historydata } from '../../../models/historydata';
 import { TranslateService } from "@ngx-translate/core";
 import { LanguageComponent } from '../../language/language.component';
 import { UserService } from '../../../service/user.service';
+import { CommonService } from '../../../service/common.service';
 
 
 @Component({
@@ -34,7 +35,8 @@ export class OrdersListComponent implements OnInit {
     private orderService: CartService,
     private msgService: MessageService,
     public user:UserService,
-    private authService: AuthService,public translate:TranslateService
+    private authService: AuthService,public translate:TranslateService,
+    public comset:CommonService
     ) {
       
        
@@ -44,9 +46,13 @@ export class OrdersListComponent implements OnInit {
   ngOnInit(): void {
     this.authService.showLoader = true;
     this.loadData();
-    this.user.langdata.subscribe((x:any)=>{
-      this.translate.use(x);
+    this.comset.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      this.translate.use(this.lang);
     })
+    // this.user.langdata.subscribe((x:any)=>{
+    //   this.translate.use(x);
+    // })
     
   }
   loadData() {

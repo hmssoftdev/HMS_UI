@@ -56,15 +56,23 @@ export class UserConfigComponent implements OnInit {
     
 
   ngOnInit(): void {
+
+    this.commonService.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      console.log(this.lang,"BehaviourCheck")
+      this.translate.use(this.lang);
+    })
+
+
   //  this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authService.showLoader = true;
     this.loadData();
-    this.userSvc.langdata.subscribe( (x:any)=>{
+    // this.userSvc.langdata.subscribe( (x:any)=>{
      
-      this.translate.use(x);
-      console.log(x,"Setting Test")
+    //   this.translate.use(x);
+    //   console.log(x,"Setting Test")
 
-    })
+    // })
   }
 
   loadData(){

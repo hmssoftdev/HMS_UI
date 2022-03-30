@@ -11,6 +11,7 @@ import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from '../../service/user.service';
 import { setting } from '../../models/setting';
+import { CommonService } from '../../service/common.service';
 
 
 @Component({
@@ -49,7 +50,8 @@ export class DishComponent implements OnInit {
     private commonMethod: CommonMethodsService,
     private authService: AuthService,
     public translate:TranslateService,
-    public userservice:UserService) { 
+    public userservice:UserService,
+    public commsett:CommonService) { 
      
       
        
@@ -61,12 +63,21 @@ export class DishComponent implements OnInit {
     
  
   ngOnInit(): void {
-    this.userservice.langdata.subscribe( (x:any)=>{
-     
-      this.translate.use(x);
-      console.log(x)
 
+    this.commsett.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      this.translate.use(this.lang);
     })
+
+
+
+
+    // this.userservice.langdata.subscribe( (x:any)=>{
+     
+    //   this.translate.use(x);
+    //   console.log(x)
+
+    // })
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);

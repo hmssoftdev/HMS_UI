@@ -22,12 +22,12 @@ export class ForgotpasswordComponent implements OnInit {
   }
   showResponse(event) {
     this.messageServie.add({severity:'info',
-     summary:'SuccessFully', detail: 'Verified'});
+     summary:'SuccessFully', detail: 'Verified',life: 3000});
 
 }
 forgetpassword(){
 
-  this.messageService.add({severity:'success', summary:'Email Sended On Id'});
+  this.messageService.add({severity:'success', summary:'Email Sended On Id',life: 3000});
 console.log(this.emailid);
 this.user.forgotpassword(this.emailid).subscribe(x=>{
   console.log(x);

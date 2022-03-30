@@ -12,6 +12,23 @@ import { setting } from '../models/setting';
 export class CommonService { 
   cityUrl = `${ApiConfig.URL}${ApiConfig.CITY}`;
   stateUrl = `${ApiConfig.URL}${ApiConfig.STATE}`;
+
+  public language$ = new BehaviorSubject('English');
+  public Obslangauge = this.language$.asObservable();
+
+  setLangData(data){
+   return this.language$.next(data); 
+  }
+
+  // getLangData(x:any){
+  //   return this.Obslangauge.subscribe(res=>{
+  //     x=res;
+  //     return x;
+  //   })
+  // }
+  // getLangData(){
+  //   this.Obslangauge.subscribe();
+  // }
   // public acceptedsetting:any;
   // public CommonSetting$ :BehaviorSubject<setting> = new BehaviorSubject(null);
   // public ObsCommonsetting = this.CommonSetting$.asObservable();

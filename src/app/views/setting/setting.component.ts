@@ -44,7 +44,7 @@ export class SettingComponent implements OnInit {
   form: FormGroup;
   userid: number;
   setting:setting;
-  want = true;  
+  want :string;  
   set:setting;
   langa:language[];
   langchange:string;
@@ -73,6 +73,7 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
+    this.comset.setLangData(this.setting.language);
     this.langa=[
       {name:'English'},
       {name:'Hindi'},
@@ -81,12 +82,20 @@ export class SettingComponent implements OnInit {
       {name:'Bengali'},
       
     ];
+    this.translate.setDefaultLang(this.setting.language);
+    // this.translate.reloadLang(this.setting.language)
+    console.log(this.setting.language);
   }
   fnFetchingApi() {
     this.users.getusersetting(this.userid).subscribe(
       x => {
-        if (x != null)
+        if (x != null){
           this.setting = x;
+          this.comset.setLangData(this.setting.language);
+          this.translate.setDefaultLang(this.setting.language)
+          console.log(this.setting.language)
+        }
+         
         else {
           this.setting = this.getDefaultSetting()
         }
@@ -101,7 +110,8 @@ export class SettingComponent implements OnInit {
       // this.user.langdata.next(event.value)
       this.user.langdata.next(event.value)
       this.langchange=event.value;
-    this.translate.setDefaultLang(event.value)
+    
+    console.log(this.setting.language);
      console.log(this.langchange)
      console.log("Mubashir",event.value);
     
@@ -110,9 +120,15 @@ export class SettingComponent implements OnInit {
     
 }
 getDefaultSetting(): setting {
+let lanset;
+this.comset.Obslangauge.subscribe(x=>{
+  lanset=x
+})
     let s: setting = {
       id:0,
-      theme:0
+      theme:0,
+    language:lanset,
+
     }
     return s;
   }
