@@ -1,4 +1,3 @@
-
 <p-accordion [multiple]="true">
     <p-accordionTab header="{{'Profile' | translate}}">
         <div class="form-group">
@@ -212,6 +211,24 @@
         </div>
       
     </p-accordionTab>
+    <p-accordionTab header="{{'Language' | translate}}">
+        <div class="grid">
+            <div class="col-6 p-text-center"  for="want">
+
+                <p-dropdown [options]="langa" [(ngModel)]="setting.language" 
+                (onChange)="onChange($event)" optionLabel="name"
+                 optionValue="name" name="want"></p-dropdown>
+                
+                <!-- <button for="want" pButton type="button" 
+                (click)="savelang()" label="Save"></button> -->
+            </div>
+        </div>
+      
+      
+    </p-accordionTab>
+
+
+    
 
 </p-accordion>
 

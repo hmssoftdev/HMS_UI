@@ -10,6 +10,8 @@ import { AuthService } from '../../service/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 
 import { UserService } from '../../service/user.service';
+import { setting } from '../../models/setting';
+import { CommonService } from '../../service/common.service';
 
 
 @Component({
@@ -39,6 +41,7 @@ export class DishComponent implements OnInit {
   status: { label: string; value: string; }[];
   selectedFile: File;
   lang:any;
+  sett:setting
   constructor(public dishSvc: DishService, 
     private confirmationService: ConfirmationService, 
     private msgService: MessageService,
@@ -47,15 +50,13 @@ export class DishComponent implements OnInit {
     private commonMethod: CommonMethodsService,
     private authService: AuthService,
     public translate:TranslateService,
-    public userservice:UserService) { 
+    public userservice:UserService,
+    public commsett:CommonService) { 
      
       
-      userservice.langdata.subscribe(x=>{
-        this.lang=x
-        translate.use(this.lang.value);
        
-      }
-      )
+      
+      
 
 
     }
@@ -63,6 +64,20 @@ export class DishComponent implements OnInit {
  
   ngOnInit(): void {
 
+    this.commsett.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      this.translate.use(this.lang);
+    })
+
+
+
+
+    // this.userservice.langdata.subscribe( (x:any)=>{
+     
+    //   this.translate.use(x);
+    //   console.log(x)
+
+    // })
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);

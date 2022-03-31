@@ -7,6 +7,7 @@ import { AuthService } from '../../../service/auth.service';
 import { ShareDataService } from '../../../service/share-data.service';
 import { TranslateService } from '@ngx-translate/core';
 import {  TranslateModule } from '@ngx-translate/core';
+import { setting } from '../../../models/setting';
 @Component({
   selector: 'app-user-config',
   templateUrl: './user-config.component.html',
@@ -22,6 +23,8 @@ export class UserConfigComponent implements OnInit {
   states: any;
   cityFilter: [];
   lang:any;
+  sett:setting;
+  lngset:string;
   constructor(public userSvc: UserService,
     public commonSvc: CommonService,
     private msgService: MessageService,
@@ -33,15 +36,19 @@ export class UserConfigComponent implements OnInit {
     
     ) {
 
-      translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
-      translate.setDefaultLang('english');
-      translate.use('enlgish');
+      // translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+      // translate.setDefaultLang('english');
+     
+      // userSvc.setting.subscribe(x=>{
+      //   this.sett=x;
+      //   translate.use(this.sett.language)
+      // })
+    //  userSvc.langdata.subscribe(x=>{
+    //    this.lang=x
+    //    console.log("User Config",this.lang);
+    //    translate.use(this.lang);
 
-     userSvc.langdata.subscribe(x=>{
-       this.lang=x
-       console.log(this.lang);
-       translate.use(this.lang);
-     })
+    //  })
      
  
 
@@ -49,9 +56,23 @@ export class UserConfigComponent implements OnInit {
     
 
   ngOnInit(): void {
+
+    this.commonService.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      console.log(this.lang,"BehaviourCheck")
+      this.translate.use(this.lang);
+    })
+
+
   //  this.shareData.currentDiallog.subscribe(dialog => this.userDialog = dialog);
     this.authService.showLoader = true;
     this.loadData();
+    // this.userSvc.langdata.subscribe( (x:any)=>{
+     
+    //   this.translate.use(x);
+    //   console.log(x,"Setting Test")
+
+    // })
   }
 
   loadData(){

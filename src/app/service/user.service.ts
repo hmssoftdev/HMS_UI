@@ -35,19 +35,20 @@ export class UserService {
   data:string='';
 public langdata = new Subject();
 
-
+  setting= new Subject<setting>();
   // public language$ = new BehaviorSubject('english');
   //  public Obslangauge = this.language$.asObservable();  
 
   constructor(private http: HttpClient) { }
  
  
-  getlanguage(data){
-    
+  getlanguage(data){ 
     this.langdata.next(data);
 }
 
-
+getsetting(data){
+  this.setting.next(data)
+}
 
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(

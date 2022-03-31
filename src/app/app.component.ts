@@ -20,10 +20,15 @@ import { SettingComponent } from './views/setting/setting.component';
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit { 
+
+  set:setting;
+
   @ViewChild(SidebarComponent) private sideBarComp:SidebarComponent;
   storage: Storage;
   isLoggedin:boolean; 
-  // setting:setting;
+ 
+  // // setting:setting;
+
   constructor(
     private router: Router,
     public iconSet: IconSetService,
@@ -44,6 +49,8 @@ export class AppComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   ngOnInit() { 
+    // this.translate.setDefaultLang(this.set.language)
+    // console.log(this.set.language)
     const uData = JSON.parse(this.storage.getItem('HMSUserData'));
     if(uData && uData.userType != 4){
       this.authService.uLoggedInSubject$.next(true)
