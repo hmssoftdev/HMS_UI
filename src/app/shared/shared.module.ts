@@ -50,6 +50,8 @@ import {ProgressSpinnerModule} from 'primeng/progressspinner';
 import { TranslateService } from "@ngx-translate/core";
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {AccordionModule} from 'primeng/accordion';
+import {TieredMenuModule} from 'primeng/tieredmenu';
+import {MenuItem} from 'primeng/api';
 @NgModule({
   declarations: [
     OrderStatusComponent,
@@ -61,6 +63,8 @@ import {AccordionModule} from 'primeng/accordion';
 
   ],
   imports: [
+    TieredMenuModule,
+    
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -117,6 +121,8 @@ import {AccordionModule} from 'primeng/accordion';
   ],
   exports:[
     CommonModule,
+    TieredMenuModule,
+  
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,

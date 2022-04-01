@@ -46,6 +46,7 @@ public langdata = new Subject();
     this.langdata.next(data);
 }
 
+
 getsetting(data){
   this.setting.next(data)
 }

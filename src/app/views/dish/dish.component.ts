@@ -61,6 +61,7 @@ export class DishComponent implements OnInit {
     
  
   ngOnInit(): void {
+    
     this.userservice.langdata.subscribe( (x:any)=>{
      
       this.translate.use(x);

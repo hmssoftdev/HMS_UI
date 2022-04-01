@@ -48,6 +48,9 @@ export class SettingComponent implements OnInit {
   set:setting;
   langa:language[];
   langchange:string;
+  selectedValue: any;
+  items: any;
+  selectedlanguage: any;
   constructor(public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
     private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
     this.form = fb.group({
@@ -86,10 +89,15 @@ export class SettingComponent implements OnInit {
     this.users.getusersetting(this.userid).subscribe(
       x => {
         if (x != null)
-          this.setting = x;
+         {this.setting = x;
+          this.user.getlanguage(this.setting.language);
+          this.translate.setDefaultLang(this.setting.language)
+         }
         else {
           this.setting = this.getDefaultSetting()
+
         }
+
       }
     )
 
@@ -104,15 +112,17 @@ export class SettingComponent implements OnInit {
     this.translate.setDefaultLang(event.value)
      console.log(this.langchange)
      console.log("Mubashir",event.value);
-    
-    // this.translate.addLangs(['English', 'Hindi','Gujrati','Marathi','Bengali']);
-
-    
+      
 }
 getDefaultSetting(): setting {
+  let lanx;
+  this.user.langdata.subscribe(x=>{
+    lanx=x
+  })
     let s: setting = {
       id:0,
-      theme:0
+      theme:0,
+      language:lanx,
     }
     return s;
   }

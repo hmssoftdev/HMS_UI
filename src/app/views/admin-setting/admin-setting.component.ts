@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Admin } from '../../models/admin';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { CommonService } from '../../service/common.service';
 import { AdminService } from '../../service/admin.service';
 import { Router } from '@angular/router';
@@ -32,6 +32,7 @@ export class AdminSettingComponent implements OnInit {
   statusString: string;
   sendId: number;
   regAdminDialog: boolean;
+  items: MenuItem[];
   constructor(
     public adminService: AdminService,
     private msgService: MessageService,
@@ -55,6 +56,17 @@ export class AdminSettingComponent implements OnInit {
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
     this.users = {};
+    this.items = [
+      {
+      label:'Delete',
+      icon:'pi pi-trash',
+    }
+    
+    ];
+
+
+
+
     // this.status = [
     // { label: 'Lead', value: 'lead' },
     // { label: 'Pending', value: 'pending' },

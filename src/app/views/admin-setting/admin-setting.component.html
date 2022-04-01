@@ -86,20 +86,26 @@
                         </p-tag>
                     </td>
                     <td>
-                        <button (click)="fnWorkAsAdmin()" pButton pRipple icon="pi pi-user"
+                        <!-- <button (click)="fnWorkAsAdmin()" pButton pRipple icon="pi pi-user"
                             class="p-button-rounded p-button-primary p-button-sm p-mr-1" pTooltip="Work as Admin"
-                            tooltipPosition="left"></button>
+                            tooltipPosition="left"></button> -->
                         <button [disabled]="item.subscriptionStatus === 3" pButton pRipple icon="pi pi-check"
                             class="p-button-rounded p-button-success p-mr-2" (click)="approve(item)"
                             pTooltip="Approve Admin" tooltipPosition="left"></button>
-                        <button pButton pRipple icon="pi pi-id-card" class="p-button-rounded p-button-primary p-mr-2"
-                            (click)="fnBusinessInfo(item.id)" pTooltip="Business Info" tooltipPosition="left"></button>
+
+
+
+
+                        <!-- <button pButton pRipple icon="pi pi-id-card" class="p-button-rounded p-button-primary p-mr-2"
+                            (click)="fnBusinessInfo(item.id)" pTooltip="Business Info" tooltipPosition="left"></button> -->
                             <button pButton pRipple icon="pi pi-envelope" class="p-button-rounded p-button-primary p-mr-2"
                             (click)="fnMssgPush(item)" pTooltip="Push Message" tooltipPosition="left"></button>
                               <!-- <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-warning p-mr-2"
                                 (click)="editAdmin(item)" pTooltip="Edit Admin" tooltipPosition="left"></button> -->
-                        <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
-                            (click)="deleteAdmin(item)" pTooltip="Delete Admin" tooltipPosition="left"></button>
+                        <!-- <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-danger"
+                            (click)="deleteAdmin(item)" pTooltip="Delete Admin" tooltipPosition="left"></button> -->
+                            <button #btn type="button" pButton icon="pi pi-bars" label="" (click)="menu.toggle($event)"></button>
+                            <p-tieredMenu #menu [model]="items" [popup]="true"></p-tieredMenu>
                     </td>
                 </tr>
             </ng-template>
