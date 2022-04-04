@@ -73,7 +73,7 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
-    this.comset.setLangData(this.setting.language);
+    // this.comset.setLangData(this.setting.language);
     this.langa=[
       {name:'English'},
       {name:'Hindi'},
@@ -82,7 +82,7 @@ export class SettingComponent implements OnInit {
       {name:'Bengali'},
       
     ];
-    this.translate.setDefaultLang(this.setting.language);
+    // this.translate.setDefaultLang(this.setting.language);
     // this.translate.reloadLang(this.setting.language)
     console.log(this.setting.language);
   }

@@ -35,12 +35,19 @@ setting:setting;
           this.comset.setLangData(this.setting.language);
           this.translate.setDefaultLang(this.setting.language)
           console.log(this.setting.language)
-       
+
+          this.comset.setSetData(this.setting);
+          
          
        
       }
     )
   }
+
+
+
+
+
   fnLogout(){
     this.logOut.emit();
     this.lbluserProfleShow = false;

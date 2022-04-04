@@ -20,6 +20,8 @@ export class CommonService {
    return this.language$.next(data); 
   }
 
+  
+
   // getLangData(x:any){
   //   return this.Obslangauge.subscribe(res=>{
   //     x=res;
@@ -29,6 +31,11 @@ export class CommonService {
   // getLangData(){
   //   this.Obslangauge.subscribe();
   // }
+  public SettingData$:BehaviorSubject<setting>= new BehaviorSubject(null);
+  public obsSetData= this.SettingData$.asObservable();
+  setSetData(data){
+    return this.SettingData$.next(data);
+  }
   // public acceptedsetting:any;
   // public CommonSetting$ :BehaviorSubject<setting> = new BehaviorSubject(null);
   // public ObsCommonsetting = this.CommonSetting$.asObservable();

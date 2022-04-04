@@ -52,21 +52,25 @@
               
               
               
-              {{myDate | date:'MMdd'}}</span> </b> <img width="20px"
-             class="p-text-right" style="margin-left:41px;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" height="15px" *ngIf="adminData?.restaurentLogo" [src]="adminData.restaurentLogo"
-              alt=""></div> 
+              {{myDate | date:'MMdd'}}</span> </b> 
+              <div *ngIf="set"> 
+                <img width="20px"
+                class="p-text-right" style="margin-left:41px;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" height="15px" *ngIf="adminData?.restaurentLogo" [src]="adminData.restaurentLogo"
+                 alt="">
+              </div>
+              </div> 
               <div class="p-col p-py-0" style="font-size: 10px;"> <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Date:</strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:8px;font-weight:bold;">{{myDate | date:'MM/dd/yyyy'}}</span>&nbsp;<strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:10px;font-weight:bold;">Time:</strong> <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:8px;font-weight:bold;">{{todaysDataTime}}</span> </div>
           <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Delivery Mode: </strong> <span>{{ orderData?.deliveryMode}}</span> </div>  
           <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Name: </strong><span>{{adminData?.businessName}} </span></div>       
             <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Address: </strong><span>{{adminData?.address}}</span></div>
             <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>City: </strong><span>{{adminData?.city}}</span> &nbsp;<strong>State: </strong>{{adminData?.state}}</div>
-            <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
+            <div *ngIf="set" class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
            
             
         </td>
      
         </tr></table>
-        <table class="tblInvoice">
+        <table *ngIf="set" class="tblInvoice">
           <tr>
             <td>
               <div class="p-col p-py-0" style="font-size:10px;">
@@ -124,7 +128,7 @@
         <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-bold p-text-center b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
+        <td *ngIf="set" colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
           
          <img [src]="adminData.signature" style="color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;" *ngIf="adminData?.signature" height="30px" width="50px">
        
