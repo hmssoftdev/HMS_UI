@@ -88,6 +88,16 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    this.comset.obsSetData.subscribe(x=>{
+      this.data=x;
+      console.log(this.data)
+      if(this.data.menuDisplay === 0){
+        this.image=false
+      }
+    })
+
+
+
     this.userSvc.langdata.subscribe( (x:any)=>{
      
       this.translate.use(x);
@@ -95,11 +105,12 @@ export class DishMenuNewComponent implements OnInit {
 
     })
 
-  this.userService.getusersetting(this.auth.userData().adminId).subscribe
-  (x=>{
-    this.data=x
+  // this.userService.getusersetting(this.auth.userData().adminId).subscribe
+  // (x=>{
+  //   this.data=x
+   
 
-  })
+  // })
   // this.userService.language$.subscribe(x=>
   //   {
   //     this.lang=x
