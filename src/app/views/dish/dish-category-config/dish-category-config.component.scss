@@ -59,11 +59,18 @@
                 } 
             }
     }
-    .p-paginator{display: none;}
+    .p-paginator{}
 }
     }
  }
  @media screen and (max-width:475px) {
+     .search{
+
+        width: 150px;
+
+         width:150px;
+
+     }
     :host ::ng-deep {
         .p-button.p-button-icon-only{
             height: 1.367rem;
@@ -71,8 +78,22 @@
         }
         .p-button{
             padding: 0.2rem;
-
         }
+        // .p-inputtext{
+        //     width: 150px;
+        // }
+        .p-paginator .p-paginator-current {
+            margin-left: 0;
+           font-size: 0.6rem!important;
+       }
+    .p-paginator-page {
+           background-color: #fff;
+           border: 1px solid #dee2e6;
+           color: #007bff;
+           min-width: 1.357rem;
+           height: 1.357rem;
+           margin: 0 0 0 -1px;
+       }
        
     }
 }

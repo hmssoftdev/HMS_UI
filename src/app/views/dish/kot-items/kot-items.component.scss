@@ -1,11 +1,15 @@
-
 html, body, h1, h2, h3, h4, p, img { margin: 0;} /* margin reset*/
 h1{font-size: 18px; font-weight: 500; margin-bottom: 0.5cm;}
 h2{font-size: 16px; font-weight: 500;}
 p{font-size: 12px;}
 table{
-   
-
+    font-family: 'Nanum Gothic Coding', monospace;
+//     font-family: "verdana";
+// font-size: "16px";
+// font-weight: normal;
+//     font-family: "verdana";
+//         Font-size: "16px";
+// Font-weight: normal;
     width:100%; 
     border: 1px solid #020202;
     tr {
@@ -30,5 +34,12 @@ table{
        }
         .b-top {border-top:1px solid #070707;}
         .b-dashed {border-bottom:1px dashed #050505;}
+    }
+}
+@media print{
+   
+    table{
+        
+        margin: 0% !important;;
     }
 }

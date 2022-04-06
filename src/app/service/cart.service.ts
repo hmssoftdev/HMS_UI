@@ -45,12 +45,12 @@ public get(): Observable<ShoppingCart> {
 public addItem(product: any, quantity: number, gstCompliance?:number): void {
   debugger
   const cart = this.retrieve();
-  const prodId = product.id ? product.id : product.productId;
+  const prodId = product.id && !product.productId ? product.id : product.productId;
   const qStatus = product.isFull;
   let item = cart.orderItems.find((p) => p.productId == prodId && p.isFull === qStatus);
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
   
-  if (item === undefined) {
+  if (item === undefined || item.kotPrinted) {
     item = new CartItem();
     item.productId = product.id;
     item.name = product.name;
@@ -60,7 +60,7 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
     item.gstCompliance = gstCompliance || 0;
     item.gstPrice = item.price * item.gstCompliance / 100;
     item.isFull = product.isFull;
-    item.kotPrinted = product.kotPrinted ? product.kotPrinted : false;
+    item.kotPrinted = false;
     cart.orderItems.push(item);
   }
 
@@ -144,7 +144,11 @@ private dispatch(cart: ShoppingCart): void {
 public addTable(table){
   const cart = this.retrieve();
   cart.tableIds = [];
+  if(table.isBooked){
   cart.tableIds.push(table.id)
+  } else {
+    cart.tableIds = [];
+  }
  // cart.tableId = table.id;
   this.save(cart);
 }
@@ -158,9 +162,11 @@ public addDeliveryMode(deliveryMode:string){
       break;
     case 'Home Delivery':
       dMid = 2;
+      cart.tableIds = [];
       break;
     case 'Take Away':
       dMid = 3;
+      cart.tableIds = [];
       break;
   }
   cart.deliveryOptionId = dMid;

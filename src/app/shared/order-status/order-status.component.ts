@@ -19,10 +19,11 @@ export class OrderStatusComponent implements OnInit {
   orderStatusData: OrderStatusData[] = [];
   orderItem: OrderItem[] = [];
   adminData: Admin;
+  label:boolean=false;
   showInvoice: boolean = false;
   constructor(private adminService: AdminService,
     private orderSvc: CartService) { }
-
+    showKOTItems:boolean=true;
   ngOnInit(): void {
     console.log(this.orderId);
     console.log(this.orderTotal);
@@ -69,6 +70,21 @@ export class OrderStatusComponent implements OnInit {
       this.adminData = resp[0];
     })
   }
+  invoiceshow(){
+    this.label=true;
+  }
+  printing(){
+    setTimeout(x=>{
+      window.print()
+    },1000)
+  }
+  printinvoice()
+  {
+    setTimeout(function () {
+      window.print();
+    },1000)
+  }
+  
 
   fnCancelOrder() {
     // Do something

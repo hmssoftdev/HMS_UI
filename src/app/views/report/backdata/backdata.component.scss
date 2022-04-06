@@ -1,0 +1,113 @@
+.p-button.p-button-icon-only.p-button-rounded {
+    border-radius: 50%;
+    height: 2.2rem;
+    width: 2.1rem;
+}
+:host ::ng-deep {
+    /* Responsive */
+    .p-datatable-customcss .p-datatable-tbody > tr > td .p-column-title {
+       display: none;
+   }
+   
+   }
+   @media screen and (max-width: 425px) {
+       .p-grid{
+           margin-top: 5px !important;
+           padding: 10px;
+        height: 236px !important;
+        overflow: scroll;
+       }
+       :host ::ng-deep {
+           .p-button.p-button-icon-only{
+               height: 1.667rem;
+               width: 1.667rem;
+           }
+           .p-button.p-button-icon-only.p-button-rounded {
+            border-radius: 50%;
+            height: 1.5rem !important;
+            width: 1.5rem !important;
+        }
+           .p-button{
+               padding: 0.3rem;
+               font-size: 0.75rem;
+           }
+           .pi{
+               font-size: 0.75rem;
+           }
+       .p-datatable-customcss {
+           table {
+              
+               .p-datatable-thead > tr > th,
+               .p-datatable-tfoot > tr > td {
+                   display: none !important;
+               }
+               tr{
+           display: flex;
+           flex-wrap: wrap;
+           margin: 5px 0;
+           background: #f9f9f9;
+           border-radius: 2px;
+           justify-content: space-between;
+                   td{
+                      
+                       padding:0.3rem !important;
+                       border:0;
+                     
+                       .p-tag-value{
+                           font-size: 0.625rem;
+                           padding: 0;
+                           line-height: 12px;
+                       }
+                       .p-column-title {
+                            display: inline-block !important; 
+                            margin-right: 5px;
+                            color:#222b94;
+                                                   }
+                   }
+                   td:nth-child(2) {
+                       font-size: .9rem;
+                       font-weight: 600;
+                       width: 33.3334%;
+                   }
+                   
+                //    td:first-child{
+                //        display: none;
+                //    }
+                  
+               }
+       }
+       .p-paginator{display: none;}
+   }
+       }
+    }
+@media screen and (max-width: 768px){
+   .date{
+       display: contents;
+   }
+
+    .but{
+        display: inline-flex;
+    }
+    // .p-grid{
+    //     margin-top: 5px !important;
+    //     padding: 10px;
+    //  height: 262px !important;
+    //  overflow: scroll;
+    // }
+
+}
+// @media screen and (max-width: 1440px){
+//     th {
+//         background: white;
+      
+//         top: 0; /* Don't forget this, required for the stickiness */
+//         box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.4);
+//       }
+//     .p-grid{
+//         margin-top: 5px !important;
+//         padding: 10px;
+//      height: 270px;
+//      overflow: scroll;
+//     }
+
+// }

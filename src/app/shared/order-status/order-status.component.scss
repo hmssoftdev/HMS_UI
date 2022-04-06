@@ -10,6 +10,13 @@
     background: #6c757d;
     border: 1px solid #6c757d;
 }
+// :host::ng-deep{
+//     .p-tabview-panel{
+//         display: flex;
+//         justify-content: center;
+//         align-items: center;
+//     }
+// }
 .custom-marker.status-completed{
     color: #ffffff;
     background: #28a745;
@@ -34,4 +41,89 @@
 }
 .dashedBorderT{
     border-top: 1px dashed #dcdcdc;
+}
+@media print {
+ .noprint{
+     display: none;
+ }
+
+ .invoice{
+
+ }
+    app-invoice{
+    
+        display :block;
+        padding: 0%;
+        position:static;
+        left:0;
+        top:0;
+        
+
+    app-invoice{
+        position: relative;
+        display :block;
+        padding: 0%;
+
+    }
+    .nonprint{
+        display: none;
+    }
+    .status{
+        visibility: hidden;
+
+    }
+
+    body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
+        visibility: hidden;
+    }
+
+   
+    :host::ng-deep{
+        .p-dialog{
+                padding: 0%!important;
+
+                width: 100%!important;
+            .p-dialog-header{
+            visibility: hidden;
+
+            .p-dialog-header{
+                display: none!important ;
+            }
+
+            
+            .p-dialog-header{
+            visibility: hidden;
+
+
+        }
+        .p-button.p-button-outlined{
+            visibility: hidden;
+        }
+        .p-button-outlined{
+            display:none !important;
+        }
+        .p-dialog-content{
+           visibility: hidden !important;
+        }
+        .p-dialog-header-close-icon{
+            visibility: hidden;
+        }
+        .p-dialog-header-icon{
+            visibility: hidden;
+        }
+    }
+        .p-tabview .p-tabview-nav{
+            visibility: hidden;
+        }
+    
+    .invoice
+{
+    margin: 0%;
+    visibility: visible;
+    
+}
+    }
+
+    }
+    }
 }

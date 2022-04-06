@@ -1,24 +1,45 @@
-<h2>Hello</h2>
-<p-table [value]="sales">
-    <ng-template pTemplate="header">
-      <tr>
+<div class="p-grid p-mt-6">
+  <div class="p-col-12 md:col-12 p-text-center">
+  <strong class="text-3xl">{{'History Data'| translate}}</strong>
+  </div>
+  <div class="p-col-12 p-md-8 p-text-center">
 
-        <th>SR NO </th>
-        <th>Name</th>
-        <th>Contact</th>
-        <th pSortableColumn="city.name">City <p-sortIcon field="city.name"></p-sortIcon>
-        </th>
-        <th>Bill No</th>
-      </tr>
+ <p-calendar [(ngModel)]="mindate" placeholder="Select From" class="p-text-center mr-2" dateFormat="yy-mm-dd">
 
-    </ng-template>
-    <ng-template pTemplate="body" let-sale>
-      <tr>
-        <td>{{sale.srno}}</td>
-        <td>{{sale.cusname}}</td>
-        <td>{{sale.cuscontact}}</td>
-        <td>{{sale.cuscity}}</td>
-        <td>{{sale.billno}}</td>
-      </tr>
-    </ng-template>
-  </p-table>
+    <ng-template pTemplate="header"><span class="text-2xl">From</span></ng-template>
+  </p-calendar>
+  <p-calendar [(ngModel)]="maxdate" placeholder="Select To" class="p-text-center ml-2" dateFormat="yy-mm-dd"
+  > <ng-template pTemplate="header"><span class="text-2xl">To</span></ng-template>
+</p-calendar>
+  <button pButton pRipple type="button" (click)="getHistorydata()" class="p-button-raised p-button-success p-button-outlined ml-2">Get Data</button>
+</div>
+
+  <div class="p-col-12 p-md-4 p-text-center">
+    <button pButton type="button" (click)="getweekdata()" label="Week" class="p-button-outlined mr-2"></button>
+    <button pButton type="button" label="Month" (click)="getmonthdata()" class="p-button-outlined ml-2"></button>
+  </div>
+  <div *ngIf="showhistorydata">
+    
+    <app-backdata [maxDate]="maxdate" [minDate]="mindate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div>
+  <div *ngIf="showweekdata">
+      
+    <app-backdata [maxDate]="allstartdate" [minDate]="weekenddate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div> 
+  <div *ngIf="showmonthdata">
+    
+    <app-backdata [maxDate]="allstartdate" [minDate]="monthenddate"  [ID]="id">
+      
+    </app-backdata>
+   
+   
+  </div>
+  </div>

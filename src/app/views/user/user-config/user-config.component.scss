@@ -5,6 +5,9 @@
     display: none;
 }
  }
+ .p-inputtext {
+    margin: 8px;
+}
 @media screen and (max-width: 768px) {
     :host ::ng-deep {
         .p-button.p-button-icon-only{
@@ -59,20 +62,78 @@
                
             }
     }
-    .p-paginator{display: none;}
+    .p-paginator{}
 }
     }
  }
  @media screen and (max-width:475px) {
+     .search{
+         width: 150px;
+     }
     :host ::ng-deep {
         .p-button.p-button-icon-only{
             height: 1.367rem;
             width: 1.367rem;
         }
+        .p-paginator .p-paginator-current {
+            margin-left: 0;
+           font-size: 0.6rem!important;
+       }
+    .p-paginator-page {
+           background-color: #fff;
+           border: 1px solid #dee2e6;
+           color: #007bff;
+           min-width: 1.357rem;
+           height: 1.357rem;
+           margin: 0 0 0 -1px;
+       }
         .p-button{
             padding: 0.2rem;
 
         }
+    //     .p-datatable-customcss {
+    //         table {
+    //             .p-datatable-thead > tr > th,
+    //             .p-datatable-tfoot > tr > td {
+    //                 display: none !important;
+    //             }
+    //             tr{
+    //         display: flex;
+    //         flex-wrap: wrap;
+    //         margin: 5px 0;
+    //         background: #f9f9f9;
+    //         border-radius: 2px;
+    //         justify-content: space-between;
+    //                 td{
+    //                     width:50%; 
+    //                     padding:0.3rem !important;
+    //                     border:0;
+                      
+    //                     .p-tag-value{
+    //                         font-size: 0.625rem;
+    //                         padding: 0;
+    //                         line-height: 12px;
+    //                     }
+    //                     .p-column-title {
+    //                          display: inline-block !important; 
+    //                          margin-right: 5px;
+    //                          color:#222b94;
+    //                                                 }
+    //                 }
+    //                 td:nth-child(2) {
+    //                     font-size: .9rem;
+    //                     font-weight: 600;
+    //                     width: 33.3334%;
+    //                 }
+                    
+    //                 td:first-child{
+    //                     display: none;
+    //                 }
+                   
+    //             }
+    //     }
+    //     .p-paginator{}
+    // }
         
     }
 }

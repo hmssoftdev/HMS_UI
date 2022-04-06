@@ -4,7 +4,7 @@ import { roleConfig } from '../../constant/rolesConfig';
 import { AuthGuard } from '../../helpers/auth.guard';
 import { UserConfigComponent } from './user-config/user-config.component';
 import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
-
+import { TranslateModule } from '@ngx-translate/core';
 const routes: Routes = [
   {
     path:'',component:UserConfigComponent, 

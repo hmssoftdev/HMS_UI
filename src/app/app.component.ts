@@ -1,12 +1,16 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { navItems } from './_nav';
-
+import { TranslateService } from "@ngx-translate/core";
 import { IconSetService } from '@coreui/icons-angular';
 import { freeSet } from '@coreui/icons';
 import { AuthService } from './service/auth.service';
 import { StorageService } from './service/storage.service';
 import { SidebarComponent } from './common/sidebar/sidebar.component';
+import { UserService } from './service/user.service';
+import { setting } from './models/setting';
+import { CommonService } from './service/common.service';
+import { SettingComponent } from './views/setting/setting.component';
 
 @Component({
   // tslint:disable-next-line
@@ -16,14 +20,22 @@ import { SidebarComponent } from './common/sidebar/sidebar.component';
   providers: [IconSetService],
 })
 export class AppComponent implements OnInit { 
+
+  set:setting;
+
   @ViewChild(SidebarComponent) private sideBarComp:SidebarComponent;
   storage: Storage;
   isLoggedin:boolean; 
+ 
+  // // setting:setting;
+
   constructor(
     private router: Router,
     public iconSet: IconSetService,
     public authService:AuthService,
-    private storageService: StorageService
+    private user:UserService,
+    private storageService: StorageService,private users: UserService,private cmser:CommonService,
+    public translate:TranslateService
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
@@ -37,12 +49,15 @@ export class AppComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   ngOnInit() { 
+    // this.translate.setDefaultLang(this.set.language)
+    // console.log(this.set.language)
     const uData = JSON.parse(this.storage.getItem('HMSUserData'));
     if(uData && uData.userType != 4){
       this.authService.uLoggedInSubject$.next(true)
       this.authService.uLoggedInSubject$.subscribe(resp => this.uLoggedIn = resp)
   } else {
     this.storage.setItem('HMSUserData',JSON.stringify({userType:4}))
+    
   }
     
     this.router.events.subscribe((evt) => {
@@ -51,8 +66,14 @@ export class AppComponent implements OnInit {
       }
       window.scrollTo(0, 0);
     });
-  }
+    // this.fnFetchingApi();
+// this.user.getusersetting(this.authService.userData().adminId).subscribe(x=>{
+// this.setting=x;
+// console.log(this.setting);
+// })
+//  this.setting=this.cmser.getsettingData();
 
+  }
   fnMenuSBarClick(){
     this.sideBarComp.fnToggleSidebar(); 
   }

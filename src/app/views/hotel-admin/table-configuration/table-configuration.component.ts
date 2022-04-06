@@ -4,6 +4,7 @@ import { TableService } from "../../../service/table.service";
 import { Hotel } from "../../../models/tabelConfiguration.model";
 
 import { AuthService } from "../../../service/auth.service";
+import { TranslateService } from "@ngx-translate/core";
 @Component({
     selector: 'app-table-configuration',
     templateUrl: './table-configuration.component.html',
@@ -20,9 +21,13 @@ export class TableConfigurationComponent implements OnInit {
     constructor(public tableSvc: TableService,
         private msgService: MessageService,
         private confirmationService: ConfirmationService,
-        private authService: AuthService
-    ) { }
+        private authService: AuthService,public translate: TranslateService
+    ) {
+    //     translate.addLangs(['english', 'hindi','gujrati','marathi','bengali']);
+    // translate.setDefaultLang('english');
+     }
     ngOnInit(): void {
+        
         this.authService.showLoader = true;
         this.hallType = [{ label: 'AC', value: true },
         { label: 'Non AC', value: false }];
@@ -91,6 +96,7 @@ export class TableConfigurationComponent implements OnInit {
         this.table = {};
         this.submitted = false;
         this.tableDialog = true;
+        this.table.seat=0;
     }
     editDish(table: Hotel) {
         this.table = { ...table };

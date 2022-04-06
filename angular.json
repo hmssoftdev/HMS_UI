@@ -17,7 +17,9 @@
                         "tsConfig": "src/tsconfig.app.json",
                         "polyfills": "src/polyfills.ts",
                         "assets": [
-                            "src/assets"
+                            "src/assets",
+                            "src/manifest.webmanifest",
+                            "src/manifest.webmanifest"
                         ],
                         "styles": [
                             "src/scss/style.scss",
@@ -33,14 +35,14 @@
                             ]
                         },
                         "scripts": [
-                            "node_modules/chart.js/dist/Chart.js",
-                           
-                            
+                            "node_modules/chart.js/dist/Chart.js"                       
                         ],
                         "allowedCommonJsDependencies": [
                             "chart.js",
                             "classnames"
-                        ]
+                        ],
+                        "serviceWorker": true,
+                        "ngswConfigPath": "e2e/ngsw-config.json"
                     },
                     "configurations": {
                         "production": {
@@ -105,7 +107,9 @@
                         },
                         "assets": [
                             "src/assets",
-                            "src/favicon.ico"
+                            "src/favicon.ico",
+                            "src/manifest.webmanifest",
+                            "src/manifest.webmanifest"
                         ]
                     }
                 },

@@ -1,47 +1,139 @@
-@media screen and(max-width:320px){
-  .check{
-      display: none;
-  }
-  .body{
-      display: none!important;
-  }
-    :host ::ng-deep
-     {
-        .p-column-filter-menu{
-            display: none;
-        }
-        .p-button.p-button-icon-only {
-            width: 2rem;
-            padding: 0.5rem 0;
-        }
-        .p-tag.p-tag-warning {
+// @media screen and(max-width:320px){
+//   .check{
+//       display: none;
+//   }
+//   .body{
+//       display: none!important;
+//   }
+//     :host ::ng-deep
+//      {
+//         .p-paginator .p-paginator-current {
+//             margin-left: 0;
+//            font-size: 0.6rem!important;
+//        }
+//     .p-paginator-page {
+//            background-color: #fff;
+//            border: 1px solid #dee2e6;
+//            color: #007bff;
+//            min-width: 1.357rem;
+//            height: 1.357rem;
+//            margin: 0 0 0 -1px;
+//        }
+//         .p-column-filter-menu{
+//             display: none;
+//         }
+//         .p-button.p-button-icon-only {
+//             width: 2rem;
+//             padding: 0.5rem 0;
+//         }
+//         .p-tag.p-tag-warning {
            
-            font-size: x-small;
-        }
+//             font-size: x-small;
+//         }
         
-    .p-datatable table{
-        display: flex;
-        flex-wrap:wrap ;
-        font-size: 0.5rem;
-        .p-datatable-tbody>tr{
-            display: flex;
+//     .p-datatable table{
+//         display: flex;
+//         flex-wrap:wrap ;
+//         font-size: 0.5rem;
+//         .p-datatable-tbody>tr{
+//             display: flex;
            
-            flex-wrap: wrap;
-            align-content: center;
+//             flex-wrap: wrap;
+//             align-content: center;
           
-            align-items: center;
-        }
-        .p-checkbox{
-            display: none!important;
-        }
-    }
-    .p-checkbox{
-        display: none!important;
-    }
-    .p-checkbox-box{
-        display: none!important;
-    }
+//             align-items: center;
+//         }
+//         .p-checkbox{
+//             display: none!important;
+//         }
+//     }
+//     .p-checkbox{
+//         display: none!important;
+//     }
+//     .p-checkbox-box{
+//         display: none!important;
+//     }
     
   
+// }
+// }
+@media screen and (max-width: 425px) {
+    .p-paginator-page {
+        background-color: #fff;
+        border: 1px solid #dee2e6;
+        color: #007bff;
+        min-width: 1.357rem;
+        height: 1.357rem;
+        margin: 0 0 0 -1px;
+    }
+    
+ 
+    .p-grid{
+        margin-top: 5px !important;
+        padding: 10px;
+     height: 236px !important;
+     overflow: scroll;
+    }
+    :host ::ng-deep {
+        .p-button.p-button-icon-only{
+            height: 1.667rem;
+            width: 1.667rem;
+        }
+        .p-button.p-button-icon-only.p-button-rounded {
+         border-radius: 50%;
+         height: 1.5rem !important;
+         width: 1.5rem !important;
+     }
+        .p-button{
+            padding: 0.3rem;
+            font-size: 0.75rem;
+        }
+        .pi{
+            font-size: 0.75rem;
+        }
+    .p-datatable-customcss {
+        table {
+           
+            .p-datatable-thead > tr > th,
+            .p-datatable-tfoot > tr > td {
+                display: none !important;
+            }
+            tr{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 5px 0;
+        background: #f9f9f9;
+        border-radius: 2px;
+        justify-content: space-between;
+                td{
+                   
+                    padding:0.3rem !important;
+                    border:0;
+                  
+                    .p-tag-value{
+                        font-size: 0.625rem;
+                        padding: 0;
+                        line-height: 12px;
+                    }
+                    .p-column-title {
+                         display: inline-block !important; 
+                         margin-right: 5px;
+                         color:#222b94;
+                                                }
+                }
+                td:nth-child(2) {
+                    font-size: .9rem;
+                    font-weight: 600;
+                    width: 33.3334%;
+                }
+                
+             //    td:first-child{
+             //        display: none;
+             //    }
+               
+            }
+    }
+   
 }
-}
+    }
+ }

@@ -13,6 +13,9 @@ import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
 import { OrderList } from '../../../models/orderList';
 import { DiningTableComponent } from '../dining-table/dining-table.component';
+import { CommonService } from '../../../service/common.service';
+import { setting } from '../../../models/setting';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -21,7 +24,7 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 })
 export class DishMenuNewComponent implements OnInit {
   dishes: Dish[];
-  sendId: number;
+  sendId: number; 
   rawDishCategoyItems: DishCategory[];
   dishCategory: any;
   sortField: string;
@@ -66,9 +69,11 @@ export class DishMenuNewComponent implements OnInit {
     userLists:User[] = [];
   usercimbine: string[];
   usercombine:  Array<any>;
-   
+  image:boolean=true;
+  lang:string;
+   data:setting;
   constructor(
-  
+    private comset:CommonService,
     private dishService: DishService,
     private primengConfig: PrimeNGConfig,
     private dataService: ShareDataService,
@@ -78,10 +83,62 @@ export class DishMenuNewComponent implements OnInit {
     private msgService: MessageService,
     public adminService: AdminService,
     public userSvc: UserService,
+    private auth:AuthService,
+    public translate:TranslateService
     ) { }
 
   ngOnInit(): void {
+    this.comset.obsSetData.subscribe(x=>{
+      this.data=x;
+      console.log(this.data)
+      if(this.data.menuDisplay === 0){
+        this.image=false
+      }
+    })
+
+
+
+    this.userSvc.langdata.subscribe( (x:any)=>{
+     
+      this.translate.use(x);
+      console.log(x)
+
+    })
+
+  // this.userService.getusersetting(this.auth.userData().adminId).subscribe
+  // (x=>{
+  //   this.data=x
+   
+
+  // })
+  // this.userService.language$.subscribe(x=>
+  //   {
+  //     this.lang=x
+  //     console.log("test" , this.lang)
+  //   })
+  // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
+  //   this.data=x;
+  //   console.log(this.data);
+  //   if(this.data.menuDisplay===0){
+  //     this.image=false
+  //   }
+  //   })
+//  this.comset.CommonSetting$.subscribe(x=>{
+//   this.data=x;
+
+// })
+
+
+// if(this.data.menuDisplay === 0)
+// {
+//   this.image=false;
+// }
+
+// else if(this.data === null){
+//   this.image=true
+// }
     
+      
     this.loadData();
     this.loadClient();
     this.dataService.currentId.subscribe(resp => this.sendId = resp)
@@ -103,22 +160,22 @@ export class DishMenuNewComponent implements OnInit {
         this.selectedTableID = x;
     });
   } 
+  
   loadData(){
     this.userSvc.getUserList().subscribe(res => {
 
       this.userLists = res;
       this.usercombine = this.userLists.map(itm =>
         {
-          const nObj = {contact : itm.userName + " - "+ itm.contact}  
+          const nObj = {contact : itm.userName + " - "+ itm.contact, id:itm.id}  
           return nObj;
           
         }
-      )
-      console.log(this.usercombine,"Hello");  
+      ) 
     });
   }
-table 
-  loadClient() {
+  
+  loadClient(){
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {
         this.admin = resp[0];
@@ -178,7 +235,7 @@ table
     } else {
       this.KOTEnabled = true;
     }
-    if(!this.selectedUser || this.userData.userType){
+    if(!this.selectedUser && this.userData.userType == 2){ 
       this.cartService.addUser(this.userData);
     }
     this.cartService.addDeliveryMode(s); 
@@ -187,17 +244,20 @@ table
   loadUserData() {
    this.usersList = this.userService.getUserList();
   }
-  userSelection(usercombine) 
+  userSelection(selectedUserId) 
   {
-    const userData= {no:parseInt(usercombine)}
-    console.log(userData,"hii");
-    this.cartService.addUser(userData);
+     let uContact = this.usercombine.filter((uItm:any) => selectedUserId== uItm.id) 
+     this.selectedUsers = uContact[0].contact;
+     const uData = {id:parseInt(selectedUserId)} 
+     this.cartService.addUser(uData);
    
   }
   openNew() {
     this.user = {};
     this.submitted = false;
     this.userDialog = true;
+   
+
   }
   fnSaveUser(event){
     //this.usersList = event;
@@ -210,10 +270,9 @@ table
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp => this.cartItems = resp); 
    if(this.cartItems.id){
-     console.log(this.cartItems.id, 'cartID');
+     
      this.isKOTdone = true;
-   }
-   console.log('CARTSERVICE GET fnLoadCartData', this.cartItems) 
+   } 
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -224,14 +283,15 @@ table
   emptyCart(){
     this.cartService.empty();
     //this.subCartItems.unsubscribe();
+    this.selectedUser = null;
+    this.selectedUsers = '';
     this.deliveryMode = '';
     this.KOTEnabled = false;
     this.isKOTdone = false;
   }
   fnMakePayment(){
     this.fnLoadCartData();
-    this.cartItems.userId = this.selectedUser;
-    console.log(this.cartItems.userId);
+    this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
     // console.log(this.cartItems);
@@ -256,13 +316,16 @@ table
    }
 
   fnKOTPrint(resp) { 
-    this.fnLoadCartData();
+    this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
     this.cartItems.orderStatus.push(orderS) 
  // }) 
   this.currentOrderId = null;
+  // this.cartItems.orderItems.map(oItm => {
+  //   oItm.kotPrinted = true; 
+  // })
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     this.currentOrderId = resp.orderId;
     this.cartService.addOrderId(this.currentOrderId);
@@ -281,8 +344,7 @@ table
   fnBillPrint(order: OrderList){
     
     this.selectedPrintType = 'BillPrintUI';
-    debugger;
-    this.usercombine;
+   
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;
@@ -298,12 +360,17 @@ table
     this.obs.unsubscribe();
   }
 
-  fnTableSelection(arr:Array<Number>){ 
-    this.KOTEnabled = true;
-    this.selectedTableNames = arr;    
+  fnTableSelection(arr:any){ 
+      const tblArr = arr.tblArr;
+      this.KOTEnabled = true; 
+      this.selectedTableNames = tblArr;
+      if(arr.tblSelectionType != 'releaseTbl'){ 
+      this.diningTableDialog = false;
+      }
+      this.fnLoadCartData();
+    
   }
-  fnHideDiningTableM(event){
-    console.log()
+  fnHideDiningTableM(event){ 
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:4000 });
     } else {

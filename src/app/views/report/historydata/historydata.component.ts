@@ -1,4 +1,24 @@
-import { Component, OnInit } from '@angular/core';
+import {
+  DatePipe
+} from '@angular/common';
+import {
+  Component,
+  OnInit
+} from '@angular/core';
+import * as moment from 'moment';
+import {
+  Historydata
+} from '../../../models/historydata';
+import {
+  OrderList
+} from '../../../models/orderList';
+import {
+  AuthService
+} from '../../../service/auth.service';
+import {
+  UserService
+} from '../../../service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-historydata',
@@ -6,22 +26,79 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./historydata.component.scss']
 })
 export class HistorydataComponent implements OnInit {
-  sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
+  
+  maxdate: string = '';
+  mindate: string = '';
+  id: number;
+  
+  allstartdate:string='';
+  weekenddate:string='';
+  monthenddate:string='';
+  yearenddate:string='';
+  showyeardata = false;
+  showweekdata = false;
+  showhistorydata = false;
+  showmonthdata = false;
+  constructor(private auth: AuthService ,private translate:TranslateService) {}
+  
 
-  constructor() { }
 
   ngOnInit(): void {
-    this.sales = [
-      { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
-      { srno: '2', cusname: 'Owais',    cuscontact: '993021364', cuscity: 'Mumbai', billno: '17010006',cusamout:'1500' },
-      { srno: '3', cusname: 'Abrar',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010010',cusamout:'1930' },
-      { srno: '4', cusname: 'Musab',    cuscontact: '7788996655', cuscity: 'Mumbai', billno: '17010062',cusamout:'5360' },
-      { srno: '5', cusname: 'Sadiq',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010100',cusamout:'1320' },
-     
-  ];
-  
-}
+
+    this.id = this.auth.userData().adminId;
+    this.getDates();
+  }
+  getDates() {
+    var currentDate = new Date();
+   this.allstartdate = this.getFormatedDate(currentDate);
+
+
+    var day = currentDate.getDay()
+    var pastDate = new Date(currentDate)
+    pastDate.setDate(pastDate.getDate() - day);
+    this.weekenddate = this.getFormatedDate(pastDate);
+    console.log(this.weekenddate)
+ 
+    var date = currentDate.getDate()
+    var pastDate = new Date(currentDate)
+    pastDate.setDate(pastDate.getDate() - date);
+    this.monthenddate = this.getFormatedDate(pastDate);
+    console.log(this.monthenddate);
+
+    var year = currentDate.getFullYear()
+    
+
+    var pastDate = new Date(currentDate)
+    pastDate.setDate(pastDate.getDate() - year);
+    let yearenddate = this.getFormatedDate(pastDate);
+  }
+  getFormatedDate(date: Date) {
+    return moment(date).format('YYYY-MM-DD').toString();
   }
 
+  getHistorydata() {
+    this.showhistorydata = true;
+    this.showweekdata = false;
+    this.showyeardata = false;
+    this.showmonthdata = false;
+  }
+  getweekdata() {
+    this.showmonthdata = false;
+    this.showhistorydata = false;
+    this.showweekdata = true;
+    this.showyeardata = false;
+  }
+  getmonthdata() {
 
-  
+    this.showmonthdata = true;
+    this.showhistorydata = false;
+    this.showweekdata = false;
+    this.showyeardata = false;
+  }
+  getyeardata() {
+    this.showyeardata = true;
+    this.showmonthdata = false;
+    this.showhistorydata = false;
+    this.showweekdata = false;
+  }
+}

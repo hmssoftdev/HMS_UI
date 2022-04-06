@@ -1,0 +1,29 @@
+:host ::ng-deep{
+    .p-calendar .p-inputtext {
+        flex: 1 1 auto;
+        width: 110px!important;
+    }
+}
+@media all and (max-width: 425px) {
+
+    :host ::ng-deep{
+        .p-calendar .p-inputtext {
+            flex: 1 1 auto;
+            width: 85px!important;
+        }
+    }
+    .p-calendar .p-inputtext {
+        flex: 1 1 auto;
+        width: 80px!important;
+    }
+    .text-6xl {
+        font-size: 1.6rem !important;
+    }
+    .p-col-6 {
+        width: 104%;
+    }
+    .p-col-3 {
+        width: 100%;
+    }
+        
+}

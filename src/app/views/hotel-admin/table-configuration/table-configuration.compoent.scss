@@ -58,7 +58,7 @@
                
             }
     }
-    .p-paginator{display: none;}
+    .p-paginator{}
 }
     }
  }
@@ -72,15 +72,67 @@
             padding: 0.2rem;
 
         }
+        .p-paginator .p-paginator-current {
+            margin-left: 0;
+           font-size: 0.6rem!important;
+       }
+    .p-paginator-page {
+           background-color: #fff;
+           border: 1px solid #dee2e6;
+           color: #007bff;
+           min-width: 1.357rem;
+           height: 1.357rem;
+           margin: 0 0 0 -1px;
+       }
         
     }
 }
 @media screen and (max-width:320px){
+    .search{
+        width: 150px;
+    }
     :host ::ng-deep {
    .p-dialog{
     width: 100vw!important;
    } 
    .p-formgroup-inline .p-field-checkbox>label, .p-formgroup-inline .p-field-radiobutton>label, .p-formgroup-inline .p-field>label {
+   
+    display: contents!important;
+}
+.p-card-footer{
+    text-align: center!important;
+}
+}
+
+}
+@media screen and (max-width:160px){
+    :host ::ng-deep {
+   .p-dialog{
+    width: 100vw!important;
+   } 
+   .p-radiobutton {
+    width: 2px;
+    height: 2px;
+}
+.p-radiobutton-box {
+    border: 2px solid #ced4da;
+    background: #fff;
+    width: 10px;
+    height: 10px;
+    color: #212529;
+    border-radius: 50%;
+    transition: background-color .15s,border-color .15s,box-shadow .15s;
+}
+   .p-field>label {
+    display: inline-block!important ;
+    font-size: xx-small!important;
+    margin-bottom: 0%!important;
+}
+.p-formgroup-inline .p-field-checkbox>label{
+    display: inline-flex!important;
+    font-size: xx-small;
+}
+    .p-formgroup-inline .p-field-radiobutton>label, .p-formgroup-inline .p-field>label {
    
     display: contents!important;
 }

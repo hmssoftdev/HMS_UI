@@ -1,7 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ModalDirective } from 'ngx-bootstrap/modal';
 import { Admin } from '../../models/admin';
-import { ConfirmationService, MessageService } from 'primeng/api';
+import { ConfirmationService, MenuItem, MessageService } from 'primeng/api';
 import { CommonService } from '../../service/common.service';
 import { AdminService } from '../../service/admin.service';
 import { Router } from '@angular/router';
@@ -32,6 +32,8 @@ export class AdminSettingComponent implements OnInit {
   statusString: string;
   sendId: number;
   regAdminDialog: boolean;
+  items: MenuItem[];
+  
   constructor(
     public adminService: AdminService,
     private msgService: MessageService,
@@ -55,6 +57,142 @@ export class AdminSettingComponent implements OnInit {
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
     this.users = {};
+  //   this.items = [
+  //     {
+  //        label:'File',
+  //        icon:'pi pi-fw pi-file',
+  //        items:[
+  //           {
+  //              label:'New',
+  //              icon:'pi pi-fw pi-plus',
+  //              items:[
+  //                 {
+  //                    label:'Bookmark',
+  //                    icon:'pi pi-fw pi-bookmark'
+  //                 },
+  //                 {
+  //                    label:'Video',
+  //                    icon:'pi pi-fw pi-video'
+  //                 },
+
+  //              ]
+  //           },
+  //           {
+  //              label:'Delete',
+  //              icon:'pi pi-fw pi-trash'
+  //           },
+  //           {
+  //              separator:true
+  //           },
+  //           {
+  //              label:'Export',
+  //              icon:'pi pi-fw pi-external-link'
+  //           }
+  //        ]
+  //     },
+  //     {
+  //        label:'Edit',
+  //        icon:'pi pi-fw pi-pencil',
+  //        items:[
+  //           {
+  //              label:'Left',
+  //              icon:'pi pi-fw pi-align-left'
+  //           },
+  //           {
+  //              label:'Right',
+  //              icon:'pi pi-fw pi-align-right'
+  //           },
+  //           {
+  //              label:'Center',
+  //              icon:'pi pi-fw pi-align-center'
+  //           },
+  //           {
+  //              label:'Justify',
+  //              icon:'pi pi-fw pi-align-justify'
+  //           },
+
+  //        ]
+  //     },
+  //     {
+  //        label:'Users',
+  //        icon:'pi pi-fw pi-user',
+  //        items:[
+  //           {
+  //              label:'New',
+  //              icon:'pi pi-fw pi-user-plus',
+
+  //           },
+  //           {
+  //              label:'Delete',
+  //              icon:'pi pi-fw pi-user-minus',
+
+  //           },
+  //           {
+  //              label:'Search',
+  //              icon:'pi pi-fw pi-users',
+  //              items:[
+  //                 {
+  //                    label:'Filter',
+  //                    icon:'pi pi-fw pi-filter',
+  //                    items:[
+  //                       {
+  //                          label:'Print',
+  //                          icon:'pi pi-fw pi-print'
+  //                       }
+  //                    ]
+  //                 },
+  //                 {
+  //                    icon:'pi pi-fw pi-bars',
+  //                    label:'List'
+  //                 }
+  //              ]
+  //           }
+  //        ]
+  //     },
+  //     {
+  //        label:'Events',
+  //        icon:'pi pi-fw pi-calendar',
+  //        items:[
+  //           {
+  //              label:'Edit',
+  //              icon:'pi pi-fw pi-pencil',
+  //              items:[
+  //                 {
+  //                    label:'Save',
+  //                    icon:'pi pi-fw pi-calendar-plus'
+  //                 },
+  //                 {
+  //                    label:'Delete',
+  //                    icon:'pi pi-fw pi-calendar-minus'
+  //                 },
+
+  //              ]
+  //           },
+  //           {
+  //              label:'Archieve',
+  //              icon:'pi pi-fw pi-calendar-times',
+  //              items:[
+  //                 {
+  //                    label:'Remove',
+  //                    icon:'pi pi-fw pi-calendar-minus'
+  //                 }
+  //              ]
+  //           }
+  //        ]
+  //     },
+  //     {
+  //        separator:true
+  //     },
+  //     {
+  //        label:'Quit',
+  //        icon:'pi pi-fw pi-power-off'
+  //     }
+  // ];
+
+
+
+
+
     // this.status = [
     // { label: 'Lead', value: 'lead' },
     // { label: 'Pending', value: 'pending' },
@@ -83,6 +221,7 @@ export class AdminSettingComponent implements OnInit {
   loadClient() {
     this.adminService.getClientList().subscribe(res => {
       this.adminList = res;
+      console.log(this.adminList   )
       this.adminList.map(aItem => {
         let sDate = new Date();
         let eDate = new Date(aItem.endDAte);
@@ -103,6 +242,7 @@ export class AdminSettingComponent implements OnInit {
     });
 
   }
+  
   logoFile(e) {
     this.admin.RestaurentLogoFile = this.commonMethod.limitFileSize(e, 500);
   }
@@ -230,7 +370,14 @@ export class AdminSettingComponent implements OnInit {
   fnAddAdmin(){
     this.regAdminDialog = true;
   }
-  
+  fnMssgPush(admin:Admin){
+    // this.adminService.updateSubscription(this.admin).subscribe((res) => {
+    
+    //   console.log(this.admin.subscriptionStatus);
+    // })
+
+    this.msgService.add({ severity: 'success', summary: 'Successful Hitting Buttons', detail: 'Message Sent!', life: 3000 });
+  }
   fnRegisterAdmin(users:Registration){
     this.users.userType = 2;
     // this.users.id = parseInt(this.users.id)

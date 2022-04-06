@@ -6,6 +6,7 @@ import { HotelAdminComponent } from './hotel-admin.component';
 import { HotelSettingComponent } from './hotel-setting/hotel-setting.component';
 import { TableConfigurationComponent } from './table-configuration/table-configuration.component';
 
+
 const routes: Routes = [
   {
     path: '',
@@ -17,7 +18,7 @@ const routes: Routes = [
     canActivate:[AuthGuard]
   },
   {
-  path: 'settings',
+  path: 'billingcategory',
   component: HotelSettingComponent,
   data: {
     title: 'Hotel Admin Setting',

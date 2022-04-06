@@ -42,7 +42,7 @@
         align-items: center;
     }
     .p-dropdown {
-        width: 18rem;
+        // width: 18rem;
         font-weight: normal;
         .p-dropdown-label {
             font-size: 0.813rem;
@@ -127,6 +127,7 @@
             font-weight: 600;
         }
     }
+    .btnCartToggle{display: none;}
 }
 
 .vegSymbol {
@@ -281,7 +282,7 @@
         }
     }
     .dataViewOpt, p-paginator{
-        display: none;
+        
     }
     .p-dataview .p-dataview-header{
         padding:0.5rem;
@@ -320,6 +321,15 @@
     background-color: red;
 }
 
+.userFltrWrap{
+    justify-content: space-between;
+    .userFltr {
+        width: 70%;
+        .p-dropdown{
+            width: 100%;
+    }
+}
+}
 // Cart Items CSS
 ul.ulCart {
     list-style: none;
@@ -397,6 +407,18 @@ li:last-child{
     :host ::ng-deep .product-list-item {
         flex-direction: column;
         align-items: center;
+        .p-paginator .p-paginator-current {
+            margin-left: 0;
+           font-size: 0.6rem!important;
+       }
+    .p-paginator-page {
+           background-color: #fff;
+           border: 1px solid #dee2e6;
+           color: #007bff;
+           min-width: 1.357rem;
+           height: 1.357rem;
+           margin: 0 0 0 -1px;
+       }
         img {
             width: 100%;
             margin: 0.75rem 0;

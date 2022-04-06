@@ -1,11 +1,22 @@
 <p-toast position="bottom-right"></p-toast>
 <div class="p-card">
     <div class="card-header">
+
         <p-toolbar class="pToolbar">
             <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                <button pButton pRipple label="{{'New' | translate}}" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
                 <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedUser(item)" [disabled]="!selectedUsers || !selectedUsers.length" pTooltip="Delete Users" tooltipPosition="bottom"></button>
+                <div class="p-d-flex">
+                    <span class="p-input-icon-left p-ml-auto">
+                        <i class="pi pi-search"></i>
+
+                        <input class="search" pInputText type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" />
+                        
+
+                    </span>
+                </div>
             </ng-template>
+            
             <!-- <ng-template pTemplate="right">
                 <p-fileUpload mode="basic" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import" class="p-mr-2 p-d-inline-block"></p-fileUpload>
                 <button pButton pRipple label="Export" icon="pi pi-upload" class="p-button-help my-2"></button>
@@ -13,27 +24,31 @@
         </p-toolbar>
     </div>
     <div class="card-body">
-        <p-table #d2 [value]="userList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedUsers" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
-            [rowsPerPageOptions]="[10,25,50]" responsiveLayout="stack">
+        <p-table #dt [value]="userList" styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedUsers" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+            [rowsPerPageOptions]="[10,25,50]" responsiveLayout="stack"[globalFilterFields]="['userName',]">
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem">
                         <p-tableHeaderCheckbox></p-tableHeaderCheckbox>
                     </th>
-                    <th style="width: 100px;">Name
+                    <th style="width: 100px;">{{'Name' | translate }}
+                        <!-- {{'Name' | translate }} -->
                         <p-columnFilter type="text" field="userName" display="menu"></p-columnFilter>
                     </th>
-                    <th style="width: 150px;">Email
+                    <th style="width: 150px;">{{'Email' | translate}}
+                        <!-- {{'Email' | translate}} -->
                     </th>
-                    <th style="width: 100px;">Contact
+                    <th style="width: 100px;">{{'Contact' | translate}}
+
+                        <!-- {{'Contact' | translate}} -->
                     </th>
-                    <th style="width: 80px;">City
+                    <th style="width: 80px;">{{'City' | translate}}
                         <p-columnFilter type="text" field="city" display="menu"></p-columnFilter>
                     </th>
-                    <th style="width: 100px;">Pincode
+                    <th style="width: 100px;">{{'Pincode' | translate}}
                         <p-columnFilter type="text" field="pinCode" display="menu"></p-columnFilter>
                     </th>
-                    <th style="width: 100px;">Action </th>
+                    <th style="width: 100px;">{{'Action' | translate}} </th>
             </ng-template>
             <ng-template pTemplate="body" let-item>
                 <tr>
@@ -67,7 +82,7 @@
             <ng-template pTemplate="emptymessage" >
                 <tr>
                     <td colspan="7" class="p-text-center">
-                       <span> No records found</span>
+                       <span>{{'No records found' | translate}}</span>
                     </td>
                 </tr>
             </ng-template>

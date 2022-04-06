@@ -14,6 +14,7 @@ export interface Dish {
     selectedCategory?: string;
     mainCategoryId?: number;
     cookingTime?: any;
+    timeForCook?:any;
     minHr?: string;
     status?: string;
     categories?: string;
@@ -26,6 +27,7 @@ export interface Dish {
     oldImageUrl?:string;
     isFull?: boolean;
 }
+
 
 export class DishCategory {
     constructor(

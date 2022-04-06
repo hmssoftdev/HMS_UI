@@ -1,17 +1,23 @@
 import { Injectable } from '@angular/core';
-import { observable, Observable, of, Subject } from 'rxjs';
+import { BehaviorSubject, observable, Observable, of, Subject } from 'rxjs';
 import { ApiConfig } from '../constant/api';
 import { HttpClient } from '@angular/common/http';
 import { catchError, map } from 'rxjs/internal/operators'; 
 import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
+import { OrderList } from '../models/orderList';
+import { Historydata } from '../models/historydata';
+import { setting } from '../models/setting';
+
 
 
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
+
   url = `${ApiConfig.URL}${ApiConfig.USER}`;
+  usersetting=`${ApiConfig.URL}${ApiConfig.USERSETTING}`;
   orderUrl = `${ApiConfig.URL}${ApiConfig.ORDER}`;
   cityUrl = `${ApiConfig.URL}${ApiConfig.CITY}`
   stateUrl = `${ApiConfig.URL}${ApiConfig.STATE}`
@@ -19,12 +25,31 @@ export class UserService {
   public feedback: UserFeedback | undefined;
   public feedbackList: UserFeedback[] = []
   public user: User | undefined;
+  public userssetting:setting;
   public userList: User[] = [];
   modalSubject = new Subject();
+  histdata :Historydata[]=[];
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
+  orderList: OrderList[] = [];
+  data:string='';
+public langdata = new Subject();
+
+  setting= new Subject<setting>();
+  // public language$ = new BehaviorSubject('english');
+  //  public Obslangauge = this.language$.asObservable();  
 
   constructor(private http: HttpClient) { }
+ 
+ 
+  getlanguage(data){ 
+    this.langdata.next(data);
+}
+
+getsetting(data){
+  this.setting.next(data)
+}
+
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(
       map(x => {
@@ -34,6 +59,7 @@ export class UserService {
       catchError(this.handleError('', user))
     );
   }
+  
   // Register User through Register form
   registerUser(user:Registration){
     return this.http.post(`${this.url}/PostAnonymousUser`,user).pipe(
@@ -73,14 +99,15 @@ export class UserService {
     return this.http.put(`${this.url}/ForgetPassword?email=${emailid}`,{}).pipe(
       map(resp => 
         {
-          console.log(resp)
-        return false}
+          let op = JSON.parse(JSON.stringify(resp))
+          return op.result
+        }
           ),
       catchError(this.handleError('', true))
     )
   }
   getUserList(): Observable<User[]> {
-    console.log(this.userData.adminId);
+  this.userData = JSON.parse(localStorage.getItem('HMSUserData'));
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
       map(x => {
         this.userList = x;
@@ -97,11 +124,23 @@ export class UserService {
       })
     )
   }
-  // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
-  getBillHistory(userid :number,maxdate :string,mindate:string): Observable<any> {
-    return this.http.get<any>(`${this.orderUrl}/GetOrderByDateRange?userId=${userid}&maxDate=${maxdate}$minDate=${mindate}`,{}).pipe(
+  getusersetting(userid:number):Observable<setting>{
+    return this.http.get<setting>(`${this.usersetting}?UserId=${userid}`).pipe(
       map(x => {
-        console.log(x);
+        this.userssetting = x;
+        return this.userssetting;
+      })
+    )
+  }
+
+
+  // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
+  getBillHistory(userid :number,maxdate :string,mindate:string): Observable<Historydata[]> {
+    return this.http.get<Historydata[]>
+    (`${this.orderUrl}/GetOrderByDateRange?userId=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
+      map(x => {
+        this.histdata = x;
+        return this.histdata;
       })
     )
   }
@@ -129,4 +168,25 @@ export class UserService {
       catchError(this.handleError('', feedback))
     );
   }
+
+  postusersetting(settings:setting):Observable<setting>{
+    return this.http.post<setting>(`${this.usersetting}`,settings).pipe(
+      map(x =>{
+       
+        return settings;
+      }),
+      catchError(this.handleError('',settings))
+    );
+  }
+  putusersetting(setting:setting){
+    return this.http.put(`${this.usersetting}`,setting).pipe(
+      map(resp => 
+        {
+         console.log(resp);
+        }
+          ),
+      catchError(this.handleError('',))
+    )
+  }
+
 }

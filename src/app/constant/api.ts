@@ -18,4 +18,5 @@ export class ApiConfig {
     public static HOTEL = 'Hotel';
     public static ORDER = 'Order';
     public static INVOICE = 'Invoice'
+    public static USERSETTING = 'UserSetting';
 }
