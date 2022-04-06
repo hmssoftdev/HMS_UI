@@ -40,17 +40,17 @@
 </div> -->
 <p-toast position="bottom-right"></p-toast>
 <div class="form">
-<p-dialog header="Add Review" [(visible)]="displayDialog" [style]="{width: '50vw'}" [baseZIndex]="10000" >
+<p-dialog header="{{'Add Review' | translate}}" [(visible)]="displayDialog" [style]="{width: '50vw'}" [baseZIndex]="10000" >
     <ng-template pTemplate="content" >
         <div class="p-grid">
             <div class="p-col">
                 
-                <h5>Rating</h5>
+                <h5>{{'Rating' | translate}}</h5>
                 <p-rating name="rating" #rating="ngModel" [(ngModel)]="userFeedback.rating" [cancel]="false" required>
                 </p-rating>
             </div>
             <div class="p-col">
-                <h5>Give your review a title</h5>
+                <h5>{{'Give your review a title' | translate}}</h5>
                 <span class="p-input-icon-right">
                     <i class="pi pi-pencil"></i>
                     <input name="titleText" #rTitle="ngModel" [(ngModel)]="userFeedback.reviewTitle" type="text"
@@ -62,7 +62,7 @@
 
         <div class="p-grid p-flex-column">
             <div class="p-col">
-                <h5>Your Review</h5>
+                <h5>{{'Your Review' | translate}}</h5>
                 <textarea name="opinion" size="10" #opText="ngModel" [(ngModel)]="userFeedback.opinionText" rows="5" cols="30" style="width: 100%;" pInputTextarea required></textarea>
                 <!-- <small id="username-help" class="p-error"></small> -->
             </div>
@@ -73,15 +73,15 @@
                 </div>
                 <div class="p-col">
                     <label for="termsCond">
-                        I confirm this review is about my own genuine experience. I am eligible to leave
+                       {{'I confirm this review is about my own genuine experience. I am eligible to leave
                         this review, and have not been offered any incentive or payment to leave a review for this
-                        company.
+                        company.' | translate}}
                     </label>
                 </div>
             </div>
         </div>
 
-        <p-button *ngIf='!(this.userFeedback.rating === 0) || !(this.userFeedback.opinionText === "") || !(this.userFeedback.reviewTitle === "")' icon="pi pi-check" (click)="displayDialog=false" label="Post your review" styleClass="p-button-outlined p-button-success"
+        <p-button *ngIf='!(this.userFeedback.rating === 0) || !(this.userFeedback.opinionText === "") || !(this.userFeedback.reviewTitle === "")' icon="pi pi-check" (click)="displayDialog=false" label="{{'Post your review' | translate}}" styleClass="p-button-outlined p-button-success"
             (click)="onSubmit(feedback)">
         </p-button>
     </ng-template>
@@ -92,9 +92,9 @@
 <div class="p-card p-mb-5">
     <div class="p-card-body">
       <h4 class="p-text-center">
-        <span class="text-6xl">Customers Feedback</span><br>
+        <span class="text-6xl">{{'Customers Feedback' | translate}}</span><br>
         <span class="p-text-center">
-            <button pButton type="button" (click)="showFeedbackDialog()" label="Write your review" class="p-button-outlined"></button>
+            <button pButton type="button" (click)="showFeedbackDialog()" label="{{'Write your review' | translate}}" class="p-button-outlined"></button>
             </span>
     </h4><br>
         
@@ -145,15 +145,15 @@
                 <div class="p-grid p-jc-star">
                     <div class="p-col-2">
                         <a href="#"><i class="pi pi-pencil" style="width:1.2rem" id="edit"></i><label
-                                for="edit">Reply</label></a>
+                                for="edit">{{'Reply' | translate}}</label></a>
                     </div>
                     <div class="p-col-2">
                         <a href="#"><i class="pi pi-thumbs-up" style="width:1.2rem" id="edit"></i><label
-                                for="edit">Useful</label></a>
+                                for="edit">{{'Useful' | translate}}</label></a>
                     </div>
                     <div class="p-col-2">
                         <a href="#"><i class="pi pi-share-alt" style="width:1.2rem" id="edit"></i><label
-                                for="edit">Share</label></a>
+                                for="edit">{{'Share' | translate}}</label></a>
                     </div>
            
                 </div>

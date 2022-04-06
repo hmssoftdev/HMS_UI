@@ -62,7 +62,7 @@ updatingpass(){
 console.log(userdetail,"hello");
 this.user.updatepassword(this.form.value.oldpwsd,this.form.value.newpassword,this.userid).subscribe(x=>{
   console.log(x);
-  this.messageService.add({severity:'success', summary:'Password Changed'});
+  this.messageService.add({severity:'success', summary:'Password Changed',life: 3000});
 })
   // this.user.updatepassword(userdetail).subscribe(
   //   x=>{

@@ -3,6 +3,7 @@ import { UserFeedback } from './../../../models/user';
 import { UserService } from './../../../service/user.service';
 import { MessageService } from 'primeng/api';
 import { cibDynatrace } from '@coreui/icons';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-user-feedback',
@@ -17,9 +18,20 @@ export class UserFeedbackComponent implements OnInit {
   disableBTN: boolean = false;
   feedback: UserFeedback;
   feedbackList: UserFeedback[] = [];
-  constructor(public userSvc: UserService, public msgService: MessageService) { }
-
+  lang: any;
+  constructor(public userSvc: UserService, public msgService: MessageService,public translate :TranslateService) { 
+  //   userSvc.langdata.subscribe(x=>{
+  //   this.lang=x
+  //   translate.use(this.lang);
+  //   console.log("1",this.lang,"2",x)
+  // }
+  // )
+}
   ngOnInit(): void {
+    this.userSvc.langdata.subscribe((x:any)=>{
+     
+      this.translate.use(x);
+    })
     this.getFeedback();
     this.userFeedback = { rating: 0, opinionText: '', reviewTitle: '' , timeStamp: 'none'}
     console.log(this.userFeedback);

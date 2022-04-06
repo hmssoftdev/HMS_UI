@@ -7,3 +7,224 @@
     // color: white;
     background-color: rgb(100, 236, 100);
 }
+:host::ng-deep{
+    
+    .p-button.p-button-icon-only.p-button-rounded
+    {
+        border-radius: 50%;
+        height: 2rem;
+    }
+    .p-button.p-button-icon-only {
+        width: 2rem;
+        padding: 0.5rem 0;
+    }
+    // .p-tieredmenu{
+    //     width: max-content!important;
+    // }
+    // .ng-trigger{
+    //     z-index: 1004;
+    //     transform-origin: center top;
+    //     top: 47px !important;
+    //     left: 1155.81px !important;
+    // }
+    // .p-tieredmenu{
+    //     z-index: 1004;
+    //     transform-origin: center top;
+    //     top: 47px !important;
+    //     left: 1155.81px !important;
+    // }
+}
+@media screen and (max-width: 768px) {
+    :host ::ng-deep {
+
+        // .p-tieredmenu{
+        //     width: max-content!important;
+        // }
+        // .ng-trigger{
+        //     z-index: 1004;
+        //     transform-origin: center top;
+        //     top: 47px !important;
+        //     left: 105px!important;
+        // }
+        // .p-tieredmenu{
+        //     z-index: 1004;
+        //     transform-origin: center top;
+        //     top: 47px !important;
+        //     left: 105px !important;
+        // }
+
+        .p-button.p-button-icon-only{
+            height: 1.667rem;
+            width: 1.667rem;
+        }
+        .p-button{
+            padding: 0.3rem;
+            font-size: 0.75rem;
+        }
+        .pi{
+            font-size: 0.75rem;
+        }
+
+
+
+
+    .p-datatable-customcss {
+        table {
+            .p-datatable-thead > tr > th,
+            .p-datatable-tfoot > tr > td {
+                display: none !important;
+            }
+            tr{
+        display: flex;
+        flex-wrap: wrap;
+        margin: 5px 0;
+    background: #f9f9f9;
+    border-radius: 2px;
+
+                td{
+                    width: 33%;
+                    padding:0.3rem !important;
+                    border:0;
+                  
+                   
+                    .p-tag-value{
+                        font-size: 0.625rem;
+                        padding: 0;
+                        line-height: 12px;
+                    }
+                    .p-column-title {
+                        display: inline-block !important; 
+                        margin-right: 5px;
+                        color:#222b94;
+                                                }
+                }
+                td:nth-child {
+                    font-size: .9rem;
+                    font-weight: 600;
+                   
+                }
+                
+            }
+    }
+    .p-paginator{}
+}
+    }
+ }
+@media screen and (max-width:475px) {
+     
+    :host ::ng-deep {
+        .p-button.p-button-icon-only.p-button-rounded {
+            border-radius: 50%;
+            height: 1rem !important;
+        }
+        // .p-tieredmenu{
+        //     width: max-content!important;
+        // }
+        // .ng-trigger{
+        //     z-index: 1004;
+        //     transform-origin: center top;
+        //     top: 47px !important;
+        //     left: 105px!important;
+        // }
+        // .p-tieredmenu{
+        //     z-index: 1004;
+        //     transform-origin: center top;
+        //     top: 47px !important;
+        //     left: 105px !important;
+        // }
+        .p-datatable table{
+            display: block;
+        }
+        .p-datatable-thead>tr{
+            display: block;
+        }
+        .p-datatable-thead>tr>th{
+            
+        }
+        .p-button.p-button-icon-only{
+            height: 1rem;
+            width: 1rem;
+        }
+        .p-button{
+            padding: 0.2rem;
+
+        }
+        .p-datatable-customcss {
+            table {
+                td:nth-child{
+                    width: 33.3334%;
+                }
+            }
+        }
+        .p-dialog-content{
+            width: 100%;
+         
+        }
+        .custom-spinner{
+            width: 50%;
+        }
+        .p-paginator .p-paginator-current {
+             margin-left: 0;
+            font-size: 0.6rem!important;
+        }
+     .p-paginator-page {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            color: #007bff;
+            min-width: 1.357rem;
+            height: 1.357rem;
+            margin: 0 0 0 -1px;
+        }
+        .p-input-icon-left>i, .p-input-icon-right>i {
+            position: absolute;
+            top: 50%;
+            margin-top: -0.3rem !important;
+            margin-right: 2px;
+
+        }
+        .p-datatable-customcss {
+            table {
+                .p-datatable-thead > tr > th,
+                .p-datatable-tfoot > tr > td {
+                    display: none !important;
+                }
+                tr{
+            display: flex;
+            flex-wrap: wrap;
+            margin: 5px 0;
+        background: #f9f9f9;
+        border-radius: 2px;
+        justify-content: space-between;
+                    td{
+                        // width: 25%; 
+                        padding:0.3rem !important;
+                        border:0;
+                        .p-tag-value{
+                            font-size: 0.625rem;
+                            padding: 0;
+                            line-height: 12px;
+                        }
+                        
+                    }
+                    td:nth-child(3){
+                        width:53.3334%;
+                    }
+                    td:nth-child(8) {
+                     width:53.3334%;
+                    }
+                    
+                    td:first-child{
+                        display: none;
+                    } 
+                }
+        }
+        
+    }
+       
+    }
+}
+@media screen and (max-width:320px) {
+    .search {
+        width: 150px!important;
+    }
+}

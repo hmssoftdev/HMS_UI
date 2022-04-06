@@ -1,8 +1,9 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
-import {HttpClientModule } from '@angular/common/http';
-
+import {HttpClient, HttpClientModule } from '@angular/common/http';
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { BsDropdownModule } from 'ngx-bootstrap/dropdown';
 import {TooltipModule} from 'primeng/tooltip';
 // import { ButtonsModule } from 'ngx-bootstrap/buttons'; 
@@ -46,9 +47,12 @@ import { UserFormComponent } from '../views/user/user-form/user-form.component';
 import { ClickOutsideDirective } from './../directive/click-outside.directive';
 import { InvoiceComponent } from '../views/invoice/invoice.component';
 import {ProgressSpinnerModule} from 'primeng/progressspinner';
-
+import { TranslateService } from "@ngx-translate/core";
 import {ToggleButtonModule} from 'primeng/togglebutton';
 import {AccordionModule} from 'primeng/accordion';
+import {TieredMenuModule} from 'primeng/tieredmenu';
+import {TreeModule} from 'primeng/tree';
+
 @NgModule({
   declarations: [
     OrderStatusComponent,
@@ -60,6 +64,10 @@ import {AccordionModule} from 'primeng/accordion';
 
   ],
   imports: [
+    
+    TieredMenuModule,
+    TreeModule,
+    
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -105,10 +113,19 @@ import {AccordionModule} from 'primeng/accordion';
     ChartModule,
     ProgressSpinnerModule,
     ToggleButtonModule,
-    AccordionModule
+    AccordionModule,
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    })
   ],
   exports:[
     CommonModule,
+    TieredMenuModule,
+    TreeModule,
     FormsModule,
     HttpClientModule,
     ReactiveFormsModule,
@@ -154,9 +171,12 @@ import {AccordionModule} from 'primeng/accordion';
     ProgressSpinnerModule,
     ChartModule,
     ToggleButtonModule,
-    AccordionModule
-
+    AccordionModule,
+    TranslateModule,
   ],
-  providers:[MessageService, ConfirmationService]
+  providers:[MessageService, ConfirmationService,TranslateService]
 })
 export class SharedModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}

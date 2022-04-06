@@ -18,6 +18,7 @@ import {
 import {
   UserService
 } from '../../../service/user.service';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-historydata',
@@ -38,7 +39,8 @@ export class HistorydataComponent implements OnInit {
   showweekdata = false;
   showhistorydata = false;
   showmonthdata = false;
-  constructor(private auth: AuthService) {}
+  constructor(private auth: AuthService ,private translate:TranslateService) {}
+  
 
 
   ngOnInit(): void {

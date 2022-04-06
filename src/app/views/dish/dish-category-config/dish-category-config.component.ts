@@ -4,6 +4,9 @@ import { Dish, DishCategory } from '../../../models/dish';
 import { AuthService } from '../../../service/auth.service';
 import { DishService } from '../../../service/dish.service';
 import { ShareDataService } from '../../../service/share-data.service';
+import { TranslateService } from "@ngx-translate/core";
+import { UserService } from '../../../service/user.service';
+import { CommonService } from '../../../service/common.service';
 
 @Component({
   selector: 'app-dish-category-config',
@@ -11,7 +14,7 @@ import { ShareDataService } from '../../../service/share-data.service';
   styleUrls: ['./dish-category-config.component.scss']
 })
 export class DishCategoryConfigComponent implements OnInit {
-  status: { label: string; value: string; }[];
+  status: {label: string; value: string;}[];
   dishCategory: DishCategory;
   category: DishCategory;
   CategoryList: DishCategory[];
@@ -21,12 +24,22 @@ export class DishCategoryConfigComponent implements OnInit {
   sendId:number;
   dishList: Dish[];
   dish: Dish;
-  constructor(private categorySvc: DishService,
+  lang:any;
+  constructor(
+    private categorySvc: DishService,
     private msgService: MessageService,
     private confirmationService: ConfirmationService,
     private shareData: ShareDataService,
-    private authService: AuthService
-    ) { }
+    private authService: AuthService,
+    public translate:TranslateService,
+    public user:UserService,
+    public comset:CommonService
+    ) {
+     
+       
+   
+     }
+   
 
   ngOnInit(): void {
     this.authService.showLoader = true;
@@ -34,6 +47,18 @@ export class DishCategoryConfigComponent implements OnInit {
     { label: 'InActive', value: 'inactive' }];
     // this.dishCategory = {};
     this.loadCategory();
+    this.comset.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      this.translate.use(this.lang);
+    })
+    // this.user.langdata.subscribe( (x:any)=>{
+     
+    //   this.translate.use(x);
+    //   console.log(x)
+
+    // })
+    console.log("Hitting Language")
+   
   }
   loadCategory() {
     this.shareData.currentId.subscribe(id => this.sendId = id);

@@ -15,6 +15,7 @@ import { OrderList } from '../../../models/orderList';
 import { DiningTableComponent } from '../dining-table/dining-table.component';
 import { CommonService } from '../../../service/common.service';
 import { setting } from '../../../models/setting';
+import { TranslateService } from '@ngx-translate/core';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -69,6 +70,7 @@ export class DishMenuNewComponent implements OnInit {
   usercimbine: string[];
   usercombine:  Array<any>;
   image:boolean=true;
+  lang:string;
    data:setting;
   constructor(
     private comset:CommonService,
@@ -81,15 +83,39 @@ export class DishMenuNewComponent implements OnInit {
     private msgService: MessageService,
     public adminService: AdminService,
     public userSvc: UserService,
-    private auth:AuthService
+    private auth:AuthService,
+    public translate:TranslateService
     ) { }
 
   ngOnInit(): void {
-    
-  this.userService.getusersetting(this.auth.userData().adminId).subscribe
-  (x=>{
-    this.data=x
-  })
+    this.comset.obsSetData.subscribe(x=>{
+      this.data=x;
+      console.log(this.data)
+      if(this.data.menuDisplay === 0){
+        this.image=false
+      }
+    })
+
+
+
+    this.userSvc.langdata.subscribe( (x:any)=>{
+     
+      this.translate.use(x);
+      console.log(x)
+
+    })
+
+  // this.userService.getusersetting(this.auth.userData().adminId).subscribe
+  // (x=>{
+  //   this.data=x
+   
+
+  // })
+  // this.userService.language$.subscribe(x=>
+  //   {
+  //     this.lang=x
+  //     console.log("test" , this.lang)
+  //   })
   // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
   //   this.data=x;
   //   console.log(this.data);

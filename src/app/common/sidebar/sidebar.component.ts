@@ -119,14 +119,14 @@ export class SidebarComponent implements OnInit {
       //   title:'Help',
       //   subItems: []
       // },
-      {
-        name:'Language',
-        routing:'/language',
-        access:roleConfig.authRoles.admin,
-        icon:'pi pi-book',
-        title:'Language',
-        subItems: []
-      },
+      // {
+      //   name:'Language',
+      //   routing:'/language',
+      //   access:roleConfig.authRoles.admin,
+      //   icon:'pi pi-book',
+      //   title:'Language',
+      //   subItems: []
+      // },
       {
         name:'Help',
         routing:'/help',
@@ -145,14 +145,14 @@ export class SidebarComponent implements OnInit {
       // }, 
      
     
-      // {
-      //   name:'Master Admin',
-      //   routing:'/admin-setting',
-      //   access:roleConfig.authRoles.sa,
-      //   icon:'pi pi-id-card',
-      //   title:'Master Admin',
-      //   subItems: []
-      // }
+      {
+        name:'Master Admin',
+        routing:'/admin-setting',
+        access:roleConfig.authRoles.sa,
+        icon:'pi pi-id-card',
+        title:'Master Admin',
+        subItems: []
+      }
     ]
 
   }

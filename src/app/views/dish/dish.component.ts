@@ -7,6 +7,12 @@ import { ShareDataService } from '../../service/share-data.service';
 import { CommonMethodsService } from '../../service/common-methods.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
+import { TranslateService } from '@ngx-translate/core';
+
+import { UserService } from '../../service/user.service';
+import { setting } from '../../models/setting';
+import { CommonService } from '../../service/common.service';
+
 
 @Component({
   selector: 'dish-Component',
@@ -14,20 +20,6 @@ import { AuthService } from '../../service/auth.service';
   styleUrls: ['./dish.component.scss']
 })
 export class DishComponent implements OnInit {
-  selectedUser: string;
-  sendId: number;
-  dishDialog: boolean;
-  checked: boolean = true;
-  isEdit: boolean;
-  status: { label: string; value: string; }[];
-  selectedFile: File;
-  constructor(public dishSvc: DishService, 
-    private confirmationService: ConfirmationService, 
-    private msgService: MessageService,
-    private shareData: ShareDataService,
-    private http: HttpClient,
-    private commonMethod: CommonMethodsService,
-    private authService: AuthService) { }
   dishList: Dish[] = [];
   uploadedFiles: any[] = [];
   dish: Dish;
@@ -40,10 +32,52 @@ export class DishComponent implements OnInit {
   nonVegTypes: Array<any>;
   isVeg = true;
   subDish: Subscription;
+  //  language:language;
+  selectedUser: string;
+  sendId: number;
+  dishDialog: boolean;
+  checked: boolean = true;
+  isEdit: boolean;
+  status: { label: string; value: string; }[];
+  selectedFile: File;
+  lang:any;
+  sett:setting
+  constructor(public dishSvc: DishService, 
+    private confirmationService: ConfirmationService, 
+    private msgService: MessageService,
+    private shareData: ShareDataService,
+    private http: HttpClient,
+    private commonMethod: CommonMethodsService,
+    private authService: AuthService,
+    public translate:TranslateService,
+    public userservice:UserService,
+    public commsett:CommonService) { 
+     
+      
+       
+      
+      
 
+
+    }
+    
  
   ngOnInit(): void {
 
+    this.commsett.Obslangauge.subscribe(x=>{
+      this.lang=x;
+      this.translate.use(this.lang);
+    })
+
+
+
+
+    // this.userservice.langdata.subscribe( (x:any)=>{
+     
+    //   this.translate.use(x);
+    //   console.log(x)
+
+    // })
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);

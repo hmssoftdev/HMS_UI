@@ -84,9 +84,49 @@
                .icons{
                    display: none;
                } 
+
+               select{
+                   font-size: 0.6rem;
+               }
         .head{
-            font-size: 10px;
+            font-size:0.7rem;
         }
+        .icon{
+            margin-top: 0.4rem;
+        }
+        :host::ng-deep{
+            .p-avatar{
+                height: 1.7rem!important;
+                width: 1.7rem!important;
+            }
+            .p-avatar .p-avatar-icon {
+    font-size: 0.6rem;
+}
+        }
+       
+
+        
+
+
+        select{
+            font-size: 0.6rem;
+        }
+ .head{
+     font-size:0.7rem;
+ }
+ .icon{
+     margin-top: 0.4rem;
+ }
+ :host::ng-deep{
+     .p-avatar{
+         height: 1.7rem!important;
+         width: 1.7rem!important;
+     }
+     .p-avatar .p-avatar-icon {
+font-size: 0.6rem;
+}
+ }
+
 
     
 }

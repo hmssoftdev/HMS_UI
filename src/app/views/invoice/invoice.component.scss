@@ -17,8 +17,59 @@ table.tblInvoice tr th,table.tblInvoice tr td {
     float:right;
 }
 @media print {
-    .nonprintable{
-        display: none;
+  .invoice{
+    margin: 0% !important;
+    display: block;
+    width: 100%;
+    padding: 0%;
+  }
+    body .dishMenuWrapper, body app-header-new, body app-footer-new, body .breacrumbWrap, body app-sidebar-new{
+        display: none !important;
     }
 
+//     app-kot-items{
+//         margin: 0% !important;
+//         display: block;
+//         width: 100%;
+//   }
+
 }
+
+// html, body, h1, h2, h3, h4, p, img { margin: 0;} /* margin reset*/
+// h1{font-size: 18px; font-weight: 500; margin-bottom: 0.5cm;}
+// h2{font-size: 16px; font-weight: 500;}
+// p{font-size: 12px;}
+// table{
+//     font-family: 'Nanum Gothic Coding', monospace;
+// //     font-family: "verdana";
+// // font-size: "16px";
+// // font-weight: normal;
+// //     font-family: "verdana";
+// //         Font-size: "16px";
+// // Font-weight: normal;
+//     width:100%; 
+//     border: 1px solid #020202;
+//     tr {
+//         // th,td{
+//         //     border:1px solid #2c1616; 
+//         //     border-bottom: 0;
+//         //     border-top:0;
+//         //     padding:0 2px;
+//         // }
+//         th{
+//            border: #020202 1px solid;
+//             font-weight: 600;
+//             color: #495057;
+//             border-bottom: 1px solid #070707;
+          
+//         }
+//        th:first-child, td:first-child{
+      
+//        }
+//        th:last-child, td:last-child{
+           
+//        }
+//         .b-top {border-top:1px solid #070707;}
+//         .b-dashed {border-bottom:1px dashed #050505;}
+//     }
+// }

@@ -1,11 +1,12 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
 
 import { LocationStrategy, HashLocationStrategy } from '@angular/common';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-
+import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
+import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { PerfectScrollbarModule } from 'ngx-perfect-scrollbar';
 import { PERFECT_SCROLLBAR_CONFIG } from 'ngx-perfect-scrollbar';
 import { PerfectScrollbarConfigInterface } from 'ngx-perfect-scrollbar';
@@ -71,6 +72,8 @@ import { SettingComponent } from './views/setting/setting.component';
 import { LanguageComponent } from './views/language/language.component';
 import { HelpComponent } from './views/help/help.component';
 import { BackdataComponent } from './views/report/backdata/backdata.component';
+import { ServiceWorkerModule } from '@angular/service-worker';
+import { environment } from '../environments/environment';
 
 @NgModule({
   imports: [
@@ -99,6 +102,18 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
     FormsModule,
     CalendarModule,
     MasterAdminModule, 
+    TranslateModule.forRoot({
+      loader: {
+        provide: TranslateLoader,
+        useFactory: httpTranslateLoader,
+        deps: [HttpClient]
+      }
+    }), ServiceWorkerModule.register('ngsw-worker.js', {
+  enabled: environment.production,
+  // Register the ServiceWorker as soon as the application is stable
+  // or after 30 seconds (whichever comes first).
+  registrationStrategy: 'registerWhenStable:30000'
+})
   ],
   declarations: [
     AppComponent, 
@@ -127,6 +142,7 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
     LanguageComponent,
     HelpComponent
   ],
+  exports:[TranslateModule],
   providers: [
     AuthService,
     AuthGuard,
@@ -141,3 +157,6 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
   bootstrap: [ AppComponent ]
 })
 export class AppModule { }
+export function httpTranslateLoader(http: HttpClient) {
+  return new TranslateHttpLoader(http);
+}
