@@ -64,7 +64,7 @@
           <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Name: </strong><span>{{adminData?.businessName}} </span></div>       
             <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Address: </strong><span>{{adminData?.address}}</span></div>
             <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>City: </strong><span>{{adminData?.city}}</span> &nbsp;<strong>State: </strong>{{adminData?.state}}</div>
-            <div *ngIf="set" class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
+            <div *ngIf="gst" class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
            
             
         </td>
@@ -115,12 +115,12 @@
         <td colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">AdditionalAmount</td>
         <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.additionalAmount | currency :'INR'}}</td>
       </tr>
-      <tr>
-        <td colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">CGST %</td>
+      <tr *ngIf="gst">
+        <td  colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">CGST %</td>
         <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
-      <tr>
-        <td colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">SGST %</td>
+      <tr *ngIf="gst">                         
+        <td  colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">SGST %</td>
         <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.gstTotal /2 | currency :'INR'}}</td>
       </tr>
       <tr>
@@ -128,12 +128,12 @@
         <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-bold p-text-center b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td *ngIf="set" colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
+        <td *ngIf="sign" colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
           
          <img [src]="adminData.signature" style="color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;" *ngIf="adminData?.signature" height="30px" width="50px">
        
          </td>
-        <td colspan="4" class="b-top p-text-left b-dashed" style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
+        <td colspan="4" class="b-top p-text-center b-dashed" style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
          
          This is an electronically generated purchase bill <br>
         <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">Terms & Condition</strong>  <br>

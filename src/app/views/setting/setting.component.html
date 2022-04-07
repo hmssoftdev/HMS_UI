@@ -44,10 +44,17 @@
         <div class="grid">
             <div class="col-12 p-text-center">
                 <span class="float right" >
-                    <label  for="want">{{'Light' | translate}}</label>
+                    <label class="colortest"  for="want">{{'Light' | translate}}</label>
                     <p-inputSwitch [(ngModel)]="setting.theme" name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Dark' | translate}}</label>
-                </span>
+                </span>           
+                <!-- <p-button (click)="changeTheme('saga-blue')" type="submit"  class="p-button-text p-ml-2" 
+                 label="Saga" ></p-button>
+                 <p-button (click)="changeTheme('vela-blue')"  type="submit"  class="p-button-text p-ml-2" 
+                 label="Vela" ></p-button>
+                 <p-button (click)="changeTheme('md-dark-indigo')" type="submit"  class="p-button-text p-ml-2" 
+                 label="Dark" ></p-button> -->
+
             </div>
         </div>
     </p-accordionTab>

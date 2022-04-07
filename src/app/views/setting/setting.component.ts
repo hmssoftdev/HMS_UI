@@ -34,6 +34,7 @@ import {
 } from '../../service/common.service';
 import { Observable } from 'rxjs';
 import { TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../service/theme.service';
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -48,7 +49,8 @@ export class SettingComponent implements OnInit {
   set:setting;
   langa:language[];
   langchange:string;
-  constructor(public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
+  themm:string;
+  constructor(public themee:ThemeService,public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
     private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
     this.form = fb.group({
 
@@ -73,6 +75,14 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
+    // this.changeTheme();
+    if(this.setting.theme == 0)
+    {
+this.themm='saga-blue';
+    }
+    else{
+      this.themm='vela-blue'
+    }
     // this.comset.setLangData(this.setting.language);
     this.langa=[
       {name:'English'},
@@ -86,6 +96,7 @@ export class SettingComponent implements OnInit {
     // this.translate.reloadLang(this.setting.language)
     console.log(this.setting.language);
   }
+ 
   fnFetchingApi() {
     this.users.getusersetting(this.userid).subscribe(
       x => {
@@ -93,6 +104,19 @@ export class SettingComponent implements OnInit {
           this.setting = x;
           this.comset.setLangData(this.setting.language);
           this.translate.setDefaultLang(this.setting.language)
+          if(this.setting.theme === 0)
+          {
+      this.themm='saga-blue';
+      console.log(this.themm)
+          }
+          else{
+            this.themm='vela-blue'
+          }
+         
+
+            this.themee.switchTheme(this.themm)
+            console.log("hitting",this.themm)    
+          
           console.log(this.setting.language)
         }
          
@@ -138,7 +162,9 @@ this.comset.Obslangauge.subscribe(x=>{
   }
   saveSettings() {
     this.setting.userId = this.userid;
-    this.setting.theme = Number(this.setting.theme);
+    this.setting.theme = 
+     Number(this.setting.theme);
+
     this.setting.menuDisplay =Number(this.setting.menuDisplay);
     this.setting.billWithCustomer =Number(this.setting.billWithCustomer);
     this.setting.billWithGST =Number(this.setting.billWithGST);
@@ -150,11 +176,14 @@ this.comset.Obslangauge.subscribe(x=>{
 // this.user.setting.next(this.setting);
 
     if (this.setting.id==0)
+    {
+      
       this.user.postusersetting(this.setting).subscribe(
         x => {
           console.log(x);
         }
       );
+    }
     else
       this.user.putusersetting(this.setting).subscribe(
         x => {

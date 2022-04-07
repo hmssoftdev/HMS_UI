@@ -28,6 +28,9 @@ selectedTableID: Array < any > = [];
 @Input() orderItem: OrderItem;
 @Input() cartItems;
 set=true;
+gst=true;
+logo=true;
+sign=true;
   constructor(public comset:CommonService,public adminService: AdminService,private cartService: CartService,private userservice:UserService 
     ) {
       this.todaysDataTime = formatDate(this.myDate, 'hh:mm:ss a', 'en-US', '+0530');
@@ -37,8 +40,22 @@ set=true;
     this.selectedTableID = [];
    this.comset.obsSetData.subscribe(x=>{
       this.data=x;
-      if((this.data.billWithCustomer===0 && this.data.billWithGST===0)|| (this.data.billWithLOGO===0 && this.data.billWithSign===0))
-      this.set=false;
+      if(this.data.billWithCustomer===0 ) 
+      {
+        this.set=false
+      }  
+       if(this.data.billWithGST===0){
+        this.gst=false;
+      }
+      else if(this.data.billWithLOGO===0)
+      {
+        this.logo=false;
+
+      }
+      else if(this.data.billWithSign===0)
+      {
+        this.sign=false;
+      }
    })
     console.log(this.adminData, 'AdminData', this.orderData);
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
