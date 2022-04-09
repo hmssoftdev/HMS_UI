@@ -21,6 +21,9 @@ export class KOTItemsComponent implements OnInit {
 @Input() orderId:any;
 @Input() adminData: Admin;
 @Input() userdata:User;
+
+index :string='0001';
+
 data:setting;
 myDate = new Date();
 todaysDataTime = '';
@@ -37,14 +40,16 @@ sign=true;
      }
 
   ngOnInit(): void {
+    
     this.selectedTableID = [];
+
    this.comset.obsSetData.subscribe(x=>{
       this.data=x;
       if(this.data.billWithCustomer===0 ) 
       {
         this.set=false
       }  
-       if(this.data.billWithGST===0){
+      else if(this.data.billWithGST===0){
         this.gst=false;
       }
       else if(this.data.billWithLOGO===0)
@@ -56,7 +61,12 @@ sign=true;
       {
         this.sign=false;
       }
-   })
+   });
+
+    for (let i = 0; i < this.index.length; i++) {
+      i++
+    }
+
     console.log(this.adminData, 'AdminData', this.orderData);
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);
     // console.log(this.cartItems.grossTotal);
