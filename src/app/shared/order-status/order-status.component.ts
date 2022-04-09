@@ -2,9 +2,11 @@ import { ReturnStatement } from '@angular/compiler';
 import { Component, Input, OnInit } from '@angular/core';
 import { Admin } from '../../models/admin';
 import { OrderItem } from '../../models/orderList';
+import { setting } from '../../models/setting';
 import { OrderStatus, ShoppingCart } from '../../models/shopping-cart';
 import { AdminService } from '../../service/admin.service';
 import { CartService } from '../../service/cart.service';
+import { CommonService } from '../../service/common.service';
 
 @Component({
   selector: 'app-order-status',
@@ -21,10 +23,24 @@ export class OrderStatusComponent implements OnInit {
   adminData: Admin;
   label:boolean=false;
   showInvoice: boolean = false;
+  data:setting;
+  orderflow:boolean=true;
   constructor(private adminService: AdminService,
-    private orderSvc: CartService) { }
+    private orderSvc: CartService,public comset:CommonService) { }
     showKOTItems:boolean=true;
   ngOnInit(): void {
+    this.comset.obsSetData.subscribe(x=>{
+      this.data=x
+      console.log(this.data.activeOrderFlow,"Order Stauts")
+      if(this.data.activeOrderFlow===0)
+
+      this.orderflow=false
+      else if(this.data.activeOrderFlow===1)
+      {
+          this.orderflow=true
+      }
+    }
+    )
     console.log(this.orderId);
     console.log(this.orderTotal);
     this.orderSvc.getOrderItem(this.orderId).subscribe( (x) => {

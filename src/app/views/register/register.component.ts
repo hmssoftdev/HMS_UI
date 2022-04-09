@@ -34,11 +34,11 @@ export class RegisterComponent {
     // this.getUsers();
     this.users = {};
     this.typeUser = [{
-      label: 'Admin', value: 2
-    },
-    {
-      label: 'User', value: 3
-    }
+      label: 'Admin', value: 2}
+    // },
+    // {
+    //   label: 'User', value: 3
+    // }
     ];
     if(this.authService.loggedIn()){
       this.location.back();
