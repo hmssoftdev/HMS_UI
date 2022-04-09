@@ -14,6 +14,10 @@ export interface setting{
     billWithSign?: number,
     billWithSeal?: number,
     language?:string,
+    activeOrderFlow? :number,
+    directKOTBillPrint?:number;
+    billPrintAndKOT?:number;
+
 }
 export interface language{
     name:string;

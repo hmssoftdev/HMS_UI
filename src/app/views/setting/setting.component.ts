@@ -32,8 +32,10 @@ import {
 import {
   CommonService
 } from '../../service/common.service';
-import { Observable } from 'rxjs';
+
 import { TranslateService } from '@ngx-translate/core';
+import { ThemeService } from '../../service/theme.service';
+
 @Component({
   selector: 'app-setting',
   templateUrl: './setting.component.html',
@@ -48,7 +50,12 @@ export class SettingComponent implements OnInit {
   set:setting;
   langa:language[];
   langchange:string;
-  constructor(public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
+  themm:string;
+  msgs: Message[];
+  place=true;
+  msgService: any;
+
+  constructor(public themee:ThemeService,public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
     private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
     this.form = fb.group({
 
@@ -65,6 +72,7 @@ export class SettingComponent implements OnInit {
 
     })
     this.userid = authService.userData().adminId;
+ 
     this.setting = this.getDefaultSetting();
    
   }
@@ -73,6 +81,7 @@ export class SettingComponent implements OnInit {
   ngOnInit(): void {
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
+    // this.changeTheme();
     // this.comset.setLangData(this.setting.language);
     this.langa=[
       {name:'English'},
@@ -93,6 +102,20 @@ export class SettingComponent implements OnInit {
           this.setting = x;
           this.comset.setLangData(this.setting.language);
           this.translate.setDefaultLang(this.setting.language)
+          this.comset.setSetData(this.setting);
+          if(this.setting.theme === 0)
+          {
+      this.themm='saga-blue';
+      console.log(this.themm)
+          }
+          else{
+            this.themm='vela-blue'
+          }
+         
+
+            this.themee.switchTheme(this.themm)
+               
+          
           console.log(this.setting.language)
         }
          
@@ -111,9 +134,9 @@ export class SettingComponent implements OnInit {
       this.user.langdata.next(event.value)
       this.langchange=event.value;
     
-    console.log(this.setting.language);
-     console.log(this.langchange)
-     console.log("Mubashir",event.value);
+    // console.log(this.setting.language);
+    //  console.log(this.langchange)
+    //  console.log("Mubashir",event.value);
     
     // this.translate.addLangs(['English', 'Hindi','Gujrati','Marathi','Bengali']);
 
@@ -128,12 +151,16 @@ this.comset.Obslangauge.subscribe(x=>{
       id:0,
       theme:0,
     language:lanset,
-
+      activeOrderFlow:0,
+      billPrintAndKOT:0,
+      directKOTBillPrint:0
+      
+      
     }
     return s;
   }
   savelang(){
-    console.log("Hello",this.langchange)
+    // console.log("Hello",this.langchange)
     this.user.langdata.next(this.langchange);
   }
   saveSettings() {
@@ -145,23 +172,44 @@ this.comset.Obslangauge.subscribe(x=>{
     this.setting.billWithLOGO =Number(this.setting.billWithLOGO);
     this.setting.billWithSeal =Number(this.setting.billWithSeal);
     this.setting.billWithSign =Number(this.setting.billWithSign);
+    this.setting.activeOrderFlow =Number(this.setting.activeOrderFlow);
+    this.setting.directKOTBillPrint =Number(this.setting.directKOTBillPrint);
+    this.setting.billPrintAndKOT =Number(this.setting.billPrintAndKOT);
+    
+
+
     this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);
 
     if (this.setting.id==0)
+    
+      
       this.user.postusersetting(this.setting).subscribe(
         x => {
           console.log(x);
+          this.messageService.add({
+            severity: 'success',
+            summary: 'SuccessFully Updated Setting',life :3000
+          });
+          // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
         }
       );
     else
       this.user.putusersetting(this.setting).subscribe(
         x => {
           console.log(x);
+          // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+          this.messageService.add({
+            severity: 'success',
+            summary: 'SuccessFully Updated Setting',life :1000
+          });
         }
       );
-
+// this.messageService.add({severity:'info',
+//      summary:'SuccessFully Updated Setting', detail: 'Verified',life: 2000});
+     this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+    
     console.log(this.setting);
     // this.comset.CommonSetting$.next(this.setting);
   }
@@ -188,10 +236,8 @@ this.comset.Obslangauge.subscribe(x=>{
       console.log(x);
       this.messageService.add({
         severity: 'success',
-        summary: 'Password Changed'
+        summary: 'Password Changed',life :3000
       });
     })
   }
-
-
 }
