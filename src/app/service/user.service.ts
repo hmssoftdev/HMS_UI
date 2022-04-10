@@ -2,14 +2,12 @@ import { Injectable } from '@angular/core';
 import { BehaviorSubject, observable, Observable, of, Subject } from 'rxjs';
 import { ApiConfig } from '../constant/api';
 import { HttpClient } from '@angular/common/http';
-import { catchError, map } from 'rxjs/internal/operators'; 
+import { catchError, map } from 'rxjs/operators'; 
 import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
 import { Historydata } from '../models/historydata';
 import { setting } from '../models/setting';
-
-
 
 @Injectable({
   providedIn: 'root'

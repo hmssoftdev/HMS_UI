@@ -88,16 +88,12 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
-    this.comset.obsSetData.subscribe(x=>{
-      this.data=x;
-      console.log(this.data)
-      if(this.data.menuDisplay === 0){
-        this.image=false
-      }
+    this.comset.obsSetData.subscribe(resp =>{
+      if(resp){
+        const d = resp;
+        this.image = d.menuDisplay ? true : false;
+    }
     })
-
-
-
     this.userSvc.langdata.subscribe( (x:any)=>{
      
       this.translate.use(x);
