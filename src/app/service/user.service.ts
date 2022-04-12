@@ -7,7 +7,7 @@ import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
 import { Historydata } from '../models/historydata';
-import { setting } from '../models/setting';
+import { OrderSummary, setting } from '../models/setting';
 
 @Injectable({
   providedIn: 'root'
@@ -30,7 +30,7 @@ export class UserService {
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
-  data:string='';
+  summary:OrderSummary;
 public langdata = new Subject();
 
   setting= new Subject<setting>();
@@ -82,6 +82,12 @@ getsetting(data){
     return this.http.delete<User>(`${this.url}?id=${id}`).pipe(
       catchError(this.handleError('', this.user)));
   }
+
+  DeleteUserHistorydata(id:number): Observable<any> {
+    return this.http.delete<any>(`${this.orderUrl}/${id}`,{}).pipe(
+      catchError(this.handleError('')));
+  }
+
 
   // pass values as a parameter
   updatepassword(oldpwd:string , newpwd : string,id: number): Observable<boolean> {
@@ -139,6 +145,18 @@ getsetting(data){
       map(x => {
         this.histdata = x;
         return this.histdata;
+      })
+    )
+  }
+ 
+
+  //hmswebapi-dev.us-east-2.elasticbeanstalk.com/Order/BillSummary?id=113&maxDate=12-4-2022&minDate=1-04-2022
+  getOrderSummary(userid :number,maxdate :string,mindate:string): Observable<OrderSummary> {
+    return this.http.get<OrderSummary>
+    (`${this.orderUrl}/BillSummary?id=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
+      map(x => {
+        this.summary = x;
+        return this.summary;
       })
     )
   }

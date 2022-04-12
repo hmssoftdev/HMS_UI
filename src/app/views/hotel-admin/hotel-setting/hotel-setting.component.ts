@@ -17,8 +17,8 @@ export class HotelSettingComponent implements OnInit {
   tableList: Hotel[];
   displayModal: boolean;
  
-  maxdate :string='2022-02-14';
-  mindate :string ='2022-02-01';
+  // maxdate :string='2022-02-14';
+  // mindate :string ='2022-02-01';
   adminId :number;
   date=new Date();
   displayBasic: boolean;
