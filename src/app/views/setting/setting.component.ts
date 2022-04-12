@@ -55,8 +55,14 @@ export class SettingComponent implements OnInit {
   place=true;
   msgService: any;
 
-  constructor(public themee:ThemeService,public translate:TranslateService,private users: UserService, private authService: AuthService, private comset: CommonService,
-    private fb: FormBuilder, private messageService: MessageService, private user: UserService, private router: Router) {
+  constructor(public themee:ThemeService,
+    public translate:TranslateService,
+    private authService: AuthService, 
+    private comset: CommonService,
+    private fb: FormBuilder, 
+    private messageService: MessageService, 
+    private user: UserService, 
+    private router: Router) {
     this.form = fb.group({
 
       newpassword: ['', [Validators.required, Validators.maxLength(10)]],
@@ -96,7 +102,7 @@ export class SettingComponent implements OnInit {
     console.log(this.setting.language);
   }
   fnFetchingApi() {
-    this.users.getusersetting(this.userid).subscribe(
+    this.user.getusersetting(this.userid).subscribe(
       x => {
         if (x != null){
           this.setting = x;
@@ -208,7 +214,7 @@ this.comset.Obslangauge.subscribe(x=>{
       );
 // this.messageService.add({severity:'info',
 //      summary:'SuccessFully Updated Setting', detail: 'Verified',life: 2000});
-     this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+     this.messageService.add({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
     
     console.log(this.setting);
     // this.comset.CommonSetting$.next(this.setting);
