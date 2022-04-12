@@ -18,6 +18,7 @@ export class BackdataComponent implements OnInit {
   @Input() deliveryMode : number = 0;
   @Input() cartItems;
 
+ 
   historydata: Historydata[] = [];
   order: Historydata[]=[];
   cartData:Historydata[]=[];
@@ -26,11 +27,14 @@ export class BackdataComponent implements OnInit {
   selectedOrderId: number = 0;
   selectedOrderTotal: number=0;
   Dialog: boolean;
-  constructor(private auth :AuthService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
+  num:number=2236;
+
+  constructor(private msgService:MessageService,private auth :AuthService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getHistorydata();
     this.ID=this.auth.userData().adminId;
+    console.log(this.auth.userData(),"id")
   }
   getHistorydata(){
     let maxnewDate = moment(this.maxDate).format('YYYY-MM-DD').toString();
@@ -40,14 +44,49 @@ export class BackdataComponent implements OnInit {
   this.user.getBillHistory(this.ID,maxnewDate,minnewDate).subscribe(
     x=>{
        this.historydata = x;
- 
-      
+
+        console.log(this.historydata)
        this.loading  = false;
 
       return this.historydata;
     }
   )
+
+
   }
+
+  deleteOrder(id:number) {
+   this.user.DeleteUserHistorydata(id).subscribe(()=>
+         {
+
+          this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Bill Deleted', life: 3000 });
+           this.getHistorydata();
+         })
+
+    // let maxnewDate = moment(this.maxDate).format('YYYY-MM-DD').toString();
+    // let minnewDate = moment(this.minDate).format('YYYY-MM-DD').toString();
+    // this.user.getBillHistory(this.ID,maxnewDate,minnewDate).subscribe(res=>{
+    //   let bill;
+    //  bill=res
+
+    // this.confirmationService.confirm({
+    //   message: 'Are you sure you want to delete '+ '?',
+    //   header: 'Confirm',
+    //   icon: 'pi pi-exclamation-triangle',
+    //   accept: () => {
+    //     let number=2236;
+    //     this.user.DeleteUserHistorydata(number).subscribe(()=>
+    //     {
+    //       this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Bill Deleted', life: 3000 });
+    //     })
+    
+
+    //   }
+    // // })
+    //   });
+    }
+
+
   fnViewOrder(data){
 
    this.selectedOrderId=data.id;
@@ -56,13 +95,6 @@ export class BackdataComponent implements OnInit {
   
   this.Dialog=true;
   }
-  delete(item:string) {
-    this.confirmationService.confirm({
-      message: 'Are you sure you want to delete '+ '?',
-      header: 'Confirm',
-      icon: 'pi pi-exclamation-triangle',
-      
-      });
-    }
+  
 }
 

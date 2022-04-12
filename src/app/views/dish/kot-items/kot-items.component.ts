@@ -49,15 +49,14 @@ sign=true;
       {
         this.set=false
       }  
-      else if(this.data.billWithGST===0){
+      if(this.data.billWithGST===0){
         this.gst=false;
       }
-      else if(this.data.billWithLOGO===0)
+      if(this.data.billWithLOGO===0)
       {
         this.logo=false;
-
       }
-      else if(this.data.billWithSign===0)
+      if(this.data.billWithSign===0)
       {
         this.sign=false;
       }

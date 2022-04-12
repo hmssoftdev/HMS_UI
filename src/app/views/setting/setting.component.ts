@@ -175,23 +175,18 @@ this.comset.Obslangauge.subscribe(x=>{
     this.setting.activeOrderFlow =Number(this.setting.activeOrderFlow);
     this.setting.directKOTBillPrint =Number(this.setting.directKOTBillPrint);
     this.setting.billPrintAndKOT =Number(this.setting.billPrintAndKOT);
-    
-
-
     this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);
 
     if (this.setting.id==0)
-    
-      
-      this.user.postusersetting(this.setting).subscribe(
+     this.user.postusersetting(this.setting).subscribe(
         x => {
           console.log(x);
-          this.messageService.add({
-            severity: 'success',
-            summary: 'SuccessFully Updated Setting',life :3000
-          });
+          // this.messageService.add({
+          //   severity: 'success',
+          //   summary: 'SuccessFully Updated Setting',life :1000
+          // });
           // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
         }
       );
@@ -200,16 +195,15 @@ this.comset.Obslangauge.subscribe(x=>{
         x => {
           console.log(x);
           // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
-          this.messageService.add({
-            severity: 'success',
-            summary: 'SuccessFully Updated Setting',life :1000
-          });
+          // this.messageService.add({
+          //   severity: 'success',
+          //   summary: 'SuccessFully Updated Setting',life :1000
+          // });
         }
       );
 // this.messageService.add({severity:'info',
 //      summary:'SuccessFully Updated Setting', detail: 'Verified',life: 2000});
-     this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
-    
+    //  this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
     console.log(this.setting);
     // this.comset.CommonSetting$.next(this.setting);
   }
@@ -236,7 +230,7 @@ this.comset.Obslangauge.subscribe(x=>{
       console.log(x);
       this.messageService.add({
         severity: 'success',
-        summary: 'Password Changed',life :3000
+        summary: 'Password Changed',life :2000
       });
     })
   }
