@@ -189,10 +189,10 @@ this.comset.Obslangauge.subscribe(x=>{
      this.user.postusersetting(this.setting).subscribe(
         x => {
           console.log(x);
-          // this.messageService.add({
-          //   severity: 'success',
-          //   summary: 'SuccessFully Updated Setting',life :1000
-          // });
+          this.messageService.add({
+            severity: 'success',
+            summary: 'SuccessFully Updated Setting',life :1000
+          });
           // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
         }
       );
@@ -201,10 +201,10 @@ this.comset.Obslangauge.subscribe(x=>{
         x => {
           console.log(x);
           // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
-          // this.messageService.add({
-          //   severity: 'success',
-          //   summary: 'SuccessFully Updated Setting',life :1000
-          // });
+          this.messageService.add({
+            severity: 'success',
+            summary: 'SuccessFully Updated Setting',life :1000
+          });
         }
       );
 // this.messageService.add({severity:'info',

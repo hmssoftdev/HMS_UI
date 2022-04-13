@@ -106,9 +106,17 @@ export class BillingComponent implements OnInit {
           if(resp){
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
           if(setRes.activeOrderFlow){ 
-            this.close.emit();
-          } else {
             this.router.navigate(['/dish/order-list']);
+          } else {
+            const completeOrder = {
+              orderId : pmObj.id,
+              status : 4
+            }
+            this.cartService.postOrderStatus(completeOrder).subscribe(() => {
+              this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Order Processed', life: 3000 });
+            })
+            this.close.emit();
+
           }
          
         }
