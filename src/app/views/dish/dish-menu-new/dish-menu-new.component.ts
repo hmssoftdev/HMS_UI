@@ -376,7 +376,4 @@ export class DishMenuNewComponent implements OnInit {
   fnCartToggle(){
     this.lblCartToggle = this.lblCartToggle == 'Active' ? 'inActive':'Active'
   }
-  closeBillingModal(){
-    this.billingDialog = false;
-  }
 }

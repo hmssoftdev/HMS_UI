@@ -32,7 +32,8 @@ export class DatahistoryComponent implements OnInit {
  
   selectedOrderId: number = 0;
   selectedOrderTotal: number=0;
-  constructor(public adminService: AdminService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
+  constructor(public message:MessageService,public adminService: AdminService,
+    private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getHistorydata();
@@ -58,6 +59,13 @@ export class DatahistoryComponent implements OnInit {
   }
 getDeliveryMode(id:number) : string{
  return this.enumService.getDeliveryOptStr(id);
+}
+
+deleteItem(n:number){
+  this.user.DeleteUserHistorydata(n).subscribe(x=>{
+    this.message.add({ severity: 'success', summary: 'Successful', detail: 'Bill Deleted', life: 3000 });
+           this.getHistorydata();
+  })
 }
 getPaymentMode(n:number){
   let strVal= '-';

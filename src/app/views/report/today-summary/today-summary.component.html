@@ -1,13 +1,21 @@
 <div class="p-grid">
 
+  <!-- <p-dataView [value]="orderSummary"> -->
+        <!-- <ng-template let-data pTemplate="gridItem">
+            <div class="p-grid">
+                <div class="col-12 md:col-6 lg:col-6">
+                    <span>{{data.totalBill}}</span>
+                    </div>
+                </div>     
+            </ng-template> -->
     <div class="surface-ground px-4 py-5 md:px-6 lg:px-12 flex" style="width: 100%;">
         <div class="grid justify-content-center">
             <div class="col-12 md:col-6 lg:col-6">
                 <div class="surface-card shadow-2 p-3 border-round">
                     <div class="flex justify-content-between mb-3">
                         <div>
-                            <span class="block text-900 text-2xl font-medium mb-3">Total Bill</span>
-                            <div class="text-900 font-medium text-xl">{{powercount}}</div>
+                            <span class="block text-900 text-2xl font-medium mb-3">{{'Today Bill'|translate }}</span>
+                            <div class="text-900 font-medium text-xl">{{totalbill}}</div>
                         </div>
                         <div class="flex align-items-center justify-content-center bg-blue-100 border-round" style="width:2.5rem;height:2.5rem">
                             <i class="pi pi-shopping-cart text-blue-500 text-xl"></i>
@@ -21,9 +29,10 @@
                 <div class="surface-card shadow-2 p-3 border-round">
                     <div class="flex justify-content-between mb-3">
                         <div>
-                            <span class="block text-900 font-medium mb-3 text-2xl">Total Amount</span>
-                            <div class="text-900 font-medium text-xl">{{powercount}}</div>
+                            <span class="block text-900 font-medium mb-3 text-2xl">{{'Total Amount'|translate }}</span>
+                            <div class="text-900 font-medium text-xl">{{ alltotalAmout }}</div>
                         </div>
+                        
                         <div class="flex align-items-center justify-content-center bg-orange-100 border-round" style="width:2.5rem;height:2.5rem">
                             <i class="pi pi-map-marker text-orange-500 text-xl"></i>
                         </div>
@@ -37,7 +46,7 @@
                     <div class="flex justify-content-between mb-3">
                         <div>
                             <span class="block text-500 font-medium mb-3">{{'Dining' | translate}}</span>
-                            <div class="text-900 font-medium text-xl">{{powercount}}</div>
+                            <div class="text-900 font-medium text-xl">{{diningamount}}</div>
                         </div>
                         <div class="flex align-items-center justify-content-center bg-cyan-100 border-round icons" style="width:2.5rem;height:2.5rem">
                             <i class="pi pi-inbox text-cyan-500 text-xl"></i>
@@ -52,7 +61,7 @@
                     <div class="flex justify-content-between mb-3">
                         <div>
                             <span class="block text-500 font-medium mb-3 text">{{'Home Delivery'| translate}}</span>
-                            <div class="text-900 font-medium text-xl">{{powercount}} Unread</div>
+                            <div class="text-900 font-medium text-xl">{{homedeliveryamount}}</div>
                         </div>
                         <div class="flex align-items-center justify-content-center bg-purple-100 border-round icons" style="width:2.5rem;height:2.5rem">
                             <i class="pi pi-comment text-purple-500 text-xl"></i>
@@ -67,7 +76,7 @@
                     <div class="flex justify-content-between mb-3">
                         <div>
                             <span class="block text-500 font-medium mb-3">{{'TakeAway'| translate}}</span>
-                            <div class="text-900 font-medium text-xl">{{powercount}} Unread</div>
+                            <div class="text-900 font-medium text-xl">{{takeawayamount}}</div>
                         </div>
                         <div class="flex align-items-center justify-content-center bg-teal-100 border-round icons" style="width:2.5rem;height:2.5rem">
                             <i class="pi pi-ban text-teal-500 text-xl"></i>
@@ -77,19 +86,12 @@
                     <span class="text-500">responded</span>
                 </div>
             </div>
+
+
         </div>
+
     </div>
-
-
-
-
-
-
-
-
-
-
-
+{{orderSummary | json}}
 
     <!-- <div class="p-col-12 p-md-6 p-text-center"> 
         <strong>
@@ -169,7 +171,7 @@
         </div>
       
     </div> -->
-   
+<!-- </p-dataView>  -->
 </div>
 
 

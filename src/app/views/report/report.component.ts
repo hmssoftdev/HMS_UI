@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { graphs } from '../../models/graphs';
 import { TodaySale } from '../../models/report';
+import { AuthService } from '../../service/auth.service';
+import { UserService } from '../../service/user.service';
 
 @Component({
   selector: 'app-report',
@@ -8,6 +11,12 @@ import { TodaySale } from '../../models/report';
   styleUrls: ['./report.component.scss']
 })
 export class ReportComponent implements OnInit {
+  bardine:number;
+  barhd:number;
+  bartake:number;
+  allstartdate:string='';
+  weekenddate:string='';
+  ID:number;
   datagraph:graphs={
     labeldine:"Dinning",
     labelhd:"Home Delivery",
@@ -20,20 +29,22 @@ export class ReportComponent implements OnInit {
     dateValue:Date;
 
     todaySale: TodaySale = {
-      Dining: 20, HD: 41, Takeaway: 25,
+      Dining: 20,      //20
+       HD: 41,
+        Takeaway: 25,
       dine: 100,
       hd: 320,
       takeaway: 250
     }
 
     dataa: any;
-
+    // id:number;
     chartOptionss: any;
 datadoughnut: any;
 data: any;
 chartOptions: any;
-    sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string;cusamout:string;}[];
-    constructor() {
+   
+    constructor(public user:UserService,public auth:AuthService) {
         this.chartOptions = {
             responsive: true,
             title: {
@@ -47,16 +58,35 @@ chartOptions: any;
         }
     }
 ngOnInit() {
-   
-    this.sales = [
-        { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
-        { srno: '2', cusname: 'Owais',    cuscontact: '993021364', cuscity: 'Mumbai', billno: '17010006',cusamout:'1500' },
-        { srno: '3', cusname: 'Abrar',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010010',cusamout:'1930' },
-        { srno: '4', cusname: 'Musab',    cuscontact: '7788996655', cuscity: 'Mumbai', billno: '17010062',cusamout:'5360' },
-        { srno: '5', cusname: 'Sadiq',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010100',cusamout:'1320' },
-       
-    ];
-    
+  this.getSummaryData();
+  this.ID=this.auth.userData().adminId;
+    // this.id=this.auth.userData().adminId;
+    var currentDate = new Date();
+   this.allstartdate =  moment(currentDate).format('YYYY-MM-DD').toString();
+   var day = currentDate.getDay()
+   var pastDate = new Date(currentDate)
+   pastDate.setDate(pastDate.getDate() - day);
+   this.weekenddate = moment(pastDate).format('YYYY-MM-DD').toString();;
+console.log("id",this.ID,"Start",this.allstartdate,"end",this.weekenddate)
+  }
+
+
+
+
+
+  getSummaryData(){
+    this.user.getOrderSummary(this.auth.userData().adminId,this.allstartdate,this.weekenddate).subscribe(
+
+      res=>{
+        res.map(item=>{
+          if (item.deliveryOptionId===1){
+            this.bardine=item.totalBill;
+            this.todaySale.Dining=this.bardine
+            console.log("Dine Chech",this.todaySale.Dining) 
+          }
+        })
+      }
+    );
   }
 
   //excel button click functionality

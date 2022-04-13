@@ -22,7 +22,7 @@ export class UserConfigComponent implements OnInit {
   cities: any;
   states: any;
   cityFilter: [];
-  lang:any;
+  lang:string='';
   sett:setting;
   lngset:string;
   constructor(public userSvc: UserService,
@@ -59,7 +59,7 @@ export class UserConfigComponent implements OnInit {
 
     this.commonService.Obslangauge.subscribe(x=>{
       this.lang=x;
-      console.log(this.lang,"BehaviourCheck")
+ 
       this.translate.use(this.lang);
     })
 

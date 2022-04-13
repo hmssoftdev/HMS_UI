@@ -1,5 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
+import * as moment from 'moment';
+import { OrderSummary } from '../../../models/OrderSummary';
+
+import { AuthService } from '../../../service/auth.service';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-today-summary',
@@ -8,9 +13,20 @@ import { TranslateService } from '@ngx-translate/core';
 })
 export class TodaySummaryComponent implements OnInit {
   powercount:number=0;
+  ID:number;
+  date=new Date();
+  orderSummary:OrderSummary;
+  alltotalAmout:number;
+ diningamount:number;
+ diningbill:number;
+ homedeliveryamount:number;
+ homedeliverybill:number;
+ takeawayamount:number;
+ takeawaybill:number;
+totalbill:number;
   sales: { srno: string; cusname: string; cuscontact: string; cuscity: string; billno: string; cusamout: string; }[];
 
-  constructor(private translate:TranslateService) {
+  constructor(private translate:TranslateService,private user:UserService,public auth:AuthService) {
    
    }
  
@@ -26,16 +42,63 @@ export class TodaySummaryComponent implements OnInit {
     }
   },1000)
   ngOnInit(): void {
-    this.sales = [
-      { srno: '1', cusname: 'Mubashir', cuscontact: '8693045277', cuscity: 'Mumbai', billno: '17010002',cusamout:'10000' },
-      { srno: '2', cusname: 'Owais',    cuscontact: '993021364', cuscity: 'Mumbai', billno: '17010006',cusamout:'1500' },
-      { srno: '3', cusname: 'Abrar',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010010',cusamout:'1930' },
-      { srno: '4', cusname: 'Musab',    cuscontact: '7788996655', cuscity: 'Mumbai', billno: '17010062',cusamout:'5360' },
-      { srno: '5', cusname: 'Sadiq',    cuscontact: '3322665599', cuscity: 'Mumbai', billno: '17010100',cusamout:'1320' },
-     
-  ];
-  
+    console.log("Today Summary")
+    this.ID=this.auth.userData().adminId;
+  this.getSummaryData()
+
 }
+getSummaryData(){
+  let maxnewDate = moment(this.date).format('YYYY-MM-DD').toString();
+    let minnewDate = moment(this.date).format('YYYY-MM-DD').toString();
+    this.user.getOrderSummary(this.ID,maxnewDate,minnewDate).subscribe(
+      res=>{
+        // this.orderSummary=x
+        // this.alltotalAmout=res.totalAmount;
+        console.log(res,"Cheching Response")
+        if(res){
+res.map(item=>{
+
+  if(item.deliveryOptionId===0)
+  {
+    this.alltotalAmout=item.totalAmount;
+    this.totalbill=item.totalBill;
+  }
+  if(item.deliveryOptionId===1){
+    this.diningamount=item.totalAmount;
+    console.log(this.diningamount,"Cheching   asdsdasd Response")
+  }
+  if(item.deliveryOptionId===2){
+    this.homedeliveryamount=item.totalAmount;
+
+  }
+  if(item.deliveryOptionId===3){
+    this.takeawayamount=item.totalAmount;
+  }
+})
+        }
+        // console.log(this.orderSummary,"Hello order Is Here")
+      }
+    )
+
+}
+// getDeliveryOptStr(n:number){
+//   switch(n){
+//     case 0:
+//       this.diningamount=this.orderSummary.totalAmount;
+//     break;
+//     case 1:
+//       this.alltotalAmout=this.orderSummary.totalAmount;
+//       break;
+//     case 2:
+//       this.alltotalAmout=this.orderSummary.totalAmount;
+//       break;                  
+//     case 3:
+//       this.alltotalAmout=this.orderSummary.totalAmount;
+//   }
+  
+// }
+
+
   }
 
 

@@ -8,7 +8,6 @@ import { MessageService } from 'primeng/api';
 import { Router } from '@angular/router';
 import { ShareDataService } from '../../../service/share-data.service';
 import { Subscription } from 'rxjs';
-import { CommonService } from '../../../service/common.service';
 @Component({
   selector: 'app-billing',
   templateUrl: './billing.component.html',
@@ -31,8 +30,7 @@ export class BillingComponent implements OnInit {
     private cartService: CartService,
     private msgService: MessageService,
     private router: Router,
-    public data: ShareDataService,
-    private commonService: CommonService) { }
+    public data: ShareDataService) { }
 
 
   ngOnInit(): void {
@@ -94,37 +92,16 @@ export class BillingComponent implements OnInit {
     // this.shoppingCart.userId = Number(this.selectedUserId);
     // this.router.navigate(['/dish/order-list']);
     console.log(this.shoppingCart, 'shopping cart');
-  
-    this.commonService.SettingData$.subscribe(setRes => {
-      if(setRes){ 
-        const pmObj = {
-          id:this.shoppingCart.id,
-          paymentMode:this.paymentMode == 'Cash' ? 1 : 2,
-          activeOrderFlow: setRes.activeOrderFlow ? true : false
-      }
-        this.cartService.paymodeModeUpdate(pmObj).subscribe((resp) => {
-          if(resp){
-          this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
-          if(setRes.activeOrderFlow){ 
-            this.router.navigate(['/dish/order-list']);
-          } else {
-            const completeOrder = {
-              orderId : pmObj.id,
-              status : 4
-            }
-            this.cartService.postOrderStatus(completeOrder).subscribe(() => {
-              this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Order Processed', life: 3000 });
-            })
-            this.close.emit();
-
-          }
-         
-        }
-        }) 
-      }
+    const obj = {
+        id:this.shoppingCart.id,
+        paymentMode:this.paymentMode == 'Cash' ? 1 : 2 
+    }
+    this.cartService.paymodeModeUpdate(obj).subscribe((resp) => {
+      if(resp){
+      this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
+      this.router.navigate(['/dish/order-list']);
+    }
     })
-    
-    
   }
 
   fnCloseModal() {
