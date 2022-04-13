@@ -7,7 +7,8 @@ import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
 import { Historydata } from '../models/historydata';
-import { OrderSummary, setting } from '../models/setting';
+import { OrderSummary } from '../models/OrderSummary';
+import { setting } from '../models/setting';
 
 @Injectable({
   providedIn: 'root'
