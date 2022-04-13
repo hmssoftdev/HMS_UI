@@ -5,6 +5,8 @@ import { AuthService } from '../../service/auth.service';
 import { ViewChild, ElementRef, ViewEncapsulation, AfterViewInit} from '@angular/core';
 import { LanguageComponent } from '../../views/language/language.component';
 import { MenuItem } from 'primeng/api';
+import { UserService } from '../../service/user.service';
+import { CommonService } from '../../service/common.service';
 
 @Component({
   selector: 'app-sidebar-new',
@@ -17,9 +19,14 @@ export class SidebarComponent implements OnInit {
   userType:number;
   lblsidebar = true;
   @Output() fnMenuSidebar = new EventEmitter();
-  constructor(private authService:AuthService) { }
+  constructor(private authService:AuthService,public userr:UserService,public comset:CommonService) { }
 
   ngOnInit(): void {
+    this.userr.getusersetting(this.authService.userData().adminId).subscribe( 
+      res=>{
+        this.comset.setSetData(res);
+      }
+    )
      const user = this.authService.userData();
      this.userType = user.userType;
     this.navMenu = [
