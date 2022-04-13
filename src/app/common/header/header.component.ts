@@ -27,14 +27,17 @@ setting:setting;
   //   this.translate.setDefaultLang(lang.value);
   // }
   lbluserProfleShow = false;
-  ngOnInit(): void {
+  ngOnInit(): void {  
     this.user.getusersetting(this.authService.userData().adminId).subscribe(
       x => {
-        if(x){
-          this.setting = x;
+        if(x){ 
+          if(x.language){
+            this.setting = x;
           this.comset.setLangData(this.setting.language);
           this.translate.setDefaultLang(this.setting.language)
           this.comset.setSetData(this.setting);
+          }
+          
           
         }
        
