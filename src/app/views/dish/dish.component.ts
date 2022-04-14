@@ -52,25 +52,20 @@ export class DishComponent implements OnInit {
     public translate:TranslateService,
     public userservice:UserService,
     public commsett:CommonService) { 
-     
-      
-       
-      
-      
-
-
     }
     
  
   ngOnInit(): void {
-
-    this.commsett.Obslangauge.subscribe(x=>{
-      this.lang=x;
-      this.translate.use(this.lang);
-    })
-
+this.userservice.getusersetting(this.authService.userData().adminId).subscribe(res=>{
+this.commsett.setLangData(res.language);
+this.translate.use(res.language);
+})
 
 
+
+    // this.commsett.obsSetData.subscribe(x=>{
+    //   this.translate.use(x.language);
+    // })
 
     // this.userservice.langdata.subscribe( (x:any)=>{
      
@@ -78,6 +73,7 @@ export class DishComponent implements OnInit {
     //   console.log(x)
 
     // })
+
     this.authService.showLoader = true;
     this.shareData.currentId.subscribe(id => this.sendId = id);
     console.log(this.sendId);
@@ -97,19 +93,23 @@ export class DishComponent implements OnInit {
   }
 
   loadData() {
+
     this.subDish = this.dishSvc.getList(this.sendId).subscribe(res => {
       this.dishList = res; 
     this.authService.showLoader = false;
+
     });
   }
   files;
   dealWithFiles(event) {
+
      this.files = event.originalEvent.files;
     // Deal with your files
     // e.g  assign it to a variable, and on submit add the variable to your form data
 }
 
   fnGetDishCategoy() {
+
     this.dishSvc.getDishCategory(this.sendId).subscribe(x => {
       this.dishCategory = x.map(cItem => {
         return { label: cItem.name, value: cItem.id }
@@ -117,6 +117,7 @@ export class DishComponent implements OnInit {
     });
   }
   onUpload(event,id) {
+
     this.selectedFile = event.files[0];
     const fd = new FormData();
    // name="imageUploader" url="http://webapplication121-dev.us-east-2.elasticbeanstalk.com/api/FileUpload/Upload"
@@ -149,6 +150,7 @@ export class DishComponent implements OnInit {
 
   // edit the dish item
   editDish(dish: Dish) {
+
     debugger;
     dish.imageUrl = dish.imageUrl ? dish.imageUrl : '';
     // dish.oldImageUrl = dish.imageUrl;
@@ -159,15 +161,18 @@ export class DishComponent implements OnInit {
 
   //to delete dish item 
   deleteDish(dish: Dish) {
+    
     this.confirmationService.confirm({
       message: 'Are you sure you want to delete ' + dish.name + '?',
       header: 'Confirm',
       icon: 'pi pi-exclamation-triangle',
       accept: () => {
         this.dishSvc.deleteData(dish.id).subscribe(() => {
+
             this.dishList = this.dishList.filter(val => val.id !== dish.id);
             this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Dish Deleted', life: 3000 });
-        })
+
+          })
       }
     });
   }

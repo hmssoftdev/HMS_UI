@@ -155,3 +155,157 @@
     </tbody>
   </table>
 </ng-container>
+
+<ng-container * ngIf="printType === 'KOTPrintnBillPrint'">
+  <div *ngIf="orderData">
+    <p class="orderNumber p-my-1" style="font-family: Verdana,Geneva,sans-serif; ;font-size: 10px;font-weight:bold;color: black;">Order ID: <strong style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;color: black;">{{orderId}}</strong> | <ng-container
+        *ngIf="orderData.deliveryMode==='Dining'">Table names: <strong style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{ tableNames}}</strong> |</ng-container><span
+        style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">  User
+        ID:</span> <strong style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{ orderData.userId}}</strong><span style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;color: black">Delivery Mode:</span><strong
+        style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;color: black">{{ orderData.deliveryMode}}</strong></p>
+    <h4 class="p-m-0" style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Order Items:</h4>
+    <table cellspacing="0" cellpadding="0" style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;color: black">
+      <thead>
+        <tr>
+          <th style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Name</th>
+          <th class="p-text-right" style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Qty</th>
+        </tr>
+      </thead>
+
+      <tbody *ngFor="let item of orderData.orderItems">
+        <tr *ngIf="!item.kotPrinted">
+          <td style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
+            {{ item.name }}{{item.isFull ? '' : ' (Half)'}}
+          </td>
+          <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
+            {{ item.quantity }}
+          </td>
+        </tr>
+      </tbody>
+
+      <tfoot>
+        <!-- <tr class="dashedBorderT">
+        <td class="p-text-right dashedBorderT">Bill Total: </td>
+        <td class="p-text-right dashedBorderT"><strong>{{orderTotal}}</strong></td>
+    </tr> -->
+      </tfoot>
+    </table>
+  </div>
+
+  <table class="tblInvoice">
+    <thead class="p-text-center" >
+      <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice</strong>
+    </thead>
+    <tr>
+        <td> 
+         
+          <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-between; font-family: 'verdana';font-size: 10px;font-weight: normal">
+            <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice No:</strong>
+            <b style="margin-right:20px;"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
+
+              
+              
+              
+              
+              {{myDate | date:'MMdd'}}</span> </b> 
+              <div *ngIf="logo"> 
+                <img width="20px"
+                class="p-text-right" style="margin-left:41px;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" height="15px" *ngIf="adminData?.restaurentLogo" [src]="adminData.restaurentLogo"
+                 alt="">
+              </div>
+              </div> 
+              <div class="p-col p-py-0" style="font-size: 10px;"> <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Date:</strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:8px;font-weight:bold;">{{myDate | date:'MM/dd/yyyy'}}</span>&nbsp;<strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:10px;font-weight:bold;">Time:</strong> <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:8px;font-weight:bold;">{{todaysDataTime}}</span> </div>
+
+          <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Delivery Mode: </strong> <span>{{ orderData?.deliveryMode}}</span> </div>  
+          <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Name: </strong><span>{{adminData?.businessName}} </span></div>       
+            <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>Address: </strong><span>{{adminData?.address}}</span></div>
+            <div class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>City: </strong><span>{{adminData?.city}}</span> &nbsp;<strong>State: </strong>{{adminData?.state}}</div>
+            <div *ngIf="gst" class="p-col p-py-0" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"><strong>GSTIN No: </strong>{{adminData?.gst}}</div>
+           
+            
+        </td>
+     
+        </tr></table>
+        <table *ngIf="set" class="tblInvoice">
+          <tr>
+            <td>
+              <div class="p-col p-py-0" style="font-size:10px;">
+                <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Customer <br></strong>
+                <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Name/Number : </span>
+                <span style="text-transform:capitalize;color:black;font-family:Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{userdata}}</span> </div>
+            </td>
+          </tr>
+        </table>
+        
+        
+  <table class="tblInvoice" cellspacing="0" cellpadding="0">
+    <thead>
+      <tr>
+        <th style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">#</th>
+        <th style="width:40%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Products</th>
+        <th style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Qty</th>
+        <th class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Rate</th> 
+        <th class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Value</th> 
+      </tr> 
+    </thead>
+    <tbody>
+      <tr *ngFor="let item of orderData.orderItems; let i = index;">
+        <td style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{i+1}}</td>
+        <td style="width:40%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{item.name}} {{item.isFull ? '' : ' (Half)'}}</td>
+        <td style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{item.quantity}}</td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{item.price}}</td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{item.price * item.quantity}}</td>
+         
+      </tr>
+      <tr>
+        <td colspan="2" style="font-size: 10px;" class="text-right b-dashed b-top"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Total</strong></td>
+        <td class="b-dashed b-top" style="font-size: 10px;"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.itemCount}}</strong></td>
+      
+         <td colspan="2" style="font-size: 10px;" class="p-text-right b-dashed b-top"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.itemTotal | currency :'INR'}}</strong></td>
+      </tr>
+      <tr *ngIf="orderData.discountInRupees">
+        <td colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center ">Discount price </td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.discountInRupees | currency :'INR'}}</td>
+      </tr>
+      <tr *ngIf="orderData.additionalAmount">
+        <td colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">AdditionalAmount</td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.additionalAmount | currency :'INR'}}</td>
+      </tr>
+      <tr *ngIf="gst">
+        <td  colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">CGST %</td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.gstTotal /2 | currency :'INR'}}</td>
+      </tr>
+      <tr *ngIf="gst">                         
+        <td  colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="p-text-center">SGST %</td>
+        <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{orderData.gstTotal /2 | currency :'INR'}}</td>
+      </tr>
+      <tr>
+        <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" colspan="4" class="b-top p-text-center p-text-bold b-dashed">Total Amount</td>
+        <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-bold p-text-center b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
+      </tr>
+      <tr>
+        <td *ngIf="sign" colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
+          
+         <img [src]="adminData.signature" style="color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;" *ngIf="adminData?.signature" height="30px" width="50px">
+       
+         </td>
+        <td colspan="4" class="b-top p-text-center b-dashed" style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
+         
+         This is an electronically generated purchase bill <br>
+        <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">Terms & Condition</strong>  <br>
+         <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">{{adminData?.termAndCondition}}</span>
+          
+        </td>
+        
+
+      </tr>
+      <tr>
+        <td class="p-text-center" colspan="5">
+          <p class="" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">!! Thank You, Visit Again!!</p>
+
+        </td>
+      </tr>
+
+    </tbody>
+  </table>
+</ng-container>

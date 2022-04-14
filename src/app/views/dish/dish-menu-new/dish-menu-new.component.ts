@@ -56,6 +56,7 @@ export class DishMenuNewComponent implements OnInit {
   selectedTableNames: Number[];
   subCartItems: Subscription;
   showKOTItems: boolean;
+  showKOTnBill:Boolean;
   currentOrderId: any;
   admin: Admin;
   obs: Subscription;
@@ -72,6 +73,8 @@ export class DishMenuNewComponent implements OnInit {
   image:boolean=true;
   lang:string;
    data:setting;
+   show=false;
+   both=true;
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -88,10 +91,20 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+
+    this.comset.Obslangauge.subscribe(res=>{
+      this.translate.use(res);
+    })
+
     this.comset.obsSetData.subscribe(resp =>{
       if(resp){
         const d = resp;
         this.image = d.menuDisplay ? true : false;
+        
+    }
+    if(resp.billPrintAndKOT === 1){
+      this.show=true
+      this.both=false
     }
     })
     this.userSvc.langdata.subscribe( (x:any)=>{
@@ -170,7 +183,7 @@ export class DishMenuNewComponent implements OnInit {
       ) 
     });
   }
-  
+ 
   loadClient(){
     this.obs = this.adminService.getAdmin().subscribe(resp => {
       if (resp.length > 0) {
@@ -346,7 +359,12 @@ export class DishMenuNewComponent implements OnInit {
     this.cartData = order;
     setTimeout(function () {
       window.print();
-    },1000)
+    },2000)
+  }
+
+  fnKOTnBillPrint(order:OrderList,resp){
+    this.fnKOTPrint(resp)
+    this.fnBillPrint(order);
   }
   ngOnDestroy(){
    // this.subUserList.unsubscribe();
@@ -375,5 +393,8 @@ export class DishMenuNewComponent implements OnInit {
   }
   fnCartToggle(){
     this.lblCartToggle = this.lblCartToggle == 'Active' ? 'inActive':'Active'
+  }
+  closeBillingModal(){
+    this.billingDialog = false;
   }
 }

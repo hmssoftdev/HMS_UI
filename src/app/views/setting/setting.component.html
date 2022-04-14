@@ -204,21 +204,64 @@
                     <label for="place">{{'Yes' | translate}}</label>
                 </span>
             </div>
-        </div>
+        </div> 
         <div class="grid">
             <div class="col-6">
                 <span class="float left">
-                    <label>{{'Do you want both KOT / Bill print at same time.?' | translate}}</label>
+                    <label> {{'Do you want print KOT / Bill print at same time' | translate}}</label>
                 </span>
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
-                    <label  for="want">{{'No' | translate}}</label>
-                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOT" class="p-mx-2"  name="want"></p-inputSwitch>
+                    <label for="place">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOT" class="p-mx-2" name="place"></p-inputSwitch>
+                    <label for="place">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div>
+       
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>{{'Do you want both KOT / Bill print at same time in dining?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOTDining" name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
         </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>{{'Do you want both KOT / Bill print at same time in home delivery?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOTHomeDelivery" name="want" class="p-mx-2"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>{{'Do you want both KOT / Bill print at same time in Take away' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOTTakeAway" name="want" class="p-mx-2"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+            </div>
       
     </p-accordionTab>
     <p-accordionTab header="{{'Language' | translate}}">
