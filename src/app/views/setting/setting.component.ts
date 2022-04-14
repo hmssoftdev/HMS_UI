@@ -154,12 +154,16 @@ this.comset.Obslangauge.subscribe(x=>{
   lanset=x
 })
     let s: setting = {
+
       id:0,
       theme:0,
     language:lanset,
       activeOrderFlow:0,
       billPrintAndKOT:0,
-      directKOTBillPrint:0
+      directKOTBillPrint:0,
+      billPrintAndKOTDining:0,
+      billPrintAndKOTHomeDelivery:0,
+      billPrintAndKOTTakeAway:0,
       
       
     }
@@ -181,6 +185,14 @@ this.comset.Obslangauge.subscribe(x=>{
     this.setting.activeOrderFlow =Number(this.setting.activeOrderFlow);
     this.setting.directKOTBillPrint =Number(this.setting.directKOTBillPrint);
     this.setting.billPrintAndKOT =Number(this.setting.billPrintAndKOT);
+    this.setting.billPrintAndKOTDining=Number(this.setting.billPrintAndKOTDining); 
+    this.setting.billPrintAndKOTHomeDelivery=Number(this.setting.billPrintAndKOTHomeDelivery);
+     this.setting.billPrintAndKOTTakeAway=Number(this.setting.billPrintAndKOTTakeAway);
+
+
+
+
+
     this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);
@@ -193,7 +205,7 @@ this.comset.Obslangauge.subscribe(x=>{
             severity: 'success',
             summary: 'SuccessFully Updated Setting',life :1000
           });
-          // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+         this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
         }
       );
     else

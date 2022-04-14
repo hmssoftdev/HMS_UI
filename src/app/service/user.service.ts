@@ -7,7 +7,10 @@ import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
 import { Historydata } from '../models/historydata';
+
 import { OrderSummary } from '../models/OrderSummary';
+
+
 import { setting } from '../models/setting';
 
 @Injectable({
@@ -31,7 +34,7 @@ export class UserService {
   userData = JSON.parse(localStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
-  summary:OrderSummary;
+  summary:any;
 public langdata = new Subject();
 
   setting= new Subject<setting>();
@@ -152,8 +155,8 @@ getsetting(data){
  
 
   //hmswebapi-dev.us-east-2.elasticbeanstalk.com/Order/BillSummary?id=113&maxDate=12-4-2022&minDate=1-04-2022
-  getOrderSummary(userid :number,maxdate :string,mindate:string): Observable<OrderSummary> {
-    return this.http.get<OrderSummary>
+  getOrderSummary(userid :number,maxdate :string,mindate:string): Observable<any> {
+    return this.http.get<any>
     (`${this.orderUrl}/BillSummary?id=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
       map(x => {
         this.summary = x;
