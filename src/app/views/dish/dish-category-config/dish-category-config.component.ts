@@ -47,6 +47,7 @@ export class DishCategoryConfigComponent implements OnInit {
     { label: 'InActive', value: 'inactive' }];
     // this.dishCategory = {};
     this.loadCategory();
+    
     this.comset.Obslangauge.subscribe(x=>{
       this.lang=x;
       this.translate.use(this.lang);

@@ -33,6 +33,7 @@ totalbill:number;
   startdate=new Date();
   enddate=new Date();
   allstartdate
+
   powercountstop:any= setInterval(()=>{
     this.powercount++;
     if(this.powercount==10)
@@ -62,17 +63,19 @@ res.map(item=>{
   {
     this.alltotalAmout=item.totalAmount;
     this.totalbill=item.totalBill;
+
   }
   if(item.deliveryOptionId===1){
     this.diningamount=item.totalAmount;
-    console.log(this.diningamount,"Cheching   asdsdasd Response")
+    this.diningbill=item.totalBill;
   }
   if(item.deliveryOptionId===2){
     this.homedeliveryamount=item.totalAmount;
-
+    this.homedeliverybill=item.totalBill;
   }
   if(item.deliveryOptionId===3){
     this.takeawayamount=item.totalAmount;
+    this.takeawaybill=item.totalBill;
   }
 })
         }
