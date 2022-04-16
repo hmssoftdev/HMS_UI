@@ -13,6 +13,7 @@ import { TranslateService } from "@ngx-translate/core";
 import { LanguageComponent } from '../../language/language.component';
 import { UserService } from '../../../service/user.service';
 import { CommonService } from '../../../service/common.service';
+import { setting } from '../../../models/setting';
 
 
 @Component({
@@ -30,6 +31,8 @@ export class OrdersListComponent implements OnInit {
   orderStatusDialog:boolean;
   cartData: OrderList;
   lang:any;
+  data:setting;
+  show=true;
   constructor(
     private dishSvc: DishService,
     private orderService: CartService,
@@ -44,12 +47,21 @@ export class OrdersListComponent implements OnInit {
 
 
   ngOnInit(): void {
+    this.comset.obsSetData.subscribe(x=>{
+      this.data=x;
+      if(this.data.activeOrderFlow===0)
+      this.show=false;
+    })
     this.authService.showLoader = true;
     this.loadData();
-    this.comset.Obslangauge.subscribe(x=>{
-      this.lang=x;
-      this.translate.use(this.lang);
+    this.comset.obsSetData.subscribe(x=>{
+      this.translate.use(x.language);
     })
+    // this.comset.Obslangauge.subscribe(x=>{
+    //   this.lang=x;
+    //   this.translate.use(this.lang);
+    //   console.log(this.lang)
+    // })
     // this.user.langdata.subscribe((x:any)=>{
     //   this.translate.use(x);
     // })

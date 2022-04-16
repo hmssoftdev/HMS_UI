@@ -40,16 +40,16 @@
                         [severity]="(order.status < 4)? 'warning': (order.status === 10)? 'danger': 'success'"></p-tag>
                 </td>
                 <td style="text-align: center; width: 250px;">
-                    <button [disabled]="order.status !== 1" pButton pRipple icon="pi pi-cog"
+                    <button *ngIf="show" [disabled]="order.status !== 1" pButton pRipple icon="pi pi-cog"
                         [ngClass]="{'p-button-warning': order.status === 1, 'p-button-success': order.status > 1}" class="p-button-rounded p-button-sm p-mr-1"
                         (click)="fnProcessing(order)" pTooltip="Process Order" tooltipPosition="left"></button>
 
-                    <button [disabled]="order.status !== 2" pButton pRipple icon="pi pi-envelope"
+                    <button *ngIf="show" [disabled]="order.status !== 2" pButton pRipple icon="pi pi-envelope"
                     [ngClass]="{'p-button-secondary': order.status < 2 || order.status === 10, 'p-button-warning': order.status === 2, 'p-button-success': order.status > 2}"
                         class="p-button-rounded p-button-sm p-mr-1" (click)="fnShipping(order)"
                         pTooltip="Shipping Order" tooltipPosition="left"></button>
 
-                    <button [disabled]="order.status !== 3" pButton pRipple icon="pi pi-check"
+                    <button *ngIf="show" [disabled]="order.status !== 3" pButton pRipple icon="pi pi-check"
                     [ngClass]="{'p-button-warning': order.status === 3, 'p-button-success': order.status > 3, 'p-button-secondary': order.status < 3  || order.status === 10 }"
                         class="p-button-rounded p-button-sm p-mr-1" (click)="fnCompleted(order)"
                         pTooltip="Complete Order" tooltipPosition="left"></button>

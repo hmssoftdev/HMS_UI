@@ -330,6 +330,16 @@ export class DishMenuNewComponent implements OnInit {
     const orderS = {status:1}
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
     this.cartItems.orderStatus.push(orderS) 
+    if(this.cartItems.deliveryMode===undefined ){
+      switch(this.cartItems.deliveryOptionId){
+        case 1:
+         this.cartItems.deliveryMode = "Dining"; break;
+        case 2:
+            this.cartItems.deliveryMode = "Home Delivery"; break;
+          case 3:
+            this.cartItems.deliveryMode = "Takeaway"; break;
+      }
+    }
  // }) 
   this.currentOrderId = null;
   // this.cartItems.orderItems.map(oItm => {

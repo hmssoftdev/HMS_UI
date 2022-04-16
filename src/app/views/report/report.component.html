@@ -9,14 +9,15 @@
     <app-today-summary></app-today-summary>
 
     <app-historydata></app-historydata>
-    <div class="p-grid">
-      <div class="col-12 md:col-6">
-        <app-bar-chart [todaySale]=todaySale [datagraph]=datagraph></app-bar-chart>
-      </div>
-      <div class="col-12 md:col-6">
-        <app-week-summary [datagraph]=datagraph [todaySale]=todaySale></app-week-summary>
-      </div>
-    </div>
+    <!-- <div class="p-grid">
+      <div class="col-12 md:col-12"> -->
+        <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]=todaySale ></app-bar-chart>
+      <!-- </div> -->
+
+      <!-- <div class="col-12 md:col-6"> -->
+        <!-- <app-week-summary [datagraph]=datagraph [todaySale]=todaySale></app-week-summary> -->
+      <!-- </div>
+    </div> -->
 
 
      <!-- <div class="p-grid align-items-center justify-content-center">
@@ -51,7 +52,7 @@
 
 
     <div class="p-col-12">
-      <app-top-cust-data [datagraph]=datagraph [todaySale]=todaySale> </app-top-cust-data>
+      <!-- <app-top-cust-data [datagraph]=datagraph [todaySale]=todaySale> </app-top-cust-data> -->
     </div>
 
         

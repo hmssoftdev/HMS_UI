@@ -1,5 +1,19 @@
 
-    <h5 class="p-text-center">
+    <!-- <h5 class="p-text-center">
         <span class="text-3xl">{{'Month Summary'| translate}}</span></h5>
-    <p-chart type="pie" [data]="dataa" [options]="chartOptionss"  [style]="{'width': '40%'}"></p-chart>
+    <p-chart type="pie" [data]="dataa" [options]="chartOptionss"  [style]="{'width': '40%'}"></p-chart> -->
 
+
+    <div class="p-grid">
+        <!-- <div class="col-12 md:col-6">
+          <h5 class="p-text-center">
+            <span class="text-3xl">{{'Week Summary'|translate}}</span></h5>
+           <p-chart class="align-self-center" type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
+        </div> -->
+        <div class="col-12 md:col-6">
+          
+          <h5 class="p-text-center">
+            <span class="text-3xl">{{'Week Summary'|translate}}</span></h5>
+        <p-chart type="pie" [data]="dataa" [options]="chartOptionss"  [style]="{'width': '40%'}"></p-chart>
+        </div>
+      </div>

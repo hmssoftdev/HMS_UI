@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
+import * as moment from 'moment';
 import { graph, graphs } from '../../../models/graphs';
 import { TodaySale } from '../../../models/report';
+import { AuthService } from '../../../service/auth.service';
+import { UserService } from '../../../service/user.service';
 
 @Component({
   selector: 'app-bar-chart',
@@ -9,22 +12,55 @@ import { TodaySale } from '../../../models/report';
 })
 export class BarChartComponent implements OnInit {
   @Input() todaySale :TodaySale; 
-  @Input() datagraph:graphs;
- 
-  basicData: graph;
-  // this is default setting
   basicOptions:any;
-  constructor() { }
+  datagraph:graphs;
+  basicData: graph;
+  dataa: graph;
+  chartOptionss: any;
+  constructor(public auth:AuthService,public user:UserService) { 
+    this.datagraph={
+      labeldine:"Dinning",
+      labelhd:"Home Delivery",
+      labeltakeaway:"TakeAway",
+      bgdine:"#42A5F5",
+      bgdh:"#66BB6A",
+      bgtake:"#FFA726"
+    }
+  }
 
   ngOnInit(): void {
+    console.log(this.todaySale,"today")
+    this.dataa = {
+      labels: [this.datagraph.labeldine,this.datagraph.labelhd,this.datagraph.labeltakeaway],
+      datasets: [
+          {
 
-    this.basicData = {
-      labels: ['Today Sale'],
+              data: [this.todaySale.dine,this.todaySale.hd, this.todaySale.takeaway],
+              backgroundColors: [
+                  this.datagraph.bgdine,
+                  this.datagraph.bgdh,
+                  this.datagraph.bgtake
+              ],
+              hoverBackgroundColor: [
+                this.datagraph.bgdine,
+                this.datagraph.bgdh,
+                this.datagraph.bgtake
+              ]
+          }
+      ]
+  };
+
+   
+   
+
+     this.basicData = {
+      labels: ['Sales'],
       datasets: [
           {
               label: this.datagraph.labeldine,
               backgroundColor:this.datagraph.bgdine,
               data: [this.todaySale.Dining]
+
           },
            {
               label: this.datagraph.labelhd,
@@ -37,14 +73,11 @@ export class BarChartComponent implements OnInit {
           }
           
       ]
+    }
   
   
-  
-  
-  
-    };
-  
-  
+}
 
 }
-}
+
+
