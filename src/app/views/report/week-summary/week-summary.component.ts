@@ -12,12 +12,13 @@ import { UserService } from '../../../service/user.service';
   styleUrls: ['./week-summary.component.scss']
 })
 export class WeekSummaryComponent implements OnInit {
+ @Input() todaySales :TodaySale; 
+  basicOptions:any;
+  datagraph:graphs;
+  basicData: graph;
   dataa: graph;
-  @Input() datagraph:graphs;
-
   chartOptionss: any;
-  constructor(public auth:AuthService,public user:UserService) {
-   
+  constructor(public auth:AuthService,public user:UserService) { 
     this.datagraph={
       labeldine:"Dinning",
       labelhd:"Home Delivery",
@@ -27,14 +28,15 @@ export class WeekSummaryComponent implements OnInit {
       bgtake:"#FFA726"
     }
   }
-  @Input() todaySale :TodaySale; 
-  ngOnInit(): void {
 
+  ngOnInit(): void {
+    console.log(this.todaySales,"today")
     this.dataa = {
       labels: [this.datagraph.labeldine,this.datagraph.labelhd,this.datagraph.labeltakeaway],
       datasets: [
           {
-              data: [this.todaySale.Dining,this.todaySale.HD, this.todaySale.Takeaway],
+
+              data: [this.todaySales.Dining,this.todaySales.HD, this.todaySales.Takeaway],
               backgroundColors: [
                   this.datagraph.bgdine,
                   this.datagraph.bgdh,
@@ -49,9 +51,32 @@ export class WeekSummaryComponent implements OnInit {
       ]
   };
 
-  }
-
-
    
+   
+
+     this.basicData = {
+      labels: ['Sales'],
+      datasets: [
+          {
+              label: this.datagraph.labeldine,
+              backgroundColor:this.datagraph.bgdine,
+              data: [this.todaySales.dine]
+
+          },
+           {
+              label: this.datagraph.labelhd,
+              backgroundColor: this.datagraph.bgdh,
+              data: [this.todaySales.hd]
+          }, {
+              label: this.datagraph.labeltakeaway,
+              backgroundColor:this.datagraph.bgtake,
+              data: [this.todaySales.takeaway]
+          }
+          
+      ]
+    }
   
+  
+}
+
 }

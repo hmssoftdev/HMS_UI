@@ -5,6 +5,8 @@ import { TodaySale } from '../../../models/report';
 import { AuthService } from '../../../service/auth.service';
 import { TranslateService } from '@ngx-translate/core';
 import { updateConstructor } from 'typescript';
+import { UserService } from '../../../service/user.service';
+import { Historydata } from '../../../models/historydata';
 
 @Component({
   selector: 'app-top-cust-data',
@@ -13,23 +15,30 @@ import { updateConstructor } from 'typescript';
 })
 export class TopCustDataComponent implements OnInit {
   data: graph;
-  @Input() 
-  datagraph:graphs;
+   datagraph:graphs;
   id:number;
-  @Input() todaySale :TodaySale;
-  constructor(private auth: AuthService ,private translate:TranslateService) {}
   startdate:string='';
-  enddate:string='';
+  monthenddate:string='';
   date= new Date;
+  historydata:Historydata[];
+  // hist:Historydata={
+  //   visitCount:1,
+  // }
+  result:string[];
+  constructor(private auth: AuthService ,private translate:TranslateService,public user:UserService) {
+    this.datagraph={
+      labeldine:"Dinning",
+      labelhd:"Home Delivery",
+      labeltakeaway:"TakeAway",
+      bgdine:"#42A5F5",
+      bgdh:"#66BB6A",
+      bgtake:"#FFA726"
+    }
+  }
+  
   ngOnInit(): void {
+    
     this.startdate=moment(this.date).format('YYYY-MM-DD').toString();
-
-    var pastDate = new Date(this.date)
-
-    var day = this.date.getDay()
-    pastDate.setDate(pastDate.getDate() - day);
-    this.enddate = moment(pastDate).format('YYYY-MM-DD').toString();
-    // this.enddate=moment(this.date).format('YYYY-MM-DD').toString();
     this.id=this.auth.userData().adminId;
     this.data = {
       labels:[this.datagraph.labeldine,this.datagraph.labelhd,this.datagraph.labeltakeaway ],
@@ -38,7 +47,7 @@ export class TopCustDataComponent implements OnInit {
               label: 'Customer Name',
               borderColor: this.datagraph.bgdine,
               
-              data: [this.todaySale.Dining,this.todaySale.HD, this.todaySale.Takeaway,this.todaySale.dine,this.todaySale.hd,this.todaySale.takeaway]
+              data: [22,44,50,30,76,56,96]
           },
           {
               label: 'Customer Name',
@@ -48,6 +57,38 @@ export class TopCustDataComponent implements OnInit {
           }
       ]
   }
+  
+ var currentDate = new Date();
+  var dated = currentDate.getDate()
+    var pastDate = new Date(currentDate)
+    pastDate.setDate(pastDate.getDate() - dated);
+    this.monthenddate =moment(pastDate).format('YYYY-MM-DD').toString();
+    this.getRepeatedHistorydata()
+  }
+  getRepeatedHistorydata(){
+     this.user.getBillHistory(this.id,this.startdate,this.monthenddate).subscribe(
+    x=>{
+       this.historydata = x;
+
+      let sample:Historydata={
+        visitCount:1,
+      }
+       var helper = {};
+      var result = this.historydata.reduce(function(r, o) {
+          var key = o.userMobileNumber + '-' + o.userName;
+             if(!helper[key]) {
+             helper[key] = Object.assign({}, o); // create a copy of o
+                  r.push(helper[key]);
+                } else {
+                helper[key].grossTotal += o.grossTotal;
+                    helper[key].visitCount ++;
+                           }
+                  return r;
+                     }, []);
+                     console.log(result,"Result")
+       return result;
+    }
+  )
   }
 
 }
