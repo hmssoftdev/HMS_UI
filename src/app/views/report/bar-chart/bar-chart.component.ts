@@ -35,7 +35,7 @@ export class BarChartComponent implements OnInit {
       datasets: [
           {
 
-              data: [this.todaySale.dine,this.todaySale.hd, this.todaySale.takeaway],
+              data: [this.todaySale.Dining,this.todaySale.HD, this.todaySale.Takeaway],
               backgroundColors: [
                   this.datagraph.bgdine,
                   this.datagraph.bgdh,
@@ -59,17 +59,17 @@ export class BarChartComponent implements OnInit {
           {
               label: this.datagraph.labeldine,
               backgroundColor:this.datagraph.bgdine,
-              data: [this.todaySale.Dining]
+              data: [this.todaySale.dine]
 
           },
            {
               label: this.datagraph.labelhd,
               backgroundColor: this.datagraph.bgdh,
-              data: [this.todaySale.HD]
+              data: [this.todaySale.hd]
           }, {
               label: this.datagraph.labeltakeaway,
               backgroundColor:this.datagraph.bgtake,
-              data: [this.todaySale.Takeaway]
+              data: [this.todaySale.takeaway]
           }
           
       ]

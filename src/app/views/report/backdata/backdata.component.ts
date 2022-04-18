@@ -54,6 +54,18 @@ export class BackdataComponent implements OnInit {
 
 
   }
+  getPaymentMode(n:number){
+    let strVal= '-';
+    switch(n){
+      case 1:
+        strVal = 'Cash';
+        break;
+      case 2:
+        strVal = 'UPI';
+        break;   
+    }
+    return strVal;
+  }
 
   deleteOrder(id:number) {
    this.user.DeleteUserHistorydata(id).subscribe(()=>

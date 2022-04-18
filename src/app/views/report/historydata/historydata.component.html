@@ -28,29 +28,19 @@
   </div>
   <div *ngIf="showweekdata">
       
-    <app-backdata [maxDate]="allstartdate" [minDate]="weekenddate"  [ID]="id">
-      <!-- <div class="p-grid">
-        <div class="col-12 md:col-6">
-          <h5 class="p-text-center">
-            <span class="text-3xl">{{'Week Summary'|translate}}</span></h5>
-           <p-chart class="align-self-center" type="bar" [data]="basicData" [options]="basicOptions"></p-chart>
-        </div>
-        <div class="col-12 md:col-6">
-          <h5 class="p-text-center">
-            <span class="text-3xl">{{'Week Summary'|translate}}</span></h5>
-        <p-chart type="pie" [data]="dataa" [options]="chartOptionss"  [style]="{'width': '40%'}"></p-chart>
-        </div>
-      </div> -->
-      
+    <app-backdata [maxDate]="allstartdate" [minDate]="weekenddate"  [ID]="id">     
     </app-backdata>
-   
+
+    <app-week-summary *ngIf="todaySales !== undefined" [todaySales]=todaySales ></app-week-summary>
    
   </div> 
   <div *ngIf="showmonthdata">
     
     <app-backdata [maxDate]="allstartdate" [minDate]="monthenddate"  [ID]="id">
-      
     </app-backdata>
+
+      <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]=todaySale ></app-bar-chart>
+    
    
    
   </div>

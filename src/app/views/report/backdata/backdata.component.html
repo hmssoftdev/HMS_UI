@@ -31,18 +31,18 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
        
         <td>
           
-         {{date | date:'dd-MM-yy'}}
+         {{data.createdOn | date:'dd-MM-yy'}}
         </td>
       
           <td class="date"  ng-repeat="data in data">
-            <span *ngIf="data.invoice">{{data.invoice}}</span>
-            <span *ngIf="!data.invoice">-</span>
+            <span *ngIf="data.invoiceNumber">{{data.invoiceNumber}}</span>
+            <span *ngIf="!data.invoiceNumber">-</span>
             </td>
       
      
           <td  ng-repeat="data in data">
-            <span *ngIf="data.payment">{{data.payment}}</span>
-            <span *ngIf="!data.payment">-</span>
+            <span *ngIf="data.paymentMode">{{getPaymentMode(data.paymentMode)}}</span>
+            <span *ngIf="!data.paymentMode">-</span>
             </td>
             <td  ng-repeat="data in data">
               <span *ngIf="data.itemTotal">{{data.itemTotal}}</span>

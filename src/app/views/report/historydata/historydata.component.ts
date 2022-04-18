@@ -19,6 +19,8 @@ import {
   UserService
 } from '../../../service/user.service';
 import { TranslateService } from '@ngx-translate/core';
+import { TodaySale } from '../../../models/report';
+import { OrderSummary } from '../../../models/OrderSummary';
 
 @Component({
   selector: 'app-historydata',
@@ -30,7 +32,8 @@ export class HistorydataComponent implements OnInit {
   maxdate: string = '';
   mindate: string = '';
   id: number;
-  
+  todaySale: TodaySale;
+  todaySales: TodaySale;
   allstartdate:string='';
   weekenddate:string='';
   monthenddate:string='';
@@ -39,7 +42,8 @@ export class HistorydataComponent implements OnInit {
   showweekdata = false;
   showhistorydata = false;
   showmonthdata = false;
-  constructor(private auth: AuthService ,private translate:TranslateService) {}
+  ordersummary:OrderSummary[];
+  constructor(private auth: AuthService ,private translate:TranslateService,public user:UserService) {}
   
 
 
@@ -87,6 +91,23 @@ export class HistorydataComponent implements OnInit {
     this.showhistorydata = false;
     this.showweekdata = true;
     this.showyeardata = false;
+    
+    this.user.getOrderSummary(this.auth.userData().adminId, this.allstartdate, this.weekenddate).subscribe(
+      res => {
+        this.ordersummary = res;
+
+        res.map(item => {
+          this.todaySales= {
+            Dining: this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill,
+            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
+            HD:this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
+            dine:this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount,
+            hd:this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
+            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
+          }
+        });
+      });
+
   }
   getmonthdata() {
 
@@ -94,6 +115,24 @@ export class HistorydataComponent implements OnInit {
     this.showhistorydata = false;
     this.showweekdata = false;
     this.showyeardata = false;
+ 
+    this.user.getOrderSummary(this.auth.userData().adminId, this.allstartdate, this.monthenddate).subscribe(
+      res => {
+        this.ordersummary = res;
+
+        res.map(item => {
+          this.todaySale = {
+            Dining: this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill,
+            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
+            HD:this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
+            dine:this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount,
+            hd:this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
+            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
+          }
+        });
+      });
+
+  
   }
   getyeardata() {
     this.showyeardata = true;
@@ -101,4 +140,6 @@ export class HistorydataComponent implements OnInit {
     this.showhistorydata = false;
     this.showweekdata = false;
   }
+
+
 }

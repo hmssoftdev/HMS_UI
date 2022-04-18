@@ -11,4 +11,7 @@ export interface Historydata {
     userMobileNumber?: string;
     userName?: string;
     status?: string;
+    invoiceNumber?:number;
+    visitCount?:number;
+    createdOn?:Date;
 }

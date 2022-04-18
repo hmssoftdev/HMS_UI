@@ -2,6 +2,7 @@ import {
   Component,
   OnInit
 } from '@angular/core';
+import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import {
   graphs
@@ -15,6 +16,7 @@ import {
 import {
   AuthService
 } from '../../service/auth.service';
+import { CommonService } from '../../service/common.service';
 import {
   UserService
 } from '../../service/user.service';
@@ -41,7 +43,11 @@ export class ReportComponent implements OnInit {
   data: any;
   chartOptions: any;
 
-  constructor(public user: UserService, public auth: AuthService) {
+  constructor(public user: UserService, public auth: AuthService,public translate:TranslateService,comset:CommonService) {
+
+    comset.Obslangauge.subscribe(res=>{
+      translate.use(res);
+    })
     this.chartOptions = {
       responsive: true,
       title: {
