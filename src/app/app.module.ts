@@ -45,7 +45,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule,  routingComponents} from './app.routing';
 import { ClientConfigComponent } from './views/client-config/client-config.component';
 import { MasterAdminModule } from '../app/views/master-admin/master-admin.module';
-import { LocalStorageService, StorageService } from './service/storage.service';
+import { SessionStorageService, StorageService } from './service/storage.service';
 import { RegisterComponent } from '../app/views/register/register.component'
 import { AuthService } from './service/auth.service';
 import { AuthGuard } from './helpers/auth.guard'; 
@@ -151,7 +151,7 @@ import { environment } from '../environments/environment';
       useClass: HashLocationStrategy
     },
     IconSetService, 
-      { provide: StorageService, useClass: LocalStorageService },
+      { provide: StorageService, useClass: SessionStorageService },
       {provide: HTTP_INTERCEPTORS,useClass:TokenInterceptorService, multi:true}
   ],
   bootstrap: [ AppComponent ]

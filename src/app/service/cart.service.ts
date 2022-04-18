@@ -17,7 +17,7 @@ export class CartService {
   orderUrl = `${ApiConfig.URL}${ApiConfig.ORDER}`;
   orderList: OrderList[] = [];
   // orderList: Array<any>;
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
 
   tableSubject = new Subject<Array<string>>();
   

@@ -15,7 +15,7 @@ export class AdminService {
   categoryUrl = `${ApiConfig.URL}${ApiConfig.CLIENTCATEGORY}`;
   client: Admin | undefined;
   clientList: Admin[] = [];
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   constructor(private httpClient: HttpClient) { }
   // Add Client
   AddClient(client): Observable<Admin> {
