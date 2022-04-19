@@ -12,4 +12,5 @@ export interface Registration {
     stateId?: number;
     city?: string;
     state?: string;
+    result?:string;  
 }
