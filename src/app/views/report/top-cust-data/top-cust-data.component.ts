@@ -21,6 +21,7 @@ export class TopCustDataComponent implements OnInit {
   monthenddate:string='';
   date= new Date;
   historydata:Historydata[];
+  visit:number;
   // hist:Historydata={
   //   visitCount:1,
   // }
@@ -70,10 +71,7 @@ export class TopCustDataComponent implements OnInit {
     x=>{
        this.historydata = x;
 
-      let sample:Historydata={
-        visitCount:1,
-      }
-       var helper = {};
+      var helper = {};
       var result = this.historydata.reduce(function(r, o) {
           var key = o.userMobileNumber + '-' + o.userName;
              if(!helper[key]) {
@@ -81,12 +79,18 @@ export class TopCustDataComponent implements OnInit {
                   r.push(helper[key]);
                 } else {
                 helper[key].grossTotal += o.grossTotal;
+                  if(helper[key].hasOwnProperty('visitCount')===true)
                     helper[key].visitCount ++;
-                           }
+                    else{
+                      helper[key].visitCount=1; 
+                    }
+                  }
                   return r;
                      }, []);
                      console.log(result,"Result")
+                     this.historydata=result;
        return result;
+
     }
   )
   }
