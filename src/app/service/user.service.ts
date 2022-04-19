@@ -31,7 +31,7 @@ export class UserService {
   public userList: User[] = [];
   modalSubject = new Subject();
   histdata :Historydata[]=[];
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
   summary:any;
@@ -115,7 +115,7 @@ getsetting(data){
     )
   }
   getUserList(): Observable<User[]> {
-  this.userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  this.userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(
       map(x => {
         this.userList = x;

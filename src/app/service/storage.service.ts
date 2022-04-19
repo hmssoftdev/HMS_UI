@@ -9,8 +9,8 @@ export abstract class StorageService {
 // tslint:disable-next-line:max-classes-per-file
 
 @Injectable() 
-export class LocalStorageService extends StorageService {
+export class SessionStorageService extends StorageService {
   public get(): Storage {
-    return localStorage;
+    return sessionStorage;
   }
 }

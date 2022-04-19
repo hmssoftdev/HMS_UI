@@ -24,7 +24,7 @@ export class DishService {
   editModalSubject = new Subject<Dish>();
   editModalObservable = this.editModalSubject.subscribe();
   storage: Storage;
-  uData = JSON.parse(localStorage.getItem('HMSUserData'));
+  uData = JSON.parse(sessionStorage.getItem('HMSUserData'));
 
   //#endregion properties
 

@@ -14,7 +14,7 @@ import { ShareDataService } from '../../../service/share-data.service';
 })
 export class CardDetailsComponent implements OnInit {
   selectedUserId: number;
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   public cartItems: ShoppingCart;
   totCartPrice: any;
   @Output() fnBillingModal: EventEmitter<any> = new EventEmitter();

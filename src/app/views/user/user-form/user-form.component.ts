@@ -22,7 +22,7 @@ export class UserFormComponent implements OnInit {
   cities: any;
   states: any;
   cityFilter: [];
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   constructor(public userSvc: UserService,
      public commonSvc: CommonService, 
      private msgService: MessageService, 

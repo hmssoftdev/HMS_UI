@@ -15,7 +15,7 @@ import { UserService } from '../../../service/user.service';
 })
 export class CartDetailsComponent implements OnInit {
   selectedUserId: number;
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   public cartItems: ShoppingCart;
   totCartPrice: any;
   deliveryMode: string;

@@ -11,7 +11,7 @@ import { Hotel } from '../models/tabelConfiguration.model';
 })
 export class TableService {
   url = `${ApiConfig.URL}${ApiConfig.HOTEL}`;
-  userData = JSON.parse(localStorage.getItem('HMSUserData'));
+  userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
   table: Hotel;
   tableList: Hotel[] = [];
   constructor(public http: HttpClient) { }
