@@ -34,5 +34,9 @@ export class AuthService {
   logoutUser(){
     this.storage.removeItem('HMSToken');
     this.storage.removeItem('HMSUserData');
+    this.storage.clear();
+    sessionStorage.removeItem('HMSUserData');
+    sessionStorage.removeItem('HMSToken');
+    sessionStorage.clear();
   }
 }

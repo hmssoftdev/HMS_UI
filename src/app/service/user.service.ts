@@ -35,7 +35,7 @@ export class UserService {
   modalObservable = this.modalSubject.subscribe();
   orderList: OrderList[] = [];
   summary:any;
-public langdata = new Subject();
+public langdata = new Subject<any>();
 
   setting= new Subject<setting>();
   // public language$ = new BehaviorSubject('english');
@@ -48,9 +48,9 @@ public langdata = new Subject();
     this.langdata.next(data);
 }
 
-getsetting(data){
-  this.setting.next(data)
-}
+// getsetting(data){
+//   this.setting.next(data)
+// }
 
   AddUser(user: User): Observable<User> {
     return this.http.post<User>(this.url, user).pipe(

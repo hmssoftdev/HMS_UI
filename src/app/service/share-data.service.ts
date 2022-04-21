@@ -8,7 +8,7 @@ export class ShareDataService {
   private dialogSource = new BehaviorSubject<boolean>(false)
   private messageSource = new BehaviorSubject<number>(0);
   private dataObject = new Subject<any>();
-  private defaultId = new BehaviorSubject<number>(0);
+  public defaultId = new BehaviorSubject<number>(0);
   currentMessage = this.messageSource.asObservable();
   currentObject = this.dataObject.asObservable();
   currentId = this.defaultId.asObservable();

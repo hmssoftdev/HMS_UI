@@ -54,7 +54,7 @@ export class SettingComponent implements OnInit {
   msgs: Message[];
   place=true;
   msgService: any;
-
+  val:string;
   constructor(public themee:ThemeService,
     public translate:TranslateService,
     private authService: AuthService, 
@@ -85,6 +85,7 @@ export class SettingComponent implements OnInit {
 
 
   ngOnInit(): void {
+
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
     // this.changeTheme();
@@ -100,6 +101,10 @@ export class SettingComponent implements OnInit {
     // this.translate.setDefaultLang(this.setting.language);
     // this.translate.reloadLang(this.setting.language)
     console.log(this.setting.language);
+    this.user.langdata.subscribe(res=>{
+      this.val=res
+      console.log(this.val,"observer subject")
+    })
   }
   fnFetchingApi() {
     this.user.getusersetting(this.userid).subscribe(
@@ -107,7 +112,9 @@ export class SettingComponent implements OnInit {
         if (x != null){
           this.setting = x;
           this.comset.setLangData(this.setting.language);
+
           this.translate.setDefaultLang(this.setting.language)
+        
           this.comset.setSetData(this.setting);
           if(this.setting.theme === 0)
           {
@@ -122,7 +129,7 @@ export class SettingComponent implements OnInit {
             this.themee.switchTheme(this.themm)
                
           
-          console.log(this.setting.language)
+          console.log(this.setting.language,"language under Api")
         }
          
         else {
@@ -137,7 +144,9 @@ export class SettingComponent implements OnInit {
     
       this.translate.use(event.value);
       // this.user.langdata.next(event.value)
-      this.user.langdata.next(event.value)
+      this.user.getlanguage(event.value);
+
+      this.comset.setLangData(event.value)
       this.langchange=event.value;
     
     // console.log(this.setting.language);
@@ -169,13 +178,16 @@ this.comset.Obslangauge.subscribe(x=>{
     }
     return s;
   }
-  savelang(){
-    // console.log("Hello",this.langchange)
-    this.user.langdata.next(this.langchange);
-  }
+  // // savelang(){
+  // //   // console.log("Hello",this.langchange)
+  // //   this.user.langdata.next(this.langchange);
+  // }
   saveSettings() {
+    // console.log(this.val,"language push check")
     this.setting.userId = this.userid;
     this.setting.theme = Number(this.setting.theme);
+    // this.setting.language=this.val
+
     this.setting.menuDisplay =Number(this.setting.menuDisplay);
     this.setting.billWithCustomer =Number(this.setting.billWithCustomer);
     this.setting.billWithGST =Number(this.setting.billWithGST);
@@ -193,7 +205,7 @@ this.comset.Obslangauge.subscribe(x=>{
 
 
 
-    this.setting.language=this.langchange;
+    // this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);
 
