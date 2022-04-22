@@ -89,7 +89,8 @@ export class TopCustDataComponent implements OnInit {
                      }, []);
                      console.log(result,"Result")
                      this.historydata=result;
-                     return result;
+       return result;
+
     }
   )
   }
