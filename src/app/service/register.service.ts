@@ -27,9 +27,12 @@ export class RegisterService {
       catchError(this.handleError('', user))
     );
   }
-  registerAdmin(admin:Registration){
-    return this.http.post(`${this.url}/PostAnonymousUser`,admin).pipe(
-      map(res => res),
+  registerAdmin(admin:Registration):Observable<Registration>{
+    return this.http.post<Registration>(`${this.url}/PostAnonymousUser`,admin).pipe(
+      map(res =>{
+        admin=res
+        
+        return res}),
       catchError(this.handleError('',admin))
     )
   }

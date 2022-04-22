@@ -61,11 +61,34 @@ export class RegisterComponent {
       })
     } else {
       this.regSvc.registerAdmin(this.users).subscribe(res => {
-        if (res) {
+    
+        this.users=res;
+        var constt=res.result;
+        // console.log(constt)
+        if(this.users.result=="User email or Mobile number already in used.")
+        {
+          alert('Registration with email and number already in use');
+        }
+        else
+        {
           this.registeredList.push(this.users);
           alert('Registration completed');
           this.router.navigate(['/login'])
         }
+          // if(res. == "User email or Mobile number already in used.")
+          // {
+          //   alert('Registration with email and number already in use');
+            
+          // }
+          // else
+          // {
+          //   this.registeredList.push(this.users);
+          //   alert('Registration completed');
+          //   this.router.navigate(['/login'])
+            
+          // }
+          
+        
         this.users = {}
       })
     }
