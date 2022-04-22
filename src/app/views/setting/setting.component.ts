@@ -200,27 +200,29 @@ this.comset.Obslangauge.subscribe(x=>{
     if (this.setting.id==0)
      this.user.postusersetting(this.setting).subscribe(
         x => {
+          this.msgs.push({severity:'info', summary:'Info Message', detail:'PrimeNG rocks',life:2000});
           console.log(x);
+          window.setTimeout('alert("SuccessFully Updated Setting");window.close();',1000);
+          // alert("SuccessFully Updated Setting")
           this.messageService.add({
             severity: 'success',
             summary: 'SuccessFully Updated Setting',life :1000
           });
-         this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+         
         }
       );
     else
       this.user.putusersetting(this.setting).subscribe(
         x => {
           console.log(x);
-          // this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
+         
           this.messageService.add({
             severity: 'success',
             summary: 'SuccessFully Updated Setting',life :1000
           });
         }
       );
-// this.messageService.add({severity:'info',
-//      summary:'SuccessFully Updated Setting', detail: 'Verified',life: 2000});
+            
 
     //  this.msgs.push({severity:'info', summary:'SuccessFully Updated Setting',life:2000});
 
@@ -231,7 +233,7 @@ this.comset.Obslangauge.subscribe(x=>{
 
   changework() {
 
-    console.log("Password Change Work")
+    // this.msgs.show({severity:'info', summary:'Info Message', detail:'PrimeNG rocks',life:2000});
   }
   loginUser() {
 

@@ -42,8 +42,13 @@
 
                             <li class="pro-menu-item pro-sub-menu" routerLinkActive="active" (click)="lblMenuToggle=0;lblsidebar=true"
                                 [routerLink]="mItem.routing" *ngIf="mItem.access.indexOf(userType) > -1 && mItem.subItems.length === 0">
-                                <div class="pro-inner-item" role="button" tabindex="0"><span class="pro-icon-wrapper">
-                                        <span class="pro-icon"><i class="{{mItem.icon}}"></i></span></span>
+                                <div class="pro-inner-item" role="button" tabindex="0">
+                                         
+                                    <span class="pro-icon-wrapper">
+                                        <span class="pro-icon">
+                                            <div class="icon-tool-show">
+
+                                            <i class="{{mItem.icon}}"></i></div></span></span>
                                     <span class="pro-item-content">{{mItem.name}}</span>
                                     <span class="itemtitle">{{mItem.title}}</span>
                                 </div>

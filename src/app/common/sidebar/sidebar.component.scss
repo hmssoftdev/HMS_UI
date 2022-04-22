@@ -163,6 +163,8 @@ $icon-size: 35px !default;
   white-space: nowrap;
 }
 
+
+
 .pro-sidebar {
   .pro-menu {
     padding-top: 10px;
@@ -241,6 +243,10 @@ $icon-size: 35px !default;
           line-height: $icon-size;
           text-align: center;
           display: inline-block;
+          
+          .icon-tool-show:hover .itemtitle {
+            visibility: visible;
+          }
 
           .pro-icon {
             display: flex;

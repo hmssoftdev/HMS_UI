@@ -96,7 +96,7 @@ export class DishMenuNewComponent implements OnInit {
       this.translate.use(res);
     })
 
-    this.comset.obsSetData.subscribe(resp =>{
+    this.userService.getusersetting(this.auth.userData().adminId).subscribe(resp =>{
       if(resp){
         const d = resp;
         this.image = d.menuDisplay ? true : false;
