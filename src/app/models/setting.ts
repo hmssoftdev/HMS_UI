@@ -16,7 +16,6 @@ export interface setting{
     language?:string,
     activeOrderFlow? :number,
     directKOTBillPrint?:number;
-
     billPrintAndKOT?:number;
     billPrintAndKOTDining?:number;
     billPrintAndKOTHomeDelivery?:number;

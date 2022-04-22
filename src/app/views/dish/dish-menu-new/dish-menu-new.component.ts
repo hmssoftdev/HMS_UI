@@ -74,7 +74,7 @@ export class DishMenuNewComponent implements OnInit {
   lang:string;
    data:setting;
    show=false;
-   both=true;
+   both:boolean=true;
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -100,12 +100,18 @@ export class DishMenuNewComponent implements OnInit {
       if(resp){
         const d = resp;
         this.image = d.menuDisplay ? true : false;
-        
+        this.both = d.billPrintAndKOT ? true : false;
+        console.log( this.both = d.billPrintAndKOT ? true : false,"check")
+        // this.both = d.billPrintAndKOT?true : false; 
     }
-    if(resp.billPrintAndKOT === 1){
-      this.show=true
-      this.both=false
-    }
+    // if(resp.billPrintAndKOT == 1){
+    //   this.show=true
+    //   this.both=false
+    // }
+    // else{
+    //   this.both=true
+    //   this.show=false
+    // }
     })
     this.userSvc.langdata.subscribe( (x:any)=>{
      

@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router'; 
 import { UserLogin } from '../../models/userLogin';
 import { AuthService } from '../../service/auth.service';
+import { ShareDataService } from '../../service/share-data.service';
 import { StorageService } from '../../service/storage.service';
 import { UserService } from '../../service/user.service';
 
@@ -23,7 +24,8 @@ export class LoginComponent implements OnInit {
     private authService: AuthService, 
     private storageService:StorageService,
     private router: Router,
-    private location: Location) {
+    private location: Location,
+    public sharedata:ShareDataService) {
     this.storage = this.storageService.get();
   }
   ngOnInit(): void {
@@ -46,6 +48,10 @@ export class LoginComponent implements OnInit {
         this.storage.setItem('HMSToken', resp.token); 
         this.storage.setItem('HMSUserData',JSON.stringify(resp));
         this.authService.uLoggedInSubject$.next(true);
+        
+        this.sharedata.sendId(this.authService.userData().adminId);
+
+
         switch(resp.userType){
           case 1:
           this.router.navigate(['/admin-setting']);

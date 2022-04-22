@@ -496,11 +496,10 @@
             <button
               pButton
               type="button" 
-              *ngIf="show"
+              *ngIf="both == false"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-        
               [disabled]="!KOTEnabled"
             ></button>
             <button
