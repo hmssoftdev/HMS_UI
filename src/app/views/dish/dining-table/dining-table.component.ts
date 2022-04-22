@@ -3,6 +3,7 @@ import { Hotel } from '../../../models/tabelConfiguration.model';
 import { CartService } from '../../../service/cart.service';
 import { TableService } from '../../../service/table.service';
 import {ConfirmationService, ConfirmEventType, Message, MessageService} from 'primeng/api';
+import { AuthService } from '../../../service/auth.service';
 @Component({
   selector: 'app-dining-table',
   templateUrl: './dining-table.component.html',
@@ -18,7 +19,8 @@ export class DiningTableComponent implements OnInit {
     public tableSvc: TableService, 
     private cartService: CartService,
     private confirmationService: ConfirmationService,
-    private msgService: MessageService) { }
+    private msgService: MessageService,
+    public auth:AuthService) { }
 
   ngOnInit(): void {
     this.selectedTableID = [];
@@ -33,7 +35,7 @@ export class DiningTableComponent implements OnInit {
   fnTblBook(tblItem){  
    
     if(tblItem.isBooked){
-      this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
+      this.tableSvc.getOrderDataBytblId(this.auth.userData().adminId).subscribe(resp => {
         if(resp){
           this.cartService.save(resp);
            this.selectedTableID = [];

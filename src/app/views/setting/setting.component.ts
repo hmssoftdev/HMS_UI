@@ -54,7 +54,8 @@ export class SettingComponent implements OnInit {
   msgs: Message[];
   place=true;
   msgService: any;
-  val:string;
+  
+  // val:string;
   constructor(public themee:ThemeService,
     public translate:TranslateService,
     private authService: AuthService, 
@@ -62,7 +63,7 @@ export class SettingComponent implements OnInit {
     private fb: FormBuilder, 
     private messageService: MessageService, 
     private user: UserService, 
-    private router: Router) {
+    private router: Router,) {
     this.form = fb.group({
 
       newpassword: ['', [Validators.required, Validators.maxLength(10)]],
@@ -85,7 +86,7 @@ export class SettingComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    this.authService.showLoader=true;
     // this.comset.CommonSetting$.next(this.setting);
     this.fnFetchingApi();
     // this.changeTheme();
@@ -102,8 +103,8 @@ export class SettingComponent implements OnInit {
     // this.translate.reloadLang(this.setting.language)
     console.log(this.setting.language);
     this.user.langdata.subscribe(res=>{
-      this.val=res
-      console.log(this.val,"observer subject")
+      // this.val=res
+      // console.log(this.val,"observer subject")
     })
   }
   fnFetchingApi() {
@@ -135,7 +136,9 @@ export class SettingComponent implements OnInit {
         else {
           this.setting = this.getDefaultSetting()
         }
+        this.authService.showLoader=false;
       }
+
     )
 
   }
@@ -173,8 +176,12 @@ this.comset.Obslangauge.subscribe(x=>{
       billPrintAndKOTDining:0,
       billPrintAndKOTHomeDelivery:0,
       billPrintAndKOTTakeAway:0,
-      
-      
+      billWithCustomer: 0,
+      billWithGST: 0,
+      billWithLOGO: 0,
+      billWithSeal: 0,
+      billWithSign: 0,
+      menuDisplay: 0,
     }
     return s;
   }

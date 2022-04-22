@@ -491,12 +491,12 @@
               label="KOT Print"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both"
+              *ngIf="both==false"
             ></button>
             <button
               pButton
               type="button" 
-              *ngIf="both == false"
+              *ngIf="both==true"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
@@ -509,7 +509,7 @@
               [disabled]="!isKOTdone"                                            
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both"
+              *ngIf="both==false"
             ></button>
             <button
               [disabled]="userData.userType === 3"
