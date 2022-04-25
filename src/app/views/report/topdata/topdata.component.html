@@ -1,3 +1,60 @@
-<div class="p-grid">
-  <app-backdata [maxDate]="startdate" [minDate]="enddate"  [ID]="id"></app-backdata>
-</div>
+
+        <div class="p-grid">
+          <p-table responsiveLayout="stack" [value]="historydata" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
+[rows]="10" [showCurrentPageReport]="true" [rowHover]="true" dataKey="id"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="250px"
+[virtualScroll]="true" [virtualRowHeight]="40">
+
+    <ng-template pTemplate="header" class="text-center">
+     
+      <tr>
+        
+        <th>{{'Name'|translate}}</th>
+        <th>{{'Contact'|translate}}</th>
+        <!-- <th >{{'Date'|translate}}</th> -->
+        <th >{{'InvoiceNo'|translate}}</th>
+        <th>{{'Payment'|translate}}</th>
+        <th>{{'Amount'|translate}}</th>
+      
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="body" class="text-center" let-data>
+      <tr>
+        
+        
+        <td ng-repeat="data in data">
+        <span *ngIf="data.userName">{{data.userName}}</span>
+          <span *ngIf="!data.userName">-</span>
+          </td>
+          
+        <td>{{data.userMobileNumber}}</td>
+       
+        <!-- <td>
+          
+         {{data.createdOn | date:'dd-MM-yy'}}
+        </td> -->
+      
+          <td class="date"  ng-repeat="data in data">
+            <span *ngIf="data.invoiceNumber">{{data.invoiceNumber}}</span>
+            <span *ngIf="!data.invoiceNumber">-</span>
+            </td>
+            <td  ng-repeat="data in data">
+            <span *ngIf="data.paymentMode">{{getPaymentMode(data.paymentMode)}}</span>
+            <span *ngIf="!data.paymentMode">Pending</span>
+                </td>
+            <td  ng-repeat="data in data">
+              <span *ngIf="data.itemTotal">{{data.grossTotal}}</span>
+              <span *ngIf="!data.itemTotal">-</span>
+            </td>
+      </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage"  >
+      <tr>
+          <td colspan="6" class="p-text-center">
+             <span> {{'No records found'|translate}}</span>
+          </td>
+      </tr>
+  </ng-template>
+  </p-table>
+          </div>

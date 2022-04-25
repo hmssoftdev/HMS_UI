@@ -120,39 +120,7 @@ export class DishMenuNewComponent implements OnInit {
 
     })
 
-  // this.userService.getusersetting(this.auth.userData().adminId).subscribe
-  // (x=>{
-  //   this.data=x
-   
 
-  // })
-  // this.userService.language$.subscribe(x=>
-  //   {
-  //     this.lang=x
-  //     console.log("test" , this.lang)
-  //   })
-  // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
-  //   this.data=x;
-  //   console.log(this.data);
-  //   if(this.data.menuDisplay===0){
-  //     this.image=false
-  //   }
-  //   })
-//  this.comset.CommonSetting$.subscribe(x=>{
-//   this.data=x;
-
-// })
-
-
-// if(this.data.menuDisplay === 0)
-// {
-//   this.image=false;
-// }
-
-// else if(this.data === null){
-//   this.image=true
-// }
-    
       
     this.loadData();
     this.loadClient();
@@ -363,8 +331,6 @@ export class DishMenuNewComponent implements OnInit {
     },1000)
    
   });
-  
-
     }
   fnBillPrint(order: OrderList){
     

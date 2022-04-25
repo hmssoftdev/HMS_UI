@@ -42,7 +42,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
      
           <td  ng-repeat="data in data">
             <span *ngIf="data.paymentMode">{{getPaymentMode(data.paymentMode)}}</span>
-            <span *ngIf="!data.paymentMode">-</span>
+            <span *ngIf="!data.paymentMode">pending</span>
             </td>
             <td  ng-repeat="data in data">
               <span *ngIf="data.itemTotal">{{data.itemTotal}}</span>
