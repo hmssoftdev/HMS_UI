@@ -25,7 +25,11 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
           {{getDeliveryMode(data.deliveryOptionId)}}
         </td> -->
         <td>  {{data.grossTotal}} </td>
-        <td> {{getPaymentMode(data.paymentMode)}}</td>
+        <!-- <td> {{getPaymentMode(data.paymentMode)}}</td> -->
+        <td  ng-repeat="data in data">
+          <span *ngIf="data.paymentMode">{{getPaymentMode(data.paymentMode)}}</span>
+          <span *ngIf="!data.paymentMode">Pending</span>
+          </td>
         <td>
           <button pButton pRipple icon="pi pi-eye" class="p-button-rounded p-button-success p-mr-2"
                              pTooltip="View"  tooltipPosition="left" (click)="fnViewOrder(data)"></button>

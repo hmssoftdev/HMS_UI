@@ -491,12 +491,12 @@
               label="KOT Print"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both"
+              *ngIf="both==false"
             ></button>
             <button
               pButton
               type="button" 
-              *ngIf="both == false"
+              *ngIf="both==true"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
@@ -509,7 +509,7 @@
               [disabled]="!isKOTdone"                                            
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both"
+              *ngIf="both==false"
             ></button>
             <button
               [disabled]="userData.userType === 3"
@@ -577,7 +577,7 @@
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
+    <app-billing *ngIf="billingDialog"  (emptyCart)="emptyCart()" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
     </app-billing>
 </p-dialog>
 <app-kot-items [userdata]="selectedUsers" [adminData]="admin" 

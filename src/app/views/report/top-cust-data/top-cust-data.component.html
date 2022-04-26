@@ -1,5 +1,5 @@
 <h5 class="p-text-center">
-        <span class="text-3xl p-text-center">{{'Number of repeated customer'| translate}}</span></h5>
+        <span class="text-3xl p-text-center">{{'Number of repeated customer in Month'| translate}}</span></h5>
         <!-- <app-backdata [maxDate]="startdate" [minDate]="enddate"  [ID]="id"></app-backdata> -->
 
         <div class="p-grid">
@@ -7,7 +7,7 @@
                 [rows]="10" [showCurrentPageReport]="true"  [rowHover]="true" dataKey="id"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                [virtualScroll]="true" [virtualRowHeight]="40">
+                [virtualScroll]="true" [virtualRowHeight]="40" sortField="grossTotal" [sortOrder]="-1">
                 
                     <ng-template pTemplate="header" class="text-center">
                      
@@ -40,7 +40,7 @@
                                 <span *ngIf="!data.visitCount">-</span>
                         </td>
                             <td  ng-repeat="data in data">
-                              <span *ngIf="data.itemTotal">{{data.itemTotal}}</span>
+                              <span *ngIf="data.itemTotal">{{data.grossTotal}}</span>
                               <span *ngIf="!data.itemTotal">-</span>
                               </td>
                       </tr>
@@ -57,5 +57,6 @@
                 </div>
 
 
-
-        <p-chart type="line" [data]="data"></p-chart>
+<!-- 
+        <p-chart type="line" [data]="data"></p-chart> -->
+        <!-- <p-chart type="radar" [data]="data" [options]="chartOptions" [style]="{'width': '40%'}"></p-chart> -->

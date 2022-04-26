@@ -1,3 +1,4 @@
+
 <p-accordion [multiple]="true">
     <p-accordionTab header="{{'Profile' | translate}}">
         <div class="form-group">
@@ -44,17 +45,10 @@
         <div class="grid">
             <div class="col-12 p-text-center">
                 <span class="float right" >
-                    <label class="colortest"  for="want">{{'Light' | translate}}</label>
+                    <label  for="want">{{'Light' | translate}}</label>
                     <p-inputSwitch [(ngModel)]="setting.theme" name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Dark' | translate}}</label>
-                </span>           
-                <!-- <p-button (click)="changeTheme('saga-blue')" type="submit"  class="p-button-text p-ml-2" 
-                 label="Saga" ></p-button>
-                 <p-button (click)="changeTheme('vela-blue')"  type="submit"  class="p-button-text p-ml-2" 
-                 label="Vela" ></p-button>
-                 <p-button (click)="changeTheme('md-dark-indigo')" type="submit"  class="p-button-text p-ml-2" 
-                 label="Dark" ></p-button> -->
-
+                </span>
             </div>
         </div>
     </p-accordionTab>
@@ -167,12 +161,9 @@
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
-                    <!-- <label  for="want">{{'No' | translate}} </label>
-                    <p-inputSwitch [(ngModel)]="setting.ActiveOrderFlow" class="p-mx-2" name="want"></p-inputSwitch>
-                    <label  for="want">{{'Yes' | translate}}</label> -->
-                    <label for="place"> {{'No' | translate}} </label>
-                    <p-inputSwitch [(ngModel)]="setting.activeOrderFlow" class="p-mx-2"  name="place"></p-inputSwitch>
-                    <label for="place">{{'Yes' | translate}}</label>
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.activeOrderFlow" class="p-mx-2" name="want"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
         </div>
@@ -199,12 +190,12 @@
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
-                    <label for="place">{{'No' | translate}} </label>
-                    <p-inputSwitch [(ngModel)]="setting.directKOTBillPrint" class="p-mx-2" name="place"></p-inputSwitch>
-                    <label for="place">{{'Yes' | translate}}</label>
+                    <label for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.directKOTBillPrint" class="p-mx-2" name="want"></p-inputSwitch>
+                    <label for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
-        </div> 
+        </div>
         <div class="grid">
             <div class="col-6">
                 <span class="float left">
@@ -213,13 +204,26 @@
             </div>
             <div class="col-6 p-text-center">
                 <span class="float right">
-                    <label for="place">{{'No' | translate}} </label>
-                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOT" class="p-mx-2" name="place"></p-inputSwitch>
-                    <label for="place">{{'Yes' | translate}}</label>
+                    <label for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.billPrintAndKOT" class="p-mx-2" name="want"></p-inputSwitch>
+                    <label for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
         </div>
-       
+        <!-- <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label>{{'Do you want both KOT / Bill print at same time.?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}}</label>
+                    <p-inputSwitch class="p-mx-2"  name="want"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div> -->
         <div class="grid">
             <div class="col-6">
                 <span class="float left">
@@ -251,7 +255,7 @@
         <div class="grid">
             <div class="col-6">
                 <span class="float left">
-                    <label>{{'Do you want both KOT / Bill print at same time in Take away' | translate}}</label>
+                    <label>{{'Do you want both KOT / Bill print at same time in take away?' | translate}}</label>
                 </span>
             </div>
             <div class="col-6 p-text-center">
@@ -261,36 +265,34 @@
                     <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
-            </div>
+        </div>
+        
       
     </p-accordionTab>
     <p-accordionTab header="{{'Language' | translate}}">
-        <div class="grid p-text-center">
-            <div class="col-6 p-text-center" for="want">
-
+        <div class="grid">
+            <div class="col-6 p-text-center"  for="want">
+            
                 <p-dropdown [options]="langa" [(ngModel)]="setting.language" 
                 (onChange)="onChange($event)" optionLabel="name"
                  optionValue="name" name="want"></p-dropdown>
                 
                 <!-- <button for="want" pButton type="button" 
                 (click)="savelang()" label="Save"></button> -->
-            </div>
+            
+        </div>
         </div>
       
       
     </p-accordionTab>
-    
+
 
     
 
 </p-accordion>
-
-<p-toast ></p-toast>
+<p-toast position="bottom-right"></p-toast>
 <div class="grid">
     <div class="col-12 p-text-center mt-2">
 <button pButton type="button" (click)="saveSettings()" label="Submit"></button>
-
-<p-toast position="bottom-right"></p-toast>
-
     </div>
 </div>

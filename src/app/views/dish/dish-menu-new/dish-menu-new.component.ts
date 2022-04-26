@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core'; 
+import { Component, Input, OnInit, Output} from '@angular/core'; 
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
@@ -16,6 +16,7 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 import { CommonService } from '../../../service/common.service';
 import { setting } from '../../../models/setting';
 import { TranslateService } from '@ngx-translate/core';
+// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -74,7 +75,8 @@ export class DishMenuNewComponent implements OnInit {
   lang:string;
    data:setting;
    show=false;
-   both:boolean=true;
+   both:boolean;
+
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -101,7 +103,7 @@ export class DishMenuNewComponent implements OnInit {
         const d = resp;
         this.image = d.menuDisplay ? true : false;
         this.both = d.billPrintAndKOT ? true : false;
-        console.log( this.both = d.billPrintAndKOT ? true : false,"check")
+        // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
     // if(resp.billPrintAndKOT == 1){
@@ -120,39 +122,7 @@ export class DishMenuNewComponent implements OnInit {
 
     })
 
-  // this.userService.getusersetting(this.auth.userData().adminId).subscribe
-  // (x=>{
-  //   this.data=x
-   
 
-  // })
-  // this.userService.language$.subscribe(x=>
-  //   {
-  //     this.lang=x
-  //     console.log("test" , this.lang)
-  //   })
-  // this.userService.getusersetting(this.authService.userData().adminId).subscribe(x=>{
-  //   this.data=x;
-  //   console.log(this.data);
-  //   if(this.data.menuDisplay===0){
-  //     this.image=false
-  //   }
-  //   })
-//  this.comset.CommonSetting$.subscribe(x=>{
-//   this.data=x;
-
-// })
-
-
-// if(this.data.menuDisplay === 0)
-// {
-//   this.image=false;
-// }
-
-// else if(this.data === null){
-//   this.image=true
-// }
-    
       
     this.loadData();
     this.loadClient();
@@ -303,12 +273,14 @@ export class DishMenuNewComponent implements OnInit {
     this.deliveryMode = '';
     this.KOTEnabled = false;
     this.isKOTdone = false;
+
   }
   fnMakePayment(){
     this.fnLoadCartData();
     this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
+    // this.emptycart.emit('this.emptyCart()');
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
     //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });
@@ -363,8 +335,6 @@ export class DishMenuNewComponent implements OnInit {
     },1000)
    
   });
-  
-
     }
   fnBillPrint(order: OrderList){
     
