@@ -27,8 +27,8 @@ export class RegisterService {
       catchError(this.handleError('', user))
     );
   }
-  registerAdmin(admin:Registration,urll:string):Observable<Registration>{
-    return this.http.post<Registration>(`${this.url}/PostAnonymousUser`, admin ).pipe(
+  registerAdmin (admin:Registration):Observable<Registration>{
+    return this.http.post<Registration>(`${this.url}/PostAnonymousUser?url=http://hmsangularbucket.s3-website.us-east-2.amazonaws.com`,admin ).pipe(
       map(res =>{
         admin=res
         
@@ -36,6 +36,12 @@ export class RegisterService {
       catchError(this.handleError('',admin))
     )
   }
+  // registerAdmin(admin:Registration){
+  //   return this.http.post(`${this.url}/PostAnonymousUser?url=http://hmsangularbucket.s3-website.us-east-2.amazonaws.com`,admin).pipe(
+  //     map(res => res),
+  //     catchError(this.handleError('',admin))
+  //   )
+  // }
   updateUser(user: Registration): Observable<Registration> {
     return this.http.put<Registration>(`${this.url}`, user).pipe(
       map(x => {

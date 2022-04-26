@@ -18,6 +18,7 @@ export class BillingComponent implements OnInit {
   @Input() adminData: Admin;
   @Input() shoppingCart: ShoppingCart;
   @Output() close: EventEmitter<any> = new EventEmitter();
+  @Output() emptyCart:EventEmitter<any> = new EventEmitter();
   selectedUserId: number;
   stateOptions: any[];
   lblIsProceed: boolean;
@@ -27,12 +28,13 @@ export class BillingComponent implements OnInit {
   isSelectDeliveryMode: boolean;
   subscription: Subscription;
   object: any;
+
   constructor(public adminService: AdminService,
     private cartService: CartService,
     private msgService: MessageService,
     private router: Router,
     public data: ShareDataService,
-    private commonService: CommonService) { }
+    private commonService: CommonService,) { }
 
 
   ngOnInit(): void {
@@ -105,8 +107,10 @@ export class BillingComponent implements OnInit {
         this.cartService.paymodeModeUpdate(pmObj).subscribe((resp) => {
           if(resp){
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
+          
           if(setRes.activeOrderFlow){ 
             this.router.navigate(['/dish/order-list']);
+           
           } else {
             const completeOrder = {
               orderId : pmObj.id,
@@ -114,9 +118,10 @@ export class BillingComponent implements OnInit {
             }
             this.cartService.postOrderStatus(completeOrder).subscribe(() => {
               this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Order Processed', life: 3000 });
+            
             })
             this.close.emit();
-
+            this.emptyCart.emit()
           }
          
         }
@@ -131,3 +136,7 @@ export class BillingComponent implements OnInit {
     this.close.emit()
   }
 }
+function emptyCart(emptyCart: any) {
+  throw new Error('Function not implemented.');
+}
+

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit} from '@angular/core'; 
+import { Component, Input, OnInit, Output} from '@angular/core'; 
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
@@ -16,6 +16,7 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 import { CommonService } from '../../../service/common.service';
 import { setting } from '../../../models/setting';
 import { TranslateService } from '@ngx-translate/core';
+// import { EventEmitter } from 'stream';
 
 @Component({
   selector: 'app-dish-menu-new',
@@ -75,6 +76,7 @@ export class DishMenuNewComponent implements OnInit {
    data:setting;
    show=false;
    both:boolean;
+
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -271,12 +273,14 @@ export class DishMenuNewComponent implements OnInit {
     this.deliveryMode = '';
     this.KOTEnabled = false;
     this.isKOTdone = false;
+
   }
   fnMakePayment(){
     this.fnLoadCartData();
     this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
+    // this.emptycart.emit('this.emptyCart()');
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
     //   this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 30000 });

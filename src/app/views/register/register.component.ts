@@ -8,9 +8,12 @@ import { NgForm } from '@angular/forms';
 import { style } from '@angular/animations';
 import { UserService } from '../../service/user.service';
 import { Location } from '@angular/common';
+import { NgxPasswordStrengthMeterModule, NgxPasswordStrengthMeterService } from 'ngx-password-strength-meter';
+
 @Component({
   selector: 'app-dashboard',
-  templateUrl: 'register.component.html'
+  templateUrl: 'register.component.html',
+  styleUrls:['./register.component.css']
 })
 export class RegisterComponent {
   users: Registration;
@@ -19,14 +22,17 @@ export class RegisterComponent {
   storage: Storage;
   typeUser: { label: string; value: number; }[];
   userTypeVal: number;
+  value:string;
+  show:boolean=false
   constructor(
     public regSvc: RegisterService,
     public userSvc: UserService,
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router, 
-    private location: Location) {
+    private location: Location,private passwordStrengthMeterService: NgxPasswordStrengthMeterService) {
     this.storage = this.storageService.get();
+    const result = this.passwordStrengthMeterService.calculate('123');
   }
 
 
@@ -50,8 +56,12 @@ export class RegisterComponent {
   //   })
   // }
 
-
   register(data: NgForm) { 
+    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    if(this.users.password.matchAll(format))
+      {
+          console.log("Mubashir WIn")
+      }
     this.submitted = true; 
     if (this.users.userType === 3) {
       this.userSvc.registerUser(this.users).subscribe(() => {

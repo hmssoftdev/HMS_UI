@@ -70,6 +70,7 @@ export class OrdersListComponent implements OnInit {
   loadData() {
     this.orderService.getOrder().subscribe(res => {
       this.orderList = res;
+    
     this.authService.showLoader = false;
     });
   }

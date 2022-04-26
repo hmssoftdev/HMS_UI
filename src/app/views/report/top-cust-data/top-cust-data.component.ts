@@ -106,7 +106,13 @@ export class TopCustDataComponent implements OnInit {
                           }
                       ]
                   }      
-
+this.historydata=this.historydata.filter(function(){
+  return function(items, property, min, max) {
+    return items.filter(function(item){
+      return item[property] >= min && item[property] <= max;
+    }  )    ;
+  }  } ) ;
+     
        return result;
 
     }

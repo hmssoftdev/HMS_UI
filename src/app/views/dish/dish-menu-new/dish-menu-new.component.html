@@ -577,7 +577,7 @@
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-    <app-billing *ngIf="billingDialog" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
+    <app-billing *ngIf="billingDialog"  (emptyCart)="emptyCart()" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
     </app-billing>
 </p-dialog>
 <app-kot-items [userdata]="selectedUsers" [adminData]="admin" 

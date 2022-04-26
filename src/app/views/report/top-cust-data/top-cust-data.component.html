@@ -7,7 +7,7 @@
                 [rows]="10" [showCurrentPageReport]="true"  [rowHover]="true" dataKey="id"
                 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
                 [rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="250px"
-                [virtualScroll]="true" [virtualRowHeight]="40">
+                [virtualScroll]="true" [virtualRowHeight]="40" sortField="grossTotal" [sortOrder]="-1">
                 
                     <ng-template pTemplate="header" class="text-center">
                      
