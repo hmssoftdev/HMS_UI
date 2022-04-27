@@ -30,14 +30,40 @@ export class RegisterComponent {
     private authService: AuthService,
     private storageService: StorageService,
     private router: Router, 
-    private location: Location,private passwordStrengthMeterService: NgxPasswordStrengthMeterService) {
+    private location: Location) {
     this.storage = this.storageService.get();
-    const result = this.passwordStrengthMeterService.calculate('123');
+    // const result = this.passwordStrengthMeterService.calculate('123');
   }
 
 
   ngOnInit(): void {
     // this.getUsers();
+//     var strength = {
+//       0: "Worst",
+//       1: "Bad",
+//       2: "Weak",
+//       3: "Good",
+//       4: "Strong"
+//     }
+//     var password = document.getElementById('password');
+// var meter = document.getElementById('password-strength-meter');
+// var text = document.getElementById('password-strength-text');
+// password.addEventListener('input', function() {
+//   var val = password.value;
+//   var result = zxcvbn(val);
+//   meter.value = result.score;
+//   // Update the text indicator
+//   if (val !== "") {
+//     text.innerHTML = "Strength: " + strength [result.score]; 
+//   } else {
+//     text.innerHTML = "";
+//   }
+// });
+
+
+
+
+
     this.users = {};
     this.typeUser = [{
       label: 'Admin', value: 2}
@@ -57,11 +83,11 @@ export class RegisterComponent {
   // }
 
   register(data: NgForm) { 
-    var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
-    if(this.users.password.matchAll(format))
-      {
-          console.log("Mubashir WIn")
-      }
+    // var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
+    // if(this.users.password.matchAll(format))
+    //   {
+    //       console.log("Mubashir WIn")
+    //   }
     this.submitted = true; 
     if (this.users.userType === 3) {
       this.userSvc.registerUser(this.users).subscribe(() => {
@@ -103,4 +129,8 @@ export class RegisterComponent {
       })
     }
   }
+  
+  
 }
+
+

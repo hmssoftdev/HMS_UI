@@ -33,9 +33,9 @@
                 <td style="text-align: center;">{{order.grossTotal}}</td>
                 <td style="text-align: center;">{{getDeliveryOptStr(order.deliveryOptionId)}}</td>
                 <!-- <td style="text-align: center;">{{getPaymentMode(order.paymentMode)}}</td> -->
-                <td style="text-align: center;"  ng-repeat="data in order">
-                    <span *ngIf="data.paymentMode">{{getPaymentMode(data.paymentMode)}}</span>
-                    <span *ngIf="!data.paymentMode">Pending</span>
+                <td style="text-align: center;" ng-repeat="order in order">
+                    <span *ngIf="order.paymentMode">{{getPaymentMode(order.paymentMode)}}</span>
+                    <span *ngIf="!order.paymentMode">Pending</span>
                     </td>
                 <td style="text-align: center;">
                     <p-tag

@@ -31,6 +31,7 @@ export class ShoppingCart {
   public discountInRupees: number;
   public additionalAmount: number;
   public deliveryMode: string;
+  public userName?:string;
   public updateFrom(src: ShoppingCart) {
       this.id = src.id;
       this.adminId = src.adminId;
@@ -49,6 +50,7 @@ export class ShoppingCart {
       this.discountInRupees = src.discountInRupees;
       this.additionalAmount = src.additionalAmount;
       this.deliveryMode = src.deliveryMode;
+      this.userName=src.userName;
     }
 }
 
