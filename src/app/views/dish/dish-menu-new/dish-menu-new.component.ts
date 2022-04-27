@@ -253,7 +253,9 @@ export class DishMenuNewComponent implements OnInit {
   // Cart 
   fnLoadCartData(){
     let count = 0; 
-   this.subCartItems = this.cartService.get().subscribe(resp => this.cartItems = resp); 
+   this.subCartItems = this.cartService.get().subscribe(resp =>
+   // console.log(resp,"checcking cart data");
+    this.cartItems = resp); 
    if(this.cartItems.id){
      
      this.isKOTdone = true;
@@ -323,7 +325,10 @@ export class DishMenuNewComponent implements OnInit {
   // this.cartItems.orderItems.map(oItm => {
   //   oItm.kotPrinted = true; 
   // })
+  this.cartItems.userName=this.selectedUsers;
+  console.log(this.cartItems)
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+    console.log(this.cartItems,"cheching username")
     this.currentOrderId = resp.orderId;
     this.cartService.addOrderId(this.currentOrderId);
     // this.KOTitems = this.cartItems;
@@ -371,8 +376,8 @@ export class DishMenuNewComponent implements OnInit {
     
   }
   fnHideDiningTableM(event){ 
-    if(!this.selectedTableNames || this.selectedTableNames.length == 0){
-      this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:4000 });
+    if(!this.selectedTableNames || this.selectedTableNames.length==0){
+      this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
     } else {
       this.fnLoadCartData();
     }

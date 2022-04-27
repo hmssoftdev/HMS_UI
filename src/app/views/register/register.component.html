@@ -59,12 +59,16 @@
                         <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <input type="password" pInputText [(ngModel)]="users.password" placeholder="Password"
                             id="password" name="password" #password="ngModel" required>
-                           
+                            <meter max="4" id="password-strength-meter"></meter>
+                            <p id="password-strength-text"></p>
                         <div *ngIf="password.touched && password.invalid && password.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="password.errors.required">Password is
-                                required.</small> </div>
-                                <div class="sample" *ngIf="show">
-                                    PassWord Should Contain Sysmbol</div>
+                                required.</small> 
+                              
+
+                                
+                                </div>
+                              
                                 
                     </div>
                     
