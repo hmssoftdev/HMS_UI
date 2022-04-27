@@ -325,7 +325,7 @@ export class DishMenuNewComponent implements OnInit {
   // this.cartItems.orderItems.map(oItm => {
   //   oItm.kotPrinted = true; 
   // })
-  this.cartItems.userName=this.selectedUsers;
+  // this.cartItems.userName=this.selectedUsers;
   console.log(this.cartItems)
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     console.log(this.cartItems,"cheching username")
