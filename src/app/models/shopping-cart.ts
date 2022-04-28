@@ -32,6 +32,7 @@ export class ShoppingCart {
   public additionalAmount: number;
   public deliveryMode: string;
   public userName?:string;
+  public invoice?:number;
   public updateFrom(src: ShoppingCart) {
       this.id = src.id;
       this.adminId = src.adminId;
@@ -51,6 +52,7 @@ export class ShoppingCart {
       this.additionalAmount = src.additionalAmount;
       this.deliveryMode = src.deliveryMode;
       this.userName=src.userName;
+      this.invoice=src.invoice;
     }
 }
 

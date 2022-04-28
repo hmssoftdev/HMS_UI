@@ -18,8 +18,18 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
     <ng-template pTemplate="body" let-data>
       <tr>
         
-        <td>{{data.userName}}</td>
-        <td>{{data.userMobileNumber}}</td>
+        <!-- <td >{{data.userName == auth.userData().name}}</td> -->
+        <td>
+              <span *ngIf="data.userName !== auth.userData().name && data.userName !== auth.userData().username"> {{data.userName}} </span>
+
+              <span *ngIf="data.userName==auth.userData().name || data.userName==auth.userData().username">-</span>
+          </td>
+      
+      
+        <td>  
+          <span *ngIf="data.userName !== auth.userData().name && data.userName !== auth.userData().username"> {{data.userMobileNumber}} </span>
+          <span *ngIf="data.userName==auth.userData().name || data.userName==auth.userData().username">-</span>
+          </td>
         <td>{{data.itemCount}}</td>
         <!-- <td>
           {{getDeliveryMode(data.deliveryOptionId)}}

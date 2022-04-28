@@ -30,6 +30,10 @@
 								<td class="p-text-right dashedBorderT">Bill Total: </td>
 								<td class="p-text-right dashedBorderT"><strong>{{orderTotal}}</strong></td>
 							</tr>
+							<tr>
+								<button pButton pRipple label="Make Payment" type="button" icon="pi pi-history"
+							class="p-button-info p-button-raised p-mt-3" (click)="fnMakePayment()"></button>
+							</tr>
 						</tfoot>
 						</table> 
 					</div> 
@@ -72,4 +76,11 @@
 		</div>
 		</p-tabPanel>
 	</p-tabView>
+
+	<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
+    header="Make Payment" [modal]="true" [maximizable]="true" [resizable]="true">
+    <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
+<app-billing *ngIf="billingDialog"  >     <!-- [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()" -->
+    </app-billing>
+</p-dialog>
 </div>

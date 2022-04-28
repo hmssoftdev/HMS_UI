@@ -21,7 +21,7 @@ export class KOTItemsComponent implements OnInit {
 @Input() orderId:any;
 @Input() adminData: Admin;
 @Input() userdata:User;
-
+@Input() invoiceno:any;
 index :string='0001';
 
 data:setting;
@@ -40,7 +40,7 @@ sign=true;
      }
 
   ngOnInit(): void {
-    
+    console.log(this.orderData,"Checking")
     this.selectedTableID = [];
 
    this.comset.obsSetData.subscribe(x=>{

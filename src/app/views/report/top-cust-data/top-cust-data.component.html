@@ -26,15 +26,17 @@
                       <tr>
                         
                         
-                        <td ng-repeat="data in data">
-                        <span *ngIf="data.userName">{{data.userName}}</span>
-                          <span *ngIf="!data.userName">-</span>
-                          </td>
-                          
-                        <td ng-repeat="data in data">
-                                <span *ngIf="data.userMobileNumber">{{data.userMobileNumber}}</span>
-                                <span *ngIf="!data.userMobileNumber">-</span>
-                                </td>                       
+                        <td>
+                          <span *ngIf="data.userName !== auth.userData().name && data.userName !== auth.userData().username"> {{data.userName}} </span>
+              
+                          <span *ngIf="data.userName==auth.userData().name || data.userName==auth.userData().username">-</span>
+                      </td>
+                  
+                  
+                    <td>  
+                      <span *ngIf="data.userName !== auth.userData().name && data.userName !== auth.userData().username"> {{data.userMobileNumber}} </span>
+                      <span *ngIf="data.userName==auth.userData().name || data.userName==auth.userData().username">-</span>
+                      </td>                
                         <td ng-repeat="data in data">
                                 <span *ngIf="data.visitCount">{{data.visitCount}}</span>
                                 <span *ngIf="!data.visitCount">-</span>

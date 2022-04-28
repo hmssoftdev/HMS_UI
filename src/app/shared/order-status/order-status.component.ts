@@ -25,6 +25,7 @@ export class OrderStatusComponent implements OnInit {
   showInvoice: boolean = false;
   data:setting;
   orderflow:boolean=true;
+  billingDialog:boolean = false;
   constructor(private adminService: AdminService,
     private orderSvc: CartService,public comset:CommonService) { }
     showKOTItems:boolean=true;
@@ -88,6 +89,9 @@ export class OrderStatusComponent implements OnInit {
   }
   invoiceshow(){
     this.label=true;
+  }
+  fnMakePayment(){
+    this.billingDialog = true;
   }
   printing(){
     setTimeout(x=>{

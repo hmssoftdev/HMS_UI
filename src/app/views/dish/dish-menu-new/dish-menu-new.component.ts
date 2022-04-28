@@ -59,6 +59,7 @@ export class DishMenuNewComponent implements OnInit {
   showKOTItems: boolean;
   showKOTnBill:Boolean;
   currentOrderId: any;
+  invoiceno:any;
   admin: Admin;
   obs: Subscription;
   cartToggle:boolean;
@@ -260,6 +261,7 @@ export class DishMenuNewComponent implements OnInit {
      
      this.isKOTdone = true;
    } 
+   console.log("cartItems?.orderItems.length")
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -328,8 +330,11 @@ export class DishMenuNewComponent implements OnInit {
   // this.cartItems.userName=this.selectedUsers;
   console.log(this.cartItems)
   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    console.log(this.cartItems,"cheching username")
+    console.log(resp,"cheching username")
+
     this.currentOrderId = resp.orderId;
+    this.invoiceno =resp.invoice;
+    // console.log( this.currentOrderId,"Plus" this.invoiceno)
     this.cartService.addOrderId(this.currentOrderId);
     // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
@@ -376,7 +381,7 @@ export class DishMenuNewComponent implements OnInit {
     
   }
   fnHideDiningTableM(event){ 
-    if(!this.selectedTableNames || this.selectedTableNames.length==0){
+    if(!this.selectedTableNames || this.selectedTableNames.length == 1){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
     } else {
       this.fnLoadCartData();

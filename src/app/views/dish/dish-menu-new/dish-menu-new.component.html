@@ -353,13 +353,13 @@
       </p-table>  -->
         </div>
         <!-- cart Items -->
-        <div *ngIf="cartItems?.orderItems.length > 0">
+        <div *ngIf="cartItems?.orderItems?.length > 0">
           <ul class="ulCart">
             <li
               class="cart-item p-mt-2"
               *ngFor="let item of cartItems.orderItems"
             >
-              <span
+          <span
                 >{{ item.name }}
                 <span>{{ item.isFull ? "" : "(Half)" }}</span></span
               >
@@ -530,7 +530,7 @@
           </div>
         </div>
 
-        <p *ngIf="cartItems?.orderItems.length == 0">
+        <p *ngIf="cartItems?.orderItems?.length == 0">
           Order some yummy and delicious food from menu!
         </p>
         <!-- cart Item end -->
@@ -580,5 +580,5 @@
     <app-billing *ngIf="billingDialog"  (emptyCart)="emptyCart()" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
     </app-billing>
 </p-dialog>
-<app-kot-items [userdata]="selectedUsers" [adminData]="admin" 
+<app-kot-items [userdata]="selectedUsers" [adminData]="admin" [invoiceno]="invoiceno"
 [printType]="selectedPrintType" [orderData]="cartItems"  [tableNames]="selectedTableNames" [orderId]="currentOrderId" *ngIf="showKOTItems"></app-kot-items>

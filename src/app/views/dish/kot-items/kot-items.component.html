@@ -47,13 +47,13 @@
          
           <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-between; font-family: 'verdana';font-size: 10px;font-weight: normal">
             <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice No:</strong>
-            <b style="margin-right:20px;"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
+            <b style="margin-right:20px;"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:9px;font-weight:bold;">
 
               
               
               
               
-              {{myDate | date:'MMdd'}}</span> </b> 
+              {{invoiceno}}</span> </b> 
               <div *ngIf="logo"> 
                 <img width="20px"
                 class="p-text-right" style="margin-left:41px;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" height="15px" *ngIf="adminData?.restaurentLogo" [src]="adminData.restaurentLogo"
