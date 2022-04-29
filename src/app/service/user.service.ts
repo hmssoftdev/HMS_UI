@@ -53,7 +53,7 @@ public langdata = new Subject<any>();
 // }
 
   AddUser(user: User): Observable<User> {
-    return this.http.post<User>(this.url, user).pipe(
+    return this.http.post<User>(`${this.url}?url=http://hmsangularbucket.s3-website.us-east-2.amazonaws.com`, user).pipe(
       map(x => {
         this.userList.push(x);
         return user;
@@ -64,7 +64,7 @@ public langdata = new Subject<any>();
   
   // Register User through Register form
   registerUser(user:Registration){
-    return this.http.post(`${this.url}/PostAnonymousUser`,user).pipe(
+    return this.http.post(`${this.url}/PostAnonymousUser?url=http://hmsangularbucket.s3-website.us-east-2.amazonaws.com`,user).pipe(
       map(resp => resp),
       catchError(this.handleError('', user))
     )

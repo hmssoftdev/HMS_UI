@@ -29,7 +29,9 @@ export class BackdataComponent implements OnInit {
   Dialog: boolean;
   num:number=2236;
 
-  constructor(private msgService:MessageService,private auth :AuthService,private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
+  constructor(private msgService:MessageService,
+    private auth :AuthService,private user:UserService,
+     private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
     this.getHistorydata();
