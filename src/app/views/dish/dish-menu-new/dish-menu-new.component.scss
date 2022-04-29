@@ -48,6 +48,10 @@
             font-size: 0.813rem;
         }
     }
+    .p-dataview .p-dataview-content {
+        overflow: scroll !important;
+        height: 370px;
+    }
     .p-inputtext {
         font-size: 0.813rem;
     }

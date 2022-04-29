@@ -44,43 +44,43 @@ export class SidebarComponent implements OnInit {
             title:'Dish Category Config'
           },
           {
-            name:'Dish Config',
+            name:'Dish Configuration',
             routing:'/dish',
             access:roleConfig.authRoles.admin,
-            title:'Dish Config',
+            title:'Dish Configuration',
           },
           {
-            name:'Dish Menu',
+            name:'Dish Management',
             routing:'/dish/dish-menu',
             access:roleConfig.authRoles.guest,
-            title:'Dish Menu'
+            title:'Dish Management'
           },
           
           {
-            name:'Table Config',
+            name:'Table Configuration',
             routing:'/table-configuration',
             access:roleConfig.authRoles.admin,
-            title:'Table Config'
+            title:'Table Configuration'
           },
           {
-            name:'Order List',
+            name:'Order Management',
             routing:'/dish/order-list',
             access:roleConfig.authRoles.admin,
-            title:'Order List'
+            title:'Order Management'
           }
         ]
       },
       {
-        name:'Users',
+        name:'Customer',
         routing:'',
         access:roleConfig.authRoles.user,
         icon:'pi pi-user',
         subItems: [
           {
-            name:'User Config',
+            name:'Customer Configuration',
             routing:'/users',
             access:roleConfig.authRoles.admin,
-            title:'User Config'
+            title:'Customer Configuration'
           },
           // {
           //   name:'Table Config',
@@ -89,10 +89,10 @@ export class SidebarComponent implements OnInit {
           //   title:'Table Config'
           // },
           {
-            name:'User Feedback',
+            name:'Customer Feedback',
             routing:'/users/user-feedback',
             access:roleConfig.authRoles.user,
-            title:'User Feedback'
+            title:'Customer Feedback'
           }
           // {
           //   name:'Order Status',
