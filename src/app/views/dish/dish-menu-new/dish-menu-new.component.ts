@@ -16,6 +16,8 @@ import { DiningTableComponent } from '../dining-table/dining-table.component';
 import { CommonService } from '../../../service/common.service';
 import { setting } from '../../../models/setting';
 import { TranslateService } from '@ngx-translate/core';
+import {DialogModule} from 'primeng/dialog';
+
 // import { EventEmitter } from 'stream';
 
 @Component({
@@ -23,6 +25,11 @@ import { TranslateService } from '@ngx-translate/core';
   templateUrl: './dish-menu-new.component.html',
   styleUrls: ['./dish-menu-new.component.scss']
 })
+ 
+
+  
+
+
 export class DishMenuNewComponent implements OnInit {
   dishes: Dish[];
   sendId: number; 
@@ -77,7 +84,7 @@ export class DishMenuNewComponent implements OnInit {
    data:setting;
    show=false;
    both:boolean;
-
+   displayBasic=false;
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -392,4 +399,8 @@ export class DishMenuNewComponent implements OnInit {
   closeBillingModal(){
     this.billingDialog = false;
   }
+
+showBasicDialog(){
+  this.displayBasic = true;
+}
 }
