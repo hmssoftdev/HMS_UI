@@ -12,7 +12,6 @@ describe('DishMenuNewComponent', () => {
     })
     .compileComponents();
   });
-
   beforeEach(() => {
     fixture = TestBed.createComponent(DishMenuNewComponent);
     component = fixture.componentInstance;

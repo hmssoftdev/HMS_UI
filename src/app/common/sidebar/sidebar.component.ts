@@ -44,16 +44,16 @@ export class SidebarComponent implements OnInit {
             title:'Dish Category Config'
           },
           {
-            name:'Dish Configuration',
+            name:'Dish Management',
             routing:'/dish',
             access:roleConfig.authRoles.admin,
-            title:'Dish Configuration',
+            title:'Dish Management',
           },
           {
-            name:'Dish Management',
+            name:'Menu Management',
             routing:'/dish/dish-menu',
             access:roleConfig.authRoles.guest,
-            title:'Dish Management'
+            title:'Menu Management'
           },
           
           {
@@ -77,7 +77,7 @@ export class SidebarComponent implements OnInit {
         icon:'pi pi-user',
         subItems: [
           {
-            name:'Customer Configuration',
+            name:'Customer Management',
             routing:'/users',
             access:roleConfig.authRoles.admin,
             title:'Customer Configuration'
