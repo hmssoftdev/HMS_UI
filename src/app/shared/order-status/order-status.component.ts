@@ -1,10 +1,14 @@
 import { ReturnStatement } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Router } from '@angular/router';
+import { MessageService } from 'primeng/api';
+import { Subscription } from 'rxjs/internal/Subscription';
 import { Admin } from '../../models/admin';
 import { OrderItem } from '../../models/orderList';
 import { setting } from '../../models/setting';
 import { OrderStatus, ShoppingCart } from '../../models/shopping-cart';
 import { AdminService } from '../../service/admin.service';
+import { AuthService } from '../../service/auth.service';
 import { CartService } from '../../service/cart.service';
 import { CommonService } from '../../service/common.service';
 
@@ -17,6 +21,7 @@ export class OrderStatusComponent implements OnInit {
   @Input() orderId: number;
   @Input() orderTotal: number;
   @Input() cartItems;
+  @Output() fnhide:EventEmitter<any> = new EventEmitter();
   orderStatusList: OrderStatus[] = [];
   orderStatusData: OrderStatusData[] = [];
   orderItem: OrderItem[] = [];
@@ -26,8 +31,17 @@ export class OrderStatusComponent implements OnInit {
   data:setting;
   orderflow:boolean=true;
   billingDialog:boolean = false;
-  constructor(private adminService: AdminService,
-    private orderSvc: CartService,public comset:CommonService) { }
+  selectedUserId: number;
+  stateOptions: any[];
+  lblIsProceed: boolean;
+  paymentMode: string;
+  invoiceDialog: boolean;
+  deliveryMode: string;
+  isSelectDeliveryMode: boolean;
+  subscription: Subscription;
+  object: any;
+  constructor(private adminService: AdminService,public auth:AuthService,public commonService:CommonService,public router:Router,
+    private orderSvc: CartService,public comset:CommonService,public msgService:MessageService) { }
     showKOTItems:boolean=true;
   ngOnInit(): void {
     this.comset.obsSetData.subscribe(x=>{
@@ -90,9 +104,95 @@ export class OrderStatusComponent implements OnInit {
   invoiceshow(){
     this.label=true;
   }
-  fnMakePayment(){
-    this.billingDialog = true;
+  fnCashProceed(v) {
+    this.paymentMode = "Cash"
+    this.lblIsProceed = true;
   }
+  fnDeliveryMode(s: string) {
+    this.deliveryMode = s;
+    console.log(this.deliveryMode);
+    if (this.deliveryMode === 'Home Delivery') {
+      this.cartItems.deliveryOptionId = 1;
+    } else {
+      this.cartItems.deliveryOptionId = 2;
+    }
+    this.isSelectDeliveryMode = true;
+  }
+  fnUPIProceed() {
+    this.paymentMode = 'UPI';
+    this.lblIsProceed = true;
+  }
+
+  fnResetPayment() {
+    this.paymentMode = null;
+    this.lblIsProceed = false;
+    this.deliveryMode = null;
+    this.isSelectDeliveryMode = null;
+  }
+  fnProceed() {
+    // if(this.paymentMode === 'Cash'){
+    //   alert('Payment Successful');
+    //   this.invoiceDialog = true
+    // } else if(this.paymentMode === 'UPI'){
+    //   alert('Please scan the QR code and proceed');
+    // }
+    // if(this.paymentMode === 'Cash'){
+    //   this.shoppingCart.paymentMode = 1;
+    //   alert('Payment Successful');
+    //   this.invoiceDialog = true
+    // } else if(this.paymentMode === 'UPI'){
+    //   alert('Please scan the QR code and proceed');
+    // }
+    // var orderStatus : OrderStatus = {status : 1,id:0,orderId:0};
+    // this.shoppingCart.orderStatus = [];
+    // this.shoppingCart.orderStatus.push(orderStatus);
+    // this.shoppingCart.userId = Number(this.selectedUserId);
+    // this.router.navigate(['/dish/order-list']);
+    console.log(this.cartItems, 'shopping cart');
+  
+    this.commonService.SettingData$.subscribe(setRes => {
+      if(setRes){ 
+        const pmObj = {
+          id:this.cartItems.id,
+          paymentMode:this.paymentMode == 'Cash' ? 1 : 2,
+          activeOrderFlow: setRes.activeOrderFlow ? true : false
+      }
+        this.orderSvc.paymodeModeUpdate(pmObj).subscribe((resp) => {
+          if(resp){
+          this.msgService.add({ severity: 'success', summary: 'Successfully', detail: 'Completed Payment', life: 2000 });
+          
+          if(setRes.activeOrderFlow){ 
+            this.router.navigate(['/dish/order-list']);
+           
+          } else {
+            const completeOrder = {
+              orderId : pmObj.id,
+              status : 4
+            }
+            this.orderSvc.postOrderStatus(completeOrder).subscribe(() => {
+              // this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Order Processed', life: 3000 });
+            
+            })
+            
+          }
+         
+        }
+        }) 
+      }
+    })
+    
+    this.fnhide.emit();
+  }
+
+  fnCloseModal() {
+    // this.close.emit()
+  }
+  // fnMakePayment(){
+  //   this.billingDialog = true;
+  //   this.cartItems.adminId=this.auth.userData().adminId;
+  //   this.cartItems.userId;
+  //   console.log(this.cartItems,"cart")
+  // }
   printing(){
     setTimeout(x=>{
       window.print()
@@ -112,7 +212,15 @@ export class OrderStatusComponent implements OnInit {
   fnShowInvoice() {
     this.showInvoice = !this.showInvoice;
   }
+
+
+
 }
+function emptyCart(emptyCart: any) {
+  throw new Error('Function not implemented.');
+}
+
+
 export class OrderStatusData{
   name?:string;
   date?:Date ;

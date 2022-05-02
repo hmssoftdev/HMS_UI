@@ -24,6 +24,7 @@ export class RegisterComponent {
   userTypeVal: number;
   value:string;
   show:boolean=false
+  num=2
   constructor(
     public regSvc: RegisterService,
     public userSvc: UserService,
@@ -89,6 +90,7 @@ export class RegisterComponent {
     //       console.log("Mubashir WIn")
     //   }
     this.submitted = true; 
+    this.users.userType=2;
     if (this.users.userType === 3) {
       this.userSvc.registerUser(this.users).subscribe(() => {
         this.registeredList.push(this.users);

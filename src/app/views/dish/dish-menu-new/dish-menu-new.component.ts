@@ -255,13 +255,11 @@ export class DishMenuNewComponent implements OnInit {
   fnLoadCartData(){
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp =>
-   // console.log(resp,"checcking cart data");
     this.cartItems = resp); 
    if(this.cartItems.id){
-     
      this.isKOTdone = true;
    } 
-   console.log("cartItems?.orderItems.length")
+
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -385,6 +383,7 @@ export class DishMenuNewComponent implements OnInit {
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
     } else {
       this.fnLoadCartData();
+       console.log(this.cartItems.orderItems,"Order check")
     }
   }
   fnCartToggle(){

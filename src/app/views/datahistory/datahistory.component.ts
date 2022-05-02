@@ -88,7 +88,9 @@ getPaymentMode(n:number){
   }
   return strVal;
 }
-
+fnhide(){
+  this.Dialog=false
+}
 fnViewOrder(data){
   console.log(data);
  this.selectedOrderId=data.id;

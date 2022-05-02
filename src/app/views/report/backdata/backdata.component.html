@@ -80,7 +80,7 @@ currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
   <p-dialog  [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
   [style]="{width: '52vw' }" [modal]="true" [(visible)]="Dialog">
   <app-order-status *ngIf="Dialog" [orderId]="selectedOrderId"
-  [orderTotal]="selectedOrderTotal" [cartItems]="cartData">
+  [orderTotal]="selectedOrderTotal" [cartItems]="cartData" (fnhide)="fnhide()">
  </app-order-status>
 
 </p-dialog>

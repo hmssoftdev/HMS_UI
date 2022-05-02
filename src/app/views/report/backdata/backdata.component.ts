@@ -68,7 +68,9 @@ export class BackdataComponent implements OnInit {
     }
     return strVal;
   }
-
+  fnhide(){
+    this.Dialog=false
+  }
   deleteOrder(id:number) {
    this.user.DeleteUserHistorydata(id).subscribe(()=>
          {
