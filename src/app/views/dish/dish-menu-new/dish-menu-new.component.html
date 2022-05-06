@@ -306,7 +306,7 @@
             optionValue="id"
             filterBy="contact"
             filterMatchMode="contains"
-          
+            
           >
           </p-dropdown>
          <button
@@ -363,7 +363,7 @@
       </p-table>  -->
         </div>
         <!-- cart Items -->
-        <div *ngIf="cartItems?.orderItems?.length > 0 || cartItems?.orderItems== null">
+        <div *ngIf="cartItems?.orderItems?.length >0 "><!--|| cartItems?.orderItems== null-->
           <ul class="ulCart">
             <li
               class="cart-item p-mt-2"
@@ -520,6 +520,15 @@
               (click)="fnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
               *ngIf="both==false"
+            ></button>
+            <button
+              pButton
+              type="button"
+              label="Make Payment"
+              [disabled]="!KOTEnabled"                                            
+              (click)="fnDirectPayment($event)"
+              class="p-button-sm p-button-help p-p-1"
+              *ngIf="both==true"
             ></button>
             <button
               [disabled]="userData.userType === 3"

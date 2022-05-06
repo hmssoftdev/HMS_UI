@@ -10,9 +10,10 @@ import { Message } from 'primeng/api';
   styleUrls: ['./forgotpassword.component.scss']
 })
 export class ForgotpasswordComponent implements OnInit {
-  mssg: Message[];
- validateemaildid: boolean = false;
+  // mssg: Message[];
+//  validateemaildid: boolean = false;
  emailid: string = '';
+ url='http://hmsangularbucket.s3-website.us-east-2.amazonaws.com'
   constructor(private messageServie: MessageService,private user: UserService,private auth:AuthService,private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -27,10 +28,14 @@ export class ForgotpasswordComponent implements OnInit {
 }
 forgetpassword(){
 
-  this.messageService.add({severity:'success', summary:'Email Sended On Id',life: 3000});
+ 
 console.log(this.emailid);
-this.user.forgotpassword(this.emailid).subscribe(x=>{
+
+this.user.forgotpassword(this.emailid,this.url).subscribe(x=>{
   console.log(x);
+  if(x==true){
+    this.messageService.add({severity:'success', summary:'Link For Reset Has Send To Email ID',life: 3000});
+  }
 })
 }
 

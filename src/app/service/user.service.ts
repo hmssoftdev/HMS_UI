@@ -29,6 +29,10 @@ export class UserService {
   public user: User | undefined;
   public userssetting:setting;
   public userList: User[] = [];
+
+  public userlist=new BehaviorSubject('')
+  public obsuserlist=this.userlist.asObservable();
+
   modalSubject = new Subject();
   histdata :Historydata[]=[];
   userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
@@ -47,7 +51,9 @@ public langdata = new Subject<any>();
   getlanguage(data){ 
     this.langdata.next(data);
 }
-
+setUser(data){
+ return this.userlist.next(data)
+}
 // getsetting(data){
 //   this.setting.next(data)
 // }
@@ -103,8 +109,8 @@ public langdata = new Subject<any>();
       catchError(this.handleError('',true))
     );
   }
-  forgotpassword(emailid :string):Observable<boolean>{
-    return this.http.put(`${this.url}/ForgetPassword?email=${emailid}`,{}).pipe(
+  forgotpassword(emailid :string,url:string):Observable<boolean>{
+    return this.http.put(`${this.url}/ForgetPassword?email=${emailid}&url=${url}`,{}).pipe(
       map(resp => 
         {
           let op = JSON.parse(JSON.stringify(resp))
@@ -112,6 +118,15 @@ public langdata = new Subject<any>();
         }
           ),
       catchError(this.handleError('', true))
+    )
+  }
+  ForgotpasswordReset(encryptLink:string,password:string):Observable<boolean>{
+    return this.http.put(`${this.url}/ForgetPasswordReset?encryptedLink=${encryptLink}&passwrod=${password}`,{}).pipe(
+      map(x=>{
+         console.log(x)
+         return false
+      }),
+      catchError(this.handleError('',true))
     )
   }
   getUserList(): Observable<User[]> {

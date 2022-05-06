@@ -17,6 +17,8 @@ import { ReportComponent } from './views/report/report.component';
 import { LanguageComponent } from './views/language/language.component';
 import { SettingComponent } from './views/setting/setting.component';
 import { HelpComponent } from './views/help/help.component';
+import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
+
 export const routes: Routes = [
   {
     path: 'login',
@@ -31,6 +33,14 @@ export const routes: Routes = [
     component: RegisterComponent,
     data: {
       title: 'Register Page',
+      roles: roleConfig.authRoles.guest
+    }
+  },
+  {
+    path:'resetPassword',
+    component:ResetpaswordComponent,
+    data:{
+      title: 'Reset Password',
       roles: roleConfig.authRoles.guest
     }
   },
@@ -59,28 +69,28 @@ export const routes: Routes = [
     path:'report',
     component:ReportComponent,
     data: {
-      roles: roleConfig.authRoles.sa
+      roles: roleConfig.authRoles.admin
       },
   },
   {
     path:'language',
     component:LanguageComponent,
     data: {
-      roles: roleConfig.authRoles.sa
+      roles: roleConfig.authRoles.admin
       },
   },
   {
     path:'setting',
     component:SettingComponent,
     data: {
-      roles: roleConfig.authRoles.sa
+      roles: roleConfig.authRoles.admin
       },
   },
   {
     path:'help',
     component:HelpComponent,
     data: {
-      roles: roleConfig.authRoles.sa
+      roles: roleConfig.authRoles.admin
       },
   },
  {

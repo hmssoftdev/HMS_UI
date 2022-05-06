@@ -59,6 +59,7 @@ export class UserFormComponent implements OnInit {
         this.user.id = Number(this.user.id)
         this.user.userType = this.userData.userType;
         this.userSvc.updateUser(this.user).subscribe(() => { 
+          this.userSvc.setUser(this.user.name)
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'user Updated', life: 3000 });
           this.saveEvent.emit(this.user);
         })

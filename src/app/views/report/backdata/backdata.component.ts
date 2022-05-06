@@ -27,7 +27,7 @@ export class BackdataComponent implements OnInit {
   selectedOrderId: number = 0;
   selectedOrderTotal: number=0;
   Dialog: boolean;
-  num:number=2236;
+  num:number;
 
   constructor(private msgService:MessageService,
     private auth :AuthService,private user:UserService,
@@ -57,6 +57,7 @@ export class BackdataComponent implements OnInit {
 
   }
   getPaymentMode(n:number){
+    this.num=n
     let strVal= '-';
     switch(n){
       case 1:
@@ -70,6 +71,8 @@ export class BackdataComponent implements OnInit {
   }
   fnhide(){
     this.Dialog=false
+    this.getHistorydata();
+ this.getPaymentMode(this.num); 
   }
   deleteOrder(id:number) {
    this.user.DeleteUserHistorydata(id).subscribe(()=>
