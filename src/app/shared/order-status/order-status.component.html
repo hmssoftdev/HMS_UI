@@ -31,8 +31,54 @@
 								<td class="p-text-right dashedBorderT"><strong>{{orderTotal}}</strong></td>
 							</tr>
 							<tr>
-								<button pButton pRipple label="Make Payment" type="button" icon="pi pi-history"
-							class="p-button-info p-button-raised p-mt-3" (click)="fnMakePayment()"></button>
+								<div class="p-grid">
+									<!--<div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':isSelectDeliveryMode}">
+										<span class="pi pi-directions"></span></div></div>
+									<div class="p-col-11">
+										 <h3 class="p-text-normal p-mt-0">Choose Delivery Option</h3> -->
+										<!-- <button pButton type="button" [ngClass]="deliveryMode == 'Dining' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
+											label="Dining" icon="pi pi-money-bill pi-text-primary" (click)="fnDeliveryMode('Dining')"
+											class="p-px-5 p-py-3 p-mr-2"></button> -->
+										<!-- <button pButton type="button" [ngClass]="deliveryMode == 'Home Delivery' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
+											label="Home Delivery" icon="pi pi-home" (click)="fnDeliveryMode('Home Delivery')" class="p-px-5 p-py-3 p-mr-2"></button>
+											<button pButton type="button" [ngClass]="deliveryMode == 'Take Away' && isSelectDeliveryMode ? '' : 'p-button-outlined'"
+											label="Take Away" icon="pi pi-send pi-text-primary" (click)="fnDeliveryMode('Take Away')"
+											class="p-px-5 p-py-3"></button>  
+									</div>-->
+									<div class="p-col-1 p-d-flex p-align-end"><div class="billingIcnsWrap" [ngClass]="{'active':lblIsProceed}">
+										</div></div>      <!---->
+									<div class="p-col-11"> 
+										<h3 class="p-text-normal p-mt-0">Complete Payments</h3>
+									
+							
+												<button pButton type="button" [ngClass]="paymentMode == 'Cash' && lblIsProceed ? '' : 'p-button-outlined'"
+												label="Cash" icon="pi pi-wallet pi-text-primary" (click)="fnCashProceed(true)"
+												class="p-mr-2"></button>
+								
+								
+												<button pButton type="button" [ngClass]="paymentMode == 'UPI' && lblIsProceed ? '' : 'p-button-outlined'"
+											label="UPI" icon="pi pi-briefcase" (click)="fnUPIProceed()" class=""></button>
+									
+									<div *ngIf="paymentMode === 'UPI'" class="p-col-6" style="margin: auto;">
+										<img [src]="adminData.upiImage" *ngIf="adminData.upiImage" alt="UPI" style="width: 200px; height: 200px;">
+										<p class="p-text-danger p-text-small" *ngIf="!adminData.upiImage">UPI /QR code is not available. Kindly upload UPI code in the admin setting page.</p>
+									</div>
+								
+									<div class="billing-separator p-col-12 p-my-2 p-p-0"></div>
+									<div class="p-col-12 p-d-flex p-jc-end">
+										<button pButton pRipple label="Proceed" [disabled]="!lblIsProceed" icon="pi pi-check"
+											class="p-button-success p-button p-button-raised p-mr-2" (click)="fnProceed()"></button>
+											
+										<button pButton pRipple label="Cancel" type="button" icon="pi pi-times" class="p-button-danger p-button-raised"
+											(click)="fnCloseModal()"></button>
+									</div>
+							
+									
+								</div>
+								</div>
+								
+							<!-- <app-billing  [adminData]="adminData" [shoppingCart]="cartItems"></app-billing> -->
+							
 							</tr>
 						</tfoot>
 						</table> 
@@ -76,11 +122,4 @@
 		</div>
 		</p-tabPanel>
 	</p-tabView>
-
-	<p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
-    header="Make Payment" [modal]="true" [maximizable]="true" [resizable]="true">
-    <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-<app-billing *ngIf="billingDialog"  >     <!-- [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()" -->
-    </app-billing>
-</p-dialog>
 </div>
