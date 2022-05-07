@@ -20,6 +20,7 @@ import { HelpComponent } from './views/help/help.component';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
 
 export const routes: Routes = [
+  
   {
     path: 'login',
     component: LoginComponent,
@@ -37,7 +38,7 @@ export const routes: Routes = [
     }
   },
   {
-    path:'resetPassword',
+    path:'resetPassword/:param',
     component:ResetpaswordComponent,
     data:{
       title: 'Reset Password',
@@ -150,6 +151,9 @@ export const routes: Routes = [
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
+  
 })
-export class AppRoutingModule { }
+export class AppRoutingModule { 
+  paths:string='resetPassword/:param=+ajkshdj5564';
+}
 export const routingComponents = [];

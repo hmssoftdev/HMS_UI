@@ -129,6 +129,17 @@ setUser(data){
       catchError(this.handleError('',true))
     )
   }
+  CheckUserData(key:string,value:string):Observable<Registration>
+  {
+    return this.http.get(`${this.url}/CheckUserData?key=${key}&value=${value}`,{}).pipe(
+      map(res=>{
+      return res;
+      }
+
+      ),
+      catchError(this.handleError(''))
+    )
+  }
   getUserList(): Observable<User[]> {
   this.userData = JSON.parse(sessionStorage.getItem('HMSUserData'));
     return this.http.get<User[]>(`${this.url}/Get/${this.userData.adminId}`).pipe(

@@ -289,8 +289,8 @@
             class=""
           ></button>
         </div>
-        <div class="p-d-flex p-ai-center pborder p-mt-2">
-          <!-- <label for="userName">User Name:</label> -->
+        <div class="p-d-flex p-ai-center pborder p-mt-2" >
+          <!-- <label for="userName">User Name:</label> *ngIf="customer==true" -->
           <span *ngIf="userData.userType === 3">{{ userData.userName }}</span>
           <p-dropdown
             (onChange)="userSelection(selectedUser)"
@@ -305,8 +305,8 @@
             optionLabel="contact"
             optionValue="id"
             filterBy="contact"
-            filterMatchMode="contains"
-            
+            filterMatchMode="contains" 
+            required="required"
           >
           </p-dropdown>
          <button

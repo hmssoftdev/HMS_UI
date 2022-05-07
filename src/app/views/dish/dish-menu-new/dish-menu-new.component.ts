@@ -86,6 +86,7 @@ export class DishMenuNewComponent implements OnInit {
    show=false;
    both:boolean;
    displayBasic=false;
+   customer:boolean
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -112,6 +113,8 @@ export class DishMenuNewComponent implements OnInit {
         const d = resp;
         this.image = d.menuDisplay ? true : false;
         this.both = d.billPrintAndKOT ? true : false;
+        this.customer=d.billWithCustomer ?true : false;
+        
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }

@@ -25,6 +25,10 @@ export class RegisterComponent {
   value:string;
   show:boolean=false
   num=2
+  key:string
+  usernamecheck:boolean=false;
+  usercontactcheck:boolean=false;
+  useremailcheck:boolean=false;
   constructor(
     public regSvc: RegisterService,
     public userSvc: UserService,
@@ -38,33 +42,11 @@ export class RegisterComponent {
 
 
   ngOnInit(): void {
-    // this.getUsers();
-//     var strength = {
-//       0: "Worst",
-//       1: "Bad",
-//       2: "Weak",
-//       3: "Good",
-//       4: "Strong"
-//     }
-//     var password = document.getElementById('password');
-// var meter = document.getElementById('password-strength-meter');
-// var text = document.getElementById('password-strength-text');
-// password.addEventListener('input', function() {
-//   var val = password.value;
-//   var result = zxcvbn(val);
-//   meter.value = result.score;
-//   // Update the text indicator
-//   if (val !== "") {
-//     text.innerHTML = "Strength: " + strength [result.score]; 
-//   } else {
-//     text.innerHTML = "";
-//   }
-// });
+    
+  
+    // this.userSvc.CheckUserData().subscribe(res=>{
 
-
-
-
-
+    // })
     this.users = {};
     this.typeUser = [{
       label: 'Admin', value: 2}
@@ -82,7 +64,66 @@ export class RegisterComponent {
   //     this.registeredList = res;
   //   })
   // }
+  validateUsername(username:string){
+    this.key='userName'
+    this.value=username;
+    this.userSvc.CheckUserData(this.key,this.value).subscribe(res=>{
+      // this.users=res
 
+      if(res.result == 'Data present')
+      {
+        console.log(res)
+        this.usernamecheck=true;
+      }
+        // console.log(res,)
+      if(res.result=='Data not present'){
+        this.usernamecheck=false
+      }
+
+    })
+    
+  }
+
+  validateEmail(email:string){
+    this.key='emailid'
+    this.value=email
+    this.userSvc.CheckUserData(this.key,this.value).subscribe(res=>{
+      // this.users=res
+
+      if(res.result == 'Data present')
+      {
+        console.log(res)
+        this.useremailcheck=true;
+      }
+        // console.log(res,)
+      if(res.result=='Data not present'){
+        this.useremailcheck=false
+      }
+
+    })
+  }
+
+
+
+  validateContact(contact:string){
+    this.key='contact';
+    this.value=contact
+    this.userSvc.CheckUserData(this.key,this.value).subscribe(res=>{
+      // this.users=res
+
+      if(res.result == 'Data present')
+      {
+        console.log(res)
+        this.usercontactcheck=true;
+      }
+        // console.log(res,)
+      if(res.result=='Data not present'){
+        this.usercontactcheck=false
+      }
+
+    })
+
+  }
   register(data: NgForm) { 
     // var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
     // if(this.users.password.matchAll(format))
