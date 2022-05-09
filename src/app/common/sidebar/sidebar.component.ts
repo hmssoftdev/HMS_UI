@@ -80,7 +80,7 @@ export class SidebarComponent implements OnInit {
             name:'Customer Management',
             routing:'/users',
             access:roleConfig.authRoles.admin,
-            title:'Customer Configuration'
+            title:'Customer Management'
           },
           // {
           //   name:'Table Config',
