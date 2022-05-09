@@ -3,10 +3,13 @@ import { CommonModule } from '@angular/common';
 import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
+import { ResetpaswordComponent } from './resetpasword/resetpasword.component';
 
 
 @NgModule({
-  declarations: [],
+  declarations: [
+    ResetpaswordComponent
+  ],
   imports: [
     CommonModule,
     TranslateModule.forRoot({

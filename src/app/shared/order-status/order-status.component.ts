@@ -1,5 +1,5 @@
 import { ReturnStatement } from '@angular/compiler';
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 import { MessageService } from 'primeng/api';
 import { Subscription } from 'rxjs/internal/Subscription';
@@ -21,6 +21,7 @@ export class OrderStatusComponent implements OnInit {
   @Input() orderId: number;
   @Input() orderTotal: number;
   @Input() cartItems;
+  @Output() fnhide:EventEmitter<any> = new EventEmitter();
   orderStatusList: OrderStatus[] = [];
   orderStatusData: OrderStatusData[] = [];
   orderItem: OrderItem[] = [];
@@ -180,7 +181,7 @@ export class OrderStatusComponent implements OnInit {
       }
     })
     
-    
+    this.fnhide.emit();
   }
 
   fnCloseModal() {

@@ -8,10 +8,10 @@
                 <div class="p-col-10 p-mx-auto p-mt-1">
                     <p-dropdown [(ngModel)]="users.userType" class="p-inputtext-sm" [style]="{width: '100%'}"
                         name="userType" inputId="typeUser" [options]="typeUser" optionLabel="label" optionValue="value"
-                        placeholder="Select Login Type" required #category="ngModel">
-                        <ng-template let-option pTemplate="item">
+                         #category="ngModel">   <!-- placeholder="Select Login Type" required -->
+                        <!-- <ng-template let-option pTemplate="item">
                             <span [class]="'dish-badge status-' + option.value">{{option.label}}</span>
-                        </ng-template>
+                        </ng-template> -->
                     </p-dropdown>
                 </div>
                 <div class="p-col-10 p-mx-auto">
@@ -23,44 +23,48 @@
                                 class="p-error p-error-danger" *ngIf="name.errors.required">Name is
                                 required.</small> </div>
                     </div>
+                   
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">
                         <span class="p-inputgroup-addon"><i class="pi pi-user"></i></span>
                         <input type="text" pInputText [(ngModel)]="users.userName" placeholder="Username" id="username"
-                            name="username" #username="ngModel" required>
+                            name="username" #username="ngModel" (ngModelChange)="validateUsername(users.userName)" required>
                         <div *ngIf="username.touched && username.invalid && username.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="username.errors.required">Username is
                                 required.</small> </div>
                     </div>
+                    <span *ngIf="usernamecheck">Username Already Taken Please Choose Another</span>
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">
                         <span class="p-inputgroup-addon"><i class="pi pi-envelope"></i></span>
                         <input type="text" pInputText [(ngModel)]="users.email" placeholder="Email" id="email"
-                            name="email" #email="ngModel" required email>
+                            name="email" #email="ngModel" required (ngModelChange)="validateEmail(users.email)">
                         <div *ngIf="email.touched && email.invalid && email.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="email.errors.required">Email is required.</small>
                         </div>
                     </div>
+                    <span *ngIf="useremailcheck">Email Already Taken Please Choose Another</span>
+                    
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">
                         <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
                         <input type="text" pInputText maxlength="10" [(ngModel)]="users.contact" placeholder="Mobile"
-                            id="mobile" name="mobile" #mobile="ngModel" required>
+                            id="mobile" name="mobile" #mobile="ngModel" required (ngModelChange)="validateContact(users.contact)">
                         <div *ngIf="mobile.touched && mobile.invalid && mobile.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="mobile.errors.required">Mobile Number is
                                 required.</small> </div>
                     </div>
+                    <span *ngIf="usercontactcheck">Contact Already Taken Please Choose Another</span>
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">
                         <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <input type="password" pInputText [(ngModel)]="users.password" placeholder="Password"
                             id="password" name="password" #password="ngModel" required>
-                            <meter max="4" id="password-strength-meter"></meter>
-                            <p id="password-strength-text"></p>
+                          
                         <div *ngIf="password.touched && password.invalid && password.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="password.errors.required">Password is
                                 required.</small> 
@@ -71,6 +75,9 @@
                               
                                 
                     </div>
+                    <!-- <meter max="4" id="password-strength-meter"></meter>
+                    <p id="password-strength-text"></p> -->
+                    <span>Use 8 or more characters with a mix of letters, numbers & symbols in password</span>
                     
                 </div>
             </div>

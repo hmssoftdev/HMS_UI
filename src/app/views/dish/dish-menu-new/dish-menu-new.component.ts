@@ -31,6 +31,7 @@ import {DialogModule} from 'primeng/dialog';
 
 
 export class DishMenuNewComponent implements OnInit {
+  event:Event
   dishes: Dish[];
   sendId: number; 
   rawDishCategoyItems: DishCategory[];
@@ -85,6 +86,7 @@ export class DishMenuNewComponent implements OnInit {
    show=false;
    both:boolean;
    displayBasic=false;
+   customer:boolean
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -111,6 +113,8 @@ export class DishMenuNewComponent implements OnInit {
         const d = resp;
         this.image = d.menuDisplay ? true : false;
         this.both = d.billPrintAndKOT ? true : false;
+        this.customer=d.billWithCustomer ?true : false;
+        
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
@@ -255,20 +259,18 @@ export class DishMenuNewComponent implements OnInit {
   fnSaveUser(event){
     //this.usersList = event;
     this.userDialog = false;
-    this.loadUserData();
+    this.loadData();
   }
 
   // Cart 
   fnLoadCartData(){
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp =>
-   // console.log(resp,"checcking cart data");
     this.cartItems = resp); 
    if(this.cartItems.id){
-     
      this.isKOTdone = true;
    } 
-   console.log("cartItems?.orderItems.length")
+
   }
   addItem(item){
     this.cartService.addItem(item,1);
@@ -291,6 +293,7 @@ export class DishMenuNewComponent implements OnInit {
     this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
+
     // this.emptycart.emit('this.emptyCart()');
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
@@ -353,6 +356,35 @@ export class DishMenuNewComponent implements OnInit {
    
   });
     }
+    fnDirectPayment(){
+      this.fnLoadCartData(); 
+     const orderS = {status:1}
+     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
+     this.cartItems.orderStatus.push(orderS) 
+    //  if(this.cartItems.deliveryMode===undefined ){
+    //    switch(this.cartItems.deliveryOptionId){
+    //      case 1:
+    //       this.cartItems.deliveryMode = "Dining"; break;
+    //      case 2:
+    //          this.cartItems.deliveryMode = "Home Delivery"; break;
+    //        case 3:
+    //          this.cartItems.deliveryMode = "Takeaway"; break;
+    //    }
+    //  }
+
+  //  this.currentOrderId = null;
+   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+    
+    //  this.cartService.addOrderId(this.currentOrderId);
+ 
+    //  this.selectedPrintType = 'KOTPrintUI';
+
+     this.fnMakePayment();
+    
+   });
+
+
+   }
   fnBillPrint(order: OrderList){
     
     this.selectedPrintType = 'BillPrintUI';
@@ -388,10 +420,11 @@ export class DishMenuNewComponent implements OnInit {
     
   }
   fnHideDiningTableM(event){ 
-    if(!this.selectedTableNames || this.selectedTableNames.length == 1){
+    if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
     } else {
       this.fnLoadCartData();
+       console.log(this.cartItems.orderItems,"Order check")
     }
   }
   fnCartToggle(){

@@ -74,6 +74,8 @@ import { HelpComponent } from './views/help/help.component';
 import { BackdataComponent } from './views/report/backdata/backdata.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
+import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
+
 
 @NgModule({
   imports: [
@@ -118,6 +120,7 @@ import { environment } from '../environments/environment';
   declarations: [
     AppComponent, 
     ReportComponent,
+    ResetpaswordComponent,
     FooditemComponent,
     WeekSummaryComponent,
     TodaySummaryComponent,

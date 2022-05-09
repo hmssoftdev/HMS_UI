@@ -42,8 +42,8 @@ export class DatahistoryComponent implements OnInit {
     
     this.name=this.auth.userData().name;
     
-    this.number=this.auth.userData().contact;
-    console.log( this.auth.userData(), "Number Check")
+    // this.number=this.auth.userData().contact;
+    // console.log( this.auth.userData(), "Number Check")
     // console.log(this.name,"name");
 
   }
@@ -61,6 +61,7 @@ export class DatahistoryComponent implements OnInit {
        this.historydata =  this.historydata.filter(x=>x.deliveryOptionId==this.deliveryMode);
        this.loading  = false;
       // if(this.historydata.)
+      console.log(this.historydata,"payment")
       return this.historydata;
     }
   )
@@ -77,6 +78,7 @@ deleteItem(n:number){
   })
 }
 getPaymentMode(n:number){
+  this.number=n;
   let strVal= '-';
   switch(n){
     case 1:
@@ -88,7 +90,11 @@ getPaymentMode(n:number){
   }
   return strVal;
 }
-
+fnhide(){
+  this.Dialog=false
+  this.getHistorydata();
+ this.getPaymentMode(this.number); 
+}
 fnViewOrder(data){
   console.log(data);
  this.selectedOrderId=data.id;
