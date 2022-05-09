@@ -57,7 +57,10 @@
                                 class="p-error p-error-danger" *ngIf="mobile.errors.required">Mobile Number is
                                 required.</small> </div>
                     </div>
-                    <span *ngIf="usercontactcheck">Contact Already Taken Please Choose Another</span>
+                    <div *ngIf="usercontactcheck" class="text">
+                        <span >Contact Already Taken Please Choose Another</span>
+                    </div>
+                   
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">

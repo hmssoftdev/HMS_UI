@@ -38,7 +38,7 @@ export const routes: Routes = [
     }
   },
   {
-    path:'resetPassword/:param',
+    path:'resetPassword',
     component:ResetpaswordComponent,
     data:{
       title: 'Reset Password',

@@ -36,6 +36,11 @@ export class DishMenuNewComponent implements OnInit {
   sendId: number; 
   rawDishCategoyItems: DishCategory[];
   dishCategory: any;
+
+  caty:string[]=[];
+
+
+  
   sortField: string;
   sortOrder: number;
   sortOptions: any[];
@@ -103,7 +108,9 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    // this.categori={
 
+    // }
     this.comset.Obslangauge.subscribe(res=>{
       this.translate.use(res);
     })
@@ -185,9 +192,29 @@ export class DishMenuNewComponent implements OnInit {
   fnGetDishCategoy() {
     this.dishService.getDishCategory(this.sendId).subscribe((x: DishCategory[]) => {
       this.rawDishCategoyItems = x;
+
+      // const cat=x.copyWithin(0,1,2).map(res=> res.name)
+      // console.log(cat,"var category")
+      if(x.length > 5){
+        for (var _i = 0; _i < 5; _i++) {
+          // this.categori = x.map(x=> x.name)[_i];
+      
+      this.caty.push(x.map(x=> x.name)[_i])
+      // console.log(this.caty,"caty")
+  }
+      }
+
+for (var _i = 0; _i < x.length; _i++) {
+        // this.categori = x.map(x=> x.name)[_i];
+    
+    this.caty.push(x.map(x=> x.name)[_i])
+    // console.log(this.caty,"caty")
+}
       this.dishCategory = x.map(cItem => {
         return { label: cItem.name, value: cItem.name }
       })
+      
+   
     });
   }
   onCategoryFilter(category:string) { 
@@ -372,10 +399,10 @@ export class DishMenuNewComponent implements OnInit {
     //    }
     //  }
 
-  //  this.currentOrderId = null;
+   this.currentOrderId = null;
    this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    
-    //  this.cartService.addOrderId(this.currentOrderId);
+    this.currentOrderId = resp.orderId;
+     this.cartService.addOrderId(this.currentOrderId);
  
     //  this.selectedPrintType = 'KOTPrintUI';
 
