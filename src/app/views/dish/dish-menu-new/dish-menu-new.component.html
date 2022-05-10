@@ -328,7 +328,8 @@
             optionValue="id"
             filterBy="contact"
             filterMatchMode="contains" 
-            required="required"
+            required="true"
+            
           >
           </p-dropdown>
          <button
@@ -344,9 +345,9 @@
           
         </div>
         <div class="p-grid">
-            <div class="p-col-12 p-text-left p-text-uppercase">
-
-           <span> <strong>{{selectedUsers}}</strong> </span>
+            <div class="p-col-12 p-text-left">
+             <span style="color: red;" class="text-xl" *ngIf="droperror==true">Please select customer data for bill</span>
+           <span class="p-text-uppercase"> <strong>{{selectedUsers}}</strong> </span>
           </div> 
          
           
@@ -523,12 +524,12 @@
               label="KOT Print"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both==false"
+              *ngIf="both==false && droperror==false"
             ></button>
             <button
               pButton
               type="button" 
-              *ngIf="both==true"
+              *ngIf="both==true && droperror==false"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
@@ -545,12 +546,13 @@
             ></button>
             <button
               pButton
+              [disabled]="userData.userType === 3"
               type="button"
-              label="Make Payment"
+              label="Make Direct Payment"
               [disabled]="!KOTEnabled"                                            
               (click)="fnDirectPayment($event)"
               class="p-button-sm p-button-help p-p-1"
-              *ngIf="both==true"
+              *ngIf="fstPayment==true"
             ></button>
             <button
               [disabled]="userData.userType === 3"
@@ -560,6 +562,7 @@
               [disabled]="!isKOTdone"
               (click)="fnMakePayment($event)"
               class="p-button-sm p-button-success p-p-1"
+              *ngIf="fstPayment==false"
             ></button>
             <button
               pButton

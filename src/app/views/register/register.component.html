@@ -34,7 +34,7 @@
                                 class="p-error p-error-danger" *ngIf="username.errors.required">Username is
                                 required.</small> </div>
                     </div>
-                    <span *ngIf="usernamecheck">Username Already Taken Please Choose Another</span>
+                    <span *ngIf="usernamecheck" style="color: red;" class="text-base">Username already taken please choose another</span>
                 </div>
                 <div class="p-col-10 p-mx-auto">
                     <div class="p-inputgroup p-mt-1">
@@ -45,7 +45,7 @@
                                 class="p-error p-error-danger" *ngIf="email.errors.required">Email is required.</small>
                         </div>
                     </div>
-                    <span *ngIf="useremailcheck">Email Already Taken Please Choose Another</span>
+                    <span style="color: red;" class="text-base" *ngIf="useremailcheck">Email already taken please choose another</span>
                     
                 </div>
                 <div class="p-col-10 p-mx-auto">
@@ -58,7 +58,7 @@
                                 required.</small> </div>
                     </div>
                     <div *ngIf="usercontactcheck" class="text">
-                        <span >Contact Already Taken Please Choose Another</span>
+                        <span style="color: red;" class="text-base">Contact already taken please choose another</span>
                     </div>
                    
                 </div>

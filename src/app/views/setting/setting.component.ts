@@ -182,6 +182,8 @@ this.comset.Obslangauge.subscribe(x=>{
       billWithSeal: 0,
       billWithSign: 0,
       menuDisplay: 0,
+      customerDataForBilling:0,
+      paymentFirst:0
     }
     return s;
   }
@@ -207,10 +209,8 @@ this.comset.Obslangauge.subscribe(x=>{
     this.setting.billPrintAndKOTDining=Number(this.setting.billPrintAndKOTDining); 
     this.setting.billPrintAndKOTHomeDelivery=Number(this.setting.billPrintAndKOTHomeDelivery);
      this.setting.billPrintAndKOTTakeAway=Number(this.setting.billPrintAndKOTTakeAway);
-
-
-
-
+     this.setting.customerDataForBilling=Number(this.setting.customerDataForBilling);
+     this.setting.paymentFirst=Number(this.setting.paymentFirst);
 
     // this.setting.language=this.langchange;
 
