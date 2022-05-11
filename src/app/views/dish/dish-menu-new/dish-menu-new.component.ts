@@ -287,6 +287,7 @@ for (var _i = 0; _i < x.length; _i++) {
      this.selectedUsers = uContact[0].contact;
      const uData = {id:parseInt(selectedUserId)} 
      this.cartService.addUser(uData);
+
     //  this.KOTEnabled=true
      this.droperror=false
   }
