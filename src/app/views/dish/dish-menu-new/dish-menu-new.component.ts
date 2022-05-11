@@ -18,6 +18,7 @@ import { setting } from '../../../models/setting';
 import { TranslateService } from '@ngx-translate/core';
 import {DialogModule} from 'primeng/dialog';
 
+
 // import { EventEmitter } from 'stream';
 
 @Component({
@@ -257,8 +258,10 @@ for (var _i = 0; _i < x.length; _i++) {
     //Add to cart Function
     fnAddtoCart(cartItem: Dish) {
       const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
+      console.log(this.cartService,"null")
       this.cartService.addItem(cartItem, 1, selCategory.gstCompliance); 
       this.fnLoadCartData();
+     
     }
   fnDeliveryMode(s:string){
     this.deliveryMode = s;
@@ -284,7 +287,7 @@ for (var _i = 0; _i < x.length; _i++) {
      this.selectedUsers = uContact[0].contact;
      const uData = {id:parseInt(selectedUserId)} 
      this.cartService.addUser(uData);
-     this.KOTEnabled=true
+    //  this.KOTEnabled=true
      this.droperror=false
   }
  
@@ -297,11 +300,11 @@ for (var _i = 0; _i < x.length; _i++) {
 //    }
 //   }
 // }
-  onBlur(value:string){
-    if(value=='' || value=='null'){
-      console.log(value,"error")
-    }
-  }
+  // onBlur(value:string){
+  //   if(value=='' || value=='null'){
+  //     console.log(value,"error")
+  //   }
+  // }
   openNew() {
     this.user = {};
     this.submitted = false;
@@ -469,16 +472,20 @@ for (var _i = 0; _i < x.length; _i++) {
       if(arr.tblSelectionType != 'releaseTbl'){ 
       this.diningTableDialog = false;
       }
+
       this.fnLoadCartData();
-    
+      // console.log(this.fnLoadCartData(),"Cart Item Check")
   }
   fnHideDiningTableM(event){ 
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
-    } else {
+    } 
+    
+    else {
       this.fnLoadCartData();
-       console.log(this.cartItems.orderItems,"Order check")
+      
     }
+    // console.log(this.cartItems.orderItems,"Order check")
   }
   fnCartToggle(){
     this.lblCartToggle = this.lblCartToggle == 'Active' ? 'inActive':'Active'

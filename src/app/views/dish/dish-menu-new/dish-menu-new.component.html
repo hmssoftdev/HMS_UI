@@ -38,11 +38,7 @@
                   (click)="onCategoryFilter(item)"
                   pButton
                   type="button"
-                  [ngClass]="
-                    selCategory === item
-                      ? 'p-button-primary'
-                      : 'p-button-secondary'
-                  "
+                  [ngClass]="selCategory=== item? 'p-button-primary': 'p-button-secondary'"
                   [label]="item"
                   class="p-button-sm p-mr-2 p-mb-1"
                 >
@@ -328,8 +324,7 @@
             optionValue="id"
             filterBy="contact"
             filterMatchMode="contains" 
-            required="true"
-            
+            required="true"  
           >
           </p-dropdown>
          <button
@@ -341,7 +336,8 @@
             class="p-button-success p-mr-2 p-button-sm p-mb-2"
             pTooltip="Add new user"
             (click)="openNew()"
-          ></button>
+          >
+        </button>
           
         </div>
         <div class="p-grid">
@@ -546,7 +542,7 @@
             ></button>
             <button
               pButton
-              [disabled]="userData.userType === 3"
+              [disabled]="userData.userType === 3 && !KOTEnabled"
               type="button"
               label="Make Direct Payment"
               [disabled]="!KOTEnabled"                                            
