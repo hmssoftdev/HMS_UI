@@ -76,7 +76,8 @@ export class RegisterComponent {
         this.usernamecheck=true;
       }
         // console.log(res,)
-      if(res.result=='Data not present'){
+      // if(res.result=='Data not present')
+      else{
         this.usernamecheck=false
       }
 
@@ -85,18 +86,19 @@ export class RegisterComponent {
   }
 
   validateEmail(email:string){
-    this.key='emailid'
+    this.key='email'
     this.value=email
     this.userSvc.CheckUserData(this.key,this.value).subscribe(res=>{
       // this.users=res
 
       if(res.result == 'Data present')
       {
-        console.log(res)
         this.useremailcheck=true;
       }
         // console.log(res,)
-      if(res.result=='Data not present'){
+      // if(res.result=='Data not present')
+      else
+      {
         this.useremailcheck=false
       }
 
@@ -113,11 +115,12 @@ export class RegisterComponent {
 
       if(res.result == 'Data present')
       {
-        console.log(res)
         this.usercontactcheck=true;
       }
         // console.log(res,)
-      if(res.result=='Data not present'){
+      // if(res.result=='Data not present'){
+        
+      else{
         this.usercontactcheck=false
       }
 

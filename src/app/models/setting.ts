@@ -20,8 +20,8 @@ export interface setting{
     billPrintAndKOTDining?:number;
     billPrintAndKOTHomeDelivery?:number;
     billPrintAndKOTTakeAway?:number;
-
-
+    customerDataForBilling?:number;
+    paymentFirst?:number;
 }
 export interface language{
     name:string;

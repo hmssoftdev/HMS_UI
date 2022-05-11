@@ -50,7 +50,7 @@
     }
     .p-dataview .p-dataview-content {
         overflow: scroll !important;
-        height: 375px;
+        height:515px;
     }
     .p-inputtext {
         font-size: 0.813rem;
@@ -79,7 +79,7 @@
     .product-list-item {
         display: flex;
         align-items: center;
-        padding: 1rem;
+        padding: 0.5rem 1rem;
         width: 100%;
         span.icnBookmark 
         {
@@ -219,9 +219,10 @@
             width: 1.667rem;
         }
         .p-button{
-            padding: 0.3rem;
-            font-size: 0.75rem;
-        }
+      padding: 0rem 0.1rem;
+      font-size: .75rem;
+}
+    
         .pi{
             font-size: 0.75rem;
         }  
@@ -408,6 +409,22 @@ li:last-child{
         display: block; 
         width: 100%;
     }
+    .btnCartToggle{
+        display: block;
+        position: fixed;
+        top: 71px !important;
+        right: 29px;
+    }
+    // .cartWrap{
+    //     display: none;
+    //     position: absolute;
+       
+    //     background: #fff;
+    //     border: 1px solid #dcdcdc;
+    //     border-radius: 5px;
+    //     top: 0 !important;
+    // }
+  
     :host ::ng-deep .product-list-item {
         flex-direction: column;
         align-items: center;
@@ -415,6 +432,12 @@ li:last-child{
             margin-left: 0;
            font-size: 0.6rem!important;
        }
+      
+   
+.p-input-icon-left>i, .p-input-icon-right>i {
+
+    top: 37% !important;
+}
     .p-paginator-page {
            background-color: #fff;
            border: 1px solid #dee2e6;
@@ -451,6 +474,13 @@ li:last-child{
 
     }
     :host ::ng-deep{
+        .p-button.p-button-icon-only{
+            height: 1.3rem !important;
+            width: 1.3rem !important;
+        }
+        .p-dropdown-panel .p-dropdown-items .p-dropdown-item {
+            font-size: 0.6rem !important;
+        }
         .product-list-item img {
             display: none;
         }
@@ -466,6 +496,11 @@ li:last-child{
     .p-component {
             font-size: .5rem!important;
             max-width: 100%!important;
+        }
+       .p-input-icon-left>.p-inputtext {
+            //  padding-left: 0px !important; 
+            width: 93%!important;
+            height: 36px!important;
         }
        .p-inputtext {
             font-size: .5rem;

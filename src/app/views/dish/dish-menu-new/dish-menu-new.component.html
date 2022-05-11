@@ -26,24 +26,46 @@
             >
               All
             </button>
-            <p-button (click)="showBasicDialog()" style="height: 44px;" label="Click more"></p-button>
-            <p-dialog header="Dish Category" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-              <ng-container *ngFor="let item of dishCategory; let i = index">
+
+
+
+            <!-- <p-button (click)="showBasicDialog()" class="p-button-sm p-mr-2 p-mb-1 selCategory" label="Click more"></p-button>
+            
+            <p-dialog header="Dish Category" [(visible)]="displayBasic" [style]="{width: '50vw'}">-->
+              <ng-container *ngFor="let item of caty; let i = index"> 
                 <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
                 <button
-                  (click)="onCategoryFilter(item.value);displayBasic=false"
+                  (click)="onCategoryFilter(item)"
                   pButton
                   type="button"
                   [ngClass]="
-                    selCategory === item.value
+                    selCategory === item
                       ? 'p-button-primary'
                       : 'p-button-secondary'
                   "
-                  [label]="item.value"
+                  [label]="item"
                   class="p-button-sm p-mr-2 p-mb-1"
-
-                ></button>
+                >
+              </button>
               </ng-container>
+
+                <p-button (click)="showBasicDialog()" class="p-button-sm p-mb-1"  label="More.."></p-button>
+                 
+            <p-dialog header="Dish Category"  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}">
+              <ng-container *ngFor="let item of dishCategory; let i = index"> 
+                <button
+                (click)="onCategoryFilter(item.value);displayBasic=false"
+                pButton
+                type="button"
+                [ngClass]="
+                  selCategory === item.value
+                    ? 'p-button-primary'
+                    : 'p-button-secondary'
+                "
+                [label]="item.value"
+                class="p-button-sm p-mr-2 p-mb-1"
+              ></button>
+            </ng-container>
                 <!-- <ng-template pTemplate="footer">
                     <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
                 </ng-template> -->
@@ -74,7 +96,7 @@
             <!-- <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
                         (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
             <div class="p-ml-auto dataViewOpt">
-              <p-dataViewLayoutOptions></p-dataViewLayoutOptions>
+              <p-dataViewLayoutOptions> </p-dataViewLayoutOptions>
             </div>
           </div>
         </ng-template>
@@ -306,7 +328,8 @@
             optionValue="id"
             filterBy="contact"
             filterMatchMode="contains" 
-            required="required"
+            required="true"
+            
           >
           </p-dropdown>
          <button
@@ -322,9 +345,9 @@
           
         </div>
         <div class="p-grid">
-            <div class="p-col-12 p-text-left p-text-uppercase">
-
-           <span> <strong>{{selectedUsers}}</strong> </span>
+            <div class="p-col-12 p-text-left">
+             <span style="color: red;" class="text-xl" *ngIf="droperror==true">Please select customer data for bill</span>
+           <span class="p-text-uppercase"> <strong>{{selectedUsers}}</strong> </span>
           </div> 
          
           
@@ -501,12 +524,12 @@
               label="KOT Print"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
-              *ngIf="both==false"
+              *ngIf="both==false && droperror==false"
             ></button>
             <button
               pButton
               type="button" 
-              *ngIf="both==true"
+              *ngIf="both==true && droperror==false"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
               class="p-button-sm p-button-info p-p-1"
@@ -523,12 +546,13 @@
             ></button>
             <button
               pButton
+              [disabled]="userData.userType === 3"
               type="button"
-              label="Make Payment"
+              label="Make Direct Payment"
               [disabled]="!KOTEnabled"                                            
               (click)="fnDirectPayment($event)"
               class="p-button-sm p-button-help p-p-1"
-              *ngIf="both==true"
+              *ngIf="fstPayment==true"
             ></button>
             <button
               [disabled]="userData.userType === 3"
@@ -538,6 +562,7 @@
               [disabled]="!isKOTdone"
               (click)="fnMakePayment($event)"
               class="p-button-sm p-button-success p-p-1"
+              *ngIf="fstPayment==false"
             ></button>
             <button
               pButton

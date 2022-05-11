@@ -79,7 +79,7 @@
             <div class="col-6 p-text-center">
                 <span class="float right">
                     <label  for="want">{{'No' | translate}} </label>
-                    <p-inputSwitch  name="want" class="p-mx-2"></p-inputSwitch>
+                    <p-inputSwitch  [(ngModel)]="setting.customerDataForBilling"   name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>
@@ -93,7 +93,7 @@
             <div class="col-6 p-text-center">
                 <span class="float right">
                     <label  for="want">{{'No' | translate}} </label>
-                    <p-inputSwitch name="want" class="p-mx-2"></p-inputSwitch>
+                    <p-inputSwitch [(ngModel)]="setting.paymentFirst" name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>

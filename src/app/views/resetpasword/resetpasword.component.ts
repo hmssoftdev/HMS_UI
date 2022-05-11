@@ -11,17 +11,25 @@ import { UserService } from '../../service/user.service';
 export class ResetpaswordComponent implements OnInit {
 public url:string
 id:string
+host:string
   encryptlink :string='+nY6p72BKT+36TvwK4DtLswY88WoF8u3g55ptUx22DIii7Wg9ZlnCN6noW7GBwbgeyZ9OUe0hFHskiwcIPiKjF+kKZ1wQL9X9ZlZQSsdggtvzKgcOZzRX+5/TLkPdqyc';
   constructor(public user:UserService,public mssg:MessageService,private activatedRoute: ActivatedRoute) { }
   password:string='';
   ngOnInit(): void {
-    this.url = this.activatedRoute.snapshot.paramMap.get('param');
-    this.id=this.activatedRoute.snapshot.params.param; 
-
-    console.log(this.url,"Para",this.id)
+    // this.url = this.activatedRoute.snapshot.paramMap.get('param');
+    // this.id=this.activatedRoute.snapshot.params.param; 
+    // this.id=this.activatedRoute.queryParamMap
+   this.id = this.activatedRoute.snapshot.queryParamMap.get('param');
+   this.host=window.location.hostname
+   console.log(this.host,"name")
+//     .subscribe(params => {
+//   params.get('param')||0;     
+// });
+    console.log("Para",this.id)
     this.activatedRoute.queryParamMap.subscribe(params => {
       
-      // console.log(params,"parameter"); 
+      console.log(params,"parameter"); 
+    
       // const queryString = window.location.search;
       // const urlParams = new URLSearchParams(queryString);
       // const code = urlParams.get('code')

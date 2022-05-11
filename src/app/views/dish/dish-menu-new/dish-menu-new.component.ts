@@ -36,6 +36,11 @@ export class DishMenuNewComponent implements OnInit {
   sendId: number; 
   rawDishCategoyItems: DishCategory[];
   dishCategory: any;
+
+  caty:string[]=[];
+
+
+  
   sortField: string;
   sortOrder: number;
   sortOptions: any[];
@@ -86,7 +91,10 @@ export class DishMenuNewComponent implements OnInit {
    show=false;
    both:boolean;
    displayBasic=false;
-   customer:boolean
+   customer:boolean;
+  //  userdata:boolean=false;
+   fstPayment:boolean=false
+   droperror:boolean=false;
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -103,7 +111,9 @@ export class DishMenuNewComponent implements OnInit {
     ) { }
 
   ngOnInit(): void {
+    // this.categori={
 
+    // }
     this.comset.Obslangauge.subscribe(res=>{
       this.translate.use(res);
     })
@@ -113,11 +123,16 @@ export class DishMenuNewComponent implements OnInit {
         const d = resp;
         this.image = d.menuDisplay ? true : false;
         this.both = d.billPrintAndKOT ? true : false;
-        this.customer=d.billWithCustomer ?true : false;
+        this.customer=d.customerDataForBilling ?true : false;
+        this.fstPayment=d.paymentFirst ?true:false;
         
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
+    if(this.customer===true){
+      this.droperror=true
+    }
+  
     // if(resp.billPrintAndKOT == 1){
     //   this.show=true
     //   this.both=false
@@ -127,6 +142,8 @@ export class DishMenuNewComponent implements OnInit {
     //   this.show=false
     // }
     })
+    console.log(this.customer,"true")
+   
     this.userSvc.langdata.subscribe( (x:any)=>{
      
       this.translate.use(x);
@@ -147,6 +164,7 @@ export class DishMenuNewComponent implements OnInit {
     this.emptyCart();
     this.fnLoadCartData();
     this.loadUserData();
+   
     this.userData = this.authService.userData();
     this.sortOptions = [
     { label: 'Price High to Low', value: '!fullPrice' },
@@ -157,7 +175,11 @@ export class DishMenuNewComponent implements OnInit {
         this.selectedTableID = x;
     });
   } 
-  
+//   onBlur(value){
+//    if(value==''){
+//      console.log("error dropdown")
+//    }
+// }
   loadData(){
     this.userSvc.getUserList().subscribe(res => {
 
@@ -185,9 +207,24 @@ export class DishMenuNewComponent implements OnInit {
   fnGetDishCategoy() {
     this.dishService.getDishCategory(this.sendId).subscribe((x: DishCategory[]) => {
       this.rawDishCategoyItems = x;
+
+      // const cat=x.copyWithin(0,1,2).map(res=> res.name)
+      // console.log(cat,"var category")
+     
+
+for (var _i = 0; _i < x.length; _i++) {
+
+    if(_i===5){
+      break;
+    }
+    this.caty.push(x.map(x=> x.name)[_i])
+
+}
       this.dishCategory = x.map(cItem => {
         return { label: cItem.name, value: cItem.name }
       })
+      
+   
     });
   }
   onCategoryFilter(category:string) { 
@@ -247,7 +284,23 @@ export class DishMenuNewComponent implements OnInit {
      this.selectedUsers = uContact[0].contact;
      const uData = {id:parseInt(selectedUserId)} 
      this.cartService.addUser(uData);
-   
+     this.KOTEnabled=true
+     this.droperror=false
+  }
+ 
+//   onBlurHandler(event){
+//     if(this.customer===true)
+//     {
+//      if(event == ''){
+//       this.droperror=true
+//       this.KOTEnabled=false
+//    }
+//   }
+// }
+  onBlur(value:string){
+    if(value=='' || value=='null'){
+      console.log(value,"error")
+    }
   }
   openNew() {
     this.user = {};
@@ -372,10 +425,10 @@ export class DishMenuNewComponent implements OnInit {
     //    }
     //  }
 
-  //  this.currentOrderId = null;
+   this.currentOrderId = null;
    this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    
-    //  this.cartService.addOrderId(this.currentOrderId);
+    this.currentOrderId = resp.orderId;
+     this.cartService.addOrderId(this.currentOrderId);
  
     //  this.selectedPrintType = 'KOTPrintUI';
 
