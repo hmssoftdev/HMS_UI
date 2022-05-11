@@ -66,21 +66,23 @@
                     <div class="p-inputgroup p-mt-1">
                         <span class="p-inputgroup-addon"><i class="pi pi-lock"></i></span>
                         <input type="password" pInputText [(ngModel)]="users.password" placeholder="Password"
-                            id="password" name="password" #password="ngModel" required>
-                          
-                        <div *ngIf="password.touched && password.invalid && password.submitted"> <small
+                            id="password" name="password" #password="ngModel" (keyup)="myFunction(users.password)" pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z]).{8,}" required>
+                            <div *ngIf="password.touched && password.invalid && password.submitted"> <small
                                 class="p-error p-error-danger" *ngIf="password.errors.required">Password is
                                 required.</small> 
-                              
-
-                                
-                                </div>
-                              
-                                
+                            </div>
                     </div>
+                    
+                    <div *ngIf="message">
+                       
+                        <p >A lowercase letter</p>
+                        <p id="capital" class="invalid">A capital (uppercase) letter</p>
+                        <p id="number" class="invalid">A number</p>
+                        <p id="length" class="invalid">Minimum 8 characters</p>
+                      </div> 
                     <!-- <meter max="4" id="password-strength-meter"></meter>
                     <p id="password-strength-text"></p> -->
-                    <span>Use 8 or more characters with a mix of letters, numbers & symbols in password</span>
+                    <!-- <span>Use 8 or more characters with a mix of letters, numbers & symbols in password</span> -->
                     
                 </div>
             </div>

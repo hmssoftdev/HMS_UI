@@ -35,8 +35,9 @@ export class DiningTableComponent implements OnInit {
   fnTblBook(tblItem){  
    
     if(tblItem.isBooked){
+
       // console.log(tblItem.isBooked,"Table Check")
-      this.tableSvc.getOrderDataBytblId(this.auth.userData().adminId).subscribe(resp => {
+      this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
         if(resp){
           this.cartService.save(resp);
            this.selectedTableID = [];
@@ -49,8 +50,7 @@ export class DiningTableComponent implements OnInit {
             }
           });  
            const tblData = {tblArr:this.selectedTableID, tblSelectionType:'addUpdateTbl'}
-           this.tableSelection.emit(tblData) 
-
+           this.tableSelection.emit(tblData)
         }
       })
     } else {

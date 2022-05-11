@@ -29,6 +29,8 @@ export class RegisterComponent {
   usernamecheck:boolean=false;
   usercontactcheck:boolean=false;
   useremailcheck:boolean=false;
+  passmeter:boolean=false;
+  message:boolean=true
   constructor(
     public regSvc: RegisterService,
     public userSvc: UserService,
@@ -126,6 +128,15 @@ export class RegisterComponent {
 
     })
 
+  }
+  myFunction(password:string){
+   console.log(password)
+//    var myInput = document.getElementById("psw");
+// var letter = document.getElementById("letter");
+// var capital = document.getElementById("capital");
+// var number = document.getElementById("number");
+// var length = document.getElementById("length");
+// console.log(length)
   }
   register(data: NgForm) { 
     // var format = /[ `!@#$%^&*()_+\-=\[\]{};':"\\|,.<>\/?~]/;
