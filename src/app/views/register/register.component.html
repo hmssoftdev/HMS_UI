@@ -73,16 +73,18 @@
                             </div>
                     </div>
                     
-                    <div *ngIf="message">
-                       
-                        <p >A lowercase letter</p>
-                        <p id="capital" class="invalid">A capital (uppercase) letter</p>
-                        <p id="number" class="invalid">A number</p>
-                        <p id="length" class="invalid">Minimum 8 characters</p>
+                    <div id="strength" #strength>  
+                       <span>Strength:</span>
+                        <ul id="strengthBar">  
+                            <li class="point" [style.background-color]="bar0"></li>
+                            <li class="point" [style.background-color]="bar1"></li>
+                            <li class="point" [style.background-color]="bar2"></li>
+                            <li class="point" [style.background-color]="bar3"></li>  
+                        </ul>   
                       </div> 
                     <!-- <meter max="4" id="password-strength-meter"></meter>
                     <p id="password-strength-text"></p> -->
-                    <!-- <span>Use 8 or more characters with a mix of letters, numbers & symbols in password</span> -->
+                    <span class="p-mt-2"><small>Use 8 or more characters with a mix of capital letters, numbers & symbols in password </small> </span>
                     
                 </div>
             </div>

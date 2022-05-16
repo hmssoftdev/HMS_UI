@@ -15,6 +15,7 @@ export class DiningTableComponent implements OnInit {
   selectedTableID:Array<any> = [];
   displayBasic: boolean;
   msg:Message[] =[]
+  username:string
   constructor(
     public tableSvc: TableService, 
     private cartService: CartService,
@@ -53,7 +54,8 @@ export class DiningTableComponent implements OnInit {
            this.tableSelection.emit(tblData)
         }
       })
-    } else {
+    } 
+    else {
       tblItem.isBooked = true;
       this.tableSvc.updateSeat(tblItem).then(resp =>{
         this.selectedTableID = [];

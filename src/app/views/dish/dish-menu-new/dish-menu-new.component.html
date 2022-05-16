@@ -431,7 +431,7 @@
               }}</span>
             </li>
             <li>
-              <div class="p-d-flex p-jc-between p-m-0">
+              <div *ngIf="gst==true" class="p-d-flex p-jc-between p-m-0">
                 <span>GST</span> {{ cartItems.gstTotal | currency: "INR":true }}
               </div>
               <div class="p-flex-md-row">

@@ -204,6 +204,24 @@ postOrder(order: ShoppingCart): Observable<ShoppingCart> {
     catchError(this.handleError('', order))
   );
 }
+AddpostOrder(order: ShoppingCart): Observable<ShoppingCart> {
+  return this.http.post<ShoppingCart>(`${this.orderUrl}/Addorder`,order).pipe(
+    map(x => {
+      return x;
+    }),
+    catchError(this.handleError('', order))
+  );
+}
+PutOrder(order: ShoppingCart): Observable<ShoppingCart> {
+  return this.http.put<ShoppingCart>(`${this.orderUrl}`,order).pipe(
+    map(x => {
+      return x;
+    }),
+    catchError(this.handleError('', order))
+  );
+}
+
+
 
 postOrderStatus(status): Observable<OrderStatus> {
   return this.http.post<OrderStatus>(`${this.orderUrl}/Post/{AddStatus}`, status).pipe(

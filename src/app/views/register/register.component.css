@@ -1,3 +1,46 @@
+ul#strengthBar {  
+    display:inline;  
+    list-style:none;  
+    margin:0;  
+    margin-left:15px;  
+    padding:0;  
+    vertical-align:2px;  
+
+}  
+
+.point:last {  
+    margin:0 !important;  
+    }  
+
+.point {  
+    background:#DDD;  
+    border-radius:2px;  
+    display:inline-block;  
+    height:5px;  
+    margin-right: 2px;
+    width: 50px;
+} 
+
+    #strength{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: nowrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+}
+@media all and (max-width:425px) {
+    .point {
+        margin-right: 1px;
+        width: 15px;  
+    }
+}
+@media all and (max-width:768px) {
+    .point {
+        margin-right: 1px;
+        width: 35px;  
+    }
+}
 /* .fa {
     padding: 20px;
     font-size: 30px;
