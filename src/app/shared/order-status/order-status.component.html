@@ -114,7 +114,7 @@
 		<p-tabPanel header="Invoice" class="flex justify-content-center" >
 			<div class="p-grid" style="display: inline-flex!important;justify-content: end;align-content: flex-end;">
 			<div class="p-col-6 invoice">	
-				<app-invoice *ngIf="adminData" [adminData]="adminData" [orderItem]="orderItem" [cartItems]="cartItems"></app-invoice>
+				<app-invoice *ngIf="adminData" [adminData]="adminData" [orderItem]="orderItem" [cartItems]="cartItems" [invoiceno]="invoiceno"></app-invoice>
 			</div>
 			<div class="p-col-6 nonprint" >
 				<button pButton type="button" label="Print" (click)=" printing()" class="p-button-outlined p-mt-2 print">  </button>

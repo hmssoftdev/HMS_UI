@@ -39,11 +39,7 @@ export const routes: Routes = [
   },
   {
     path:'resetPassword',
-    component:ResetpaswordComponent,
-    data:{
-      title: 'Reset Password',
-      roles: roleConfig.authRoles.guest
-    }
+    component:ResetpaswordComponent
   },
   {
     path: 'invoice',
@@ -149,6 +145,7 @@ export const routes: Routes = [
 ];
 
 @NgModule({
+
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
   

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
+      import { Component, Input, OnInit, OnDestroy, Output, EventEmitter } from '@angular/core';
 import { scan } from 'rxjs/internal/operators';
 import { Admin } from '../../../models/admin';
 import { AdminService } from '../../../service/admin.service';
@@ -106,12 +106,17 @@ export class BillingComponent implements OnInit {
       }
         this.cartService.paymodeModeUpdate(pmObj).subscribe((resp) => {
           if(resp){
+            let status:OrderStatus={status : 4};
+            status.orderId = this.shoppingCart.id;
+            this.cartService.postOrderStatus(status).subscribe( ()=>{
+              this.msgService.add({ severity: 'help', summary: 'Table Release', detail: 'Order Processed', life: 2000 });
+            })
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
           
-          if(setRes.activeOrderFlow){ 
+          if(setRes.activeOrderFlow === 2 ){ 
             this.router.navigate(['/dish/order-list']);
-           
-          } else {
+          } 
+          else {
             const completeOrder = {
               orderId : pmObj.id,
               status : 4

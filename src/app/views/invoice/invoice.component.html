@@ -7,9 +7,11 @@
         </tr>
         <tr>
             <td>
-                <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice No: </strong> <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{myDate | date:'MMdd'}}</span>
+                <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice No: </strong> <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{invoiceno}}</span>
+                    <div *ngIf="logo"> 
                     <img width="20px"
                     class="p-text-right" style="margin-left:41px;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" height="15px"[src]="adminData.restaurentLogo" *ngIf="adminData?.restaurentLogo" [alt]="adminData.restaurentLogo">
+                </div>
                 </div>
                 <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:10px;font-weight:bold;">Date:</strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:8px;font-weight:bold;">
                     {{myDate | date:'MM/dd/yyyy'}}</span> &nbsp;<strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:10px;font-weight:bold;">Time:</strong> <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:7px;font-weight:bold;">{{todaysDataTime}}</span>
@@ -18,14 +20,14 @@
                 <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Name: </strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;"> {{adminData.businessName}}</span></div>
                 <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Address: </strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{adminData.address}}</span></div>
                 <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">City:</strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{adminData.city}}</span> <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">State: </strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{adminData.state}}</span></div>
-                <div class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">GSTIN No </strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{adminData.gst}}</span></div>
+                <div *ngIf="gst" class="p-col p-py-0"><strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">GSTIN No </strong><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{adminData.gst}}</span></div>
 
             </td>
 
         </tr>
         <tr>
             
-            <td>
+            <td *ngIf="set">
                 <div class="p-col p-py-0"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Customer Name</span> </div>
                 <div class="p-col p-py-0"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Name/Number: </span><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">-</span>  </div> </td>
         </tr>
@@ -82,11 +84,11 @@
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" colspan="4" class="p-text-right">additionalAmount</td>
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{cartItems.additionalAmount | currency :'INR'}}</td>
             </tr> 
-            <tr>
+            <tr *ngIf="gst">
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" colspan="4" class="p-text-right">CGST</td>
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{cartItems.gstTotal /2 | currency :'INR'}}</td>
             </tr>
-            <tr>
+            <tr *ngIf="gst">
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" colspan="4" class="p-text-right">SGST</td>
                 <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{cartItems.gstTotal /2 | currency :'INR'}}</td>
             </tr>
@@ -131,7 +133,7 @@
 
 
         </div>
-        <div class="p-col-3 text-right p-text-bold smTxt" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
+        <div *ngIf="sign" class="p-col-3 text-right p-text-bold smTxt" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
             For, XYZ <br>
             <img [src]="adminData.signature" *ngIf="adminData?.signature" width="100" [alt]="adminData.businessName">
             <br>

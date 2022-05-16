@@ -34,6 +34,7 @@ export class DatahistoryComponent implements OnInit {
   selectedOrderId: number = 0;
   selectedOrderTotal: number=0;
   number:number;
+  invoice:number;
   constructor(public message:MessageService,public adminService: AdminService,public auth:AuthService,
     private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
@@ -61,7 +62,9 @@ export class DatahistoryComponent implements OnInit {
        this.historydata =  this.historydata.filter(x=>x.deliveryOptionId==this.deliveryMode);
        this.loading  = false;
       // if(this.historydata.)
-      console.log(this.historydata,"payment")
+      console.log(this.historydata,"response")
+      // this.invoice = this.historydata.map(res=> res.invoiceNumber);
+
       return this.historydata;
     }
   )
@@ -77,6 +80,7 @@ deleteItem(n:number){
            this.getHistorydata();
   })
 }
+
 getPaymentMode(n:number){
   this.number=n;
   let strVal= '-';
@@ -98,6 +102,8 @@ fnhide(){
 fnViewOrder(data){
   console.log(data);
  this.selectedOrderId=data.id;
+ this.invoice=data.invoiceNumber;
+
 this.selectedOrderTotal = data.grossTotal;
 this.cartData=data;
 this.Dialog=true;

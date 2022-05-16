@@ -21,6 +21,7 @@ export class OrderStatusComponent implements OnInit {
   @Input() orderId: number;
   @Input() orderTotal: number;
   @Input() cartItems;
+  @Input() invoiceno:number; 
   @Output() fnhide:EventEmitter<any> = new EventEmitter();
   orderStatusList: OrderStatus[] = [];
   orderStatusData: OrderStatusData[] = [];

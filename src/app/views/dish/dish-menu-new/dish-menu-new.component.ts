@@ -96,6 +96,7 @@ export class DishMenuNewComponent implements OnInit {
   //  userdata:boolean=false;
    fstPayment:boolean=false
    droperror:boolean=false;
+   gst:boolean;
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -126,22 +127,14 @@ export class DishMenuNewComponent implements OnInit {
         this.both = d.billPrintAndKOT ? true : false;
         this.customer=d.customerDataForBilling ?true : false;
         this.fstPayment=d.paymentFirst ?true:false;
-        
+        this.gst=d.billWithGST?true:false;
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
     if(this.customer===true){
       this.droperror=true
     }
-  
-    // if(resp.billPrintAndKOT == 1){
-    //   this.show=true
-    //   this.both=false
-    // }
-    // else{
-    //   this.both=true
-    //   this.show=false
-    // }
+   
     })
     console.log(this.customer,"true")
    
@@ -208,8 +201,7 @@ export class DishMenuNewComponent implements OnInit {
   fnGetDishCategoy() {
     this.dishService.getDishCategory(this.sendId).subscribe((x: DishCategory[]) => {
       this.rawDishCategoyItems = x;
-
-      // const cat=x.copyWithin(0,1,2).map(res=> res.name)
+           // const cat=x.copyWithin(0,1,2).map(res=> res.name)
       // console.log(cat,"var category")
      
 
@@ -258,7 +250,9 @@ for (var _i = 0; _i < x.length; _i++) {
     //Add to cart Function
     fnAddtoCart(cartItem: Dish) {
       const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
-      console.log(this.cartService,"null")
+      if(this.gst==false){
+        selCategory.gstCompliance = 0
+      }
       this.cartService.addItem(cartItem, 1, selCategory.gstCompliance); 
       this.fnLoadCartData();
      
@@ -287,7 +281,6 @@ for (var _i = 0; _i < x.length; _i++) {
      this.selectedUsers = uContact[0].contact;
      const uData = {id:parseInt(selectedUserId)} 
      this.cartService.addUser(uData);
-    //  this.KOTEnabled=true
      this.droperror=false
   }
  
@@ -321,8 +314,11 @@ for (var _i = 0; _i < x.length; _i++) {
   // Cart 
   fnLoadCartData(){
     let count = 0; 
-   this.subCartItems = this.cartService.get().subscribe(resp =>
-    this.cartItems = resp); 
+   this.subCartItems = this.cartService.get().subscribe(resp =>{
+    this.cartItems = resp;
+    if(this.cartItems.userId !== undefined || this.usercombine !== undefined)
+    this.selectedUsers =  this.usercombine.filter(x=>x.id==this.cartItems.userId)[0].contact;
+   }); 
    if(this.cartItems.id){
      this.isKOTdone = true;
    } 
@@ -389,18 +385,14 @@ for (var _i = 0; _i < x.length; _i++) {
       }
     }
  // }) 
-  this.currentOrderId = null;
-  // this.cartItems.orderItems.map(oItm => {
-  //   oItm.kotPrinted = true; 
-  // })
-  // this.cartItems.userName=this.selectedUsers;
-  console.log(this.cartItems)
-  this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    console.log(resp,"cheching username")
+ this.currentOrderId = null 
+ this.cartItems.userName=this.selectedUsers;
+ if(this.cartItems.id === undefined){
+    this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+    console.log(this.cartItems,"Post")
 
     this.currentOrderId = resp.orderId;
     this.invoiceno =resp.invoice;
-    // console.log( this.currentOrderId,"Plus" this.invoiceno)
     this.cartService.addOrderId(this.currentOrderId);
     // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
@@ -411,6 +403,19 @@ for (var _i = 0; _i < x.length; _i++) {
     },1000)
    
   });
+ }
+  else{
+   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+    console.log(this.cartItems,"Put")
+
+    this.selectedPrintType = 'KOTPrintUI';
+    this.isKOTdone = true; 
+    setTimeout(() => {
+      window.print();
+     this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+    },1000)
+   })
+  }
     }
     fnDirectPayment(){
       this.fnLoadCartData(); 
@@ -465,25 +470,22 @@ for (var _i = 0; _i < x.length; _i++) {
     this.obs.unsubscribe();
   }
 
-  fnTableSelection(arr:any){ 
+  fnTableSelection(arr:any){
       const tblArr = arr.tblArr;
       this.KOTEnabled = true; 
       this.selectedTableNames = tblArr;
       if(arr.tblSelectionType != 'releaseTbl'){ 
       this.diningTableDialog = false;
       }
-
-      this.fnLoadCartData();
+            this.fnLoadCartData();
       // console.log(this.fnLoadCartData(),"Cart Item Check")
   }
   fnHideDiningTableM(event){ 
     if(!this.selectedTableNames || this.selectedTableNames.length == 0){
       this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
-    } 
-    
+    }     
     else {
       this.fnLoadCartData();
-      
     }
     // console.log(this.cartItems.orderItems,"Order check")
   }
