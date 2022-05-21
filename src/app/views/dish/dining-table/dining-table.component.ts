@@ -27,6 +27,7 @@ export class DiningTableComponent implements OnInit {
     this.selectedTableID = [];
     this.loadTabaleData();
   }
+  
 
   loadTabaleData() {
     this.tableSvc.getTableData().subscribe(res => {

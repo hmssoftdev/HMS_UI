@@ -28,7 +28,7 @@ export class BackdataComponent implements OnInit {
   selectedOrderTotal: number=0;
   Dialog: boolean;
   num:number;
-
+  invoice:number;
   constructor(private msgService:MessageService,
     private auth :AuthService,private user:UserService,
      private enumService:EnumService,private confirmationService: ConfirmationService) { }
@@ -109,6 +109,7 @@ export class BackdataComponent implements OnInit {
   fnViewOrder(data){
 
    this.selectedOrderId=data.id;
+   this.invoice=data.invoiceNumber;
   this.selectedOrderTotal = data.grossTotal;
   this.cartData=data;
   

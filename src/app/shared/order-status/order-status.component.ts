@@ -162,7 +162,7 @@ export class OrderStatusComponent implements OnInit {
           if(resp){
           this.msgService.add({ severity: 'success', summary: 'Successfully', detail: 'Completed Payment', life: 2000 });
           
-          if(setRes.activeOrderFlow){ 
+          if(setRes.activeOrderFlow ==2){ 
             this.router.navigate(['/dish/order-list']);
            
           } else {
