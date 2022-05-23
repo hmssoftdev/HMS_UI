@@ -109,7 +109,7 @@ export class BillingComponent implements OnInit {
             let status:OrderStatus={status : 4};
             status.orderId = this.shoppingCart.id;
             this.cartService.postOrderStatus(status).subscribe( ()=>{
-              this.msgService.add({ severity: 'help', summary: 'Table Release', detail: 'Order Processed', life: 2000 });
+              this.msgService.add({ severity: 'success', summary: 'Table Release', detail: 'Order Processed', life: 2000 });
             })
           this.msgService.add({ severity: 'success', summary: 'Successful', detail: 'Cart Item Posted', life: 3000 });
           

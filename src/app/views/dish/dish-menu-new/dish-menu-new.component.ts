@@ -257,6 +257,34 @@ for (var _i = 0; _i < x.length; _i++) {
       this.fnLoadCartData();
      
     }
+    addItem(item:Dish){
+      // const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.name === item.name)[0];
+      // if(this.gst==false){
+      //   selCategory.gstCompliance = 0
+      // }
+      this.cartService.addItem(item,1);
+      this.fnLoadCartData();
+      console.log(this.cartItems.orderItems,"value")
+    } 
+    removeItem(item){
+      // const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === item.mainCategoryId)[0];
+      // if(this.gst==false){
+      //   selCategory.gstCompliance = 0
+      // }
+      this.cartService.addItem(item,-1)
+      this.fnLoadCartData();
+    }
+    emptyCart(){
+      this.cartService.empty();
+      //this.subCartItems.unsubscribe();
+      this.fnLoadCartData();
+      this.selectedUser = null;
+      this.selectedUsers = '';
+      this.deliveryMode = '';
+      this.KOTEnabled = false;
+      this.isKOTdone = false;
+  
+    }
   fnDeliveryMode(s:string){
     this.deliveryMode = s;
     this.isKOTdone = false;
@@ -324,22 +352,7 @@ for (var _i = 0; _i < x.length; _i++) {
    } 
 
   }
-  addItem(item){
-    this.cartService.addItem(item,1);
-  } 
-  removeItem(item){
-    this.cartService.addItem(item,-1)
-  }
-  emptyCart(){
-    this.cartService.empty();
-    //this.subCartItems.unsubscribe();
-    this.selectedUser = null;
-    this.selectedUsers = '';
-    this.deliveryMode = '';
-    this.KOTEnabled = false;
-    this.isKOTdone = false;
 
-  }
   fnMakePayment(){
     this.fnLoadCartData();
     this.cartItems.userId = this.selectedUser; 
