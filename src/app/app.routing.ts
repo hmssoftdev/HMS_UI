@@ -19,6 +19,7 @@ import { SettingComponent } from './views/setting/setting.component';
 import { HelpComponent } from './views/help/help.component';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
 
+
 export const routes: Routes = [
   
   {
