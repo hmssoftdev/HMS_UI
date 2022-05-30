@@ -103,11 +103,27 @@ export class SidebarComponent implements OnInit {
         ]
       },
       {
+        name:'Captain Management',
+        routing:'/captain',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-user-plus',
+        title:'Report',
+        subItems: []
+      },
+      {
         name:'Report',
         routing:'/report',
         access:roleConfig.authRoles.admin,
         icon:'pi pi-inbox',
         title:'Report',
+        subItems: []
+      },
+      {
+        name:'Franchise',
+        routing:'/franchise',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-sitemap',
+        title:'Franchise',
         subItems: []
       },
       {

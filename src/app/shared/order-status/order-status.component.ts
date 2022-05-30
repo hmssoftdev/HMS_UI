@@ -62,6 +62,8 @@ export class OrderStatusComponent implements OnInit {
     this.orderSvc.getOrderItem(this.orderId).subscribe( (x) => {
       console.log(x);
       this.orderItem = x;
+      // const id=this.orderItem.map(res=> res.id)
+      // this.orderItem=this.orderItem.filter(res=> res.dishName === res.dishName)
       console.log(this.orderItem);
     })
     console.log(this.orderItem);

@@ -517,6 +517,7 @@
               type="button" 
               [disabled]="!KOTEnabled"
               label="KOT Print"
+              (dblclick)="clickedMeDouble()"
               (click)="fnKOTPrint($event)"
               class="p-button-sm p-button-info p-p-1"
               *ngIf="both==false && droperror==false"

@@ -18,6 +18,9 @@ import { LanguageComponent } from './views/language/language.component';
 import { SettingComponent } from './views/setting/setting.component';
 import { HelpComponent } from './views/help/help.component';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
+import { CaptainComponent } from './views/captain/captain.component';
+import { FranchiseComponent } from './views/franchise/franchise.component';
+
 
 export const routes: Routes = [
   
@@ -68,6 +71,23 @@ export const routes: Routes = [
     data: {
       roles: roleConfig.authRoles.admin
       },
+      canActivate:[AuthGuard]
+  },
+   {
+    path:'captain',
+    component:CaptainComponent,
+    data: {
+      roles: roleConfig.authRoles.admin
+      },
+      canActivate:[AuthGuard]
+  }, 
+  {
+    path:'franchise',
+    component:FranchiseComponent,
+    data: {
+      roles: roleConfig.authRoles.admin
+      },
+      canActivate:[AuthGuard]
   },
   {
     path:'language',
@@ -75,6 +95,7 @@ export const routes: Routes = [
     data: {
       roles: roleConfig.authRoles.admin
       },
+      canActivate:[AuthGuard]
   },
   {
     path:'setting',
@@ -82,6 +103,7 @@ export const routes: Routes = [
     data: {
       roles: roleConfig.authRoles.admin
       },
+      canActivate:[AuthGuard]
   },
   {
     path:'help',
@@ -89,6 +111,7 @@ export const routes: Routes = [
     data: {
       roles: roleConfig.authRoles.admin
       },
+       canActivate:[AuthGuard]
   },
  {
         path: 'hotel-admin',
@@ -103,7 +126,7 @@ export const routes: Routes = [
         path: 'updatepassword',
        component:UpdatepasswrodComponent,
        data: {
-        title: 'Register Page',
+        title: 'Update Password',
         roles: roleConfig.authRoles.guest
       }
      

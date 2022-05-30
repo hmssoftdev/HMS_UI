@@ -75,11 +75,19 @@ import { BackdataComponent } from './views/report/backdata/backdata.component';
 import { ServiceWorkerModule } from '@angular/service-worker';
 import { environment } from '../environments/environment';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
-
+import { CaptainComponent } from'./views/captain/captain.component'
+import { FranchiseComponent } from './views/franchise/franchise.component';
+// import {InputNumberModule} from 'primeng/inputnumber';
+// import {ButtonModule} from 'primeng/button';
+// import {MultiSelectModule} from 'primeng/multiselect';
+// import {InputTextModule} from 'primeng/inputtext';
 
 @NgModule({
   imports: [
     BrowserModule,
+    // InputTextModule,
+    // MultiSelectModule,
+    // ButtonModule,
     TabViewModule,
     BrowserAnimationsModule,
     HotelAdminModule,
@@ -103,6 +111,7 @@ import { ResetpaswordComponent } from './views/resetpasword/resetpasword.compone
     HttpClientModule,
     FormsModule,
     CalendarModule,
+    // InputNumberModule,
     MasterAdminModule, 
     TranslateModule.forRoot({
       loader: {
@@ -118,6 +127,8 @@ import { ResetpaswordComponent } from './views/resetpasword/resetpasword.compone
 })
   ],
   declarations: [
+    CaptainComponent,
+    FranchiseComponent,
     AppComponent, 
     ReportComponent,
     ResetpaswordComponent,
