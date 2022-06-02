@@ -119,6 +119,14 @@ export class SidebarComponent implements OnInit {
         subItems: []
       },
       {
+        name:'Franchise',
+        routing:'/franchise',
+        access:roleConfig.authRoles.admin,
+        icon:'pi pi-sitemap',
+        title:'Franchise',
+        subItems: []
+      },
+      {
         name:'Setting',
         routing:'/setting',
         access:roleConfig.authRoles.admin,

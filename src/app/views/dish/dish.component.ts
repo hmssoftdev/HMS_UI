@@ -8,7 +8,7 @@ import { CommonMethodsService } from '../../service/common-methods.service';
 import { Subscription } from 'rxjs';
 import { AuthService } from '../../service/auth.service';
 import { TranslateService } from '@ngx-translate/core';
-
+import * as FileSaver from 'file-saver';
 import { UserService } from '../../service/user.service';
 import { setting } from '../../models/setting';
 import { CommonService } from '../../service/common.service';
@@ -42,6 +42,9 @@ export class DishComponent implements OnInit {
   selectedFile: File;
   lang:any;
   sett:setting
+  exportColumns: any[];
+  cols:any[]
+  colss:any[]
   constructor(public dishSvc: DishService, 
     private confirmationService: ConfirmationService, 
     private msgService: MessageService,
@@ -60,8 +63,16 @@ this.userservice.getusersetting(this.authService.userData().adminId).subscribe(r
 this.commsett.setLangData(res.language);
 this.translate.use(res.language);
 })
-
-
+this.cols = [
+  { field: 'name', header: 'Name' },
+  // { field: 'imageUrl', header: 'Image' },
+  { field: 'halfPrice', header: 'Half Price' },
+ { field: 'fullPrice', header: 'Full Price' },
+ { field: 'dishCategory', header: 'Category' },
+ { field: 'timeForCook', header: 'Time For Cook' },
+ { field: 'status', header: 'Status' },
+];
+this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
 
     // this.commsett.obsSetData.subscribe(x=>{
     //   this.translate.use(x.language);
@@ -87,7 +98,31 @@ this.translate.use(res.language);
     ];
     this.fnGetDishCategoy();
   }
-
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.dishList);
+            doc.save('Menu.pdf');
+        })
+    })
+}
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Category");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_'  + EXCEL_EXTENSION);
+}
   receivedValue($event){
     this.selectedUser = $event;
   }
@@ -97,7 +132,18 @@ this.translate.use(res.language);
     this.subDish = this.dishSvc.getList(this.sendId).subscribe(res => {
       this.dishList = res; 
     this.authService.showLoader = false;
-
+    this.colss=this.dishList.map(res=> ({name:res.name, halfPrice:res.halfPrice,fullPrice:res.fullPrice,
+      dishCategory:res.categories,time:res.timeForCook,status:res.status
+    }))
+    // this.cols = [
+    //   { field: 'name', header: 'Name' },
+    //   // { field: 'imageUrl', header: 'Image' },
+    //   { field: 'halfPrice', header: 'Half Price' },
+    //  { field: 'fullPrice', header: 'Full Price' },
+    //  { field: 'dishCategory', header: 'Category' },
+    //  { field: 'timeForCook', header: 'Time For Cook' },
+    //  { field: 'status', header: 'Status' },
+    // ];
     });
   }
   files;

@@ -10,7 +10,7 @@ import { AuthService } from '../../service/auth.service';
 import { CartService } from '../../service/cart.service';
 import { EnumService } from '../../service/enum.service';
 import { UserService } from '../../service/user.service';
-
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-datahistory',
   templateUrl: './datahistory.component.html',
@@ -35,10 +35,23 @@ export class DatahistoryComponent implements OnInit {
   selectedOrderTotal: number=0;
   number:number;
   invoice:number;
+  cols:any[];
+  exportColumns:any[];
+  colss:any[]
   constructor(public message:MessageService,public adminService: AdminService,public auth:AuthService,
     private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    this.cols = [
+      { field: 'userName', header: 'name' },
+      { field: 'userMobileNumber', header: 'contact' },
+      { field: 'itemCount', header: 'ItemCount' },
+     { field: 'grossTotal', header: 'Amount' },
+
+   
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+  
     this.getHistorydata();
     
     this.name=this.auth.userData().name;
@@ -48,6 +61,7 @@ export class DatahistoryComponent implements OnInit {
     // console.log(this.name,"name");
 
   }
+
   getHistorydata(){
     let maxnewDate = moment(this.maxDate).format('YYYY-MM-DD').toString();
     let minnewDate = moment(this.minDate).format('YYYY-MM-DD').toString();
@@ -61,15 +75,48 @@ export class DatahistoryComponent implements OnInit {
 
        this.historydata =  this.historydata.filter(x=>x.deliveryOptionId==this.deliveryMode);
        this.loading  = false;
+     
       // if(this.historydata.)
-      console.log(this.historydata,"response")
+      // console.log(this.historydata,"response")
       // this.invoice = this.historydata.map(res=> res.invoiceNumber);
-
+      this.colss=   this.historydata.map(res=> 
+        ({
+          userName:res.userName,
+          userMobileNumber:res.userMobileNumber,
+          itemCount:res.itemCount,
+          grossTotal:res.grossTotal,
+          mode:this.getPaymentMode(res.paymentMode)
+        }))
       return this.historydata;
     }
   )
   this.enumService.getPaymentMode(this.id);
   }
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.historydata);
+            doc.save('Data_list.pdf');
+        })
+    })
+}
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "BillCategory");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_' + EXCEL_EXTENSION);
+}
 getDeliveryMode(id:number) : string{
  return this.enumService.getDeliveryOptStr(id);
 }

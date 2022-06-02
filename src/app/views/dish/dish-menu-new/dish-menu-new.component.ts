@@ -84,7 +84,7 @@ export class DishMenuNewComponent implements OnInit {
  selectedTableidd : DiningTableComponent;
   selectedTableid:Array<any> = [];
     userLists:User[] = [];
-  usercimbine: string[];
+  // usercimbine: string[];
   usercombine:  Array<any>;
   image:boolean=true;
   lang:string;
@@ -97,6 +97,7 @@ export class DishMenuNewComponent implements OnInit {
    fstPayment:boolean=false
    droperror:boolean=false;
    gst:boolean;
+  //  customLabel:string="KOT Print"
   constructor(
     private comset:CommonService,
     private dishService: DishService,
@@ -345,7 +346,7 @@ for (var _i = 0; _i < x.length; _i++) {
    this.subCartItems = this.cartService.get().subscribe(resp =>{
     this.cartItems = resp;
     if(this.cartItems.userId !== undefined || this.usercombine !== undefined)
-    this.selectedUsers =  this.usercombine.filter(x=>x.id==this.cartItems.userId)[0].contact;
+    this.selectedUsers =  this.usercombine.filter(x=>x.id==this.cartItems.userId)[0]?.contact;
    }); 
    if(this.cartItems.id){
      this.isKOTdone = true;
@@ -392,18 +393,22 @@ for (var _i = 0; _i < x.length; _i++) {
         case 1:
          this.cartItems.deliveryMode = "Dining"; break;
         case 2:
-            this.cartItems.deliveryMode = "Home Delivery"; break;
+            this.cartItems.deliveryMode = "Home Delivery";
+            
+            
+            break;
           case 3:
             this.cartItems.deliveryMode = "Takeaway"; break;
       }
     }
+ 
  // }) 
  this.currentOrderId = null 
- this.cartItems.userName=this.selectedUsers;
+//  this.cartItems.userName=this.selectedUsers;
  if(this.cartItems.id === undefined){
     this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     console.log(this.cartItems,"Post")
-
+      
     this.currentOrderId = resp.orderId;
     this.invoiceno =resp.invoice;
     this.cartService.addOrderId(this.currentOrderId);

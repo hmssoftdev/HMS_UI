@@ -4,14 +4,14 @@ import { TranslateLoader, TranslateModule } from '@ngx-translate/core';
 import { HttpClient } from '@angular/common/http';
 import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ResetpaswordComponent } from './resetpasword/resetpasword.component';
-
+// import { CaptainComponent } from './captain/captain.component';
+import { SharedModule} from'../shared/shared.module';
+// import { FranchiseComponent } from './franchise/franchise.component'
 
 @NgModule({
-  declarations: [
-    ResetpaswordComponent
-  ],
   imports: [
     CommonModule,
+    SharedModule, 
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -20,6 +20,12 @@ import { ResetpaswordComponent } from './resetpasword/resetpasword.component';
       }
     })
   ],
+  declarations: [
+    ResetpaswordComponent,
+    // FranchiseComponent,
+    // CaptainComponent
+  ],
+
   exports:[TranslateModule] 
 })
 export class ViewsModule { }

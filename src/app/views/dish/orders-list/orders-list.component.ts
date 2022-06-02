@@ -8,7 +8,7 @@ import { MessageService } from 'primeng/api';
 import { AuthService } from '../../../service/auth.service';
 
 import { Historydata } from '../../../models/historydata';
-
+import * as FileSaver from 'file-saver';
 import { TranslateService } from "@ngx-translate/core";
 import { LanguageComponent } from '../../language/language.component';
 import { UserService } from '../../../service/user.service';
@@ -33,6 +33,9 @@ export class OrdersListComponent implements OnInit {
   lang:any;
   data:setting;
   show=true;
+  cols:any[];
+  exportColumns:any[];
+  colss:any[]
   constructor(
     private dishSvc: DishService,
     private orderService: CartService,
@@ -65,14 +68,50 @@ export class OrdersListComponent implements OnInit {
     // this.user.langdata.subscribe((x:any)=>{
     //   this.translate.use(x);
     // })
+    this.cols = [
+      { field: 'userName', header: 'Name' },
+      { field: 'userMobileNumber', header: 'Contact' },
+      { field: 'grossTotal', header: 'Total' },
+     { field: 'status', header: 'Status' },
+
+   
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
     
   }
   loadData() {
     this.orderService.getOrder().subscribe(res => {
       this.orderList = res;
-    
+     this.colss=this.orderList.map(res=>
+      ({
+       userName:res.userName,userMobileNumebr:res.userMobileNumber,total:res.grossTotal,status:
+       
+      this.getstatus(res.status)
+     }) );
     this.authService.showLoader = false;
     });
+  }
+  getstatus(num:string){
+  
+    let strVal= '-';
+    switch(num){
+      case '1':
+        strVal = 'Ordered';
+        break;
+      case '2':
+        strVal = 'Processing';
+        break; 
+     case '3':
+        strVal = 'Shipped';
+        break;  
+          case'4':
+        strVal = 'Delivered';
+        break; 
+         case '10':
+        strVal = 'Cancelled';
+        break;   
+    }
+    return strVal;
   }
   fnViewOrder(order: Historydata){
 
@@ -81,6 +120,32 @@ export class OrdersListComponent implements OnInit {
     this.cartData = order;
     this.orderStatusDialog =true;
   }
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.orderList);
+            doc.save('Order_list.pdf');
+        })
+    })
+}
+
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Order");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_' + EXCEL_EXTENSION);
+}
   fnProcessing(order: OrderList){ 
     this.processStatus(order.id, 2);
   }
