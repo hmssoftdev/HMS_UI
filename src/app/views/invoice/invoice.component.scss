@@ -4,7 +4,12 @@ table.tblInvoice {
     width: 100%;
     border-collapse:collapse;
 }
- 
+ @media all and (max-width:425px){
+     .invoice{
+        font-size: 6px!important;
+        color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;
+     }
+ }
 table.tblInvoice tr th,table.tblInvoice tr td {
     border: 1px solid #303030;
     padding: 5px;

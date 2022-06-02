@@ -37,7 +37,7 @@ export class LoginComponent implements OnInit {
   }
 
   keypress(e: KeyboardEvent){
-    console.log(e.key)
+    console.log(e.key,"check")
     if(e.key === 'Enter'){
       this.loginUser();
     }

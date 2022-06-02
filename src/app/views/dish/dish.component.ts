@@ -112,7 +112,7 @@ exportExcel() {
       const worksheet = xlsx.utils.json_to_sheet(this.colss);
       const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
-      this.saveAsExcelFile(excelBuffer, "Category");
+      this.saveAsExcelFile(excelBuffer, "Dish");
   });
 }
 saveAsExcelFile(buffer: any, Category: string): void {
