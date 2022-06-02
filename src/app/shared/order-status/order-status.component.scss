@@ -42,6 +42,59 @@
 .dashedBorderT{
     border-top: 1px dashed #dcdcdc;
 }
+@media all and(max-width:425px){
+    :host::ng-deep{
+        .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+            padding: 0px 0.1rem !important;
+            font-size: 0.8rem;
+        }
+        .p-timeline.p-timeline-vertical .p-timeline-event-content, .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+            padding: 0 0.1rem !important;
+            font-size: 0.8rem;
+        }
+        .p-timeline-event-opposite {
+            font-size: 0.5rem;
+            padding: 0 0.8rem !important;
+        }
+    }
+  
+}
+@media all and(max-width:768px){
+    :host::ng-deep{
+        .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+            padding: 0px 0.1rem !important;
+          
+        }
+        .p-timeline.p-timeline-vertical .p-timeline-event-content, .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+            padding: 0 0.1rem !important;
+       
+        }
+        .p-timeline-event-opposite {
+            
+            padding: 0 0.8rem !important;
+        }
+    }
+  
+}
+@media all and(max-width:320px){
+    :host::ng-deep{
+        .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+         
+            font-size: 0.5rem;
+        }
+        .p-timeline.p-timeline-vertical .p-timeline-event-content, .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+    
+            font-size: 0.5rem;
+        }
+        .p-timeline-event-opposite {
+            font-size: 0.5rem;
+
+        }
+    }
+  
+}
+
+
 @media print {
  .noprint{
      display: none;

@@ -2,7 +2,7 @@ import { Component, OnInit } from "@angular/core";
 import { ConfirmationService, MessageService } from "primeng/api";
 import { TableService } from "../../../service/table.service";
 import { Hotel } from "../../../models/tabelConfiguration.model";
-
+import * as FileSaver from 'file-saver';
 import { AuthService } from "../../../service/auth.service";
 import { TranslateService } from "@ngx-translate/core";
 @Component({
@@ -18,6 +18,9 @@ export class TableConfigurationComponent implements OnInit {
     tableDialog: boolean;
     submitted: boolean;
     selectedTables: Hotel[];
+    cols:any[];
+     exportColumns:any[];
+      colss:any[]
     constructor(public tableSvc: TableService,
         private msgService: MessageService,
         private confirmationService: ConfirmationService,
@@ -27,7 +30,19 @@ export class TableConfigurationComponent implements OnInit {
     // translate.setDefaultLang('english');
      }
     ngOnInit(): void {
-        
+
+         this.cols = [
+      { field: 'name', header: 'Name' },
+      { field: 'seat', header: 'Seat' },
+      { field: 'shape', header: 'Shape' },
+     { field: 'isAc', header: 'Type' },
+
+      
+
+   
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+
         this.authService.showLoader = true;
         this.hallType = [{ label: 'AC', value: true },
         { label: 'Non AC', value: false }];
@@ -40,7 +55,7 @@ export class TableConfigurationComponent implements OnInit {
         this.tableSvc.getTableData().subscribe(res => {
             this.tableList = res;
             this.authService.showLoader = false;
-
+            this.colss=this.tableList.map(x=>({Name:x.name,Seat:x.seat,Shape:x.shape,Type:x.isAc=== true?'AC' :'Non AC'}))
         })
     }
 
@@ -64,6 +79,32 @@ export class TableConfigurationComponent implements OnInit {
         this.tableDialog = false;
     }
 
+    exportPdf() {
+        import("jspdf").then(jsPDF => {
+            import("jspdf-autotable").then(x => {
+                const doc = new jsPDF.default();
+                (doc as any).autoTable(this.exportColumns, this.tableList);
+                doc.save('Table_list.pdf');
+            })
+        })
+    }
+    
+    exportExcel() {
+      import("xlsx").then(xlsx => {
+          const worksheet = xlsx.utils.json_to_sheet(this.colss);
+          const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+          const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+          this.saveAsExcelFile(excelBuffer, "Table");
+      });
+    }
+    saveAsExcelFile(buffer: any, Category: string): void {
+      let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+      let EXCEL_EXTENSION = '.xlsx';
+      const data: Blob = new Blob([buffer], {
+          type: EXCEL_TYPE
+      });
+      FileSaver.saveAs(data, Category + '_List_' + EXCEL_EXTENSION);
+    }
     deleteTable(table: Hotel) {
         debugger
         this.confirmationService.confirm({

@@ -73,6 +73,7 @@ export class OrdersListComponent implements OnInit {
       { field: 'userMobileNumber', header: 'Contact' },
       { field: 'grossTotal', header: 'Total' },
      { field: 'status', header: 'Status' },
+      
 
    
   ];
@@ -84,30 +85,28 @@ export class OrdersListComponent implements OnInit {
       this.orderList = res;
      this.colss=this.orderList.map(res=>
       ({
-       userName:res.userName,userMobileNumebr:res.userMobileNumber,total:res.grossTotal,status:
-       
-      this.getstatus(res.status)
+       Name:res.userName,Contact:res.userMobileNumber,Total:res.grossTotal,
+       Status:this.getstatus(parseInt(res.status))
      }) );
     this.authService.showLoader = false;
     });
   }
-  getstatus(num:string){
-  
-    let strVal= '-';
+  getstatus(num:Number){
+    var strVal= '-';
     switch(num){
-      case '1':
+      case 1:
         strVal = 'Ordered';
         break;
-      case '2':
+      case 2:
         strVal = 'Processing';
         break; 
-     case '3':
+     case 3:
         strVal = 'Shipped';
         break;  
-          case'4':
+          case 4:
         strVal = 'Delivered';
-        break; 
-         case '10':
+        break;
+         case 10:
         strVal = 'Cancelled';
         break;   
     }
