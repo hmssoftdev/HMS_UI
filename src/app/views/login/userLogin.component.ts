@@ -44,7 +44,7 @@ export class LoginComponent implements OnInit {
   }
   loginUser(){  
     this.authService.loginUser(this.users).subscribe(
-      (resp:any)=>{
+      (resp:any)=>{ 
         this.storage.setItem('HMSToken', resp.token); 
         this.storage.setItem('HMSUserData',JSON.stringify(resp));
         this.authService.uLoggedInSubject$.next(true);
@@ -53,6 +53,9 @@ export class LoginComponent implements OnInit {
 
 
         switch(resp.userType){
+          case 0:
+          this.router.navigate(['/dish']);
+          break;
           case 1:
           this.router.navigate(['/admin-setting']);
           // window.location.reload();

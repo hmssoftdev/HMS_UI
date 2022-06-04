@@ -405,7 +405,8 @@ for (var _i = 0; _i < x.length; _i++) {
  // }) 
  this.currentOrderId = null 
 //  this.cartItems.userName=this.selectedUsers;
- if(this.cartItems.id === undefined){
+ if(this.cartItems.id === undefined)
+ {
     this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
     console.log(this.cartItems,"Post")
       
@@ -419,21 +420,115 @@ for (var _i = 0; _i < x.length; _i++) {
       window.print();
      this.deliveryMode === 'Dining' ? this.emptyCart() : '';
     },1000)
-   
+
   });
  }
-  else{
-   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
+  this.cartService.PutOrder(this.cartItems).subscribe(res=>{
     console.log(this.cartItems,"Put")
 
     this.selectedPrintType = 'KOTPrintUI';
     this.isKOTdone = true; 
     setTimeout(() => {
       window.print();
+      // this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
      this.deliveryMode === 'Dining' ? this.emptyCart() : '';
     },1000)
    })
+}
+
+else{
+  if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
+     // && this.cartItems.id == undefined
+    this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+      console.log(this.cartItems,"Post")
+        
+      this.currentOrderId = resp.orderId;
+      this.invoiceno =resp.invoice;
+      this.cartService.addOrderId(this.currentOrderId);
+      // this.KOTitems = this.cartItems;
+      this.selectedPrintType = 'KOTPrintUI';
+      this.isKOTdone = true; 
+      setTimeout(() => {
+        window.print();
+      //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+      },1000)
+  
+    });
   }
+  // else if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
+  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+  //     console.log(this.cartItems,"Put")
+  //     this.selectedPrintType = 'KOTPrintUI';
+  //     this.isKOTdone = true; 
+  //    })
+  // }
+  // else if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
+  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+  //     console.log(this.cartItems,"Put")
+  
+  //     this.selectedPrintType = 'KOTPrintUI';
+  //     this.isKOTdone = true; 
+  //     // setTimeout(() => {
+  //     //   window.print();
+  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+  //     // },1000)
+  //    })
+  // }
+  // if(this.deliveryMode === 'Dining' && this.cartItems.id == undefined){
+  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+  //     console.log(this.cartItems,"Put")
+  
+  //     this.selectedPrintType = 'KOTPrintUI';
+  //     this.isKOTdone = true; 
+  //     // setTimeout(() => {
+  //     //   window.print();
+  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+  //     // },1000)
+  //    })
+  // } 
+  //  if(this.deliveryMode !== 'Dining' && this.cartItems.id !== undefined){
+  //   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+  //     console.log(this.cartItems,"Post")
+        
+  //     this.currentOrderId = resp.orderId;
+  //     this.invoiceno =resp.invoice;
+  //     this.cartService.addOrderId(this.currentOrderId);
+  //     // this.KOTitems = this.cartItems;
+  //     this.selectedPrintType = 'KOTPrintUI';
+  //     this.isKOTdone = true; 
+  //     setTimeout(() => {
+  //       window.print();
+  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+  //     },1000)
+  
+  //   });
+  // }
+}
+
+
+  // else{
+  //  this.cartService.postOrder(this.cartItems).subscribe(res=>{
+  //   console.log(this.cartItems,"Put")
+
+  //   this.selectedPrintType = 'KOTPrintUI';
+  //   this.isKOTdone = true; 
+  //   setTimeout(() => {
+  //     window.print();
+  //    this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+  //   },1000)
+  //  })
+  // }
+  // this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+  //       console.log(this.cartItems,"Put")
+    
+  //       this.selectedPrintType = 'KOTPrintUI';
+  //       this.isKOTdone = true; 
+  //       // setTimeout(() => {
+  //       //   window.print();
+  //       //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+  //       // },1000)
+  //      })
     }
     fnDirectPayment(){
       this.fnLoadCartData(); 

@@ -104,7 +104,7 @@
 <p-dialog [(visible)]="tableDialog" [style]="{width: '40vw'}" header="{{'Table Configuration' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
         <form name="userForm" #tableForm="ngForm" novalidate (ngSubmit)="saveTableData(tableForm)">
-            <div class="p-fluid p-formgrid p-grid">
+            <div class="p-fluid p-formgrid p-grid">                     
                 <div class="p-field p-col-6">
                     <label for="tableName">{{'Table Name' | translate}}</label>
                     <input type="text" #tableName="ngModel" name="tableName" class="p-inputtext-sm" pInputText
