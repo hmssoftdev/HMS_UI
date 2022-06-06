@@ -31,7 +31,7 @@ const routes: Routes = [
   component: TableConfigurationComponent,
   data: {
     title: 'Table Configuration',
-    roles: roleConfig.authRoles.guest
+    roles: roleConfig.authRoles.admin
   },
   canActivate:[AuthGuard]
 }

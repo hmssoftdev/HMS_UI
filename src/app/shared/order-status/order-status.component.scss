@@ -92,6 +92,23 @@
         }
     }
   
+}@media all and(max-width:375px){
+    :host::ng-deep{
+        .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+         
+            font-size: 0.5rem;
+            padding: 0 0.2rem!important;
+        }
+        .p-timeline.p-timeline-vertical .p-timeline-event-content, .p-timeline.p-timeline-vertical .p-timeline-event-opposite {
+    
+            font-size: 0.5rem;
+        }
+        .p-timeline-event-opposite {
+            font-size: 0.5rem;
+
+        }
+    }
+  
 }
 
 

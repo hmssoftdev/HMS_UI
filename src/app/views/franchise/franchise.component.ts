@@ -17,6 +17,7 @@ modal:boolean;
  cityFilter: [];
  franch:franchis;
  franchise:franchis;
+ loading:boolean=true;
   constructor( public commonService:CommonService,public capnfran:CapnfranService,private messageServie: MessageService,
     public auth:AuthService) { }
 
@@ -48,6 +49,8 @@ modal:boolean;
   frachiseget(){
     this.capnfran.GetFranchise(this.auth.userData().adminId).subscribe(x=>{
       this.franchise=x
+      this.loading=false
+      return this.franchise;
     })
   }
    
@@ -62,8 +65,10 @@ modal:boolean;
       this.messageServie.add({severity:'info',
      summary:'SuccessFully Added', detail: 'Franchise',life: 2000});
       }
+      this.frachiseget()
     })
     this.modal=false
+
   }
   onStateChange(){ 
     // this.cityFilter = this.cities.filter((city) => city.stateId === this.admin.stateId);

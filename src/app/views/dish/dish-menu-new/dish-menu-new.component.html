@@ -312,7 +312,7 @@
           <span *ngIf="userData.userType === 3">{{ userData.userName }}</span>
           <p-dropdown
             (onChange)="userSelection(selectedUser)"
-            *ngIf="userData.userType === 1 || userData.userType === 2"
+            *ngIf="userData.userType !== 4 || userData.userType !==3 "
             class="p-mr-4 p-inputtext-sm p-mb-2"
             id="userName"
             [options]="usercombine"
@@ -327,7 +327,7 @@
           >
           </p-dropdown>
          <button
-            *ngIf="userData.userType === 1 || userData.userType === 2"
+            *ngIf="userData.userType  !== 4 || userData.userType !==3"
             pButton
             pRipple
             label=""
