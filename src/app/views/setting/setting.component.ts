@@ -219,9 +219,9 @@ this.comset.Obslangauge.subscribe(x=>{
     if (this.setting.id==0)
      this.user.postusersetting(this.setting).subscribe(
         x => {
-          this.msgs.push({severity:'info', summary:'Info Message', detail:'PrimeNG rocks',life:2000});
+          // this.msgs.add({severity:'info', summary:'Info Message', detail:'PrimeNG rocks',life:2000});
           console.log(x);
-          window.setTimeout('alert("SuccessFully Updated Setting");window.close();',1000);
+          // window.setTimeout('alert("SuccessFully Updated Setting");window.close();',1000);
           // alert("SuccessFully Updated Setting")
           this.messageService.add({
             severity: 'success',

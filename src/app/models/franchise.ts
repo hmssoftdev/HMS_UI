@@ -21,4 +21,6 @@ export interface franchis {
      address?:string,
      franchiseAdminId?: number
      result?:string
+     contact?:number;
+     name?:string;
 }
