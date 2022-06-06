@@ -36,6 +36,7 @@ export class OrdersListComponent implements OnInit {
   cols:any[];
   exportColumns:any[];
   colss:any[]
+  excelcolss:any[]
   constructor(
     private dishSvc: DishService,
     private orderService: CartService,
@@ -77,17 +78,34 @@ export class OrdersListComponent implements OnInit {
 
    
   ];
-  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+  this.exportColumns = this.cols.map((col) => 
+     {
+       let obj1 = { title: col.header,
+        dataKey: col.field }
+    //    if (col.header == 'Status'){
+    //     obj1.dataKey =col.field //this.getstatus(parseInt(col.field))
+        
+    //  }
+     return obj1;
+   } );
     
   }
   loadData() {
     this.orderService.getOrder().subscribe(res => {
       this.orderList = res;
+
      this.colss=this.orderList.map(res=>
-      ({
-       Name:res.userName,Contact:res.userMobileNumber,Total:res.grossTotal,
+       {
+     
+      let obj2={userName:res.userName,userMobileNumber:res.userMobileNumber,grossTotal:res.grossTotal,
+       status:this.getstatus(parseInt(res.status))
+      }
+      return obj2;
+     } );
+     this.excelcolss=this.orderList.map(res=>({
+      Name:res.userName,Number:res.userMobileNumber,Total:res.grossTotal,
        Status:this.getstatus(parseInt(res.status))
-     }) );
+     }))
     this.authService.showLoader = false;
     });
   }
@@ -120,10 +138,11 @@ export class OrdersListComponent implements OnInit {
     this.orderStatusDialog =true;
   }
   exportPdf() {
+    console.log(this.orderList,"order")
     import("jspdf").then(jsPDF => {
         import("jspdf-autotable").then(x => {
             const doc = new jsPDF.default();
-            (doc as any).autoTable(this.exportColumns, this.orderList);
+            (doc as any).autoTable(this.exportColumns, this.colss);
             doc.save('Order_list.pdf');
         })
     })
@@ -131,7 +150,7 @@ export class OrdersListComponent implements OnInit {
 
 exportExcel() {
   import("xlsx").then(xlsx => {
-      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const worksheet = xlsx.utils.json_to_sheet(this.excelcolss);
       const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
       const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
       this.saveAsExcelFile(excelBuffer, "Order");

@@ -85,9 +85,7 @@ import { FranchiseComponent } from './views/franchise/franchise.component';
 @NgModule({
   imports: [
     BrowserModule,
-    // InputTextModule,
-    // MultiSelectModule,
-    // ButtonModule,
+    FormsModule,
     TabViewModule,
     BrowserAnimationsModule,
     HotelAdminModule,
@@ -111,7 +109,6 @@ import { FranchiseComponent } from './views/franchise/franchise.component';
     HttpClientModule,
     FormsModule,
     CalendarModule,
-    // InputNumberModule,
     MasterAdminModule, 
     TranslateModule.forRoot({
       loader: {

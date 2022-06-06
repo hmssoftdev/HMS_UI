@@ -6,33 +6,13 @@
     
     <app-sidebar-new *ngIf="authService.loggedIn()"></app-sidebar-new>
    
-    <!-- Main content -->
-    <main class="main">
-        <!-- Breadcrumb -->
-        <!-- breaking change 'cui-breadcrumb' -->
-        <!-- <div class="breacrumbWrap p-grid" *ngIf="authService.loggedIn()">
-            <div class="p-col-6">
-                    <h4 class="p-my-0">{{authService.pageHeadingSubject$ | async}}</h4>
-            </div>
-            <div class="p-col-6 p-text-right">
-                <a class="btn">
-                    <i class="pi pi-user"></i> &nbsp;Logged as: <strong>{{authService.userData().name}}</strong></a>
 
-            </div>
-        </div> -->
-        
-        <!-- <cui-breadcrumb *ngIf="authService.loggedIn()"> 
-            <li class="breadcrumb-menu d-md-down-none">
-                <div class="btn-group" role="group" aria-label="Button group with nested dropdown">
-                    <a class="btn" href="#"><i class="icon-speech"></i></a> 
-                </div>
-            </li>
-        </cui-breadcrumb> -->
+    <main class="main">
         <div class="container-fluid">
             <router-outlet></router-outlet>
             
         </div>
-        <!-- /.container-fluid -->
+
     </main>
     
 </div>
@@ -46,6 +26,6 @@
     <p-dialog [(visible)]="authService.showLoader" [style]="{width: '15%'}" [closable]="false" [modal]="true">
             <div style="text-align: center">
                 <p-progressSpinner [style]="{width: '50px'}" styleClass="custom-spinner" strokeWidth="8" fill="#EEEEEE" animationDuration=".5s"></p-progressSpinner>    
-              </div>
+     </div>
     </p-dialog>
 </div>
