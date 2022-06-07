@@ -19,5 +19,7 @@ export class ApiConfig {
     public static ORDER = 'Order';
     public static INVOICE = 'Invoice'
     public static USERSETTING = 'UserSetting';
-    public static FRANCHISE = 'Franchise'
+    public static FRANCHISE = 'Franchise';
+    public static CAPTAIN='Captain'
+    // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Captain
 }

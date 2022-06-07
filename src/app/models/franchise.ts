@@ -24,3 +24,53 @@ export interface franchis {
      contact?:number;
      name?:string;
 }
+export interface captain{
+    id?:number,
+    isActive?:boolean,
+    createdOn?:number,
+    createdBy?:number,
+    updatedOn?:number,
+    updatedBy?:number,
+    result?:string,
+    user?:{
+      id?:number,
+      isActive?:boolean,
+      createdOn?:string,
+      createdBy?:number,
+      updatedOn?:string,
+      updatedBy?:number,
+      name?:string,
+      userType?: number,
+      userName?:string,
+      email?:string,
+      contact?:string,
+      password?:string,
+      address?:string,
+      cityId?:number,
+      stateId?:number,
+      city?:string,
+      state?:string,
+      pinCode?:string,
+      resetPasswordLink?:string,
+      isEmailVerified?:string,
+      isFranchiseAdmin?:number,
+      iscaptain?:number
+    },
+    tableList?: [
+      {
+        id?:number,
+        isActive?:boolean,
+        createdOn?: string,
+        createdBy?:number,
+        updatedOn?:string,
+        updatedBy?:string,
+        name?:string,
+        seat?:number,
+        isAc?:boolean,
+        shape?: string,
+        barcodeTest?: string,
+        isBooked?: boolean,
+        captainId?: number
+      }
+    ]
+}
