@@ -62,24 +62,25 @@
                 </tr>
             </ng-template>
         </p-table>
+        <p-toast position="bottom-right"></p-toast>
     </div>
 
 
 
 <p-dialog [(visible)]="captainDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="{{'Add Captain' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
-        <form name="categoryForm" #f="ngForm" validate ><!--#f="ngForm" novalidate (ngSubmit)="onSubmit(f)"-->
+        <form name="categoryForm" #captainForm="ngForm" (ngSubmit)="onSubmit(captainForm)" validate ><!--#f="ngForm" novalidate (ngSubmit)="onSubmit(f)"-->
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field col-6">
                     <label for="userName">Username</label>
-                    <input type="text" name="userName" class="p-inputtext-sm" pInputText id="userName"
+                    <input type="text" [(ngModel)]="captain.user.userName" name="userName" class="p-inputtext-sm" pInputText id="userName"
                         placeholder="userName" required autofocus />
                         <!-- <label for="userName">Username</label>
                         <input pInputText [(ngModel)]="value1" type="text">  -->
                 </div>
                 <div class="p-field col-6">
                     <label for="email">Password</label>
-                    <input type="password"   name="email" class="p-inputtext-sm" pInputText id="email"
+                    <input type="password" [(ngModel)]="captain.user.password"  name="email" class="p-inputtext-sm" pInputText id="email"
                          placeholder="Email" required autofocus /> 
                     <!-- <div *ngIf="email.touched && email.invalid && userForm.submitted"> <small class="p-error"
                             *ngIf="email.errors.required">User email is required.</small></div> -->
@@ -91,8 +92,8 @@
                 </div>
                 <div class="p-field col-6">
                     <label for="contact">Contact</label>
-                    <input pInputText name="contact"  mode="decimal" maxlength="10"
-                        inputId="contact" placeholder="Contact" required autofocus  type="number"/> <!--[(ngModel)]="user.contact" #contact="ngModel"-->
+                    <input pInputText name="contact" [(ngModel)]="captain.user.contact"
+                        inputId="contact" placeholder="Contact" required autofocus /> <!--[(ngModel)]="user.contact" #contact="ngModel"-->
                     <!-- <div *ngIf="contact.touched && contact.invalid && userForm.submitted"> <small class="p-error"
                             *ngIf="contact.errors.required">User Contact is required.</small></div> -->
                     <!-- <label for="state">State</label>
@@ -101,7 +102,7 @@
                 </div>
                 <div class="p-field col-6">
                     <label for="email">Email</label>
-                    <input pInputText name="email" type="email" id="email" 
+                    <input pInputText name="email" [(ngModel)]="captain.user.email" type="email" id="email" 
                         placeholder="Email" required autofocus/>
                     <!-- <div *ngIf="address.touched && address.invalid && userForm.submitted"> <small class="p-error"
                             *ngIf="address.errors.required">User Address is required.</small></div> -->
@@ -111,12 +112,12 @@
 
                     <!-- <p-dropdown #city="ngModel" name="city" inputId="cityFilter" name="city" [options]="tablelist" [(ngModel)]="user.cityId"
                         placeholder="City" optionLabel="name" optionValue="id"></p-dropdown> -->
-                        <p-multiSelect showClear="true" (onChange)="tableSelection()" [options]="tablelist" [(ngModel)]="tables" placeholder="Select Table"></p-multiSelect>
+                        <p-multiSelect showClear="true" (onChange)="tableSelection()" [options]="tablelist" optionLabel="name"  [(ngModel)]="captain.tableList" placeholder="Select Table"></p-multiSelect>
                 </div>
                 <div class="col-6 p-mt-5" *ngIf="tabsele">
                     <span>You Have Selected</span>
-                    <ng-container class="p-mr-1" *ngFor="let item of tables,let i = index" >
-                        <p-tag class="p-mr-1 p-ml-2" value="{{item}}"></p-tag>
+                    <ng-container class="p-mr-1" *ngFor="let item of captain.tableList,let i = index" >
+                        <p-tag class="p-mr-1 p-ml-2" value="{{item.name}}"></p-tag>
                     </ng-container>
                    
                     <!-- <span>You Have Selected {{tables}} </span> -->

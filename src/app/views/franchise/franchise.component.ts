@@ -53,20 +53,38 @@ modal:boolean;
       return this.franchise;
     })
   }
+  editFranchise(fran:franchis) {
+    this.franch = { ...fran };
+    this.modal = true;
+  }
    
   
   savefranchData(franchForm){
     // console.log(franchForm,"values")
     //  console.log(this.franch,"values")
+    if(this.franch.id !==null){
 
-    this.capnfran.AddFranchise(this.franch).subscribe(x=>{
-      console.log(x)
-      if(x.result=='Data Added'){
-      this.messageServie.add({severity:'info',
-     summary:'SuccessFully Added', detail: 'Franchise',life: 2000});
-      }
-      this.frachiseget()
-    })
+      this.capnfran.UpdateFranchsie(this.franch).subscribe(x=>{
+        if(x.result=='Data updated')
+        {
+          this.messageServie.add({severity:'success',
+          summary:'SuccessFully Updated', detail: 'Franchise',life: 2000});
+          this.frachiseget()
+        }
+      })
+    }
+    else{
+      this.capnfran.AddFranchise(this.franch).subscribe(x=>{
+        console.log(x)
+        if(x.result=='Data Added'){
+        this.messageServie.add({severity:'info',
+       summary:'SuccessFully Added', detail: 'Franchise',life: 2000});
+        }
+        this.frachiseget()
+      })
+    }
+
+    
     this.modal=false
 
   }

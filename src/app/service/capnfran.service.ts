@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { franchis } from '../models/franchise';
+import { captain, franchis } from '../models/franchise';
 import { HttpClient } from '@angular/common/http';
 
 // import { resourceUsage } from 'process';
@@ -12,6 +12,8 @@ import { ApiConfig } from '../constant/api';
 export class CapnfranService {
   franchis:franchis[]
   franchiseURL=`${ApiConfig.URL}${ApiConfig.FRANCHISE}`
+  captainUrl=`${ApiConfig.URL}${ApiConfig.CAPTAIN}`
+  captain:captain[]
   constructor(private http: HttpClient) { }
 
   AddFranchise(franchis:franchis): Observable<franchis> {
@@ -22,6 +24,23 @@ export class CapnfranService {
       }),
       catchError(this.handleError('', franchis))
     );
+  }
+  AddCaptain(cap:captain): Observable<captain> {
+    return this.http.post<captain>(this.captainUrl, cap).pipe(
+      map(x => {
+        console.log(x)
+        return x;
+      }),
+      catchError(this.handleError('', cap))
+    );
+  }
+  UpdateFranchsie(franch:franchis):Observable<franchis>{
+    return this.http.put(this.franchiseURL,franch).pipe(
+      map(x=>{
+        return x
+      }),
+      catchError(this.handleError('',franch))
+    )
   }
   GetFranchise(id:number):Observable<franchis>{
     return this.http.get(`${this.franchiseURL}/GetById/${id}`).pipe(
