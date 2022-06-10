@@ -29,6 +29,7 @@ modal:boolean;
     }); 
     
     this.franch={
+      // id: ,
       userName:'',
       
 
@@ -62,7 +63,7 @@ modal:boolean;
   savefranchData(franchForm){
     // console.log(franchForm,"values")
     //  console.log(this.franch,"values")
-    if(this.franch.id !==null){
+    if(this.franch.id!==undefined){
 
       this.capnfran.UpdateFranchsie(this.franch).subscribe(x=>{
         if(x.result=='Data updated')

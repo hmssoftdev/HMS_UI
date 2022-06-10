@@ -1,5 +1,5 @@
 export interface franchis {
-    id?: number,
+     id?: number,
      isActive?:boolean,
      createdOn?:string ,
      createdBy?: string,

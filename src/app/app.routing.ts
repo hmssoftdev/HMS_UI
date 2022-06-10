@@ -69,7 +69,7 @@ export const routes: Routes = [
     path:'report',
     component:ReportComponent,
     data: {
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
       },
       canActivate:[AuthGuard]
   },
@@ -77,7 +77,7 @@ export const routes: Routes = [
     path:'captain',
     component:CaptainComponent,
     data: {
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
       },
       canActivate:[AuthGuard]
   }, 
@@ -93,7 +93,7 @@ export const routes: Routes = [
     path:'language',
     component:LanguageComponent,
     data: {
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
       },
       canActivate:[AuthGuard]
   },
@@ -101,7 +101,7 @@ export const routes: Routes = [
     path:'setting',
     component:SettingComponent,
     data: {
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.captain
       },
       canActivate:[AuthGuard]
   },
@@ -109,7 +109,7 @@ export const routes: Routes = [
     path:'help',
     component:HelpComponent,
     data: {
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
       },
        canActivate:[AuthGuard]
   },

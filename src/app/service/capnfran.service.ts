@@ -13,7 +13,7 @@ export class CapnfranService {
   franchis:franchis[]
   franchiseURL=`${ApiConfig.URL}${ApiConfig.FRANCHISE}`
   captainUrl=`${ApiConfig.URL}${ApiConfig.CAPTAIN}`
-  captain:captain[]
+  captain:captain[]=[]
   constructor(private http: HttpClient) { }
 
   AddFranchise(franchis:franchis): Observable<franchis> {
@@ -32,6 +32,14 @@ export class CapnfranService {
         return x;
       }),
       catchError(this.handleError('', cap))
+    );
+  } 
+  ReadCaptain(id:number): Observable<captain[]> {
+    return this.http.get<captain[]>(`${this.captainUrl}/GetById/${id}`).pipe(
+      map(x => {
+        console.log(x)
+        return this.captain= x;
+      })
     );
   }
   UpdateFranchsie(franch:franchis):Observable<franchis>{

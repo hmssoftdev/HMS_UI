@@ -130,17 +130,17 @@
         <td style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-bold p-text-center b-dashed">{{orderData.grossTotal | currency :'INR'}}</td>
       </tr>
       <tr>
-        <td *ngIf="sign" colspan="2" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;" class="b-top p-text-center p-text-bold b-dashed">
-          
-         <img [src]="adminData.signature" style="color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;" *ngIf="adminData?.signature" height="30px" width="50px">
-       
+        <td  colspan="4" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;" class="p-ml-2 p-text-center">
+          <p style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
+            This is an electronically generated purchase bill <br>
+            <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">Terms & Condition</strong>  <br>
+             <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">{{adminData?.termAndCondition}}</span>
+          </p>
          </td>
-        <td colspan="4" class="b-top p-text-center b-dashed" style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
+        <td *ngIf="sign" colspan="2" class="p-text-center" style="font-size:5px;color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;">
          
-         This is an electronically generated purchase bill <br>
-        <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">Terms & Condition</strong>  <br>
-         <span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 5px;font-weight:bold;">{{adminData?.termAndCondition}}</span>
-          
+          <img [src]="adminData.signature" style="color:black;font-family: Verdana,Geneva,sans-serif;font-weight:bold;" *ngIf="adminData?.signature" height="30px" width="50px">
+               
         </td>
         
 

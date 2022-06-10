@@ -15,7 +15,7 @@ const routes: Routes = [
     component: DishComponent,
     data: {
       title: 'Dish Configuration',
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
     },
     canActivate:[AuthGuard]
   },
@@ -24,7 +24,7 @@ const routes: Routes = [
     component:DishMenuNewComponent,
     data:{
       title:"Dish Menu",
-      roles:roleConfig.authRoles.guest
+      roles:roleConfig.authRoles.captain
     },
     canActivate:[AuthGuard]
   },
@@ -42,7 +42,7 @@ const routes: Routes = [
     component: DishCategoryConfigComponent,
     data: {
       title: 'Dish Category Config',
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
     },
     canActivate:[AuthGuard]
   },
@@ -60,7 +60,7 @@ const routes: Routes = [
     component:OrdersListComponent,
     data:{
       title:"Order List",
-      roles:roleConfig.authRoles.admin
+      roles:roleConfig.authRoles.franchise
     },
     canActivate:[AuthGuard]
   }
