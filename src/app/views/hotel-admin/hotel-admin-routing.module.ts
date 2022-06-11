@@ -9,7 +9,7 @@ import { TableConfigurationComponent } from './table-configuration/table-configu
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'profile',
     component: HotelAdminComponent,
     data: {
       title: 'Hotel Admin Profile',

@@ -38,6 +38,7 @@ export class DatahistoryComponent implements OnInit {
   cols:any[];
   exportColumns:any[];
   colss:any[]
+  pdfobj:any[]
   constructor(public message:MessageService,public adminService: AdminService,public auth:AuthService,
     private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
@@ -46,7 +47,9 @@ export class DatahistoryComponent implements OnInit {
       { field: 'userName', header: 'name' },
       { field: 'userMobileNumber', header: 'contact' },
       { field: 'itemCount', header: 'ItemCount' },
-     { field: 'grossTotal', header: 'Amount' },
+     { field: 'grossTotal', header: 'Amount' }, 
+     { field: 'mode', header: 'Mode' },
+
 
    
   ];
@@ -79,13 +82,21 @@ export class DatahistoryComponent implements OnInit {
       // if(this.historydata.)
       // console.log(this.historydata,"response")
       // this.invoice = this.historydata.map(res=> res.invoiceNumber);
-      this.colss=   this.historydata.map(res=> 
+      this.pdfobj=this.historydata.map(res=> 
         ({
           userName:res.userName,
           userMobileNumber:res.userMobileNumber,
           itemCount:res.itemCount,
           grossTotal:res.grossTotal,
           mode:this.getPaymentMode(res.paymentMode)
+        }))
+      this.colss=   this.historydata.map(res=> 
+        ({
+          Name:res.userName,
+          Contact:res.userMobileNumber,
+          Item:res.itemCount,
+          total:res.grossTotal,
+          Mode:this.getPaymentMode(res.paymentMode)
         }))
       return this.historydata;
     }
@@ -96,7 +107,7 @@ export class DatahistoryComponent implements OnInit {
     import("jspdf").then(jsPDF => {
         import("jspdf-autotable").then(x => {
             const doc = new jsPDF.default();
-            (doc as any).autoTable(this.exportColumns, this.historydata);
+            (doc as any).autoTable(this.exportColumns, this.pdfobj);
             doc.save('Data_list.pdf');
         })
     })

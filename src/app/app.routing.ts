@@ -160,7 +160,7 @@ export const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: '/dish/dish-menu',
+    redirectTo: '/login',
     pathMatch: 'full',
 
       },

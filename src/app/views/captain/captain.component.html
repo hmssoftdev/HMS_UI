@@ -138,8 +138,7 @@
 
                     <!-- <p-dropdown #city="ngModel" name="city" inputId="cityFilter" name="city" [options]="tablelist" [(ngModel)]="user.cityId"
                         placeholder="City" optionLabel="name" optionValue="id"></p-dropdown> -->
-                        <p-multiSelect showClear="true" (onChange)="tableSelection()" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [maxSelectedLabels]="3" emptyMessage="No Records" [options]="tablelist" optionLabel="name"  [(ngModel)]="captain.tableList" placeholder="Select Table" 
-                        required></p-multiSelect>
+                        <p-multiSelect showClear="true" (onChange)="tableSelection()" [showTransitionOptions]="'0ms'" [hideTransitionOptions]="'0ms'" [maxSelectedLabels]="3" emptyMessage="No Records" [options]="tablelist" optionLabel="name"  [(ngModel)]="captain.tableList" placeholder="Select Table"></p-multiSelect>
                 </div>
                 <div class="col-6 p-mt-5" *ngIf="tabsele">
                     <span>You Have Selected</span>

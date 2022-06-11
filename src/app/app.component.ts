@@ -49,27 +49,7 @@ export class AppComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   ngOnInit() { 
-    // this.set={
-    // theme:0,
-    // menuDisplay:0,
-    // billWithGST:0,
-    // billWithCustomer:0,
-    // billWithLOGO:0,
-    // billWithSign:0,
-    // billWithSeal:0,
-    // language:'English',
-    // activeOrderFlow : 0,
-    // directKOTBillPrint:0,
-    // billPrintAndKOT:0,
-    // billPrintAndKOTDining:0,
-    // billPrintAndKOTHomeDelivery:0,
-    // billPrintAndKOTTakeAway: 0,
-    // customerDataForBilling: 0,
-    // paymentFirst: 0,
-    // }
-    // this.pushsetting()
-    // this.translate.setDefaultLang(this.set.language)
-    // console.log(this.set.language)
+  
     const uData = JSON.parse(this.storage.getItem('HMSUserData'));
     if(uData && uData.userType != 4){
       this.authService.uLoggedInSubject$.next(true)
