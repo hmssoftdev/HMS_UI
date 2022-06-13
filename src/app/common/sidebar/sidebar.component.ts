@@ -133,6 +133,14 @@ export class SidebarComponent implements OnInit {
         title:'Setting',
         subItems: []
       },
+      {
+        name:'Inventory',
+        routing:'/inventory',
+        access:roleConfig.authRoles.franchise ,
+        icon:'pi pi-th-large',
+        title:'Inventory',
+        subItems: []
+      },
       // {
       //   name:'Help',
       //   routing:'/help',

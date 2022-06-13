@@ -20,6 +20,7 @@ import { HelpComponent } from './views/help/help.component';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
 import { CaptainComponent } from './views/captain/captain.component';
 import { FranchiseComponent } from './views/franchise/franchise.component';
+import { InventoryComponent } from './views/inventory/inventory.component';
 
 
 export const routes: Routes = [
@@ -110,6 +111,14 @@ export const routes: Routes = [
     component:HelpComponent,
     data: {
       roles: roleConfig.authRoles.franchise
+      },
+       canActivate:[AuthGuard]
+  },
+  {
+    path:'inventory',
+    component:InventoryComponent,
+    data: {
+      roles: roleConfig.authRoles.admin
       },
        canActivate:[AuthGuard]
   },

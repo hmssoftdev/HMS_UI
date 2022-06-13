@@ -77,6 +77,11 @@ import { environment } from '../environments/environment';
 import { ResetpaswordComponent } from './views/resetpasword/resetpasword.component';
 import { CaptainComponent } from'./views/captain/captain.component'
 import { FranchiseComponent } from './views/franchise/franchise.component';
+import { InventoryComponent } from './views/inventory/inventory.component';
+import { PurchaseComponent } from './views/inventory/purchase/purchase.component';
+// import { InventoryModule } from './views/inventory/inventory.module';
+import { RecipesComponent } from './views/inventory/recipes/recipes.component';
+import { StockstatusComponent } from './views/inventory/stockstatus/stockstatus.component';
 // import {InputNumberModule} from 'primeng/inputnumber';
 // import {ButtonModule} from 'primeng/button';
 // import {MultiSelectModule} from 'primeng/multiselect';
@@ -84,6 +89,7 @@ import { FranchiseComponent } from './views/franchise/franchise.component';
 
 @NgModule({
   imports: [
+    
     BrowserModule,
     FormsModule,
     TabViewModule,
@@ -124,6 +130,10 @@ import { FranchiseComponent } from './views/franchise/franchise.component';
 })
   ],
   declarations: [
+    RecipesComponent,
+    StockstatusComponent,
+    PurchaseComponent, 
+    InventoryComponent,
     CaptainComponent,
     FranchiseComponent,
     AppComponent, 

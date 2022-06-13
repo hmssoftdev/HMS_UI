@@ -6,12 +6,18 @@ import { TranslateHttpLoader } from '@ngx-translate/http-loader';
 import { ResetpaswordComponent } from './resetpasword/resetpasword.component';
 // import { CaptainComponent } from './captain/captain.component';
 import { SharedModule} from'../shared/shared.module';
+import { InventoryModule } from './inventory/inventory.module';
+// import { PurchaseComponent } from './inventory/purchase/purchase.component';
+// import { RecipesComponent } from './inventory/recipes/recipes.component';
+// import { StockstatusComponent } from './inventory/stockstatus/stockstatus.component';
+
 // import { FranchiseComponent } from './franchise/franchise.component'
 
 @NgModule({
   imports: [
     CommonModule,
     SharedModule, 
+    InventoryModule,
     TranslateModule.forRoot({
       loader: {
         provide: TranslateLoader,
@@ -22,6 +28,10 @@ import { SharedModule} from'../shared/shared.module';
   ],
   declarations: [
     ResetpaswordComponent,
+    // PurchaseComponent,
+    // RecipesComponent,
+    // StockstatusComponent,
+
     // FranchiseComponent,
     // CaptainComponent
   ],
