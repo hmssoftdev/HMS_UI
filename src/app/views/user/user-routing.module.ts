@@ -7,10 +7,11 @@ import { UserFeedbackComponent } from './user-feedback/user-feedback.component';
 import { TranslateModule } from '@ngx-translate/core';
 const routes: Routes = [
   {
-    path:'',component:UserConfigComponent, 
+    path:'',
+    component:UserConfigComponent, 
     data:{
       title:"User Configuration",
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.captain
     },
     canActivate: [AuthGuard]
   },
@@ -18,7 +19,7 @@ const routes: Routes = [
     path:'user-feedback', component:UserFeedbackComponent,  
     data:{
       title: "User Feedback",
-      roles: roleConfig.authRoles.user
+      roles: roleConfig.authRoles.captain
     },
     canActivate:[AuthGuard]
   }

@@ -1,0 +1,46 @@
+<!-- <div class="p-card">
+    <div class="card-header">
+        <p-toolbar class="pToolbar">
+            <ng-template pTemplate="left">
+                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                <div class="p-d-flex">
+                    <span class="p-input-icon-left p-ml-auto">
+                        <i class="pi pi-search"></i>
+                        <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" /> <!--(input)="dt.filterGlobal($event.target.value, 'contains')"
+                    </span>
+                </div>
+             <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" pTooltip="Delete categories"></button>
+            </ng-template>
+        </p-toolbar>
+</div>
+<div class="card-body"></div>
+
+</div> -->
+<!-- <div class="p-grid">
+    <div class="p-col-12">
+        <app-purchase></app-purchase>
+        <app-recipes></app-recipes>
+        <app-stockstatus></app-stockstatus>
+    </div>
+</div> -->
+<div class="row">
+    <div class="p-card">
+      
+<p-tabView>
+    <p-tabPanel header="Purchase" leftIcon="pi pi-bookmark">
+        <app-purchase></app-purchase>
+    </p-tabPanel>
+     <p-tabPanel header="Recipes" leftIcon="pi pi-book" >
+        <app-recipes></app-recipes>
+    </p-tabPanel>
+     <p-tabPanel header="StockUpdate" leftIcon="pi pi-th-large">
+        <app-stockstatus></app-stockstatus>
+    </p-tabPanel>
+    <!-- <p-tabPanel header="Header 2">
+        Content 2
+    </p-tabPanel>
+    <p-tabPanel header="Header 3">
+        Content 3
+    </p-tabPanel> -->
+</p-tabView>
+</div></div>

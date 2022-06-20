@@ -33,39 +33,38 @@ export class SidebarComponent implements OnInit {
       {
         name:'Dish',
         badge:'Hello',
-        access:roleConfig.authRoles.guest,
+        access:roleConfig.authRoles.franchise,
         icon:'pi pi-money-bill',
         style:'Font-size:1rem',
         subItems: [
           {
             name:'Dish Category Config',
             routing:'/dish/dish-category-config',
-            access:roleConfig.authRoles.admin,
+            access:roleConfig.authRoles.franchise,
             title:'Dish Category Config'
           },
           {
             name:'Dish Management',
             routing:'/dish',
-            access:roleConfig.authRoles.admin,
+            access:roleConfig.authRoles.franchise,
             title:'Dish Management',
           },
           {
             name:'Menu Management',
             routing:'/dish/dish-menu',
-            access:roleConfig.authRoles.guest,
+            access:roleConfig.authRoles.captain,
             title:'Menu Management'
           },
-          
           {
             name:'Table Configuration',
             routing:'/table-configuration',
-            access:roleConfig.authRoles.admin,
+            access:roleConfig.authRoles.franchise,
             title:'Table Configuration'
           },
           {
             name:'Order Management',
             routing:'/dish/order-list',
-            access:roleConfig.authRoles.admin,
+            access:roleConfig.authRoles.franchise,
             title:'Order Management'
           }
         ]
@@ -73,13 +72,13 @@ export class SidebarComponent implements OnInit {
       {
         name:'Customer',
         routing:'',
-        access:roleConfig.authRoles.user,
+        access:roleConfig.authRoles.captain,
         icon:'pi pi-user',
         subItems: [
           {
             name:'Customer Management',
             routing:'/users',
-            access:roleConfig.authRoles.admin,
+            access:roleConfig.authRoles.captain,
             title:'Customer Management'
           },
           // {
@@ -91,7 +90,7 @@ export class SidebarComponent implements OnInit {
           {
             name:'Customer Feedback',
             routing:'/users/user-feedback',
-            access:roleConfig.authRoles.user,
+            access:roleConfig.authRoles.captain,
             title:'Customer Feedback'
           }
           // {
@@ -105,15 +104,15 @@ export class SidebarComponent implements OnInit {
       {
         name:'Captain Management',
         routing:'/captain',
-        access:roleConfig.authRoles.admin,
-        icon:'pi pi-user-plus',
-        title:'Report',
+        access:roleConfig.authRoles.franchise,
+        icon:'pi pi-id-card',
+        title:'Captain',
         subItems: []
       },
       {
         name:'Report',
         routing:'/report',
-        access:roleConfig.authRoles.admin,
+        access:roleConfig.authRoles.franchise,
         icon:'pi pi-inbox',
         title:'Report',
         subItems: []
@@ -129,9 +128,17 @@ export class SidebarComponent implements OnInit {
       {
         name:'Setting',
         routing:'/setting',
-        access:roleConfig.authRoles.admin,
+        access:roleConfig.authRoles.franchise ,
         icon:'pi pi-shield',
         title:'Setting',
+        subItems: []
+      },
+      {
+        name:'Inventory',
+        routing:'/inventory',
+        access:roleConfig.authRoles.franchise ,
+        icon:'pi pi-th-large',
+        title:'Inventory',
         subItems: []
       },
       // {
@@ -153,7 +160,7 @@ export class SidebarComponent implements OnInit {
       {
         name:'Help',
         routing:'/help',
-        access:roleConfig.authRoles.admin,
+        access:roleConfig.authRoles.franchise,
         icon:'pi pi-slack',
         title:'Help',
         subItems: []

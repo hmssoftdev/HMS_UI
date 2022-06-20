@@ -9,11 +9,11 @@ import { TableConfigurationComponent } from './table-configuration/table-configu
 
 const routes: Routes = [
   {
-    path: '',
+    path: 'profile',
     component: HotelAdminComponent,
     data: {
       title: 'Hotel Admin Profile',
-      roles: roleConfig.authRoles.admin
+      roles: roleConfig.authRoles.franchise
     },
     canActivate:[AuthGuard]
   },
@@ -22,7 +22,7 @@ const routes: Routes = [
   component: HotelSettingComponent,
   data: {
     title: 'Hotel Admin Setting',
-    roles: roleConfig.authRoles.admin
+    roles: roleConfig.authRoles.franchise
   },
   canActivate:[AuthGuard]
 },
@@ -31,7 +31,7 @@ const routes: Routes = [
   component: TableConfigurationComponent,
   data: {
     title: 'Table Configuration',
-    roles: roleConfig.authRoles.admin
+    roles: roleConfig.authRoles.franchise
   },
   canActivate:[AuthGuard]
 }

@@ -69,8 +69,11 @@ export class LoginComponent implements OnInit {
           case 5:
             this.router.navigate(['/dish']);
             break;
+          case 6:
+            this.router.navigate(['/dish/dish-menu']);
+            break;
           default:
-          this.router.navigate(['/dish/dish-menu']);
+          this.router.navigate(['']);
           // window.location.reload();
         } 
       },

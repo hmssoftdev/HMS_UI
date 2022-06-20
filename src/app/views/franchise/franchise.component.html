@@ -1,19 +1,19 @@
-<div class="p-card">
-    <div class="card-header">
-        <p-toolbar class="pToolbar">
-            <ng-template pTemplate="left">
-                <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
-                <div class="p-d-flex">
-                    <span class="p-input-icon-left p-ml-auto">
-                        <i class="pi pi-search"></i>
-                        <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" /> <!--(input)="dt.filterGlobal($event.target.value, 'contains')"-->
-                    </span>
-                </div>
-                <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" pTooltip="Delete categories"></button> -->
-            </ng-template>
-        </p-toolbar>
-</div>
-<div class="card-body">
+    <div class="p-card">
+        <div class="card-header">
+            <p-toolbar class="pToolbar">
+                <ng-template pTemplate="left">
+                    <button pButton pRipple label="New" icon="pi pi-plus" class="p-button-success p-mr-2" (click)="openNew()"></button>
+                    <div class="p-d-flex">
+                        <span class="p-input-icon-left p-ml-auto">
+                            <i class="pi pi-search"></i>
+                            <input pInputText class="search" type="text" (input)="dt.filterGlobal($event.target.value, 'contains')" placeholder="Search by Name" /> <!--(input)="dt.filterGlobal($event.target.value, 'contains')"-->
+                        </span>
+                    </div>
+                    <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" pTooltip="Delete categories"></button> -->
+                </ng-template>
+            </p-toolbar>
+    </div>
+    <div class="card-body">
     <!-- <p-table  #dt [value]="f"  styleClass="p-datatable-customcss" [paginator]="true" [rows]="10" [showCurrentPageReport]="true" [rowHover]="true" dataKey="id" currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries" [rowsPerPageOptions]="[10,25,50]"  [globalFilterFields]="['name','seat']"> -->
         <p-table #dt responsiveLayout="stack" [value]="franchise" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
         [rows]="10" [showCurrentPageReport]="true" [loading]="loading"  [rowHover]="true" dataKey="id"

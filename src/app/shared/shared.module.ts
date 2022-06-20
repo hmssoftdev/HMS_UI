@@ -1,3 +1,4 @@
+
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import {FormsModule, ReactiveFormsModule} from '@angular/forms'
@@ -52,7 +53,7 @@ import {ToggleButtonModule} from 'primeng/togglebutton';
 import {AccordionModule} from 'primeng/accordion';
 import {TieredMenuModule} from 'primeng/tieredmenu';
 import {TreeModule} from 'primeng/tree';
-
+import {FieldsetModule} from 'primeng/fieldset';
 @NgModule({
   declarations: [
     OrderStatusComponent,
@@ -67,7 +68,7 @@ import {TreeModule} from 'primeng/tree';
     
     TieredMenuModule,
     TreeModule,
-    
+    FieldsetModule,
     CommonModule,
     FormsModule,
     HttpClientModule,
@@ -124,6 +125,7 @@ import {TreeModule} from 'primeng/tree';
   ],
   exports:[
     CommonModule,
+    FieldsetModule,
     TieredMenuModule,
     TreeModule,
     FormsModule,
