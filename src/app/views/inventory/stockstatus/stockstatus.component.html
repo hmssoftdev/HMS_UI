@@ -78,3 +78,50 @@
 
 <p-toast position="bottom-right"></p-toast>
 </p-fieldset>
+<p-dialog [(visible)]="stoclmodal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="{{'StockStatus' | translate}}" [modal]="true">
+    <ng-template pTemplate="content">
+        <form  name="franchForm" #franchForm="ngForm" novalidate (ngSubmit)="savefranchData(franchForm)">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="p-field col-6">
+                    <label for="Ingredient name">Product Name</label>
+                    <input type="text" name="userName" class="p-inputtext-sm" pInputText id="userName"
+                        placeholder="Product name" required autofocus />
+                        <!-- <div *ngIf="userName.touched && userName.invalid && franchForm.submitted"> <small class="p-error" *ngIf="userName.errors.required">User Name is required.</small></div> -->
+                </div>
+                <div class="p-field col-6">
+                    <!-- <label for="weightage">Weightage</label> -->
+                    <!-- <input name="weightage" class="p-inputtext-sm" pInputText id="password"
+                         placeholder="Weightage" required autofocus />  -->
+                         <label for="weightage">Weightage</label>
+                         <div class="p-grid mt-1" >
+                             <div class="p-col-6 p-md-8">
+                                 <input pInputText name="quantity" type="number" id="Quantity" 
+                                      placeholder="Weightage" required autofocus/>
+                             </div>
+                             <div class="p-col-6 p-md-4">
+                                 <p-dropdown inputId="weigth" name="weigth" id="weigth" [options]="wei" [(ngModel)]="weigth" placeholder="Select" optionLabel="name" optionValue="value"></p-dropdown>
+                             </div>
+                         </div>
+                </div>
+                <div class="p-field col-6">
+                    <label for="Price">Price</label>
+                    <input pInputText name="Price" maxlength="10"
+                        inputId="contact" placeholder="Price" id="Price" required autofocus/> 
+                       
+                        <!-- <div *ngIf="cityId.touched && cityId.invalid && franchForm.submitted"> <small class="p-error" *ngIf="cityId.errors.required">Number is required.</small></div> -->
+                </div>
+              <div class="p-field col-6">
+                <label for="gst">{{'GST Compliance' | translate}}</label>
+                <input type="text" name="gst" id="gst" placeholder="GST" pInputText />
+              </div>
+                
+   </div>
+
+            <div class="p-d-flex justify-content-center">
+                <button pButton pRipple label="{{'Save' | translate}}" icon="pi pi-check" [disabled]="!franchForm.valid"  class="p-button p-button-raised p-mx-1 p-mr-2"></button>
+                <button pButton pRipple label="{{'Reset' | translate}}" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" ></button> <!--(click)="hideDialog()"-->
+            </div>
+      
+        </form>
+    </ng-template>
+</p-dialog>

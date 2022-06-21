@@ -22,6 +22,8 @@ export interface setting{
     billPrintAndKOTTakeAway?:number;
     customerDataForBilling?:number;
     paymentFirst?:number;
+    DisplayCardWithImage ?:number;
+    simpleMenu?:number;
 }
 export interface language{
     name:string;
