@@ -98,6 +98,7 @@ export class DishMenuNewComponent implements OnInit {
    droperror:boolean=false;
    gst:boolean;
    simplemenu:boolean
+   kotrelease:boolean
   //  customLabel:string="KOT Print"
   constructor(
     private comset:CommonService,
@@ -131,6 +132,7 @@ export class DishMenuNewComponent implements OnInit {
         this.customer=d.customerDataForBilling ?true : false;
         this.fstPayment=d.paymentFirst ?true:false;
         this.gst=d.billWithGST?true:false;
+        this.kotrelease=d.displayCardWithImage ?true :false;
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
@@ -280,7 +282,6 @@ for (var _i = 0; _i < x.length; _i++) {
     }
     emptyCart(){
       this.cartService.empty();
-      //this.subCartItems.unsubscribe();
       this.fnLoadCartData();
       this.selectedUser = null;
       this.selectedUsers = '';
@@ -395,6 +396,7 @@ for (var _i = 0; _i < x.length; _i++) {
     const orderS = {status:1}
     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
     this.cartItems.orderStatus.push(orderS) 
+    
     if(this.cartItems.deliveryMode===undefined ){
       switch(this.cartItems.deliveryOptionId){
         case 1:
@@ -408,6 +410,7 @@ for (var _i = 0; _i < x.length; _i++) {
             this.cartItems.deliveryMode = "Takeaway"; break;
       }
     }
+    
  
  // }) 
  this.currentOrderId = null 
@@ -423,10 +426,17 @@ for (var _i = 0; _i < x.length; _i++) {
     // this.KOTitems = this.cartItems;
     this.selectedPrintType = 'KOTPrintUI';
     this.isKOTdone = true; 
+
     setTimeout(() => {
       window.print();
      this.deliveryMode === 'Dining' ? this.emptyCart() : '';
     },1000)
+
+    if(this.deliveryMode =='Take Away' && this.kotrelease==true){
+      setTimeout(()=>{
+        this.emptyCart()
+      },5000) 
+    }
 
   });
  }
@@ -465,7 +475,8 @@ else{
   }
 
     }
-  
+
+ 
   }
     fnDirectPayment(){
       this.fnLoadCartData(); 

@@ -4,8 +4,26 @@
 
     <h4 class="p-text-center">
       <span class="text-6xl">{{'Today Summary'| translate}}</span></h4>
-  
-
+      <div class="p-grid" *ngIf="userData.userType == 2">
+        <div class="p-col-12 p-md-6 p-text-center">
+          <div class="p-d-flex p-jc-between p-ai-center">
+            <div>
+              Report By Franchise 
+            </div>
+            <div class="p-field">
+              <p-multiSelect [options]="frachlist"  [showTransitionOptions]="'1ms'" [hideTransitionOptions]="'1ms'" [(ngModel)]="selectedHotel" placeholder="Select Franchise Name" optionLabel="userName" optionValue="id"></p-multiSelect>
+              {{selectedHotel}}
+             </div>
+          </div>
+         
+        </div>
+        <div class="p-field p-col-12 p-md-6 p-text-center" >
+          <p-multiSelect [options]="frachlist" [showTransitionOptions]="'1ms'" [hideTransitionOptions]="'1ms'" [(ngModel)]="selectedCities" optionLabel="city" placeholder="Select Franchise Location" optionValue="id"></p-multiSelect>
+          {{selectedCities}}
+        </div>
+      </div>
+      
+      
     <app-today-summary></app-today-summary>
 
     <app-historydata></app-historydata>
