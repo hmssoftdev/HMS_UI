@@ -97,6 +97,7 @@ export class DishMenuNewComponent implements OnInit {
    fstPayment:boolean=false
    droperror:boolean=false;
    gst:boolean;
+   simplemenu:boolean
   //  customLabel:string="KOT Print"
   constructor(
     private comset:CommonService,
@@ -125,6 +126,7 @@ export class DishMenuNewComponent implements OnInit {
       if(resp){
         const d = resp;
         this.image = d.menuDisplay ? true : false;
+        this.simplemenu=d.simpleMenu ?true :false
         this.both = d.billPrintAndKOT ? true : false;
         this.customer=d.customerDataForBilling ?true : false;
         this.fstPayment=d.paymentFirst ?true:false;
@@ -135,6 +137,7 @@ export class DishMenuNewComponent implements OnInit {
     if(this.customer===true){
       this.droperror=true
     }
+    
    
     })
     console.log(this.customer,"true")
@@ -299,6 +302,9 @@ for (var _i = 0; _i < x.length; _i++) {
       this.cartService.addUser(this.userData);
     }
     this.cartService.addDeliveryMode(s); 
+    if(this.fstPayment==true){
+      this.isKOTdone=true
+    }
   }
   
   loadUserData() {
@@ -383,6 +389,7 @@ for (var _i = 0; _i < x.length; _i++) {
    }
 
   fnKOTPrint(resp) { 
+ 
     this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
@@ -456,95 +463,16 @@ else{
   
     });
   }
-  // else if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
-  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
-  //     console.log(this.cartItems,"Put")
-  //     this.selectedPrintType = 'KOTPrintUI';
-  //     this.isKOTdone = true; 
-  //    })
-  // }
-  // else if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
-  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
-  //     console.log(this.cartItems,"Put")
-  
-  //     this.selectedPrintType = 'KOTPrintUI';
-  //     this.isKOTdone = true; 
-  //     // setTimeout(() => {
-  //     //   window.print();
-  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-  //     // },1000)
-  //    })
-  // }
-  // if(this.deliveryMode === 'Dining' && this.cartItems.id == undefined){
-  //   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
-  //     console.log(this.cartItems,"Put")
-  
-  //     this.selectedPrintType = 'KOTPrintUI';
-  //     this.isKOTdone = true; 
-  //     // setTimeout(() => {
-  //     //   window.print();
-  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-  //     // },1000)
-  //    })
-  // } 
-  //  if(this.deliveryMode !== 'Dining' && this.cartItems.id !== undefined){
-  //   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-  //     console.log(this.cartItems,"Post")
-        
-  //     this.currentOrderId = resp.orderId;
-  //     this.invoiceno =resp.invoice;
-  //     this.cartService.addOrderId(this.currentOrderId);
-  //     // this.KOTitems = this.cartItems;
-  //     this.selectedPrintType = 'KOTPrintUI';
-  //     this.isKOTdone = true; 
-  //     setTimeout(() => {
-  //       window.print();
-  //     //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-  //     },1000)
-  
-  //   });
-  // }
-}
 
-
-  // else{
-  //  this.cartService.postOrder(this.cartItems).subscribe(res=>{
-  //   console.log(this.cartItems,"Put")
-
-  //   this.selectedPrintType = 'KOTPrintUI';
-  //   this.isKOTdone = true; 
-  //   setTimeout(() => {
-  //     window.print();
-  //    this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-  //   },1000)
-  //  })
-  // }
-  // this.cartService.PutOrder(this.cartItems).subscribe(res=>{
-  //       console.log(this.cartItems,"Put")
-    
-  //       this.selectedPrintType = 'KOTPrintUI';
-  //       this.isKOTdone = true; 
-  //       // setTimeout(() => {
-  //       //   window.print();
-  //       //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-  //       // },1000)
-  //      })
     }
+  
+  }
     fnDirectPayment(){
       this.fnLoadCartData(); 
      const orderS = {status:1}
      this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
      this.cartItems.orderStatus.push(orderS) 
-    //  if(this.cartItems.deliveryMode===undefined ){
-    //    switch(this.cartItems.deliveryOptionId){
-    //      case 1:
-    //       this.cartItems.deliveryMode = "Dining"; break;
-    //      case 2:
-    //          this.cartItems.deliveryMode = "Home Delivery"; break;
-    //        case 3:
-    //          this.cartItems.deliveryMode = "Takeaway"; break;
-    //    }
-    //  }
+ 
 
    this.currentOrderId = null;
    this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
@@ -560,8 +488,86 @@ else{
 
    }
   fnBillPrint(order: OrderList){
+    if(this.fstPayment==true){
+      this.fnLoadCartData(); 
+      this.showKOTItems = true; 
+      const orderS = {status:1}
+      this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
+      this.cartItems.orderStatus.push(orderS) 
+      if(this.cartItems.deliveryMode===undefined ){
+        switch(this.cartItems.deliveryOptionId){
+          case 1:
+           this.cartItems.deliveryMode = "Dining"; break;
+          case 2:
+              this.cartItems.deliveryMode = "Home Delivery";
+              
+              
+              break;
+            case 3:
+              this.cartItems.deliveryMode = "Takeaway"; break;
+        }
+      }
+   
+   // }) 
+   this.currentOrderId = null 
+  //  this.cartItems.userName=this.selectedUsers;
+   if(this.cartItems.id === undefined)
+   {
+      this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+      console.log(this.cartItems,"Post")
+        
+      this.currentOrderId = resp.orderId;
+      this.invoiceno =resp.invoice;
+      this.cartService.addOrderId(this.currentOrderId);
+      // this.KOTitems = this.cartItems;
+      // this.selectedPrintType = 'KOTPrintUI';
+      this.isKOTdone = true; 
+      // setTimeout(() => {
+      //   window.print();
+      //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+      // },1000)
+  
+    });
+   }
+  else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
+    this.cartService.PutOrder(this.cartItems).subscribe(res=>{
+      console.log(this.cartItems,"Put")
+  
+      // this.selectedPrintType = 'KOTPrintUI';
+      this.isKOTdone = true; 
+      // setTimeout(() => {
+      //   window.print();
+      //   // this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
+      //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+      // },1000)
+     })
+  }
+  
+  else{
+    if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
+       // && this.cartItems.id == undefined
+      this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+        console.log(this.cartItems,"Post")
+          
+        this.currentOrderId = resp.orderId;
+        this.invoiceno =resp.invoice;
+        this.cartService.addOrderId(this.currentOrderId);
+        // this.KOTitems = this.cartItems;
+        // this.selectedPrintType = 'KOTPrintUI';
+        this.isKOTdone = true; 
+        // setTimeout(() => {
+        //   window.print();
+        // //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
+        // },1000)
     
+      });
+    }
+  
+      }
+    
+    }
     this.selectedPrintType = 'BillPrintUI';
+   
    
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
@@ -572,8 +578,16 @@ else{
   }
 
   fnKOTnBillPrint(order:OrderList,resp){
+    
     this.fnKOTPrint(resp)
+    
     this.fnBillPrint(order);
+
+    //  setTimeout(()=> {
+     
+     
+    //  },3000)
+
   }
   ngOnDestroy(){
    // this.subUserList.unsubscribe();
