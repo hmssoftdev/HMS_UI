@@ -184,7 +184,7 @@ this.comset.Obslangauge.subscribe(x=>{
       menuDisplay: 0,
       customerDataForBilling:0,
       paymentFirst:0,
-      // DisplayCardWithImage:0,
+      displayCardWithImage:0,
       simpleMenu:0
     }
     return s;
@@ -215,6 +215,7 @@ this.comset.Obslangauge.subscribe(x=>{
      this.setting.paymentFirst=Number(this.setting.paymentFirst);
     // this.setting.DisplayCardWithImage=Number(this.setting.DisplayCardWithImage);
     this.setting.simpleMenu=Number(this.setting.simpleMenu)
+    this.setting.displayCardWithImage=Number(this.setting.displayCardWithImage)
     // this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);

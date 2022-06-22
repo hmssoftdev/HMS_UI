@@ -25,7 +25,7 @@
                 <div class="profilWrap p-mr-4 p-mt-2" (clickOutside)="lbluserProfleShow=false">
                 <p-avatar icon="pi pi-user" (click)="fnToggleUProfile()" *ngIf="authService.loggedIn() && userData.userType !==6"></p-avatar> 
                 <ul class="dropdownMenu" *ngIf="lbluserProfleShow">
-                    <li class="dropdownHeader">Account</li>
+                    <li class="dropdownHeader">Account :{{userData.adminId}}</li>
                     <li (click)="fnhidedd()"><a class="profilWrap" routerLink="/profile"><i></i>Profile</a></li>
                     <li (click)="fnhidedd()"><a routerLink="/billingcategory">Billing Category</a></li>
                     <li (click)="fnhidedd()"><a routerLink="/setting">Setting</a></li>

@@ -161,10 +161,10 @@
                 <div class="p-field col-12 p-md-6">
                     <label for="state">State</label>
                    
-                    <p-dropdown #state="ngModel" inputId="state" name="state" id="state" [options]="states" [(ngModel)]="franch.state" placeholder="Select" optionLabel="label" optionValue="label"></p-dropdown>
+                    <p-dropdown #state="ngModel" inputId="state" name="state" id="state" [options]="states" [(ngModel)]="franch.stateId" placeholder="Select" optionLabel="label" optionValue="value"></p-dropdown>
                     <!-- <div *ngIf="state.touched && state.invalid && franchForm.submitted"> <small class="p-error" *ngIf="state.errors.required">State is required.</small></div> -->
                     <label for="city">City</label>
-                    <p-dropdown #city="ngModel" inputId="city" name="city" id="city" [(ngModel)]="franch.city" [options]="cities" placeholder="Select City" optionLabel="name" optionValue="name"></p-dropdown>
+                    <p-dropdown #city="ngModel" inputId="city" name="city" id="city" [(ngModel)]="franch.cityId" [options]="cities" placeholder="Select City" optionLabel="name" optionValue="id"></p-dropdown>
                     <!-- <div *ngIf="city.touched && city.invalid && franchForm.submitted"> <small class="p-error" *ngIf="city.errors.required">City is required.</small></div> -->
                 </div> 
                 <!-- <div class="p-field col-12 p-md-4">

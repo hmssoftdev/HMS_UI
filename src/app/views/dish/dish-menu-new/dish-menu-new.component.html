@@ -283,9 +283,10 @@
         <p-dataView
         #dv
         [value]="dishes"
-        [paginator]="false"
+      
         filterBy="name"       
-        layout="list"       
+        layout="list"   
+          
       >
         <ng-template pTemplate="header">
           <div class="p-d-flex p-m-flex-column p-flex-md-row">
@@ -387,7 +388,7 @@
 
         <ng-container> 
           <!-- <div class="p-card"> -->
-            <div class="p-col-10 p-md-4 p-lg-3" *ngIf="dish.status === 'active'">
+            <div class="p-col-10 p-md-4 p-lg-4" *ngIf="dish.status === 'active'">
               <!-- <div class="p-grid">
         <div class="p-col-6">
 
@@ -441,7 +442,8 @@
               [ngClass]="dish.isVeg ? 'txtSuccess' : 'txtDanger'"
             >
               <i class="pi pi-circle-on"></i></span
-            >{{ dish.name }}
+            >
+            <span style="text-transform:capitalize;"> {{ dish.name }}</span> 
             
           </div>
           <div>
@@ -466,8 +468,18 @@
                   >{{ dish.rating ? 1 : 0 }} votes</span
                 >
               </div> -->
-             
-            <div class="p-formgroup-inline">
+              <div>
+              
+                <p-button
+                styleClass="p-button-sm"
+                icon="pi pi-shopping-cart"
+                (click)="fnAddtoCart(dish)"
+                [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                pTooltip="Bookmark Dish"
+                tooltipPosition="bottom"
+              ></p-button>
+              </div>
+            <div class="p-formgroup-inline"  *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0">
               <label for="isFullStatus">Half </label>
               <p-inputSwitch
                 [(ngModel)]="dish.isFull"
@@ -477,17 +489,7 @@
               </p-inputSwitch>
               <label for="isFullStatus">Full</label>
             </div>
-            <div>
-              
-              <p-button
-              styleClass="p-button-sm"
-              icon="pi pi-shopping-cart"
-              (click)="fnAddtoCart(dish)"
-              [disabled]="dish.statuses === 'OUTOFSTOCK'"
-              pTooltip="Bookmark Dish"
-              tooltipPosition="bottom"
-            ></p-button>
-            </div>
+           
           <!-- </div>
           <div class="product-grid-item-bottom">
             <span class="product-price">{{
@@ -504,10 +506,7 @@
               tooltipPosition="bottom"
             ></p-button>
           </div> -->
-          <div
-            *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0"
-            class="p-field"
-          ></div>
+        
         </div>
       </div>
           </div>
