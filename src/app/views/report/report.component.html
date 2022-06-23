@@ -5,28 +5,40 @@
     <h4 class="p-text-center">
       <span class="text-6xl">{{'Today Summary'| translate}}</span></h4>
       <div class="p-grid" *ngIf="userData.userType == 2">
-        <div class="p-col-12 p-md-6 p-text-center">
-          <div class="p-d-flex p-jc-between p-ai-center">
+        <div class="p-col-12 p-md-6 p-field p-text-center">
+          <div class="p-field p-d-flex p-jc-between p-ai-baseline">
             <div>
-              Report By Franchise 
+              <span>Franchise Report </span>
+               
             </div>
             <div class="p-field">
-              <p-multiSelect [options]="frachlist"  [showTransitionOptions]="'1ms'" [hideTransitionOptions]="'1ms'" [(ngModel)]="selectedHotel" placeholder="Select Franchise Name" optionLabel="userName" optionValue="id"></p-multiSelect>
-              {{selectedHotel}}
-             </div>
+              <p-multiSelect [options]="frachlist" [style]="{'width':'200px'}"
+              [panelStyle]="{'width':'200px'}" (onChange)="franchSelection()" showClear="true" [(ngModel)]="selectedHotel" placeholder="Select Franchise Name" optionLabel="userName" optionValue="id"></p-multiSelect>
+           
+              <p-multiSelect class="p-ml-2" [options]="frachlist" [style]="{'width':'200px'}"
+              [panelStyle]="{'width':'200px'}" (onChange)="franlocationSelection()" showClear="true" [(ngModel)]="selectedCities" optionLabel="city" placeholder="Select Franchise Location" optionValue="id"></p-multiSelect>
+            <br>  <span class="p-mr-2"> {{selectedHotel}}</span> 
+             <span class="p-ml-2">{{selectedCities}} </span> 
+            </div>
           </div>
          
         </div>
         <div class="p-field p-col-12 p-md-6 p-text-center" >
-          <p-multiSelect [options]="frachlist" [showTransitionOptions]="'1ms'" [hideTransitionOptions]="'1ms'" [(ngModel)]="selectedCities" optionLabel="city" placeholder="Select Franchise Location" optionValue="id"></p-multiSelect>
-          {{selectedCities}}
+          <div class="p-field p-d-flex p-jc-evenly p-ai-center">
+            <div>
+              <span>Admin Report</span>
+             </div>
+         <div>
+          <button pButton type="button" (click)="fnadminReport()" label="Admin Data" class="p-button-outlined mr-2"></button>
+         </div>
+        </div>
         </div>
       </div>
       
       
-    <app-today-summary></app-today-summary>
+    <app-today-summary [ID]="ID" *ngIf="show"></app-today-summary>
 
-    <app-historydata></app-historydata>
+    <app-historydata [ID]="ID"></app-historydata>
     <!-- <div class="p-grid">
       <div class="col-12 md:col-12"> -->
         <!-- <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]=todaySale ></app-bar-chart> -->
@@ -61,18 +73,19 @@
      
     </div>
 
-<app-topdata>
+<app-topdata [ID]="ID" *ngIf="show">
   
 </app-topdata>
 
 
-<app-fooditem></app-fooditem>
+<app-fooditem *ngIf="show"></app-fooditem>
 
     <div class="p-grid align-items-center justify-content-center p-text-center">
 
 
-    <div class="p-col-12">
-      <app-top-cust-data> </app-top-cust-data>
+    <div class="p-col-12 p-text-center">
+     <h5><span class="text-3xl p-text-center">{{'Number of repeated customer in Month'| translate}}</span></h5>  
+      <app-top-cust-data [ID]="ID" *ngIf="show"> </app-top-cust-data>
     </div>
 
         

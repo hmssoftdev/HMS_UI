@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import * as moment from 'moment';
 import { Historydata } from '../../../models/historydata';
 import { AuthService } from '../../../service/auth.service';
@@ -14,12 +14,13 @@ export class TopdataComponent implements OnInit {
   startdate:string='';
   monthenddate:string='';
   historydata:Historydata[];
-  id:number;
+  ids:number;
+  @Input() ID:number[]
   constructor(private auth:AuthService,public user:UserService) { }
     ngOnInit(): void {
       this.startdate=moment(this.strtdate).format('YYYY-MM-DD').toString();
       this.monthenddate=moment(this.strtdate).format('YYYY-MM-DD').toString();
-      this.id=this.auth.userData().adminId;
+      // this.id=this.auth.userData().adminId;
       var currentDate = new Date();
       var dated = currentDate.getDate()
         var pastDate = new Date(currentDate)
@@ -28,7 +29,15 @@ export class TopdataComponent implements OnInit {
         this.getTopHistorydata();
 }
 getTopHistorydata(){
-  this.user.getBillHistory(this.id,this.startdate,this.monthenddate).subscribe(
+  if(this.ID ==undefined)
+  {
+    this.ids=this.auth.userData().adminId;
+  }
+else{
+this.ids=this.ID[1]
+}
+console.log(this.ids,"top id")
+  this.user.getBillHistory(this.ids,this.startdate,this.monthenddate).subscribe(
  x=>{
     this.historydata = x;
 

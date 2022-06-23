@@ -299,7 +299,7 @@ for (var _i = 0; _i < x.length; _i++) {
     } else {
       this.KOTEnabled = true;
     }
-    if(!this.selectedUser && this.userData.userType == 2){ 
+    if(!this.selectedUser && this.userData.userType !== 6){ 
       this.cartService.addUser(this.userData);
     }
     this.cartService.addDeliveryMode(s); 
@@ -352,6 +352,7 @@ for (var _i = 0; _i < x.length; _i++) {
     let count = 0; 
    this.subCartItems = this.cartService.get().subscribe(resp =>{
     this.cartItems = resp;
+
     if(this.cartItems.userId !== undefined || this.usercombine !== undefined)
     this.selectedUsers =  this.usercombine.filter(x=>x.id==this.cartItems.userId)[0]?.contact;
    }); 
@@ -390,7 +391,9 @@ for (var _i = 0; _i < x.length; _i++) {
    }
 
   fnKOTPrint(resp) { 
- 
+    // if(this.userData.userType == 5){
+    //   this.cartItems.userId=this.userData.adminId
+    // }
     this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
