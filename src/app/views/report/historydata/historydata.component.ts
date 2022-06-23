@@ -3,6 +3,7 @@ import {
 } from '@angular/common';
 import {
   Component,
+  Input,
   OnInit
 } from '@angular/core';
 import * as moment from 'moment';
@@ -31,7 +32,7 @@ export class HistorydataComponent implements OnInit {
   
   maxdate: string = '';
   mindate: string = '';
-  id: number;
+  ids: number;
   todaySale: TodaySale;
   todaySales: TodaySale;
   allstartdate:string='';
@@ -43,14 +44,25 @@ export class HistorydataComponent implements OnInit {
   showhistorydata = false;
   showmonthdata = false;
   ordersummary:OrderSummary[];
+  @Input() ID:number[]
   constructor(private auth: AuthService ,private translate:TranslateService,public user:UserService) {}
   
 
 
   ngOnInit(): void {
 
-    this.id = this.auth.userData().adminId;
+   
     this.getDates();
+    // this.todaySales={
+    //   Dining : 0, 
+    //   HD : 0,
+    //   Takeaway : 0,
+    // }
+    // if(this.ID[]==undefined){
+    //   this.ids = this.auth.userData().adminId;
+    // }
+  
+console.log(this.ids,"hist id ")
   }
   getDates() {
     var currentDate = new Date();
@@ -91,19 +103,29 @@ export class HistorydataComponent implements OnInit {
     this.showhistorydata = false;
     this.showweekdata = true;
     this.showyeardata = false;
-    
-    this.user.getOrderSummary(this.auth.userData().adminId, this.allstartdate, this.weekenddate).subscribe(
+    if(this.ID ==undefined)
+    {
+      this.ids=this.auth.userData().adminId;
+    }
+    else if(this.ID[1]==undefined){
+  this.ids=this.auth.userData().adminId;
+}
+else{
+  this.ids=this.ID[1]
+}
+console.log(this.ids,"hist id ")   
+    this.user.getOrderSummary(this.ids, this.allstartdate, this.weekenddate).subscribe(
       res => {
         this.ordersummary = res;
-
+        console.log(this.ordersummary,"week")
         res.map(item => {
           this.todaySales= {
-            Dining: this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill,
-            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
-            HD:this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
-            dine:this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount,
-            hd:this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
-            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
+            Dining:this.ordersummary.find(x => x.deliveryOptionId == 1) ==undefined ? 0 : this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill ,
+            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2)==undefined ? 0 :this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
+            HD:this.ordersummary.find(x => x.deliveryOptionId == 3)==undefined ?0:this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
+            dine:this.ordersummary.find(x => x.deliveryOptionId == 1) == undefined ? 0 : this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount ,
+            hd:this.ordersummary.find(x => x.deliveryOptionId == 2) == undefined ? 0 :this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
+            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3)== undefined ? 0 :this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
           }
         });
       });
@@ -115,20 +137,31 @@ export class HistorydataComponent implements OnInit {
     this.showhistorydata = false;
     this.showweekdata = false;
     this.showyeardata = false;
- 
-    this.user.getOrderSummary(this.auth.userData().adminId, this.allstartdate, this.monthenddate).subscribe(
+    if(this.ID == undefined)
+    {
+      this.ids=this.auth.userData().adminId;
+    }
+else if(this.ID[1]==undefined){
+  this.ids=this.auth.userData().adminId;
+}
+else{
+  this.ids=this.ID[1]
+}
+console.log(this.ids,"hist id ")
+    this.user.getOrderSummary(this.ids, this.allstartdate, this.monthenddate).subscribe(
       res => {
         this.ordersummary = res;
 
         res.map(item => {
           this.todaySale = {
-            Dining: this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill,
-            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
-            HD:this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
-            dine:this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount,
-            hd:this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
-            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
+            Dining: this.ordersummary.find(x => x.deliveryOptionId == 1) ==undefined ? 0 : this.ordersummary.find(x => x.deliveryOptionId == 1).totalBill ,
+            Takeaway:this.ordersummary.find(x => x.deliveryOptionId == 2)==undefined? 0 : this.ordersummary.find(x => x.deliveryOptionId == 2).totalBill,
+            HD:this.ordersummary.find(x => x.deliveryOptionId == 3)==undefined ? 0 : this.ordersummary.find(x => x.deliveryOptionId == 3).totalBill,
+            dine:this.ordersummary.find(x => x.deliveryOptionId == 1) ==undefined ? 0 : this.ordersummary.find(x => x.deliveryOptionId == 1).totalAmount ,
+            hd:this.ordersummary.find(x => x.deliveryOptionId == 2)==undefined ? 0 :this.ordersummary.find(x => x.deliveryOptionId == 2).totalAmount,
+            takeaway:this.ordersummary.find(x => x.deliveryOptionId == 3)==undefined ? 0 :this.ordersummary.find(x => x.deliveryOptionId == 3).totalAmount,
           }
+
         });
       });
 
