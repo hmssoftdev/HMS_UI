@@ -17,8 +17,8 @@
            
               <p-multiSelect class="p-ml-2" [options]="frachlist" [style]="{'width':'200px'}"
               [panelStyle]="{'width':'200px'}" (onChange)="franlocationSelection()" showClear="true" [(ngModel)]="selectedCities" optionLabel="city" placeholder="Select Franchise Location" optionValue="id"></p-multiSelect>
-            <br>  <span class="p-mr-2"> {{selectedHotel}}</span> 
-             <span class="p-ml-2">{{selectedCities}} </span> 
+            <!-- <br>  <span class="p-mr-2"> {{selectedHotel}}</span> 
+             <span class="p-ml-2">{{selectedCities}} </span>  -->
             </div>
           </div>
          
@@ -36,9 +36,9 @@
       </div>
       
       
-    <app-today-summary [ID]="ID" *ngIf="show"></app-today-summary>
+    <app-today-summary [ID]="ID" *ngIf="show==true"></app-today-summary>
 
-    <app-historydata [ID]="ID"></app-historydata>
+    <app-historydata [ID]="ID" (showdata)="fnshowData($event)"></app-historydata>
     <!-- <div class="p-grid">
       <div class="col-12 md:col-12"> -->
         <!-- <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]=todaySale ></app-bar-chart> -->
@@ -73,19 +73,19 @@
      
     </div>
 
-<app-topdata [ID]="ID" *ngIf="show">
+<app-topdata [ID]="ID" *ngIf="show==true">
   
 </app-topdata>
 
 
-<app-fooditem *ngIf="show"></app-fooditem>
+<app-fooditem *ngIf="show==true"></app-fooditem>
 
     <div class="p-grid align-items-center justify-content-center p-text-center">
 
 
     <div class="p-col-12 p-text-center">
      <h5><span class="text-3xl p-text-center">{{'Number of repeated customer in Month'| translate}}</span></h5>  
-      <app-top-cust-data [ID]="ID" *ngIf="show"> </app-top-cust-data>
+      <app-top-cust-data [ID]="ID" *ngIf="show==true"> </app-top-cust-data>
     </div>
 
         

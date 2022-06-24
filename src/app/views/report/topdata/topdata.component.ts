@@ -33,6 +33,9 @@ getTopHistorydata(){
   {
     this.ids=this.auth.userData().adminId;
   }
+  else if(this.ID[1] == undefined){
+    this.ids=this.auth.userData().adminId;
+  }
 else{
 this.ids=this.ID[1]
 }

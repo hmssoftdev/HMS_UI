@@ -46,11 +46,11 @@ export class ReportComponent implements OnInit {
   datadoughnut: any;
   data: any;
   chartOptions: any;
-  frachlist:franchis;
+  frachlist:franchis[];
   selectedCities:any[]
   selectedHotel:any[]
   userData:any;
-  show:boolean=false;
+  show:boolean;
 
   constructor(public user: UserService,public adminService: AdminService, public auth: AuthService,public translate:TranslateService,comset:CommonService,public capnfran:CapnfranService) {
 
@@ -74,7 +74,10 @@ export class ReportComponent implements OnInit {
     
     this.userData=this.auth.userData();
     this.frachiseget()
-  
+    this.fnshowData(this.show)
+  }
+  fnshowData(shows:boolean){
+    this.show=shows
   }
   frachiseget(){
     this.capnfran.GetFranchise(this.auth.userData().adminId).subscribe(x=>{

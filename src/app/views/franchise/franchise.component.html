@@ -67,8 +67,13 @@
             <span *ngIf="!data.city">-</span>
         </td>
         <td>
+            <button pButton pRipple icon="pi pi-ban" class="p-button-rounded p-button-danger p-mr-1"
+                                pTooltip="Freeze" tooltipPosition="left"></button>
+            <button pButton pRipple icon="pi pi-desktop" class="p-button-rounded p-button-help p-mr-1"
+                                pTooltip="Work As Admin" tooltipPosition="left"></button>
+                                
             <!-- <span class="p-column-title">Action</span> -->
-            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-2"
+            <button pButton pRipple icon="pi pi-pencil" class="p-button-rounded p-button-success p-mr-1"
                 (click)="editFranchise(data)" pTooltip="Edit Franchise" tooltipPosition="left"></button>
             <button pButton pRipple icon="pi pi-trash" class="p-button-rounded p-button-warning"
                 (click)="deleteDish(item)" pTooltip="Delete Dish" tooltipPosition="left"></button>

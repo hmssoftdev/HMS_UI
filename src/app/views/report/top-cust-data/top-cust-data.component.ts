@@ -59,11 +59,14 @@ export class TopCustDataComponent implements OnInit {
   }
   getRepeatedHistorydata(){
     if(this.ID ==undefined)
-    {
-      this.ids=this.auth.userData().adminId;
-    }
+  {
+    this.ids=this.auth.userData().adminId;
+  }
+  else if(this.ID[1] == undefined){
+    this.ids=this.auth.userData().adminId;
+  }
 else{
-  this.ids=this.ID[1]
+this.ids=this.ID[1]
 }
      this.user.getBillHistory(this.ids,this.startdate,this.monthenddate).subscribe(
     x=>{
