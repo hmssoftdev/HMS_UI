@@ -16,7 +16,7 @@ modal:boolean;
  cities: any;
  cityFilter: [];
  franch:franchis;
- franchise:franchis;
+ franchise:franchis[];
  loading:boolean=true;
   constructor( public commonService:CommonService,public capnfran:CapnfranService,private messageServie: MessageService,
     public auth:AuthService) { }
@@ -27,13 +27,13 @@ modal:boolean;
         return { label: cItem.name, value: cItem.id }
       }) 
     }); 
-    
-    this.franch={
-      // id: ,
-      userName:'',
+   
+  //   this.franch={
+  //     // id: ,
+  //     userName:'',
       
 
-  };
+  // };
     this.commonService.getCities().subscribe(x => {
       // if(this.admin.stateId){
       //   this.cities = x.filter((city) => city.id === this.admin.stateId).map( cItem => {
@@ -85,7 +85,7 @@ modal:boolean;
       })
     }
 
-    
+    this.franchise= [...this.franchise];
     this.modal=false
 
   }
@@ -94,6 +94,7 @@ modal:boolean;
   }
 
   openNew(){
+    this.franch=new franchis()
     this.modal=true
   }
 }

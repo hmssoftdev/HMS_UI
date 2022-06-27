@@ -58,6 +58,14 @@ export class CaptainComponent implements OnInit {
   }
 
   openNew(){
+    this.captain={
+      user:{
+
+      },
+      tableList:[{
+
+      }]
+    }
     this.captainDialog=true;
     console.log("Hello")
     this.submitted=false

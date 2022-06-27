@@ -3,8 +3,10 @@ import {
 } from '@angular/common';
 import {
   Component,
+  EventEmitter,
   Input,
-  OnInit
+  OnInit,
+  Output
 } from '@angular/core';
 import * as moment from 'moment';
 import {
@@ -45,6 +47,7 @@ export class HistorydataComponent implements OnInit {
   showmonthdata = false;
   ordersummary:OrderSummary[];
   @Input() ID:number[]
+  @Output() showdata: EventEmitter<boolean> = new EventEmitter();
   constructor(private auth: AuthService ,private translate:TranslateService,public user:UserService) {}
   
 
@@ -65,6 +68,7 @@ export class HistorydataComponent implements OnInit {
 console.log(this.ids,"hist id ")
   }
   getDates() {
+    
     var currentDate = new Date();
    this.allstartdate = this.getFormatedDate(currentDate);
 
@@ -93,12 +97,24 @@ console.log(this.ids,"hist id ")
   }
 
   getHistorydata() {
+    if(this.ID ==undefined)
+    {
+      this.ids=this.auth.userData().adminId;
+    }
+    else if(this.ID[1]==undefined){
+  this.ids=this.auth.userData().adminId;
+}
+else{
+  this.ids=this.ID[1]
+}
+    this.showdata.emit(true)
     this.showhistorydata = true;
     this.showweekdata = false;
     this.showyeardata = false;
     this.showmonthdata = false;
   }
   getweekdata() {
+    this.showdata.emit(true)
     this.showmonthdata = false;
     this.showhistorydata = false;
     this.showweekdata = true;
@@ -131,8 +147,9 @@ console.log(this.ids,"hist id ")
       });
 
   }
+ 
   getmonthdata() {
-
+    this.showdata.emit(true)
     this.showmonthdata = true;
     this.showhistorydata = false;
     this.showweekdata = false;

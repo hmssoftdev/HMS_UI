@@ -1,28 +1,31 @@
-export interface franchis {
-     id?: number,
-     isActive?:boolean,
-     createdOn?:string ,
-     createdBy?: string,
-     updatedOn?:string ,
-     updatedBy?: string,
-     userName?:string ,
-     password?:string ,
-     email?:string ,
-     businessName?:string,
-     foodLincNum?:string ,
-     gst?:string ,
-     cityId?: number,
-     city?:string ,
-    stateId?: number,
-    state?:string,
-     pinCode?:string ,
-     isFranchise?: number,
-     parentCompanyId?: number,
-     address?:string,
-     franchiseAdminId?: number
-     result?:string
-     contact?:number;
-     name?:string;
+export class franchis {
+constructor(
+  public id?: number,
+  public  isActive?:boolean,
+  public createdOn?:string,
+  public   createdBy?: string,
+  public  updatedOn?:string ,
+  public   updatedBy?: string,
+  public   userName?:string ,
+  public   password?:string ,
+  public   email?:string ,
+  public  businessName?:string,
+  public   foodLincNum?:string ,
+  public  gst?:string ,
+  public  cityId?: number,
+  public  city?:string ,
+  public stateId?: number,
+  public state?:string,
+  public   pinCode?:string ,
+  public   isFranchise?: number,
+  public   parentCompanyId?: number,
+  public  address?:string,
+  public  franchiseAdminId?: number,
+  public   result?:string,
+  public   contact?:number,
+  public  name?:string,
+){}
+
 }
 export interface captain{
     id?:number,

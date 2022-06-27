@@ -43,19 +43,18 @@ export class CapnfranService {
     );
   }
   UpdateFranchsie(franch:franchis):Observable<franchis>{
-    return this.http.put(this.franchiseURL,franch).pipe(
+    return this.http.put<franchis>(this.franchiseURL,franch).pipe(
       map(x=>{
-        return x
+        return franch
       }),
       catchError(this.handleError('',franch))
     )
   }
-  GetFranchise(id:number):Observable<franchis>{
-    return this.http.get(`${this.franchiseURL}/GetById/${id}`).pipe(
+  GetFranchise(id:number):Observable<franchis[]>{
+    return this.http.get<franchis[]>(`${this.franchiseURL}/GetById/${id}`).pipe(
       map(x=>{
-        return x;
-      }),
-      catchError(this.handleError(''))
+      return x;
+      })
     )
   }
   handleError<T>(operation = 'operation', result?: T) {
