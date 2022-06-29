@@ -65,8 +65,7 @@ console.log(this.ids,"today")
     let minnewDate = moment(this.date).format('YYYY-MM-DD').toString();
     this.user.getOrderSummary(this.ids,maxnewDate,minnewDate).subscribe(
       res=>{
-        // this.orderSummary=x
-        // this.alltotalAmout=res.totalAmount;
+
         console.log(res,"Cheching Response")
         if(res){
 res.map(item=>{
@@ -78,7 +77,13 @@ res.map(item=>{
 
   }
   if(item.deliveryOptionId===1){
-    this.diningamount=item.totalAmount;
+    if(item.totalAmount==''){
+      this.diningamount=0
+    }
+    else{
+      this.diningamount=item.totalAmount;
+    }
+    
     this.diningbill=item.totalBill;
   }
   if(item.deliveryOptionId===2){

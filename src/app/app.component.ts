@@ -21,7 +21,7 @@ import { SettingComponent } from './views/setting/setting.component';
 })
 export class AppComponent implements OnInit { 
 
-  set:setting;
+ 
 
   @ViewChild(SidebarComponent) private sideBarComp:SidebarComponent;
   storage: Storage;
@@ -55,8 +55,9 @@ export class AppComponent implements OnInit {
       this.authService.uLoggedInSubject$.next(true)
       this.authService.uLoggedInSubject$.subscribe(resp => this.uLoggedIn = resp)
   } else {
-    this.storage.setItem('HMSUserData',JSON.stringify({userType:4}))
-    // this.router.navigate(['/login'])
+    // this.storage.setItem('HMSUserData',JSON.stringify({userType:4}))
+
+    this.router.navigate(['/login'])
   }
     
     this.router.events.subscribe((evt) => {

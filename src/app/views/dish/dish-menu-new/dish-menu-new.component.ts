@@ -1,4 +1,4 @@
-import { Component, Input, OnInit, Output} from '@angular/core'; 
+import { Component, HostListener, Input, OnInit, Output} from '@angular/core'; 
 import { MessageService, PrimeNGConfig } from 'primeng/api';
 import { Subscription } from 'rxjs';
 import { Dish, DishCategory } from '../../../models/dish';
@@ -45,7 +45,9 @@ export class DishMenuNewComponent implements OnInit {
   sortField: string;
   sortOrder: number;
   sortOptions: any[];
-  toggle: any;
+  toggle=[false];
+  toggles:number;
+  colrs=[0];
   selCategory: string= 'All';
   categoryFilter: Dish[]; 
   dishesRaw: Dish[];
@@ -123,6 +125,8 @@ export class DishMenuNewComponent implements OnInit {
       this.translate.use(res);
     })
 
+    
+
     this.userService.getusersetting(this.auth.userData().adminId).subscribe(resp =>{
       if(resp){
         const d = resp;
@@ -139,7 +143,9 @@ export class DishMenuNewComponent implements OnInit {
     if(this.customer===true){
       this.droperror=true
     }
-    
+    if(this.kotrelease==true){
+      this.fnDeliveryMode('Take Away')
+    }
    
     })
     console.log(this.customer,"true")
@@ -151,7 +157,7 @@ export class DishMenuNewComponent implements OnInit {
 
     })
 
-
+console.log(this.toggles,"togs")
       
     this.loadData();
     this.loadClient();
@@ -174,6 +180,9 @@ export class DishMenuNewComponent implements OnInit {
         console.log(x);
         this.selectedTableID = x;
     });
+
+   
+
   } 
 //   onBlur(value){
 //    if(value==''){
@@ -255,13 +264,15 @@ for (var _i = 0; _i < x.length; _i++) {
   }
     //Add to cart Function
     fnAddtoCart(cartItem: Dish) {
+
       const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.id === cartItem.mainCategoryId)[0];
       if(this.gst==false){
         selCategory.gstCompliance = 0
       }
       this.cartService.addItem(cartItem, 1, selCategory.gstCompliance); 
       this.fnLoadCartData();
-     
+     this.toggle[cartItem.id]=!this.toggle[cartItem.id]
+     console.log(this.toggle,"tog check",this.colrs,"")
     }
     addItem(item:Dish){
       // const selCategory = this.rawDishCategoyItems.filter(dItem => dItem.name === item.name)[0];
@@ -281,6 +292,7 @@ for (var _i = 0; _i < x.length; _i++) {
       this.fnLoadCartData();
     }
     emptyCart(){
+      this.toggles=0
       this.cartService.empty();
       this.fnLoadCartData();
       this.selectedUser = null;
@@ -291,15 +303,18 @@ for (var _i = 0; _i < x.length; _i++) {
   
     }
   fnDeliveryMode(s:string){
+    this.toggles=0;
     this.deliveryMode = s;
     this.isKOTdone = false;
     if(s =='Dining'){
       this.diningTableDialog = true;
       this.KOTEnabled = false;
-    } else {
+    } 
+    else {
       this.KOTEnabled = true;
     }
-    if(!this.selectedUser && this.userData.userType !== 6){ 
+    if(!this.selectedUser && this.userData.userType !== 6)
+    { 
       this.cartService.addUser(this.userData);
     }
     this.cartService.addDeliveryMode(s); 
@@ -367,7 +382,7 @@ for (var _i = 0; _i < x.length; _i++) {
     this.cartItems.userId = this.selectedUser; 
     this.cartItems.adminId = this.userData.adminId;
     this.billingDialog = true;
-
+    this.toggles=0
     // this.emptycart.emit('this.emptyCart()');
     // console.log(this.cartItems);
     // this.cartService.postOrder(this.cartItems).subscribe(() => {
@@ -388,12 +403,11 @@ for (var _i = 0; _i < x.length; _i++) {
     const amt = parseInt(event.target.value) | 0;
     this.cartItems.additionalAmount  = amt;
     this.cartService.calcAdditionalAmount(this.cartItems); 
+    
    }
-
+  
   fnKOTPrint(resp) { 
-    // if(this.userData.userType == 5){
-    //   this.cartItems.userId=this.userData.adminId
-    // }
+    this.toggles=0
     this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
@@ -434,12 +448,13 @@ for (var _i = 0; _i < x.length; _i++) {
       window.print();
      this.deliveryMode === 'Dining' ? this.emptyCart() : '';
     },1000)
-
-    if(this.deliveryMode =='Take Away' && this.kotrelease==true){
-      setTimeout(()=>{
-        this.emptyCart()
-      },5000) 
-    }
+   
+    // if(this.deliveryMode =='Take Away' && this.kotrelease==true){
+      
+    //   setTimeout(()=>{
+    //     this.emptyCart()
+    //   },5000) 
+    // }
 
   });
  }
@@ -481,6 +496,17 @@ else{
 
  
   }
+  @HostListener("window:afterprint", [])
+  onWindowAfterPrint() {
+   if(this.cartItems.deliveryMode =='Take Away' && this.kotrelease==true){
+     this.emptyCart()
+     
+   }
+   if(this.kotrelease==true){
+    this.fnDeliveryMode('Take Away')
+  }
+  }
+
     fnDirectPayment(){
       this.fnLoadCartData(); 
      const orderS = {status:1}

@@ -12,6 +12,7 @@ import { TranslateService } from "@ngx-translate/core";
 })
 export class TableConfigurationComponent implements OnInit {
     table: Hotel;
+   
     tableList: Hotel[] = [];
     hallType: { label: string; value: boolean; }[];
     tableShape: { label: string; value: string; }[];

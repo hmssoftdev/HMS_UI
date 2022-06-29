@@ -133,7 +133,12 @@
     }
     .btnCartToggle{display: none;}
 }
-
+.addcartbooked{
+    background-color: #28a745; 
+}
+.addcart{
+background-color: #007bff;
+}
 .vegSymbol {
     width: 17px;
     height: 17px;
@@ -213,10 +218,11 @@
     }
 }
 @media screen and (max-width: 768px) {
+
     .category{
-        font-size: 1rem !important;
+        font-size: 0.8rem !important;
         text-transform: uppercase;
-        height: 2rem;
+        height: 1.5rem;
     }
     :host ::ng-deep {
         .p-button.p-button-icon-only{
@@ -329,7 +335,13 @@
 
 }
 }
-@media (min-device-width: 800px) and (max-device-width: 1280px) and (-webkit-min-device-pixel-ratio: 2) {
+@media (min-device-width: 500px) and (max-device-width: 767px) {
+.simplemenu{
+    width: 33% !important;
+}
+}
+
+@media (min-device-width: 800px) and (max-device-width: 1280px) {
 .cartbtn{
     font-size: smaller;
 }
@@ -393,6 +405,9 @@
     .p-button.p-button-icon-only {
         height: 2.667rem;
         width: 3.667rem;
+    }
+    .product-grid-item .product-price {
+        font-size: 1.4rem;
     }
 
 }
@@ -502,6 +517,14 @@ li:last-child{
         display: block; 
         width: 100%;
     }
+    .vegSymbol{
+        width: 10px;
+        height: 10px;
+  
+        vertical-align: middle;
+        line-height: 12px;
+        padding: 0 2px;
+    }
     .btnCartToggle{
         display: block;
         position: fixed;
@@ -567,6 +590,7 @@ li:last-child{
 
     }
     :host ::ng-deep{
+        
         .p-button.p-button-icon-only{
             height: 1.3rem !important;
             width: 1.3rem !important;
@@ -610,6 +634,7 @@ li:last-child{
             margin-top: 0rem;
           
         }
+       
         .mAvailibility {
             margin-right: 0%!important;
             text-align: center;

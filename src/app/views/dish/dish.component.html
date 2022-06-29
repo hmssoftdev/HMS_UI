@@ -18,11 +18,13 @@
                   
                     
             </ng-template>
-            <!-- <ng-template pTemplate="right">
-                <p-fileUpload mode="basic" disabled="true" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
+           <ng-template pTemplate="right">
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-danger mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+               <!--   <p-fileUpload mode="basic" disabled="true" accept="image/*" [maxFileSize]="1000000" label="Import" chooseLabel="Import"
                     class="p-mr-2 p-d-inline-block"></p-fileUpload>
-                <button pButton pRipple label="Export" disabled="true" icon="pi pi-upload" class="p-button-help my-2"></button>
-            </ng-template> -->
+                <button pButton pRipple label="Export" disabled="true" icon="pi pi-upload" class="p-button-help my-2"></button> -->
+            </ng-template>
         </p-toolbar>
     </div>
     <div class="card-body">
@@ -30,12 +32,12 @@
             [rows]="10" [showCurrentPageReport]="true" [(selection)]="selectedDishes" [rowHover]="true" dataKey="id"[globalFilterFields]="['name',]"
             currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
             [rowsPerPageOptions]="[10,25,50]">
-            <ng-template pTemplate="caption">
+            <!-- <ng-template pTemplate="caption">
                 <div class="flex p-jc-between">
                     <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
                     <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-warning mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
                 </div>
-              </ng-template>
+              </ng-template> -->
             <ng-template pTemplate="header">
                 <tr>
                     <th style="width: 3rem">
