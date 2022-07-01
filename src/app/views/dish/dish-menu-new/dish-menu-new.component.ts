@@ -101,6 +101,8 @@ export class DishMenuNewComponent implements OnInit {
    gst:boolean;
    simplemenu:boolean
    kotrelease:boolean
+   noprintsubmit:boolean
+   carts:any[]
   //  customLabel:string="KOT Print"
   constructor(
     private comset:CommonService,
@@ -137,6 +139,7 @@ export class DishMenuNewComponent implements OnInit {
         this.fstPayment=d.paymentFirst ?true:false;
         this.gst=d.billWithGST?true:false;
         this.kotrelease=d.displayCardWithImage ?true :false;
+        this.noprintsubmit =d.theme?true:false;
         // console.log( this.both = d.billPrintAndKOT ? true : false,"check")
         // this.both = d.billPrintAndKOT?true : false; 
     }
@@ -406,7 +409,42 @@ for (var _i = 0; _i < x.length; _i++) {
     
    }
   
-  fnKOTPrint(resp) { 
+
+  @HostListener("window:afterprint", [])
+  onWindowAfterPrint() {
+   if(this.cartItems.deliveryMode =='Take Away' && this.kotrelease==true){
+     this.emptyCart()
+     
+   }
+   if(this.kotrelease==true){
+    this.fnDeliveryMode('Take Away')
+  }
+  }
+  fnNoPrintSubmit(){
+
+  }
+
+    fnDirectPayment(){
+      this.fnLoadCartData(); 
+     const orderS = {status:1}
+     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
+     this.cartItems.orderStatus.push(orderS) 
+ 
+
+   this.currentOrderId = null;
+   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
+    this.currentOrderId = resp.orderId;
+     this.cartService.addOrderId(this.currentOrderId);
+ 
+    //  this.selectedPrintType = 'KOTPrintUI';
+
+     this.fnMakePayment();
+    
+   });
+
+
+   }
+   fnKOTPrint(resp) { 
     this.toggles=0
     this.fnLoadCartData(); 
     this.showKOTItems = true; 
@@ -459,6 +497,10 @@ for (var _i = 0; _i < x.length; _i++) {
   });
  }
 else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
+  const carts =[ this.cartItems.grossTotal,this.cartItems.orderItems,
+
+  ]
+  console.log(carts,"value check carts")
   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
     console.log(this.cartItems,"Put")
 
@@ -496,37 +538,6 @@ else{
 
  
   }
-  @HostListener("window:afterprint", [])
-  onWindowAfterPrint() {
-   if(this.cartItems.deliveryMode =='Take Away' && this.kotrelease==true){
-     this.emptyCart()
-     
-   }
-   if(this.kotrelease==true){
-    this.fnDeliveryMode('Take Away')
-  }
-  }
-
-    fnDirectPayment(){
-      this.fnLoadCartData(); 
-     const orderS = {status:1}
-     this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
-     this.cartItems.orderStatus.push(orderS) 
- 
-
-   this.currentOrderId = null;
-   this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-    this.currentOrderId = resp.orderId;
-     this.cartService.addOrderId(this.currentOrderId);
- 
-    //  this.selectedPrintType = 'KOTPrintUI';
-
-     this.fnMakePayment();
-    
-   });
-
-
-   }
   fnBillPrint(order: OrderList){
     if(this.fstPayment==true){
       this.fnLoadCartData(); 
@@ -551,8 +562,7 @@ else{
    // }) 
    this.currentOrderId = null 
   //  this.cartItems.userName=this.selectedUsers;
-   if(this.cartItems.id === undefined)
-   {
+ 
       this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
       console.log(this.cartItems,"Post")
         
@@ -568,42 +578,8 @@ else{
       // },1000)
   
     });
-   }
-  else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
-    this.cartService.PutOrder(this.cartItems).subscribe(res=>{
-      console.log(this.cartItems,"Put")
-  
-      // this.selectedPrintType = 'KOTPrintUI';
-      this.isKOTdone = true; 
-      // setTimeout(() => {
-      //   window.print();
-      //   // this.msgService.add({ severity: 'info', summary: 'Table Selection', detail: 'To proceed your order, Kindly select table first!',life:3000 });
-      //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-      // },1000)
-     })
-  }
-  
-  else{
-    if(this.deliveryMode !=='Dining' && this.cartItems.id !== undefined){
-       // && this.cartItems.id == undefined
-      this.cartService.postOrder(this.cartItems).subscribe((resp:any) => {
-        console.log(this.cartItems,"Post")
-          
-        this.currentOrderId = resp.orderId;
-        this.invoiceno =resp.invoice;
-        this.cartService.addOrderId(this.currentOrderId);
-        // this.KOTitems = this.cartItems;
-        // this.selectedPrintType = 'KOTPrintUI';
-        this.isKOTdone = true; 
-        // setTimeout(() => {
-        //   window.print();
-        // //  this.deliveryMode === 'Dining' ? this.emptyCart() : '';
-        // },1000)
-    
-      });
-    }
-  
-      }
+   
+
     
     }
     this.selectedPrintType = 'BillPrintUI';
@@ -614,7 +590,7 @@ else{
     this.cartData = order;
     setTimeout(function () {
       window.print();
-    },2000)
+    },4000)
   }
 
   fnKOTnBillPrint(order:OrderList,resp){

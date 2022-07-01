@@ -7,6 +7,7 @@ import { ResetpaswordComponent } from './resetpasword/resetpasword.component';
 // import { CaptainComponent } from './captain/captain.component';
 import { SharedModule} from'../shared/shared.module';
 import { InventoryModule } from './inventory/inventory.module';
+import { LicenseComponent } from './license/license.component';
 // import { PurchaseComponent } from './inventory/purchase/purchase.component';
 // import { RecipesComponent } from './inventory/recipes/recipes.component';
 // import { StockstatusComponent } from './inventory/stockstatus/stockstatus.component';
@@ -28,6 +29,7 @@ import { InventoryModule } from './inventory/inventory.module';
   ],
   declarations: [
     ResetpaswordComponent,
+    LicenseComponent,
     // PurchaseComponent,
     // RecipesComponent,
     // StockstatusComponent,

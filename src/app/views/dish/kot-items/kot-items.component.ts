@@ -22,7 +22,7 @@ export class KOTItemsComponent implements OnInit {
 @Input() adminData: Admin;
 @Input() userdata:User;
 @Input() invoiceno:any;
-index :string='0001';
+// index :string='0001';
 
 data:setting;
 myDate = new Date();
@@ -40,6 +40,8 @@ sign=true;
      }
 
   ngOnInit(): void {
+    this.orderData=this.orderData.filter(res=>res.orderItems.name != res.orderItems.name)
+    
     console.log(this.orderData,"Checking")
     this.selectedTableID = [];
 
@@ -62,9 +64,9 @@ sign=true;
       }
    });
 
-    for (let i = 0; i < this.index.length; i++) {
-      i++
-    }
+    // for (let i = 0; i < this.index.length; i++) {
+    //   i++
+    // }
 
     console.log(this.adminData, 'AdminData', this.orderData);
     // this.cartService.get().subscribe(resp=> this.cartItems = resp);

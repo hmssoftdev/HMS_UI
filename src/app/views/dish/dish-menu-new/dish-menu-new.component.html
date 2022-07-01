@@ -455,10 +455,8 @@
               class="cart-item p-mt-2"
               *ngFor="let item of cartItems.orderItems"
             >
-          <span
-                >{{ item.name }}
-                <span>{{ item.isFull ? "" : "(Half)" }}</span></span
-              >
+          <span>{{ item.name }}
+                <span>{{ item.isFull ? "" : "(Half)" }}</span></span>
               <span class="btnPlusMinusWrap">
                 <!-- <i class="pi pi-minus"></i>  -->
                 <button
@@ -616,6 +614,16 @@
               (click)="fnDirectPayment($event);"
               class="p-button-sm p-button-help p-p-1 cartbtn"
               *ngIf="fstPayment==true"
+            ></button>
+             <button
+              pButton
+            
+              type="button"
+              label="Submit"
+              [disabled]="!KOTEnabled"                                            
+              (click)="fnNoPrintSubmit($event)"
+              class="p-button-sm p-button-warning cartbtn"
+              *ngIf="noprintsubmit"
             ></button>
             <button
               [disabled]="userData.userType === 3"

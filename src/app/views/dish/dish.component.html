@@ -237,4 +237,17 @@
         </form>
     </ng-template>
 </p-dialog>
+<p-dialog [(visible)]="licensmodal"  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '60vw'}" [modal]="true">
+        <!-- <app-license></app-license> -->
+        <ng-template pTemplate="content">
+            <div class="p-fluid p-formgrid p-grid">
+                <div class="text-gray-100 p-3 flex justify-content-between lg:justify-content-center align-items-center flex-wrap">
+                    <div class="font-bold mr-6">🔥 Only 10 Days Left!</div>
+                    <div class="align-items-center lg:flex">
+                        <span class="line-height-3">Please Contact to administrater for continue.</span>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+    </p-dialog>
 <p-confirmDialog [style]="{width: '450px'}"></p-confirmDialog>

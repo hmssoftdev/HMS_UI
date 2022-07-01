@@ -11,6 +11,7 @@ import { UserService } from './service/user.service';
 import { setting } from './models/setting';
 import { CommonService } from './service/common.service';
 import { SettingComponent } from './views/setting/setting.component';
+import { MessageService } from 'primeng/api';
 
 @Component({
   // tslint:disable-next-line
@@ -29,7 +30,7 @@ export class AppComponent implements OnInit {
  
   // // setting:setting;
 
-  constructor(
+  constructor(private messageService: MessageService,
     private router: Router,
     public iconSet: IconSetService,
     public authService:AuthService,
@@ -54,9 +55,13 @@ export class AppComponent implements OnInit {
     if(uData && uData.userType != 4){
       this.authService.uLoggedInSubject$.next(true)
       this.authService.uLoggedInSubject$.subscribe(resp => this.uLoggedIn = resp)
-  } else {
+  }
+  else if(!uData){
+    
+  }
+  else {
     // this.storage.setItem('HMSUserData',JSON.stringify({userType:4}))
-
+    
     this.router.navigate(['/login'])
   }
     
@@ -72,7 +77,7 @@ export class AppComponent implements OnInit {
 // console.log(this.setting);
 // })
 //  this.setting=this.cmser.getsettingData();
-
+this.messageService.add({severity:'success', summary:'Service Message', detail:'Via MessageService'});
   }
   // pushsetting(){
   //   this.user.postusersetting(this.set).subscribe(x=>{
