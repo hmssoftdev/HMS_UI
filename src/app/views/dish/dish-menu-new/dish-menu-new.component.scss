@@ -504,9 +504,8 @@ li:last-child{
 }
 .btnWrap{
     display: flex;
-    justify-content: space-between;
-
-    
+    justify-content: space-around;  
+    align-items: center; 
 }
 
 .fullWidth {

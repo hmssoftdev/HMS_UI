@@ -60,7 +60,7 @@ export class DishComponent implements OnInit {
     
  
   ngOnInit(): void {
-    this.licensmodal=true
+    // this.licensmodal=true
 this.userservice.getusersetting(this.authService.userData().adminId).subscribe(res=>{
 this.commsett.setLangData(res.language);
 this.translate.use(res.language);
