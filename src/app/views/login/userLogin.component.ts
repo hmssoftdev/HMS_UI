@@ -19,6 +19,7 @@ export class LoginComponent implements OnInit {
   storage: Storage;
   users:UserLogin;
   otpInput:null;
+  licensmodal:boolean;
   constructor(
     public userSvc: UserService, 
     private authService: AuthService, 

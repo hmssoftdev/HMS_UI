@@ -24,6 +24,7 @@ export interface setting{
     paymentFirst?:number;
     displayCardWithImage ?:number;
     simpleMenu?:number;
+    proceedOrderWithoutPrint?:number;
 }
 export interface language{
     name:string;

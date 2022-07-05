@@ -95,18 +95,15 @@ export class ReportComponent implements OnInit {
     this.show=true
   }
   franchSelection(){
-    
     this.ID =[ this.auth.userData().adminId,
-      this.selectedHotel ]
+      this.selectedHotel]
       this.show=true
-      console.log(this.ID,"id check")
    
   }
   franlocationSelection(){
     this.ID =[ this.auth.userData().adminId,
       this.selectedCities ]
       this.show=true
-      console.log(this.ID,"id check")
   }
   // getSummaryData() {
   //   var currentDate = new Date();

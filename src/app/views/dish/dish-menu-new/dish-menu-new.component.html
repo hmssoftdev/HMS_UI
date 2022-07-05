@@ -1,7 +1,7 @@
 <div class="p-card dishMenuWrapper">
   <div class="p-grid">
-    <div class="p-col-12 p-md-12 p-lg-8">
-      <div *ngIf="simplemenu==false"> 
+    <div class="p-col-12 p-md-8 p-lg-8">
+      <!-- <div *ngIf="simplemenu==false">  -->
         <p-dataView
         #dv
         [value]="dishes"
@@ -11,7 +11,6 @@
         [sortField]="sortField"
         [sortOrder]="sortOrder"
         layout="list"
-       
       >
         <ng-template pTemplate="header">
           <div class="p-d-flex p-m-flex-column p-flex-md-row">
@@ -94,14 +93,15 @@
             </span>
             <!-- <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
                         (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
-            <div class="p-ml-auto dataViewOpt">
+            <div *ngIf="simplemenu==false" class="p-ml-auto dataViewOpt">
               <p-dataViewLayoutOptions> </p-dataViewLayoutOptions>
             </div>
           </div>
         </ng-template>
       
         <ng-template let-dish pTemplate="listItem">
-          <div class="p-col-12" *ngIf="dish.status === 'active'">
+          
+          <div class="p-col-12" *ngIf="dish.status === 'active' && simplemenu==false">
             <div class="product-list-item">
               <div *ngIf="image" class="imgWrap">
           <img  [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
@@ -183,6 +183,59 @@
               </div>
             </div>
           </div>
+
+          <ng-container *ngIf="dish.status === 'active' && simplemenu==true"> 
+       
+            <div class="p-col-12 p-md-4 simplemenu">
+      
+       <div class="product-grid-item card">
+        
+        <div class="product-grid-item-content">
+          <div class="p-d-flex p-jc-between">
+          <div class="product-name">
+            <span
+              class="vegSymbol p-mr-1"
+              [ngClass]="dish.isVeg ? 'txtSuccess' : 'txtDanger'">
+              <i class="pi pi-circle-on"></i></span>
+            <span style="text-transform:capitalize;"> {{ dish.name }}</span> 
+            
+          </div>
+          <div>
+            <span class="product-price">{{
+              (dish.isFull ? dish.fullPrice : dish.halfPrice)
+                | currency: "INR"
+            }}</span>
+          </div>
+          </div>
+          <div class="p-d-flex p-jc-between">
+
+              <div>
+                <button
+                styleClass="p-button-sm"
+                icon="pi pi-shopping-cart"
+                (click)="fnAddtoCart(dish)"
+                [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                pTooltip="Bookmark Dish"
+                tooltipPosition="bottom"
+                pButton
+              ></button>
+              </div>
+            <div class="p-formgroup-inline"  *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0">
+              <label class="p-d-none p-d-md-inline-flex" for="isFullStatus">Half </label>
+              <p-inputSwitch
+                [(ngModel)]="dish.isFull"
+                name="isFullStatus"
+                class="p-mx-2"
+              >
+              </p-inputSwitch>
+              <label  for="isFullStatus">Full</label>
+            </div>
+
+        </div>
+      </div>
+          </div>
+        </div>
+        </ng-container>
         </ng-template>
         <ng-template let-dish pTemplate="gridItem">
           <div class="p-col-6 p-md-4" *ngIf="dish.status === 'active'">
@@ -255,15 +308,26 @@
                     (dish.isFull ? dish.fullPrice : dish.halfPrice)
                       | currency: "INR"
                   }}</span>
-
-                  <p-button
+                  <!-- ; toggles==0?'blue':'green' -->
+                  <button
                     styleClass="p-button-sm"
                     icon="pi pi-shopping-cart"
                     (click)="fnAddtoCart(dish)"
                     [disabled]="dish.statuses === 'OUTOFSTOCK'"
                     pTooltip="Bookmark Dish"
+                    pButton
                     tooltipPosition="bottom"
-                  ></p-button>
+                  ></button>
+                   <!-- <button
+                  [style.background-color]="toggle[dish.id]? 'green' : '0'" 
+                    styleClass="p-button-sm"
+                    icon="pi pi-shopping-cart"
+                    (click)="fnAddtoCart(dish);toggle[dish.id]=!toggle[dish.id]"
+                    [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                    pTooltip="Bookmark Dish"
+                    pButton
+                    tooltipPosition="bottom"
+                  ></button> -->
                 </div>
                 <div
                   *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0"
@@ -273,257 +337,11 @@
             </div>
           </div>
         </ng-template>
-      
-     
-                
-
-      </p-dataView>
-      </div>
-      <div  *ngIf="simplemenu==true">
-        <p-dataView
-        #dv
-        [value]="dishes"
-      
-        filterBy="name"       
-        layout="list"   
-          
-      >
-        <ng-template pTemplate="header">
-          <div class="p-d-flex p-m-flex-column p-flex-md-row">
-            <button
-              (click)="onCategoryFilter('All')"
-              pButton
-              type="button"
-              [ngClass]="
-                selCategory === 'All'
-                  ? 'p-button-primary'
-                  : 'p-button-secondary'
-              "
-              class="p-button-sm p-mr-2 p-mb-1 category"
-            >
-              All
-            </button>
-
-
-
-            <!-- <p-button (click)="showBasicDialog()" class="p-button-sm p-mr-2 p-mb-1 selCategory" label="Click more"></p-button>
-            
-            <p-dialog header="Dish Category" [(visible)]="displayBasic" [style]="{width: '50vw'}">-->
-              <ng-container *ngFor="let item of caty; let i = index"> 
-                <!-- <p-tag styleClass="p-mr-2" severity="success" [value]="item.value"></p-tag> -->
-                <button
-                  (click)="onCategoryFilter(item)"
-                  pButton
-                  type="button"
-                  [ngClass]="selCategory=== item? 'p-button-primary': 'p-button-secondary'"
-                  [label]="item"
-                  class="p-button-sm p-mr-2 p-mb-1 category"
-                >
-              </button>
-              </ng-container>
-
-              <button
-              (click)="showBasicDialog()"
-              pButton
-              type="button"
-
-              label="More.."
-              class="p-button-sm p- p-mb-1 more"
-            >
-          </button>
-                <!-- <button (click)="showBasicDialog()" class="p-button-sm p-mb-1 category"  label="More.."></button> -->
-                 
-            <p-dialog header="Dish Category"  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}">
-              <ng-container *ngFor="let item of dishCategory; let i = index"> 
-                <button
-                (click)="onCategoryFilter(item.value);displayBasic=false"
-                pButton
-                type="button"
-                [ngClass]="
-                  selCategory === item.value
-                    ? 'p-button-primary'
-                    : 'p-button-secondary'
-                "
-                [label]="item.value"
-                class="p-button-sm p-mr-2 p-mb-1 category"
-              ></button>
-            </ng-container>
-                <!-- <ng-template pTemplate="footer">
-                    <p-button icon="pi pi-check" (click)="displayBasic=false" label="Ok" styleClass="p-button-text"></p-button>
-                </ng-template> -->
-            </p-dialog>
-          
-          
-            
-          </div>
-          <hr />
-          <div class="p-d-flex p-m-flex-column p-flex-md-row">
-            <p-dropdown
-              [options]="sortOptions"
-              [(ngModel)]="sortKey"
-              placeholder="Sort By Price"
-              (onChange)="onSortChange($event)"
-              styleClass="p-mb-2 p-mb-md-0 p-mr-2"
-            ></p-dropdown>
-            <span class="p-input-icon-left p-mb-2 p-mb-md-0">
-              <i class="pi pi-search"></i>
-              <input
-                type="search"
-                pInputText
-                placeholder="Search by Name"
-                (input)="dv.filter($event.target.value)"
-                class="p-mr-2"
-              />
-            </span>
-            <!-- <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
-                        (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
-            <!-- <div class="p-ml-auto dataViewOpt">
-              <p-dataViewLayoutOptions> </p-dataViewLayoutOptions>
-            </div> -->
-          </div>
-        </ng-template>
-    
-      
-        <ng-template let-dish pTemplate="listItem">
-
-        <ng-container> 
-          <!-- <div class="p-card"> -->
-            <div class="p-col-10 p-md-4 p-lg-4" *ngIf="dish.status === 'active'">
-              <!-- <div class="p-grid">
-        <div class="p-col-6">
-
-        
-         
-            <span style="text-transform:capitalize;" class="text-xl">{{dish.name}} </span>
-            <span
-                  class="vegSymbol p-mr-1"
-                  [ngClass]="dish.isVeg ? 'txtSuccess' : 'txtDanger'">
-                  <i class="pi pi-circle-on"></i></span>
-                  </div>
-                  <div class="p-col-6">
-                    <label for="isFullStatus">Half </label>
-                    <p-inputSwitch
-                      [(ngModel)]="dish.isFull"
-                      name="isFullStatus"
-                      class="p-mx-2"
-                    >
-                    </p-inputSwitch>
-                    <label for="isFullStatus">Full</label>
-                  </div>
-           
-            </div>
-       <div class="p-grid">
-        <div class="p-col-6">
-          <span class="product-price">{{
-            (dish.isFull ? dish.fullPrice : dish.halfPrice)
-              | currency: "INR"
-          }}</span>
-        </div>
-        <div class="p-col-6">
-          <p-button
-          styleClass="p-button-sm"
-          icon="pi pi-shopping-cart"
-          (click)="fnAddtoCart(dish)"
-          [disabled]="dish.statuses === 'OUTOFSTOCK'"
-          pTooltip="Bookmark Dish"
-          tooltipPosition="bottom"
-        ></p-button>
-        </div>
-       </div> -->
-       <div class="product-grid-item card">
-        <div class="product-grid-item-top">
-        
-        </div>
-        <div class="product-grid-item-content">
-          <div class="p-d-flex p-jc-between">
-          <div class="product-name">
-            <span
-              class="vegSymbol p-mr-1"
-              [ngClass]="dish.isVeg ? 'txtSuccess' : 'txtDanger'"
-            >
-              <i class="pi pi-circle-on"></i></span
-            >
-            <span style="text-transform:capitalize;"> {{ dish.name }}</span> 
-            
-          </div>
-          <div>
-            <span class="product-price">{{
-              (dish.isFull ? dish.fullPrice : dish.halfPrice)
-                | currency: "INR"
-            }}</span>
-          </div>
-          </div>
-          <!-- <div class="product-description">{{ dish.description }}</div> -->
-          <!-- <p-rating [ngModel]="dish.rating" [readonly]="true" [cancel]="false"></p-rating> -->
-          <div class="p-d-flex p-jc-between">
-       
-              <!-- <p-tag
-                [value]="dish.rating ? dish.rating : 0"
-                icon="pi pi-star"
-                severity="success"
-              >
-              </p-tag>
-              <div>
-                <span class="voteTxt"
-                  >{{ dish.rating ? 1 : 0 }} votes</span
-                >
-              </div> -->
-              <div>
-              
-                <p-button
-                styleClass="p-button-sm"
-                icon="pi pi-shopping-cart"
-                (click)="fnAddtoCart(dish)"
-                [disabled]="dish.statuses === 'OUTOFSTOCK'"
-                pTooltip="Bookmark Dish"
-                tooltipPosition="bottom"
-              ></p-button>
-              </div>
-            <div class="p-formgroup-inline"  *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0">
-              <label for="isFullStatus">Half </label>
-              <p-inputSwitch
-                [(ngModel)]="dish.isFull"
-                name="isFullStatus"
-                class="p-mx-2"
-              >
-              </p-inputSwitch>
-              <label for="isFullStatus">Full</label>
-            </div>
-           
-          <!-- </div>
-          <div class="product-grid-item-bottom">
-            <span class="product-price">{{
-              (dish.isFull ? dish.fullPrice : dish.halfPrice)
-                | currency: "INR"
-            }}</span>
-
-            <p-button
-              styleClass="p-button-sm"
-              icon="pi pi-shopping-cart"
-              (click)="fnAddtoCart(dish)"
-              [disabled]="dish.statuses === 'OUTOFSTOCK'"
-              pTooltip="Bookmark Dish"
-              tooltipPosition="bottom"
-            ></p-button>
-          </div> -->
-        
-        </div>
-      </div>
-          </div>
-        </div>
-        </ng-container>
-</ng-template>
-
-      </p-dataView>
-      </div>
-    
-      
-
-   
+ </p-dataView>
       <p-toggleButton class="btnCartToggle" onIcon="pipi-times" offIcon="pi pi-shopping-cart" (click)="fnCartToggle()" iconPos="right" [(ngModel)]="cartToggle"></p-toggleButton>
    
     </div>
-    <div class="p-col-12 p-lg-4 cartWrap" [ngClass]="lblCartToggle =='Active' ? 'active':''">
+    <div class="p-col-10 p-md-4 p-lg-4 cartWrap" [ngClass]="lblCartToggle =='Active' ? 'active':''">
       <div class="cartHeader">Cart Order Items</div>
       <div class="cartContent">
         <div class="delOptbtnWrap">
@@ -637,10 +455,8 @@
               class="cart-item p-mt-2"
               *ngFor="let item of cartItems.orderItems"
             >
-          <span
-                >{{ item.name }}
-                <span>{{ item.isFull ? "" : "(Half)" }}</span></span
-              >
+          <span>{{ item.name }}
+                <span>{{ item.isFull ? "" : "(Half)" }}</span></span>
               <span class="btnPlusMinusWrap">
                 <!-- <i class="pi pi-minus"></i>  -->
                 <button
@@ -670,8 +486,7 @@
                     p-button-success
                     p-button-sm
                     p-button-text-only
-                    p-button-text
-                  "
+                    p-button-text"
                   iconPos="left"
                 ></button>
               </span>
@@ -796,9 +611,19 @@
               type="button"
               label="Make Direct Payment"
               [disabled]="!KOTEnabled"                                            
-              (click)="fnDirectPayment($event)"
+              (click)="fnDirectPayment($event);"
               class="p-button-sm p-button-help p-p-1 cartbtn"
               *ngIf="fstPayment==true"
+            ></button>
+             <button
+              pButton
+            
+              type="button"
+              label="Submit Order"
+              [disabled]="!KOTEnabled"                                            
+              (click)="fnNoPrintSubmit($event)"
+              class="p-button-sm p-button-warning cartbtn"
+              *ngIf="noprintsubmit"
             ></button>
             <button
               [disabled]="userData.userType === 3"
@@ -806,15 +631,15 @@
               type="button"
               label="Make Payment"
               [disabled]="!isKOTdone"
-              (click)="fnMakePayment($event)"
+              (click)="fnMakePayment($event);"
               class="p-button-sm p-button-success p-p-1 cartbtn"
               *ngIf="fstPayment==false"
             ></button>
             <button
               pButton
               type="button"
-              label="Empty Carts"
-              (click)="emptyCart()"
+              label="Empty Carts"           
+              (click)="emptyCart();"
               class="p-button-sm p-button-danger p-p-1 cartbtn"
             ></button>
           </div>

@@ -86,7 +86,7 @@ import { StockstatusComponent } from './views/inventory/stockstatus/stockstatus.
 // import {ButtonModule} from 'primeng/button';
 // import {MultiSelectModule} from 'primeng/multiselect';
 // import {InputTextModule} from 'primeng/inputtext';
-
+import { LicenseComponent } from './views/license/license.component';
 @NgModule({
   imports: [
     
@@ -130,6 +130,7 @@ import { StockstatusComponent } from './views/inventory/stockstatus/stockstatus.
 })
   ],
   declarations: [
+    LicenseComponent,
     RecipesComponent,
     StockstatusComponent,
     PurchaseComponent, 

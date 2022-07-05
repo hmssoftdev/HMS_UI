@@ -21,6 +21,7 @@ import { ResetpaswordComponent } from './views/resetpasword/resetpasword.compone
 import { CaptainComponent } from './views/captain/captain.component';
 import { FranchiseComponent } from './views/franchise/franchise.component';
 import { InventoryComponent } from './views/inventory/inventory.component';
+import { LicenseComponent } from './views/license/license.component';
 
 
 export const routes: Routes = [
@@ -44,6 +45,10 @@ export const routes: Routes = [
   {
     path:'resetPassword',
     component:ResetpaswordComponent
+  },
+  {
+    path:'license',
+    component:LicenseComponent
   },
   {
     path: 'invoice',

@@ -21,8 +21,12 @@
                 <button type="button" pButton label="Register Now" class="p-button-text" routerLink="/register"></button>
                 <button type="button" pButton label="Forgot Password?" routerLink="/forgotpassword" class="p-button-text"></button>
             </div>
-            <div class="p-text-center p-my-3">OR</div>
+            <div class="p-text-center p-my-3">OR
+                <button type="button" pButton label="Product Setup" class="p-button-text" (click)="licensmodal=true"></button>
+            </div>
+            
             <div class="p-inputgroup p-mb-3">
+                
                 <span class="p-inputgroup-addon"><i class="pi pi-mobile"></i></span>
                 <input type="text" pInputText disabled="true" name="otpInput" class="form-control" [(ngModel)]="otpInput"
                     placeholder="Mobile / Username / Email" autocomplete="otpInput" required>
@@ -32,5 +36,9 @@
                     label="Send OTP"></button>
             </div>
         </form>
+        <p-dialog  [(visible)]="licensmodal"  [style]="{width: '70vw'}">
+        <app-license></app-license>
+        </p-dialog>
+
     </div>
 </div>

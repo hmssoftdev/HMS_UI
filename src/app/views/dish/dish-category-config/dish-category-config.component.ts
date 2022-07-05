@@ -53,9 +53,9 @@ export class DishCategoryConfigComponent implements OnInit {
     this.todayWithPipe = this.pipe.transform(Date.now(), 'h:mm a');
    
     this.cols = [
-      { field: 'name', header: 'name' },
+      { field: 'name', header: 'Name' },
       { field: 'gstCompliance', header: 'GST Compliance' },
-      { field: 'status', header: 'status' },
+      { field: 'status', header: 'Status' },
    
   ];
     this.authService.showLoader = true;

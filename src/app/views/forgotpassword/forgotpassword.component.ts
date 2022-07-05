@@ -13,7 +13,7 @@ export class ForgotpasswordComponent implements OnInit {
   // mssg: Message[];
 //  validateemaildid: boolean = false;
  emailid: string = '';
-url:string='http://hmsangularbucket.s3-website.us-east-2.amazonaws.com/'
+url:string='http://localhost:4200/'
   constructor(private messageServie: MessageService,private user: UserService,private auth:AuthService,private messageService: MessageService) { }
 
   ngOnInit(): void {
@@ -30,7 +30,7 @@ var a= "#"
  var urll=this.url+encodeURIComponent(a)
 this.user.forgotpassword(this.emailid,urll).subscribe(x=>{
   if(x==true){
-    this.messageService.add({severity:'primary', summary:'Link For Reset Has Send To Email ID',life: 3000});
+    this.messageService.add({severity:'info', summary:'Link For Reset Has Send To Email ID',life: 3000});
   }
 })
 }

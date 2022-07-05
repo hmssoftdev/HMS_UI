@@ -4,7 +4,7 @@ import { franchis } from '../../models/franchise';
 import { AuthService } from '../../service/auth.service';
 import { CapnfranService } from '../../service/capnfran.service';
 import { CommonService } from '../../service/common.service';
-
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-franchise',
   templateUrl: './franchise.component.html',
@@ -18,6 +18,9 @@ modal:boolean;
  franch:franchis;
  franchise:franchis[];
  loading:boolean=true;
+ exportColumns:any[];
+ cols:any[];
+  colss:any[];
   constructor( public commonService:CommonService,public capnfran:CapnfranService,private messageServie: MessageService,
     public auth:AuthService) { }
 
@@ -27,7 +30,14 @@ modal:boolean;
         return { label: cItem.name, value: cItem.id }
       }) 
     }); 
-   
+    this.cols = [
+      { field: 'userName', header: 'UserName' },
+      { field: 'password', header: 'Password' },
+      { field: 'contact', header: 'MobileNo' },
+      { field: 'email', header: 'Email' },
+      { field: 'city', header: 'Location' },
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
   //   this.franch={
   //     // id: ,
   //     userName:'',
@@ -51,6 +61,8 @@ modal:boolean;
     this.capnfran.GetFranchise(this.auth.userData().adminId).subscribe(x=>{
       this.franchise=x
       this.loading=false
+      this.colss=this.franchise.map(res=> ({Username:res.userName, Password:res.password,
+        Contact:res.contact,Email:res.email,Location:res.city}))
       return this.franchise;
     })
   }
@@ -67,6 +79,7 @@ modal:boolean;
 
       this.capnfran.UpdateFranchsie(this.franch).subscribe(x=>{
         if(x.result=='Data updated')
+          
         {
           this.messageServie.add({severity:'success',
           summary:'SuccessFully Updated', detail: 'Franchise',life: 2000});
@@ -89,10 +102,40 @@ modal:boolean;
     this.modal=false
 
   }
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.franchise);
+            doc.save('Franchise_list.pdf');
+        })
+    })
+}
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Franchise");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_' + + EXCEL_EXTENSION);
+}
   onStateChange(){ 
     // this.cityFilter = this.cities.filter((city) => city.stateId === this.admin.stateId);
   }
+  fnFreez(data){
 
+  }
+  fnWrkAdmin(data){
+    
+  }
   openNew(){
     this.franch=new franchis()
     this.modal=true

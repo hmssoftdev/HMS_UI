@@ -21,6 +21,7 @@ import { CommonService } from '../../service/common.service';
 })
 export class DishComponent implements OnInit {
   dishList: Dish[] = [];
+  licensmodal:boolean
   uploadedFiles: any[] = [];
   dish: Dish;
   dishCategory: any;
@@ -59,6 +60,7 @@ export class DishComponent implements OnInit {
     
  
   ngOnInit(): void {
+    // this.licensmodal=true
 this.userservice.getusersetting(this.authService.userData().adminId).subscribe(res=>{
 this.commsett.setLangData(res.language);
 this.translate.use(res.language);
