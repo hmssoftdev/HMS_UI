@@ -1,9 +1,26 @@
-<h5 class="p-text-center">
-    <span class="text-3xl">{{'Most Food Item Sale'| translate}}</span></h5>
-<p-table [value]="cars" class="p-text-center">
-   
-        
-   
+
+    <!-- <div class="p-d-flex p-jc-end p-ai-center">
+
+        <div>
+           
+        </div>
+    </div> -->
+    <div class="p-grid p-d-flex p-ai-center"> 
+        <div class="p-col-6 p-md-8 heads">
+            <h5>
+                <span class="text-3xl">{{'Most Food Item Sale in Month'| translate}}</span></h5>
+        </div>
+         <div class="p-col-6 p-md-4 heads">
+            <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+            <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-danger mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+        </div>
+    </div>
+<p-table [value]="fooddata" class="p-text-center"
+responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
+[rows]="10" [showCurrentPageReport]="true"  [rowHover]="true" dataKey="id"
+currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
+[rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="350px"
+[virtualScroll]="true" [virtualRowHeight]="40" sortField="count" [sortOrder]="-1">   
     <ng-template pTemplate="header" class="p-text-center">
         <tr>
             <th class="p-text-center">{{'Food Item'| translate}}</th>
@@ -12,12 +29,27 @@
            
         </tr>
     </ng-template>
-    <ng-template pTemplate="body" let-car>
-        <tr>
-            <td></td>
-            <td></td>
-            <td></td>
+    <ng-template pTemplate="body" let-data>
+        <tr class="p-text-center">
+            <td class="p-text-center">
+                {{data.name}}
+            </td>
+            <td class="p-text-center">
+                {{data.count}}
+                
+            </td>
+            <td class="p-text-center">
+                 {{data.total}}
+                
+            </td>
           
+        </tr>
+    </ng-template>
+    <ng-template pTemplate="emptymessage"  >
+        <tr>
+            <td colspan="6" class="p-text-center">
+               <span> {{'No records found'|translate}}</span>
+            </td>
         </tr>
     </ng-template>
 </p-table>
