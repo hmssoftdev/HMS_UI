@@ -397,7 +397,7 @@ for (var _i = 0; _i < x.length; _i++) {
             
             
             break;
-          case 3:
+        case 3:
             this.cartItems.deliveryMode = "Takeaway"; break;
       }
     }
@@ -423,7 +423,7 @@ for (var _i = 0; _i < x.length; _i++) {
 
   });
  }
-else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
+else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){ 
   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
     console.log(this.cartItems,"Put")
 

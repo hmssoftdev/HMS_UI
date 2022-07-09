@@ -47,10 +47,12 @@ public addItem(product: any, quantity: number, gstCompliance?:number): void {
   const cart = this.retrieve();
   const prodId = product.id && !product.productId ? product.id : product.productId;
   const qStatus = product.isFull;
-  let item = cart.orderItems.find((p) => p.productId == prodId && p.isFull === qStatus && p.kotPrinted == false);
+  //let item = cart.orderItems.find((p) => p.productId == prodId && p.isFull === qStatus && p.kotPrinted == false);
+  let item = cart.orderItems.find((p) => p.productId == prodId && p.isFull === qStatus);
+
   cart.itemCount = quantity === 1 ? cart.itemCount+quantity : cart.itemCount-1;
   
-  if (item === undefined || item.kotPrinted) {
+  if (item === undefined ) {
     item = new CartItem();
     item.productId = product.id;
     item.name = product.name;

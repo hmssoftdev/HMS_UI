@@ -40,8 +40,11 @@ export class DiningTableComponent implements OnInit {
 
       // console.log(tblItem.isBooked,"Table Check")
       this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
-        if(resp){
-          this.cartService.save(resp);
+        if(resp){ 
+          resp.orderItems.forEach((itm) =>{
+            itm.prevQuantities = itm.quantity
+           })  
+           this.cartService.save(resp);
            this.selectedTableID = [];
           this.tableList.map((res:any,i) => { 
             

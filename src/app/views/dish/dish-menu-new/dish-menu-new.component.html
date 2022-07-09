@@ -397,7 +397,7 @@
                   pButton
                   type="button"
                   icon="pi pi-minus"
-                  [disabled]="item.kotPrinted"
+                  [disabled]="item.prevQuantities === item.quantity"
                   (click)="removeItem(item)"
                   class="
                     p-button-secondary
@@ -413,8 +413,7 @@
                 <button
                   pButton
                   type="button"
-                  icon="pi pi-plus"
-                  [disabled]="item.kotPrinted"
+                  icon="pi pi-plus" 
                   (click)="addItem(item)"
                   class="
                     p-button-success
@@ -536,7 +535,7 @@
               type="button"
               label="Bill Print"
               [disabled]="!isKOTdone"                                            
-              (click)="fnBillPrint($event)"
+              (click)="fnBillPrint(cartItems)"
               class="p-button-sm p-button-info p-p-1"
               *ngIf="both==false"
             ></button>
