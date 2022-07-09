@@ -15,3 +15,9 @@ export interface Historydata {
     visitCount?:number;
     createdOn?:Date;
 }
+export interface FoodItem{
+     name?:string;
+     count?:number;
+   total?:number;
+
+}

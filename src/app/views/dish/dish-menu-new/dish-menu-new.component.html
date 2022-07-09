@@ -1,7 +1,8 @@
 <div class="p-card dishMenuWrapper">
   <div class="p-grid">
     <div class="p-col-12 p-md-8 p-lg-8">
-      <p-dataView
+      <!-- <div *ngIf="simplemenu==false">  -->
+        <p-dataView
         #dv
         [value]="dishes"
         [paginator]="false"
@@ -22,7 +23,7 @@
                   ? 'p-button-primary'
                   : 'p-button-secondary'
               "
-              class="p-button-sm p-mr-2 p-mb-1"
+              class="p-button-sm p-mr-2 p-mb-1 category"
             >
               All
             </button>
@@ -40,12 +41,12 @@
                   type="button"
                   [ngClass]="selCategory=== item? 'p-button-primary': 'p-button-secondary'"
                   [label]="item"
-                  class="p-button-sm p-mr-2 p-mb-1"
+                  class="p-button-sm p-mr-2 p-mb-1 category"
                 >
               </button>
               </ng-container>
 
-                <p-button (click)="showBasicDialog()" class="p-button-sm p-mb-1"  label="More.."></p-button>
+                <button  type="button" pButton (click)="showBasicDialog()" class="p-button-sm p-mb-1 category"  label="More.."></button>
                  
             <p-dialog header="Dish Category"  [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [modal]="true" [(visible)]="displayBasic" [style]="{width: '50vw'}">
               <ng-container *ngFor="let item of dishCategory; let i = index"> 
@@ -59,7 +60,7 @@
                     : 'p-button-secondary'
                 "
                 [label]="item.value"
-                class="p-button-sm p-mr-2 p-mb-1"
+                class="p-button-sm p-mr-2 p-mb-1 category"
               ></button>
             </ng-container>
                 <!-- <ng-template pTemplate="footer">
@@ -78,6 +79,7 @@
               placeholder="Sort By Price"
               (onChange)="onSortChange($event)"
               styleClass="p-mb-2 p-mb-md-0 p-mr-2"
+
             ></p-dropdown>
             <span class="p-input-icon-left p-mb-2 p-mb-md-0">
               <i class="pi pi-search"></i>
@@ -91,13 +93,15 @@
             </span>
             <!-- <p-dropdown [options]="dishCategory" [(ngModel)]="categories" placeholder="Sort By Category"
                         (onChange)="onCategoryChange($event)" styleClass="p-mb-2 p-mb-md-0"></p-dropdown> -->
-            <div class="p-ml-auto dataViewOpt">
+            <div *ngIf="simplemenu==false" class="p-ml-auto dataViewOpt">
               <p-dataViewLayoutOptions> </p-dataViewLayoutOptions>
             </div>
           </div>
         </ng-template>
+      
         <ng-template let-dish pTemplate="listItem">
-          <div class="p-col-12" *ngIf="dish.status === 'active'">
+          
+          <div class="p-col-12" *ngIf="dish.status === 'active' && simplemenu==false">
             <div class="product-list-item">
               <div *ngIf="image" class="imgWrap">
           <img  [src]="dish.imageUrl" alt="{{ dish.name }}" /> 
@@ -105,8 +109,7 @@
                   class="icnBookmark"
                   (click)="fnBookmarkMenu(dish)"
                   [ngClass]="{ bMarked: dish.bookmark }"
-                  ><i class="pi pi-bookmark"></i
-                ></span>
+                  ><i class="pi pi-bookmark"></i></span>
                 <div
                   class="mAvailibility"
                   [ngClass]="dish.statuses === 'active' ? '' : 'unavailable'"
@@ -137,8 +140,8 @@
                   </p-tag>
                   <span class="voteTxt">{{ dish.rating ? 1 : 0 }} votes</span>
                 </div>
-                <i class="pi pi-tag product-category-icon"></i
-                ><span class="product-category">{{ dish.categories }}</span>
+                <i class="pi pi-tag product-category-icon"></i>
+                <span class="product-category">{{ dish.categories }}</span>
               </div>
               <div class="product-list-action">
                 <div>
@@ -164,13 +167,15 @@
                 </div>
               </div>
               <div>
-                <p-button
+                <button
                   icon="pi pi-shopping-cart"
                   styleClass="p-button-sm"
                   label="Add to Cart"
                   (click)="fnAddtoCart(dish)"
                   [disabled]="dish.statuses === 'OUTOFSTOCK'"
-                ></p-button>
+                  class="category"
+                  pButton
+                ></button>
                 <div class="timeTxt">
                   <i class="pi pi-clock p-mr-1"></i> {{ dish.timeForCook }} mins
                 </div>
@@ -178,9 +183,62 @@
               </div>
             </div>
           </div>
+
+          <ng-container *ngIf="dish.status === 'active' && simplemenu==true"> 
+       
+            <div class="p-col-12 p-md-4 simplemenu">
+      
+       <div class="product-grid-item card">
+        
+        <div class="product-grid-item-content">
+          <div class="p-d-flex p-jc-between">
+          <div class="product-name">
+            <span
+              class="vegSymbol p-mr-1"
+              [ngClass]="dish.isVeg ? 'txtSuccess' : 'txtDanger'">
+              <i class="pi pi-circle-on"></i></span>
+            <span style="text-transform:capitalize;"> {{ dish.name }}</span> 
+            
+          </div>
+          <div>
+            <span class="product-price">{{
+              (dish.isFull ? dish.fullPrice : dish.halfPrice)
+                | currency: "INR"
+            }}</span>
+          </div>
+          </div>
+          <div class="p-d-flex p-jc-between">
+
+              <div>
+                <button
+                styleClass="p-button-sm"
+                icon="pi pi-shopping-cart"
+                (click)="fnAddtoCart(dish)"
+                [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                pTooltip="Bookmark Dish"
+                tooltipPosition="bottom"
+                pButton
+              ></button>
+              </div>
+            <div class="p-formgroup-inline"  *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0">
+              <label class="p-d-none p-d-md-inline-flex" for="isFullStatus">Half </label>
+              <p-inputSwitch
+                [(ngModel)]="dish.isFull"
+                name="isFullStatus"
+                class="p-mx-2"
+              >
+              </p-inputSwitch>
+              <label  for="isFullStatus">Full</label>
+            </div>
+
+        </div>
+      </div>
+          </div>
+        </div>
+        </ng-container>
         </ng-template>
         <ng-template let-dish pTemplate="gridItem">
-          <div class="p-col-12 p-md-4" *ngIf="dish.status === 'active'">
+          <div class="p-col-6 p-md-4" *ngIf="dish.status === 'active'">
             <div class="product-grid-item card">
               <div class="product-grid-item-top">
                 <div>
@@ -250,15 +308,26 @@
                     (dish.isFull ? dish.fullPrice : dish.halfPrice)
                       | currency: "INR"
                   }}</span>
-
-                  <p-button
+                  <!-- ; toggles==0?'blue':'green' -->
+                  <button
                     styleClass="p-button-sm"
                     icon="pi pi-shopping-cart"
                     (click)="fnAddtoCart(dish)"
                     [disabled]="dish.statuses === 'OUTOFSTOCK'"
                     pTooltip="Bookmark Dish"
+                    pButton
                     tooltipPosition="bottom"
-                  ></p-button>
+                  ></button>
+                   <!-- <button
+                  [style.background-color]="toggle[dish.id]? 'green' : '0'" 
+                    styleClass="p-button-sm"
+                    icon="pi pi-shopping-cart"
+                    (click)="fnAddtoCart(dish);toggle[dish.id]=!toggle[dish.id]"
+                    [disabled]="dish.statuses === 'OUTOFSTOCK'"
+                    pTooltip="Bookmark Dish"
+                    pButton
+                    tooltipPosition="bottom"
+                  ></button> -->
                 </div>
                 <div
                   *ngIf="dish.halfPrice !== 0 && dish.fullPrice !== 0"
@@ -268,8 +337,7 @@
             </div>
           </div>
         </ng-template>
-      </p-dataView>
-   
+ </p-dataView>
       <p-toggleButton class="btnCartToggle" onIcon="pipi-times" offIcon="pi pi-shopping-cart" (click)="fnCartToggle()" iconPos="right" [(ngModel)]="cartToggle"></p-toggleButton>
    
     </div>
@@ -387,10 +455,8 @@
               class="cart-item p-mt-2"
               *ngFor="let item of cartItems.orderItems"
             >
-          <span
-                >{{ item.name }}
-                <span>{{ item.isFull ? "" : "(Half)" }}</span></span
-              >
+          <span>{{ item.name }}
+                <span>{{ item.isFull ? "" : "(Half)" }}</span></span>
               <span class="btnPlusMinusWrap">
                 <!-- <i class="pi pi-minus"></i>  -->
                 <button
@@ -419,8 +485,7 @@
                     p-button-success
                     p-button-sm
                     p-button-text-only
-                    p-button-text
-                  "
+                    p-button-text"
                   iconPos="left"
                 ></button>
               </span>
@@ -518,7 +583,7 @@
               label="KOT Print"
               (dblclick)="clickedMeDouble()"
               (click)="fnKOTPrint($event)"
-              class="p-button-sm p-button-info p-p-1"
+              class="p-button-sm p-button-info p-p-1 cartbtn"
               *ngIf="both==false && droperror==false"
             ></button>
             <button
@@ -527,7 +592,7 @@
               *ngIf="both==true && droperror==false"
               label="KOT and Bill Print"
               (click)="fnKOTnBillPrint($event)"
-              class="p-button-sm p-button-info p-p-1"
+              class="p-button-sm p-button-info p-p-1 cartbtn"
               [disabled]="!KOTEnabled"
             ></button>
             <button
@@ -545,9 +610,19 @@
               type="button"
               label="Make Direct Payment"
               [disabled]="!KOTEnabled"                                            
-              (click)="fnDirectPayment($event)"
-              class="p-button-sm p-button-help p-p-1"
+              (click)="fnDirectPayment($event);"
+              class="p-button-sm p-button-help p-p-1 cartbtn"
               *ngIf="fstPayment==true"
+            ></button>
+             <button
+              pButton
+            
+              type="button"
+              label="Submit Order"
+              [disabled]="!KOTEnabled"                                            
+              (click)="fnNoPrintSubmit($event)"
+              class="p-button-sm p-button-warning cartbtn"
+              *ngIf="noprintsubmit"
             ></button>
             <button
               [disabled]="userData.userType === 3"
@@ -555,16 +630,16 @@
               type="button"
               label="Make Payment"
               [disabled]="!isKOTdone"
-              (click)="fnMakePayment($event)"
-              class="p-button-sm p-button-success p-p-1"
+              (click)="fnMakePayment($event);"
+              class="p-button-sm p-button-success p-p-1 cartbtn"
               *ngIf="fstPayment==false"
             ></button>
             <button
               pButton
               type="button"
-              label="Empty Carts"
-              (click)="emptyCart()"
-              class="p-button-sm p-button-danger p-p-1"
+              label="Empty Carts"           
+              (click)="emptyCart();"
+              class="p-button-sm p-button-danger p-p-1 cartbtn"
             ></button>
           </div>
         </div>
@@ -597,6 +672,7 @@
 
 <!-- Dining Table View -->
 <p-dialog
+  *ngIf="diningTableDialog"
   [(visible)]="diningTableDialog"
   [modal]="true"
   (onHide)="fnHideDiningTableM('diningTable')"
@@ -616,7 +692,9 @@
 <p-dialog [(visible)]="billingDialog" [breakpoints]="{'960px': '75vw', '640px': '100vw'}"
     header="Billing Details" [modal]="true" [maximizable]="true" [resizable]="true">
     <!-- <app-invoice *ngIf="admin" [adminData]="admin"></app-invoice> -->
-    <app-billing *ngIf="billingDialog"  (emptyCart)="emptyCart()" [adminData]="admin" [shoppingCart]="cartItems" (close)="closeBillingModal()">
+    <app-billing *ngIf="billingDialog" 
+     (emptyCart)="emptyCart()" [adminData]="admin"
+      [shoppingCart]="cartItems" (close)="closeBillingModal()">
     </app-billing>
 </p-dialog>
 <app-kot-items [userdata]="selectedUsers" [adminData]="admin" [invoiceno]="invoiceno"

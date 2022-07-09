@@ -34,7 +34,8 @@ export class DiningTableComponent implements OnInit {
         this.tableList = res;
     })
 }
-  fnTblBook(tblItem){  
+  
+fnTblBook(tblItem){  
    
     if(tblItem.isBooked){
 
@@ -77,7 +78,8 @@ export class DiningTableComponent implements OnInit {
     }, err => {console.log(err)});
   } 
   
-}fnTblRelease(tblItem) {
+}
+fnTblRelease(tblItem) {
   const index = this.selectedTableID.indexOf(tblItem.name, 0);
     if (index > -1) { 
     this.selectedTableID.splice(index, 1);

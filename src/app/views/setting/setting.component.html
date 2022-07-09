@@ -67,6 +67,20 @@
                 </span>
             </div>
         </div>
+         <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label >{{' Do you want Simple Menu Card?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.simpleMenu" name="want" class="p-mx-2"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div>
       
     </p-accordionTab>
     <p-accordionTab header="{{'Add To Cart' | translate}}">
@@ -94,6 +108,34 @@
                 <span class="float right">
                     <label  for="want">{{'No' | translate}} </label>
                     <p-inputSwitch [(ngModel)]="setting.paymentFirst" name="want" class="p-mx-2"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label >{{' Do you want release order on kot in Takeaway?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.displayCardWithImage" name="want" class="p-mx-2"></p-inputSwitch>
+                    <label  for="want">{{'Yes' | translate}}</label>
+                </span>
+            </div>
+        </div>
+        <div class="grid">
+            <div class="col-6">
+                <span class="float left">
+                    <label >{{' Do you want to proceed order without print ?' | translate}}</label>
+                </span>
+            </div>
+            <div class="col-6 p-text-center">
+                <span class="float right">
+                    <label  for="want">{{'No' | translate}} </label>
+                    <p-inputSwitch [(ngModel)]="setting.proceedOrderWithoutPrint" name="want" class="p-mx-2"></p-inputSwitch>
                     <label  for="want">{{'Yes' | translate}}</label>
                 </span>
             </div>

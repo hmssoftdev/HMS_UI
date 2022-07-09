@@ -16,7 +16,8 @@ import { Historydata } from '../../../models/historydata';
 export class TopCustDataComponent implements OnInit {
   data: graph;
    datagraph:graphs;
-  id:number;
+   @Input() ID:number[]
+  ids:number;
   startdate:string='';
   monthenddate:string='';
   date= new Date;
@@ -46,7 +47,7 @@ export class TopCustDataComponent implements OnInit {
   ngOnInit(): void {
     
     this.startdate=moment(this.date).format('YYYY-MM-DD').toString();
-    this.id=this.auth.userData().adminId;
+    // this.id=this.auth.userData().adminId;
    
   
  var currentDate = new Date();
@@ -57,7 +58,17 @@ export class TopCustDataComponent implements OnInit {
     this.getRepeatedHistorydata()
   }
   getRepeatedHistorydata(){
-     this.user.getBillHistory(this.id,this.startdate,this.monthenddate).subscribe(
+    if(this.ID ==undefined)
+  {
+    this.ids=this.auth.userData().adminId;
+  }
+  else if(this.ID[1] == undefined){
+    this.ids=this.auth.userData().adminId;
+  }
+else{
+this.ids=this.ID[1]
+}
+     this.user.getBillHistory(this.ids,this.startdate,this.monthenddate).subscribe(
     x=>{
        this.historydata = x;
 

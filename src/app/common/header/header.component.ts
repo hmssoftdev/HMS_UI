@@ -13,6 +13,7 @@ import { UserService } from '../../service/user.service';
 export class HeaderComponent implements OnInit {
 lang:string='';
 setting:setting;
+userData:any
 @Output() fnMenuSidebar = new EventEmitter();
 @Output() logOut = new EventEmitter();
   constructor(public comset:CommonService,public authService: AuthService,public translate: TranslateService,public user:UserService) { 
@@ -28,6 +29,7 @@ setting:setting;
   // }
   lbluserProfleShow = false;
   ngOnInit(): void {  
+    this.userData = this.authService.userData();
     this.user.getusersetting(this.authService.userData().adminId).subscribe(
       x => {
         if(x){ 

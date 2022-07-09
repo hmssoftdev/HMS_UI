@@ -81,74 +81,46 @@
 <div class="row">
     <div class="p-card">
         
-<p-dialog [(visible)]="purchmodal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="{{'Add Franchise' | translate}}" [modal]="true">
+<p-dialog [(visible)]="purchmodal" [breakpoints]="{'960px': '75vw', '640px': '100vw'}" [style]="{width: '50vw'}" header="{{'Purchase' | translate}}" [modal]="true">
     <ng-template pTemplate="content">
-        <form  name="franchForm" #franchForm="ngForm" novalidate (ngSubmit)="savefranchData(franchForm)">
+        <form  name="purchaseForm" #purchaseForm="ngForm" novalidate (ngSubmit)="savepurchaseData(purchaseForm)">
             <div class="p-fluid p-formgrid p-grid">
                 <div class="p-field col-6">
-                    <label for="Ingredient name">Ingredient Name</label>
+                    <label for="Ingredient name">Product Name</label>
                     <input type="text" name="userName" class="p-inputtext-sm" pInputText id="userName"
-                        placeholder="Ingredient name" required autofocus />
+                        placeholder="Product name" required autofocus />
                         <!-- <div *ngIf="userName.touched && userName.invalid && franchForm.submitted"> <small class="p-error" *ngIf="userName.errors.required">User Name is required.</small></div> -->
                 </div>
                 <div class="p-field col-6">
                     <label for="weightage">Weightage</label>
-                    <!-- <input name="weightage" class="p-inputtext-sm" pInputText id="password"
-                         placeholder="Weightage" required autofocus />  -->
-                         <p-inputNumber [showButtons]="true" buttonLayout="horizontal" 
-                         decrementButtonClass="p-button-danger" placeholder="Weightage" incrementButtonClass="p-button-success" incrementButtonIcon="pi pi-plus" decrementButtonIcon="pi pi-minus"></p-inputNumber>
+                    <div class="p-grid mt-1" >
+                        <div class="p-col-6 p-md-8">
+                            <input pInputText name="quantity" type="number" id="Quantity" 
+                                 placeholder="Weightage" required autofocus/>
+                        </div>
+                        <div class="p-col-6 p-md-4">
+                            <p-dropdown inputId="weigth" placeholder="measure" name="weigth" id="weigth" [options]="wei" [(ngModel)]="weigth" placeholder="Select" optionLabel="name" optionValue="value"></p-dropdown>
+                        </div>
+                    </div>
                 </div>
                 <div class="p-field col-6">
                     <label for="Price">Price</label>
                     <input pInputText name="Price" maxlength="10"
                         inputId="contact" placeholder="Price" id="Price" required autofocus/> 
-                        <label for="gst">{{'GST Compliance' | translate}}</label>
-                        <input type="text" name="gst" id="gst" placeholder="GST" pInputText />
+                        
                         <!-- <div *ngIf="cityId.touched && cityId.invalid && franchForm.submitted"> <small class="p-error" *ngIf="cityId.errors.required">Number is required.</small></div> -->
                 </div>
                 <div class="p-field col-6">
-                    <label for="email">Quantity</label>
-                    <input pInputText name="email" type="email" id="email" 
-                         placeholder="Bussiness Email" required autofocus/>
-                       <!-- <label for="state">Pincode</label>
-                    <input pInputText #pinCode="ngModel" [(ngModel)]="franch.pinCode" name="pinCode" id="pinCode" 
-                    placeholder="Pincode" maxlength="6" /> -->
-                        <!-- <div *ngIf="email.touched && email.invalid && franchForm.submitted"> <small class="p-error" *ngIf="email.errors.required">Number is required.</small></div> -->
-                </div>
-                 <!-- <div class="p-field col-12 p-md-6">
-                    <label for="email">Food License Number</label>
-                    <input pInputText #foodLincNum="ngModel" [(ngModel)]="franch.foodLincNum" name="foodLincNum" id="foodLincNum" 
-                        placeholder="Food License Number" />
-                    </div>  -->
-                        <!-- <div *ngIf="foodLincNum.touched && foodLincNum.invalid && franchForm.submitted"> <small class="p-error" *ngIf="foodLincNum.errors.required">Food Lincence Number is required.</small></div> -->
-                        
-                    <!-- <div *ngIf="gst.touched && gst.invalid && franchForm.submitted"> <small class="p-error" *ngIf="gst.errors.required">Gst is required.</small></div> -->
-              
-                <!-- <div class="p-field col-12 p-md-6">
-                    <label for="state">State</label>
+
+                    <label for="gst">{{'GST Compliance' | translate}}</label> 
+                        <input type="text" name="gst" id="gst" placeholder="GST" required pInputText />
                    
-                    <p-dropdown #state="ngModel" inputId="state" name="state" id="state" [options]="states" [(ngModel)]="franch.state" placeholder="Select" optionLabel="label" optionValue="label"></p-dropdown>
-                    <!-- <div *ngIf="state.touched && state.invalid && franchForm.submitted"> <small class="p-error" *ngIf="state.errors.required">State is required.</small></div> 
-                    <label for="city">City</label>
-                    <p-dropdown #city="ngModel" inputId="city" name="city" id="city" [(ngModel)]="franch.city" [options]="cities" placeholder="Select City" optionLabel="name" optionValue="name"></p-dropdown>
-                    <!-- <div *ngIf="city.touched && city.invalid && franchForm.submitted"> <small class="p-error" *ngIf="city.errors.required">City is required.</small></div>
-                </div>  -->
-                <!-- <div class="p-field col-12 p-md-4">
-                    <label for="state">Pincode</label>
-                    <input pInputText #pinCode="ngModel" [(ngModel)]="franch.pinCode" name="pinCode" id="pinCode" 
-                    placeholder="Pincode" maxlength="6" />
-                    <!-- <div *ngIf="pinCode.touched && pinCode.invalid && franchForm.submitted"> <small class="p-error" *ngIf="pinCode.errors.required">Pincode is required.</small></div>
-                </div> -->
-                 <!-- <div class="p-field col-12 p-md-8">
-                   <label for="Address">Address</label>
-                   <textarea #address="ngModel" [(ngModel)]="franch.address" [rows]="5" [cols]="30" pInputTextarea autoResize="autoResize"></textarea>
-                   <!-- <div *ngIf="address.touched && address.invalid && franchForm.submitted"> <small class="p-error" *ngIf="address.errors.required">Address is required.</small></div> 
-                </div> -->
-                
+                </div>
+               
    </div>
 
             <div class="p-d-flex justify-content-center">
-                <button pButton pRipple label="{{'Save' | translate}}" icon="pi pi-check" [disabled]="!franchForm.valid"  class="p-button p-button-raised p-mx-1 p-mr-2"></button>
+                <button pButton pRipple label="{{'Save' | translate}}" icon="pi pi-check" [disabled]="!purchaseForm.valid"  class="p-button p-button-raised p-mx-1 p-mr-2"></button>
                 <button pButton pRipple label="{{'Reset' | translate}}" type="reset" icon="pi pi-times" class="p-button-danger p-button-raised" ></button> <!--(click)="hideDialog()"-->
             </div>
       

@@ -23,14 +23,14 @@
                 margin-right: 2px;text-transform: capitalize;">
                      &nbsp;Hello : <strong>{{authService.userData().name}} </strong></a> 
                 <div class="profilWrap p-mr-4 p-mt-2" (clickOutside)="lbluserProfleShow=false">
-                <p-avatar icon="pi pi-user" (click)="fnToggleUProfile()" *ngIf="authService.loggedIn()"></p-avatar> 
+                <p-avatar icon="pi pi-user" (click)="fnToggleUProfile()" *ngIf="authService.loggedIn() "></p-avatar> 
                 <ul class="dropdownMenu" *ngIf="lbluserProfleShow">
-                    <li class="dropdownHeader">Account</li>
-                    <li (click)="fnhidedd()"><a class="profilWrap" routerLink="/profile"><i></i>Profile</a></li>
-                    <li (click)="fnhidedd()"><a routerLink="/billingcategory">Billing Category</a></li>
-                    <li (click)="fnhidedd()"><a routerLink="/setting">Setting</a></li>
+                    <li class="dropdownHeader">Account :{{userData.adminId}}</li>
+                    <li (click)="fnhidedd()" *ngIf="userData.userType !==6"><a class="profilWrap" routerLink="/profile"><i></i>Profile</a></li>
+                    <li (click)="fnhidedd()" *ngIf="userData.userType !==6"><a routerLink="/billingcategory">Billing Category</a></li>
+                    <li (click)="fnhidedd()" *ngIf="userData.userType !==6"><a routerLink="/setting">Setting</a></li>
                    <!-- <li (click)="fnhidedd()"><a routerLink="/language">Language</a></li> -->
-                   <li (click)="fnhidedd()"><a routerLink="/help">Help</a></li>
+                   <li (click)="fnhidedd()" *ngIf="userData.userType !==6"><a routerLink="/help">Help</a></li>
                     <!-- <li (click)="fnhidedd()"><a  routerLink="/updatepassword">Change Password</a></li> -->
 
                     <li><a (click)="fnLogout()">Logout</a></li>

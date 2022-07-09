@@ -39,6 +39,7 @@ export class BackdataComponent implements OnInit {
      private enumService:EnumService,private confirmationService: ConfirmationService) { }
 
   ngOnInit(): void {
+    console.log(this.ID,"id check")
     this.getHistorydata();
     this.ID=this.auth.userData().adminId;
     console.log(this.auth.userData(),"id")

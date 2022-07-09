@@ -6,10 +6,17 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./stockstatus.component.scss']
 })
 export class StockstatusComponent implements OnInit {
-
+stoclmodal:boolean
   constructor() { }
-
+  wei:any[]
+  weigth:string;
   ngOnInit(): void {
+    this.wei=[
+      {name:"Kg",value:"kilo"},
+      {name:'Gms',value:'grams'}
+    ]
   }
-
+openNew(){
+  this.stoclmodal=true
+}
 }

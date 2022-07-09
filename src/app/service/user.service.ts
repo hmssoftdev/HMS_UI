@@ -6,7 +6,7 @@ import { catchError, map } from 'rxjs/operators';
 import { User, UserFeedback } from '../models/user';
 import { Registration } from '../models/registration';
 import { OrderList } from '../models/orderList';
-import { Historydata } from '../models/historydata';
+import { FoodItem, Historydata } from '../models/historydata';
 
 import { OrderSummary } from '../models/OrderSummary';
 
@@ -29,7 +29,7 @@ export class UserService {
   public user: User | undefined;
   public userssetting:setting;
   public userList: User[] = [];
-
+  public fooddata:FoodItem
   public userlist=new BehaviorSubject('')
   public obsuserlist=this.userlist.asObservable();
 
@@ -167,7 +167,7 @@ setUser(data){
     )
   }
 
-
+ 
   // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/GetOrderByDateRange?userId=1221&maxDate=1232&minDate=1213
   getBillHistory(userid :number,maxdate :string,mindate:string): Observable<Historydata[]> {
     return this.http.get<Historydata[]>
@@ -178,12 +178,21 @@ setUser(data){
       })
     )
   }
- 
+   // http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/Order/orderItemSummary?id=113&maxDate=2022-07-5&minDate=2022-07-5
+  getFoodSale(userid :number,maxdate :string,mindate:string):Observable<any>{
+    return this.http.get<any>(`${this.orderUrl}/orderItemSummary?id=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
+      map(x=>{
+        this.fooddata=x
+        
+        console.log(this.fooddata,"food service")
+        return x
+      })
+    )
+  }
 
   //hmswebapi-dev.us-east-2.elasticbeanstalk.com/Order/BillSummary?id=113&maxDate=12-4-2022&minDate=1-04-2022
-  getOrderSummary(userid :number,maxdate :string,mindate:string): Observable<any> {
-    return this.http.get<any>
-    (`${this.orderUrl}/BillSummary?id=${userid}&maxDate=${maxdate}&minDate=${mindate}`,{}).pipe(
+  getOrderSummary(userid :number,start :string,end:string):Observable<any> {
+    return this.http.get<any>(`${this.orderUrl}/BillSummary?id=${userid}&maxDate=${start}&minDate=${end}`,{}).pipe(
       map(x => {
         this.summary = x;
         return this.summary;

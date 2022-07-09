@@ -20,7 +20,7 @@
   </div>
   <div *ngIf="showhistorydata">
     
-    <app-backdata [maxDate]="maxdate" [minDate]="mindate"  [ID]="id">
+    <app-backdata [maxDate]="maxdate" [minDate]="mindate"  [ID]="ids">
       
     </app-backdata>
    
@@ -28,18 +28,17 @@
   </div>
   <div *ngIf="showweekdata">
       
-    <app-backdata [maxDate]="allstartdate" [minDate]="weekenddate"  [ID]="id">     
+    <app-backdata [maxDate]="allstartdate" [minDate]="weekenddate"  [ID]="ids">     
     </app-backdata>
-
-    <app-week-summary *ngIf="todaySales !== undefined" [todaySales]=todaySales ></app-week-summary>
+    <app-week-summary *ngIf="todaySales !== undefined " [todaySales]="todaySales" ></app-week-summary>
    
   </div> 
   <div *ngIf="showmonthdata">
     
-    <app-backdata [maxDate]="allstartdate" [minDate]="monthenddate"  [ID]="id">
+    <app-backdata [maxDate]="allstartdate" [minDate]="monthenddate"  [ID]="ids">
     </app-backdata>
 
-      <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]=todaySale ></app-bar-chart>
+      <app-bar-chart *ngIf="todaySale !== undefined" [todaySale]="todaySale"></app-bar-chart>
     
    
    

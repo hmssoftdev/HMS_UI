@@ -133,7 +133,12 @@
     }
     .btnCartToggle{display: none;}
 }
-
+.addcartbooked{
+    background-color: #28a745; 
+}
+.addcart{
+background-color: #007bff;
+}
 .vegSymbol {
     width: 17px;
     height: 17px;
@@ -213,10 +218,37 @@
     }
 }
 @media screen and (max-width: 768px) {
+
+    .category{
+        font-size: 0.8rem !important;
+        text-transform: uppercase;
+        height: 1.5rem;
+    }
     :host ::ng-deep {
         .p-button.p-button-icon-only{
             height: 1.667rem;
             width: 1.667rem;
+        }
+        .p-button.p-button-icon-only {
+            height: 1.8rem;
+            width: 2.667rem;
+        }
+        [_nghost-aqf-c131] .p-button.p-button-icon-only {
+            height: 1.667rem;
+            width: 2.667rem;
+        }
+        .p-button.p-button-icon-only .p-button-icon-left, .p-button.p-button-icon-only .p-button-icon-right {
+            margin: 0;
+            font-size: 2rem;
+        }
+        .product-list-item .product-list-action {
+            display: flex;
+            flex-direction: column !important;
+         
+            flex-direction: row !important;
+            align-items: center !important;
+            width: 52% !important;
+            justify-content: space-evenly !important;
         }
         .p-button{
       padding: 0rem 0.1rem;
@@ -303,7 +335,83 @@
 
 }
 }
+@media (min-device-width: 500px) and (max-device-width: 767px) {
+.simplemenu{
+    width: 33% !important;
+}
+}
 
+@media (min-device-width: 800px) and (max-device-width: 1280px) {
+.cartbtn{
+    font-size: smaller;
+}
+    :host::ng-deep{
+        .p-input-icon-left>i:first-of-type {
+            left: 0.75rem;
+            color: #495057;
+            top: 17px;
+        }
+     .p-dropdown {
+            font-weight: initial;
+            width: 128px;
+        }
+    }
+}
+@media screen and(min-width:500px)and(max-width: 712px) {
+
+    .category{
+        font-size: 1.3rem !important;
+        text-transform: uppercase;
+        height: 2.5rem;
+    }
+    :host ::ng-deep{
+   .product-name {
+        font-size: 1.5rem !important;
+       
+    }
+    .p-button.p-button-icon-only .p-button-icon-left, .p-button.p-button-icon-only .p-button-icon-right {
+        margin: 0;
+        font-size: 2rem;
+    }
+    .p-button.p-button-sm .p-button-icon {
+        font-size: 1.2rem;
+    }
+    .product-list-item .product-list-action {
+        display: flex;
+        flex-direction: column;
+        margin-top: 1rem;
+        flex-direction: row;
+        justify-content: space-around;
+        align-items: center;
+        width: 60%;
+    }
+    .p-button{
+       
+        font-size: 1rem !important;
+  }
+    .product-description {
+     margin: 0 0 0rem !important;
+
+    font-size: 1rem !important;
+}
+.product-list-item .p-button {
+    // margin-bottom: 0.5rem;
+    font-size: 1.2rem !important;
+}
+    .p-dataview .p-dataview-content {
+        overflow: scroll !important;
+        height:880px!important;
+    }
+    .p-button.p-button-icon-only {
+        height: 2.667rem;
+        width: 3.667rem;
+    }
+    .product-grid-item .product-price {
+        font-size: 1.4rem;
+    }
+
+}
+}
 .visibility div {
     display: none;
 }
@@ -396,9 +504,8 @@ li:last-child{
 }
 .btnWrap{
     display: flex;
-    justify-content: space-between;
-
-    
+    justify-content: space-around;  
+    align-items: center; 
 }
 
 .fullWidth {
@@ -408,6 +515,14 @@ li:last-child{
     .delOptbtnWrap{
         display: block; 
         width: 100%;
+    }
+    .vegSymbol{
+        width: 10px;
+        height: 10px;
+  
+        vertical-align: middle;
+        line-height: 12px;
+        padding: 0 2px;
     }
     .btnCartToggle{
         display: block;
@@ -474,6 +589,7 @@ li:last-child{
 
     }
     :host ::ng-deep{
+        
         .p-button.p-button-icon-only{
             height: 1.3rem !important;
             width: 1.3rem !important;
@@ -517,6 +633,7 @@ li:last-child{
             margin-top: 0rem;
           
         }
+       
         .mAvailibility {
             margin-right: 0%!important;
             text-align: center;

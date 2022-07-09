@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { TranslateService } from '@ngx-translate/core';
 import * as moment from 'moment';
 import { OrderSummary } from '../../../models/OrderSummary';
@@ -13,7 +13,8 @@ import { UserService } from '../../../service/user.service';
 })
 export class TodaySummaryComponent implements OnInit {
   powercount:number=0;
-  ID:number;
+  @Input() ID:number[];
+  ids:number;
   date=new Date();
   orderSummary:OrderSummary;
   alltotalAmout:number;
@@ -49,12 +50,22 @@ totalbill:number;
 
 }
 getSummaryData(){
+  if(this.ID ==undefined)
+  {
+    this.ids=this.auth.userData().adminId;
+  }
+  else if(this.ID[1] == undefined){
+    this.ids=this.auth.userData().adminId;
+  }
+else{
+this.ids=this.ID[1]
+}
+console.log(this.ids,"today")
   let maxnewDate = moment(this.date).format('YYYY-MM-DD').toString();
     let minnewDate = moment(this.date).format('YYYY-MM-DD').toString();
-    this.user.getOrderSummary(this.ID,maxnewDate,minnewDate).subscribe(
+    this.user.getOrderSummary(this.ids,maxnewDate,minnewDate).subscribe(
       res=>{
-        // this.orderSummary=x
-        // this.alltotalAmout=res.totalAmount;
+
         console.log(res,"Cheching Response")
         if(res){
 res.map(item=>{
@@ -66,7 +77,13 @@ res.map(item=>{
 
   }
   if(item.deliveryOptionId===1){
-    this.diningamount=item.totalAmount;
+    if(item.totalAmount==''){
+      this.diningamount=0
+    }
+    else{
+      this.diningamount=item.totalAmount;
+    }
+    
     this.diningbill=item.totalBill;
   }
   if(item.deliveryOptionId===2){

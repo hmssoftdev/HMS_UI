@@ -8,8 +8,13 @@ import { Component, OnInit } from '@angular/core';
 export class PurchaseComponent implements OnInit {
   purchmodal:boolean;
   constructor() { }
-
+  wei:any[]
+  weigth:string;
   ngOnInit(): void {
+    this.wei=[
+      {name:"Kg",value:"kilo"},
+      {name:'Gms',value:'grams'}
+    ]
   }
   openNew(){
     this.purchmodal=true

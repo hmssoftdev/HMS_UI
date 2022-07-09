@@ -130,7 +130,7 @@ export class SettingComponent implements OnInit {
             this.themee.switchTheme(this.themm)
                
           
-          console.log(this.setting.language,"language under Api")
+          // console.log(this.setting.language,"language under Api")
         }
          
         else {
@@ -183,7 +183,10 @@ this.comset.Obslangauge.subscribe(x=>{
       billWithSign: 0,
       menuDisplay: 0,
       customerDataForBilling:0,
-      paymentFirst:0
+      paymentFirst:0,
+      displayCardWithImage:0,
+      simpleMenu:0,
+      proceedOrderWithoutPrint:0
     }
     return s;
   }
@@ -211,7 +214,10 @@ this.comset.Obslangauge.subscribe(x=>{
      this.setting.billPrintAndKOTTakeAway=Number(this.setting.billPrintAndKOTTakeAway);
      this.setting.customerDataForBilling=Number(this.setting.customerDataForBilling);
      this.setting.paymentFirst=Number(this.setting.paymentFirst);
-
+    // this.setting.DisplayCardWithImage=Number(this.setting.DisplayCardWithImage);
+    this.setting.simpleMenu=Number(this.setting.simpleMenu)
+    this.setting.displayCardWithImage=Number(this.setting.displayCardWithImage)
+    this.setting.proceedOrderWithoutPrint=Number(this.setting.proceedOrderWithoutPrint);
     // this.setting.language=this.langchange;
 
 // this.user.setting.next(this.setting);
