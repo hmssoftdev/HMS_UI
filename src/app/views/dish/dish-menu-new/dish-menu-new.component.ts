@@ -644,7 +644,7 @@ else{
   fnBillPrint(order: OrderList){
     if(this.fstPayment==true){
       this.fnLoadCartData(); 
-      this.showKOTItems = true; 
+     // this.showKOTItems = true; 
       const orderS = {status:1}
       this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
       this.cartItems.orderStatus.push(orderS) 
@@ -687,7 +687,7 @@ else{
     }
     this.selectedPrintType = 'BillPrintUI';
    
-   
+    this.showKOTItems = true; 
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;

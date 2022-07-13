@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -168,6 +168,7 @@ import { LicenseComponent } from './views/license/license.component';
   providers: [
     AuthService,
     AuthGuard,
+    Title,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy
