@@ -1,6 +1,6 @@
 .heads{
     text-align: right;
-    
+
 }
 @media screen and (max-width: 320px){
     .line{
@@ -16,6 +16,9 @@
         text-align: center;
         font-size: 1rem !important;
     }
+    .foodhead{
+        font-size: 1rem !important;
+    }
     .p-paginator-page {
         background-color: #fff;
         border: 1px solid #dee2e6;
@@ -29,7 +32,7 @@
     .p-grid{
         margin-top: 5px !important;
         padding: 10px;
-     height: 236px !important;
+
      overflow: scroll;
     }
     :host ::ng-deep {

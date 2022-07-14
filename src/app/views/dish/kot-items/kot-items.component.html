@@ -38,6 +38,7 @@
 </ng-container>
 
 <ng-container *ngIf="printType === 'BillPrintUI'">
+
   <table class="tblInvoice">
     <thead class="p-text-center" >
       <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice</strong>
@@ -45,14 +46,9 @@
     <tr>
         <td> 
          
-          <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-between; font-family: 'verdana';font-size: 10px;font-weight: normal">
+          <div class="p-col p-py-0" style="font-size: 10px;display: flex;align-content: center;justify-content:space-around; font-family: 'verdana';font-size: 10px;font-weight: normal">
             <strong style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">Invoice No:</strong>
             <b style="margin-right:20px;"><span style="color:black;font-family: Verdana,Geneva,sans-serif;font-size:9px;font-weight:bold;">
-
-              
-              
-              
-              
               {{invoiceno}}</span> </b> 
               <div *ngIf="logo"> 
                 <img width="20px"
@@ -81,10 +77,8 @@
                 <span style="text-transform:capitalize;color:black;font-family:Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{userdata}}</span> </div>
             </td>
           </tr>
-        </table>
-        
-        
-  <table class="tblInvoice" cellspacing="0" cellpadding="0">
+        </table> 
+  <table  class="tblInvoice" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
         <th style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">#</th>
@@ -154,9 +148,10 @@
 
     </tbody>
   </table>
+
 </ng-container>
 
-<ng-container * ngIf="printType === 'KOTPrintnBillPrint'">
+<!-- <ng-container * ngIf="printType === 'KOTPrintnBillPrint'">
   <div *ngIf="orderData">
     <p class="orderNumber p-my-1" style="font-family: Verdana,Geneva,sans-serif; ;font-size: 10px;font-weight:bold;color: black;">Order ID: <strong style="font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;color: black;">{{orderId}}</strong> | <ng-container
         *ngIf="orderData.deliveryMode==='Dining'">Table names: <strong style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{ tableNames}}</strong> |</ng-container><span
@@ -187,7 +182,7 @@
         <!-- <tr class="dashedBorderT">
         <td class="p-text-right dashedBorderT">Bill Total: </td>
         <td class="p-text-right dashedBorderT"><strong>{{orderTotal}}</strong></td>
-    </tr> -->
+    </tr> 
       </tfoot>
     </table>
   </div>
@@ -235,9 +230,7 @@
                 <span style="text-transform:capitalize;color:black;font-family:Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{userdata}}</span> </div>
             </td>
           </tr>
-        </table>
-        
-        
+        </table>  
   <table class="tblInvoice" cellspacing="0" cellpadding="0">
     <thead>
       <tr>
@@ -308,4 +301,4 @@
 
     </tbody>
   </table>
-</ng-container>
+</ng-container> -->

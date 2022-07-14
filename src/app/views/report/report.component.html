@@ -67,11 +67,11 @@
   
     </div></div> -->
 
-    <div class="p-col-12 md:col-12 p-text-center">
+    <!-- <div class="p-col-12 md:col-12 p-text-center">
 
       <h3 class="text-3xl">{{'Top Customer with most Bill and Amount in Month'|translate}}</h3>
      
-    </div>
+    </div> -->
 
 <app-topdata [ID]="ID" *ngIf="show==true">
   
@@ -84,7 +84,7 @@
 
 
     <div class="p-col-12 p-text-center">
-     <h5><span class="text-3xl p-text-center">{{'Number of repeated customer in Month'| translate}}</span></h5>  
+  
       <app-top-cust-data [ID]="ID" *ngIf="show==true"> </app-top-cust-data>
     </div>
 

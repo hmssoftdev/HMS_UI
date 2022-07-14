@@ -102,8 +102,9 @@ export class DishMenuNewComponent implements OnInit {
    simplemenu:boolean
    kotrelease:boolean
    noprintsubmit:boolean
-   carts:any[]
+  //  carts:any
    billdone:boolean
+  //  mode:Subscription;
   //  customLabel:string="KOT Print"
   constructor(
     private comset:CommonService,
@@ -373,24 +374,27 @@ for (var _i = 0; _i < x.length; _i++) {
     this.cartItems = resp;
       console.log(resp,"object")
     
-// var array = resp.orderItems;
-// var Billdata = [];
-// array.reduce(function(res, value) {
+      // var array = resp.orderItems;
+      // var Billdata = [];
+      // array.reduce(function(res, value) {
 
-//   if (Billdata.findIndex(x=>x.name==value.name) == -1) {
-//     Billdata.push({ name: value.name, quantity: 0,price:0, total:0 })
-//   }
-// let index = Billdata.findIndex(x=>x.name==value.name)
-// Billdata[index].quantity +=(value.quantity);
-// Billdata[index].price +=(value.price);
-// Billdata[index].total += (value.price) * (value.quantity);
-//       return res;
-// }, {});
-// console.log(Billdata ,"BIll data check");
+      //   if (this.carts.findIndex(x=>x.name==value.name) == -1) {
+      //     this.carts.push({ name: value.name, quantity: 0,price:0, total:0 })
+      //   }
+      // let index = this.carts.findIndex(x=>x.name==value.name)
+      // this.carts[index].quantity +=(value.quantity);
+      // this.carts[index].price +=(value.price);
+      // this.carts[index].total += (value.price) * (value.quantity);
+      //       return res;
+      // }, {});
+      
+      // console.log(this.carts ,"BIll data check");
 
     if(this.cartItems.userId !== undefined || this.usercombine !== undefined)
     this.selectedUsers =  this.usercombine.filter(x=>x.id==this.cartItems.userId)[0]?.contact;
    }); 
+  
+
    if(this.cartItems.id){
      this.isKOTdone = true;
    } 
@@ -548,7 +552,7 @@ for (var _i = 0; _i < x.length; _i++) {
 
    }
    fnKOTPrint(resp) { 
-    this.toggles=0
+  
     this.fnLoadCartData(); 
     this.showKOTItems = true; 
     const orderS = {status:1}
@@ -558,14 +562,18 @@ for (var _i = 0; _i < x.length; _i++) {
     if(this.cartItems.deliveryMode===undefined ){
       switch(this.cartItems.deliveryOptionId){
         case 1:
-         this.cartItems.deliveryMode = "Dining"; break;
+         this.cartItems.deliveryMode = "Dining";
+         
+         break;
         case 2:
             this.cartItems.deliveryMode = "Home Delivery";
-            
-            
+         
             break;
           case 3:
-            this.cartItems.deliveryMode = "Takeaway"; break;
+            this.cartItems.deliveryMode = "Takeaway";
+
+             break;
+            
       }
     }
     
@@ -600,10 +608,10 @@ for (var _i = 0; _i < x.length; _i++) {
   });
  }
 else if(this.deliveryMode ==='Dining' && this.cartItems.id !== undefined){
-  const carts =[ this.cartItems.grossTotal,this.cartItems.orderItems,
+  // const carts =[ this.cartItems.grossTotal,this.cartItems.orderItems,
 
-  ]
-  console.log(carts,"value check carts")
+  // ]
+
   this.cartService.PutOrder(this.cartItems).subscribe(res=>{
     console.log(this.cartItems,"Put")
 
@@ -642,6 +650,7 @@ else{
  
   }
   fnBillPrint(order: OrderList){
+
     if(this.fstPayment==true){
       this.fnLoadCartData(); 
       this.showKOTItems = true; 
@@ -685,9 +694,29 @@ else{
 
     
     }
+    // console.log(order,"bill print")
+    if(this.cartItems.deliveryMode===undefined ){
+      switch(this.cartItems.deliveryOptionId){
+        case 1:
+         this.cartItems.deliveryMode = "Dining";
+   
+         break;
+        case 2:
+            this.cartItems.deliveryMode = "Home Delivery";
+      
+            break;
+          case 3:
+            this.cartItems.deliveryMode = "Takeaway";
+          
+             break;
+            
+      }
+    }
+    // if(this.cartItems.deliveryMode =='Dining'){
+    //   this.showKOTItems = true;
+    // }
+    
     this.selectedPrintType = 'BillPrintUI';
-   
-   
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;
