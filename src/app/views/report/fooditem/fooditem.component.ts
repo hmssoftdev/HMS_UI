@@ -105,7 +105,8 @@ saveAsExcelFile(buffer: any, Category: string): void {
             name:res.name,
             count:res.count,
             total:res.total,
-          }))
+          })
+          )
         console.log(x,"food res")
       }
     )

@@ -1,3 +1,6 @@
+.heads{
+    text-align: right;
+}
 @media screen and (max-width: 320px){
     .line{
         flex: 1rem !important;
@@ -7,7 +10,22 @@
         font-size: 1.4rem !important;
     }
 }
+@media screen and (min-width:425px){
+    .repeatheads1{
+        width: 71.6667%!important;
+    }
+    .repeatheads2{
+width: 28.3333%;
+    }
+}
 @media screen and (max-width: 425px) {
+    .foodhead{
+        font-size: 1rem !important;
+    }
+    .heads{
+        text-align: center!important;
+        font-size: 1rem !important;
+    }
     .p-paginator-page {
         background-color: #fff;
         border: 1px solid #dee2e6;
@@ -21,7 +39,7 @@
     .p-grid{
         margin-top: 5px !important;
         padding: 10px;
-     height: 236px !important;
+
      overflow: scroll;
     }
     :host ::ng-deep {

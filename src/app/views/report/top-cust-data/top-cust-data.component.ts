@@ -7,7 +7,7 @@ import { TranslateService } from '@ngx-translate/core';
 import { updateConstructor } from 'typescript';
 import { UserService } from '../../../service/user.service';
 import { Historydata } from '../../../models/historydata';
-
+import * as FileSaver from 'file-saver'; 
 @Component({
   selector: 'app-top-cust-data',
   templateUrl: './top-cust-data.component.html',
@@ -23,6 +23,9 @@ export class TopCustDataComponent implements OnInit {
   date= new Date;
   historydata:Historydata[];
   visit:number;
+  cols:any[];
+  exportColumns:any[];
+  colss:any[];
   // cust1:string='';
   // cust2:string='';
   // cus3:string='';
@@ -45,7 +48,13 @@ export class TopCustDataComponent implements OnInit {
   }
   
   ngOnInit(): void {
-    
+    this.cols = [
+      { field: 'userName', header: 'User Name' },
+      { field: 'userMobileNumber', header: 'Contact' },
+      { field: 'visitCount', header: 'Visited' } ,
+      { field: 'grossTotal', header: 'Total' }  
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
     this.startdate=moment(this.date).format('YYYY-MM-DD').toString();
     // this.id=this.auth.userData().adminId;
    
@@ -124,10 +133,44 @@ this.historydata=this.historydata.filter(function(){
     }  )    ;
   }  } ) ;
      
+  this.colss=this.historydata.map(res=> 
+    ({
+      username:res.userName,
+      contact:res.userMobileNumber,
+      visit:res.visitCount,
+      total:res.grossTotal
+    })
+    )
        return result;
 
     }
   )
+  
   }
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.historydata);
+            doc.save('Repeated_Customer.pdf');
+        })
+    })
+}
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Repeated_Customer");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_' + EXCEL_EXTENSION);
+}
 
 }

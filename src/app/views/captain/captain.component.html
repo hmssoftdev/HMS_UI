@@ -12,6 +12,10 @@
                 </div>
                 <!-- <button pButton pRipple [label]="Delete" icon="pi pi-trash" class="p-button-danger" (click)="deleteSelectedCategories()" pTooltip="Delete categories"></button> -->
             </ng-template>
+            <ng-template pTemplate="right">
+                <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+                <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-danger mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+            </ng-template>
         </p-toolbar>
 
 

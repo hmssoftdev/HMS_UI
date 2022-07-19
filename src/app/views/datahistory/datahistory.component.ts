@@ -38,7 +38,7 @@ export class DatahistoryComponent implements OnInit {
   cols:any[];
   exportColumns:any[];
   colss:any[]
-  pdfobj:any[]
+   pdfobj:any[]
   constructor(public message:MessageService,public adminService: AdminService,public auth:AuthService,
     private user:UserService, private enumService:EnumService,private confirmationService: ConfirmationService) { }
 

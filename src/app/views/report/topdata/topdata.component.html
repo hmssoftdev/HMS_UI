@@ -1,5 +1,20 @@
 
+
+
+<div class="p-grid p-d-flex p-ai-center heads"> 
+  <div class="p-col-6 p-md-8 heads">
+      <h5>
+      
+          <span class="text-3xl foodhead">{{'Top Customer with most Bill and Amount in Month'|translate}}</span></h5>
+  </div>
+   <div class="p-col-6 p-md-4 heads">
+      <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
+      <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-danger mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
+  </div>
+</div>
+
         <div class="p-grid">
+
           <p-table responsiveLayout="stack" [value]="historydata" responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
 [rows]="10" [showCurrentPageReport]="true" [rowHover]="true" dataKey="id"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"

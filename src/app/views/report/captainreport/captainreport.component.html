@@ -8,24 +8,29 @@
     <div class="p-grid p-d-flex p-ai-center"> 
         <div class="p-col-6 p-md-8 heads">
             <h5>
-                <span class="text-3xl foodhead">{{'Most Food Item Sale in Month'| translate}}</span></h5>
+                <span class="text-3xl foodhead">{{'Captain Data in Month'| translate}}</span></h5>
         </div>
          <div class="p-col-6 p-md-4 heads">
             <button type="button" pButton pRipple icon="pi pi-file-excel" (click)="exportExcel()" class="p-button-success mr-2"  pTooltip="XLS" tooltipPosition="bottom"></button>
             <button type="button" pButton pRipple icon="pi pi-file-pdf" (click)="exportPdf()" class="p-button-danger mr-2" pTooltip="PDF" tooltipPosition="bottom"></button>
         </div>
     </div>
-<p-table [value]="fooddata" class="p-text-center"
+<p-table  class="p-text-center"
 responsiveLayout="stack" styleClass="p-datatable-customcss" [paginator]="true"
 [rows]="10" [showCurrentPageReport]="true"  [rowHover]="true" dataKey="id"
 currentPageReportTemplate="Showing {first} to {last} of {totalRecords} entries"
 [rowsPerPageOptions]="[10,25,50]" [scrollable]="true" [rows]="100" scrollHeight="350px"
-[virtualScroll]="true" [virtualRowHeight]="40" sortField="count" [sortOrder]="-1">   
+[virtualScroll]="true" [virtualRowHeight]="40">   
     <ng-template pTemplate="header" class="p-text-center">
         <tr>
-            <th class="p-text-center">{{'Food Item'| translate}}</th>
-            <th class="p-text-center">{{'Total Quantity'| translate}}</th>
-            <th class="p-text-center">{{'Total Amount'| translate}}</th>
+            <th class="p-text-center">{{'Name'| translate}}</th>
+            <th class="p-text-center">{{'Contact'| translate}}</th>
+            <th class="p-text-center">{{'Email'| translate}}</th>
+             <th class="p-text-center">{{'Table'| translate}}</th>
+             <th class="p-text-center">{{'Amount'| translate}}</th>
+             
+
+
            
         </tr>
     </ng-template>

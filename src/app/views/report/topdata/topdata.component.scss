@@ -1,21 +1,36 @@
+.heads{
+    text-align: right;
+}
 @media screen and (max-width: 425px) {
-    .p-paginator-page {
-        background-color: #fff;
-        border: 1px solid #dee2e6;
-        color: #007bff;
-        min-width: 1.357rem;
-        height: 1.357rem;
-        margin: 0 0 0 -1px;
+    .foodhead{
+        font-size: 1rem !important;
     }
-    
- 
-    .p-grid{
-        margin-top: 5px !important;
-        padding: 10px;
-     height: 236px !important;
-     overflow: scroll;
+    .heads{
+        text-align: center!important;
+        font-size: 1rem !important;
+   
     }
+  
+.p-grid{
+    margin-top: 5px !important;
+    padding: 10px;
+
+ overflow: scroll;
+}
+
+
     :host ::ng-deep {
+        .p-paginator-page {
+            background-color: #fff;
+            border: 1px solid #dee2e6;
+            color: #007bff;
+            min-width: 1.357rem;
+            height: 1.357rem;
+            margin: 0 0 0 -1px;
+        }
+        
+     
+        
         .p-button.p-button-icon-only{
             height: 1.667rem;
             width: 1.667rem;

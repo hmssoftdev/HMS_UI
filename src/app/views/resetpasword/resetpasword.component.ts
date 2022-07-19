@@ -18,8 +18,7 @@ host:string
   ngOnInit(): void {
    this.id = this.activatedRoute.snapshot.queryParamMap.get('param');
     this.activatedRoute.queryParamMap.subscribe(params => {
-    
-     
+        
   });
  
   }
