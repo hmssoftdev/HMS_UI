@@ -33,8 +33,10 @@ export class LoginComponent implements OnInit {
     this.users = {};
     this.userList = [{username: '' , password: '', contact: 1234567890}];
     if(this.authService.loggedIn()){
+      this.authService.pageHeadingSubject$.next('HMS')
       this.location.back();
     }
+
   }
 
   keypress(e: KeyboardEvent){

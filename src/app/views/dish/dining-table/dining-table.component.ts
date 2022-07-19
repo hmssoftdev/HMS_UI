@@ -16,6 +16,7 @@ export class DiningTableComponent implements OnInit {
   displayBasic: boolean;
   msg:Message[] =[]
   username:string
+  talbname:string;
   constructor(
     public tableSvc: TableService, 
     private cartService: CartService,
@@ -41,8 +42,11 @@ fnTblBook(tblItem){
 
       // console.log(tblItem.isBooked,"Table Check")
       this.tableSvc.getOrderDataBytblId(tblItem.id).subscribe(resp => {
-        if(resp){
-          this.cartService.save(resp);
+        if(resp){ 
+          resp.orderItems.forEach((itm) =>{
+            itm.prevQuantities = itm.quantity
+           })  
+           this.cartService.save(resp);
            this.selectedTableID = [];
           this.tableList.map((res:any,i) => { 
             
@@ -53,6 +57,8 @@ fnTblBook(tblItem){
             }
           });  
            const tblData = {tblArr:this.selectedTableID, tblSelectionType:'addUpdateTbl'}
+           this.talbname=tblItem.name
+           console.log(this.talbname,"tab check")
            this.tableSelection.emit(tblData)
         }
       })
@@ -66,10 +72,12 @@ fnTblBook(tblItem){
             if(res.name === tblItem.name ){ 
               tblItem.isBooked = true; 
               this.selectedTableID.push(tblItem.name)
+              this.talbname=tblItem.name
              this.cartService.addTable(tblItem); 
             }
           });  
            const tblData = {tblArr:this.selectedTableID, tblSelectionType:'addUpdateTbl'}
+           this.talbname=tblItem.name
            this.tableSelection.emit(tblData) 
         }
     }, err => {console.log(err)});

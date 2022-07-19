@@ -1,4 +1,4 @@
-import { BrowserModule } from '@angular/platform-browser';
+import { BrowserModule, Title } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { HttpClient, HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
@@ -86,6 +86,7 @@ import { StockstatusComponent } from './views/inventory/stockstatus/stockstatus.
 // import {ButtonModule} from 'primeng/button';
 // import {MultiSelectModule} from 'primeng/multiselect';
 // import {InputTextModule} from 'primeng/inputtext';
+import { CaptainreportComponent } from './views/report/captainreport/captainreport.component'
 import { LicenseComponent } from './views/license/license.component';
 @NgModule({
   imports: [
@@ -130,6 +131,7 @@ import { LicenseComponent } from './views/license/license.component';
 })
   ],
   declarations: [
+    CaptainreportComponent,
     LicenseComponent,
     RecipesComponent,
     StockstatusComponent,
@@ -168,6 +170,7 @@ import { LicenseComponent } from './views/license/license.component';
   providers: [
     AuthService,
     AuthGuard,
+    Title,
     {
       provide: LocationStrategy,
       useClass: HashLocationStrategy

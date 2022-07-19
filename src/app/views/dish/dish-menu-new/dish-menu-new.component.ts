@@ -104,6 +104,8 @@ export class DishMenuNewComponent implements OnInit {
    noprintsubmit:boolean
   //  carts:any
    billdone:boolean
+   tablename:any;
+   tables:boolean
   //  mode:Subscription;
   //  customLabel:string="KOT Print"
   constructor(
@@ -302,6 +304,8 @@ for (var _i = 0; _i < x.length; _i++) {
       this.fnLoadCartData();
       this.selectedUser = null;
       this.selectedUsers = '';
+      this.tablename=''
+      this.tables=false
       this.deliveryMode = '';
       this.KOTEnabled = false;
       this.isKOTdone = false;
@@ -458,7 +462,7 @@ for (var _i = 0; _i < x.length; _i++) {
             
             
             break;
-          case 3:
+        case 3:
             this.cartItems.deliveryMode = "Takeaway"; break;
       }
     }
@@ -653,7 +657,7 @@ else{
 
     if(this.fstPayment==true){
       this.fnLoadCartData(); 
-      this.showKOTItems = true; 
+     // this.showKOTItems = true; 
       const orderS = {status:1}
       this.cartItems.orderStatus = this.cartItems.orderStatus ? this.cartItems.orderStatus : [];
       this.cartItems.orderStatus.push(orderS) 
@@ -717,6 +721,7 @@ else{
     // }
     
     this.selectedPrintType = 'BillPrintUI';
+    this.showKOTItems = true; 
     this.selectedOrderId = order.id;
     this.selectedOrderTotal = order.grossTotal;
     this.cartData = order;
@@ -746,12 +751,17 @@ else{
   }
 
   fnTableSelection(arr:any){
+    
       const tblArr = arr.tblArr;
       this.KOTEnabled = true; 
       this.selectedTableNames = tblArr;
+      this.tablename=arr.tblArr[0];
+      this.tables=true;
       if(arr.tblSelectionType != 'releaseTbl'){ 
       this.diningTableDialog = false;
-      }
+      
+      console.log(arr,"table array check",this.selectedTableNames,arr.tblArr[0])  
+    }
             this.fnLoadCartData();
       // console.log(this.fnLoadCartData(),"Cart Item Check")
   }

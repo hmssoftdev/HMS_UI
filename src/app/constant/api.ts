@@ -2,7 +2,7 @@ import {environment} from './../../environments/environment'
 export class ApiConfig {
     
     //public static URL ="http://localhost:5000/";// environment.apiURL //'http://localhost:8000/'
-    public static URL ="http://hmswebapi-dev.us-east-1.elasticbeanstalk.com/";// environment.apiURL //'http://localhost:8000/'
+    public static URL ="https://hmsserver.net/";  //https://hmsserver.net/swagger    // environment.apiURL //'http://localhost:8000/'
     public static DISH = 'Dish';
     public static DISHCATEGORY = 'DishCategory';
     public static CLIENT = 'Admin';

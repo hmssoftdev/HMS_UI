@@ -51,7 +51,9 @@ export class ReportComponent implements OnInit {
   selectedHotel:any[]
   userData:any;
   show:boolean;
-
+  display:boolean
+  capdisplay: boolean;
+  
   constructor(public user: UserService,public adminService: AdminService, public auth: AuthService,public translate:TranslateService,comset:CommonService,public capnfran:CapnfranService) {
 
     comset.Obslangauge.subscribe(res=>{
@@ -71,19 +73,38 @@ export class ReportComponent implements OnInit {
   }
   ngOnInit() {
     // this.getSummaryData();
-    
+  
     this.userData=this.auth.userData();
+  
     this.frachiseget()
     this.fnshowData(this.show)
   }
   fnshowData(shows:boolean){
     this.show=shows
+
+    this.capnfran.GetFranchise(this.auth.userData().adminId).subscribe(x=>{
+  
+      console.log(x.length)
+      if(x.length > 0)
+      {
+      this.capdisplay=true
+    }
+    })
   }
   frachiseget(){
+  
     this.capnfran.GetFranchise(this.auth.userData().adminId).subscribe(x=>{
+      if(x.length > 0)
+      {
+      this.display=true
+    }
+  else
+    {
+      this.ID =[ this.auth.userData().adminId]
+      this.show=true  
+    }
       this.frachlist=x
-     
-      return this.frachlist;
+  return this.frachlist;
     })
     // this.adminService.getClientList().subscribe(res => {
     //   this.adminList=res

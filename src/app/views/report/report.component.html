@@ -4,12 +4,11 @@
 
     <h4 class="p-text-center">
       <span class="text-6xl">{{'Today Summary'| translate}}</span></h4>
-      <div class="p-grid" *ngIf="userData.userType == 2">
+      <div class="p-grid" *ngIf="userData.userType == 2 && display==true">
         <div class="p-col-12 p-md-6 p-field p-text-center">
           <div class="p-field p-d-flex p-jc-between p-ai-baseline">
             <div>
-              <span>Franchise Report </span>
-               
+              <span>Franchise Report</span>
             </div>
             <div class="p-field">
               <p-multiSelect [options]="frachlist" [style]="{'width':'200px'}"
@@ -86,6 +85,10 @@
     <div class="p-col-12 p-text-center">
   
       <app-top-cust-data [ID]="ID" *ngIf="show==true"> </app-top-cust-data>
+    </div> 
+    <div class="p-col-12 p-text-center" >
+  
+      <app-captainreport [ID]="ID" *ngIf="show==true && capdisplay"> </app-captainreport>
     </div>
 
         

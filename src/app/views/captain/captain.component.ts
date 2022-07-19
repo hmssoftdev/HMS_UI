@@ -7,7 +7,7 @@ import { CapnfranService } from '../../service/capnfran.service';
 import { TableService } from '../../service/table.service';
 import { PrimeNGConfig } from 'primeng/api';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-
+import * as FileSaver from 'file-saver';
 @Component({
   selector: 'app-captain',
   templateUrl: './captain.component.html',
@@ -22,8 +22,11 @@ export class CaptainComponent implements OnInit {
   cap:captain[]=[];
   id:number
   submitted: boolean;
-  
+  cols:any[];
+  exportColumns:any[];
+  colss:any[]
   forms: FormGroup;
+  pdfobj:any[]
   constructor(private primengConfig: PrimeNGConfig,
     public tableSvc: TableService,public capnfran :CapnfranService,public msgser:MessageService,public auth:AuthService,private fb: FormBuilder) { 
       // this.createForm();
@@ -35,6 +38,7 @@ export class CaptainComponent implements OnInit {
     // }
   value1:string;
   ngOnInit(): void {
+
     this.primengConfig.ripple = true;
     this.id=this.auth.userData().adminId
     this.captain={
@@ -51,6 +55,18 @@ export class CaptainComponent implements OnInit {
     //     name:"",
     //   }
     // ]
+    this.cols = [
+      { field: 'userName', header: 'Name' },
+      { field: 'contact', header: 'Contact' },
+      { field: 'email', header: 'Email' },
+     { field: 'tableList', header: 'Table' }, 
+   
+
+
+   
+  ];
+  this.exportColumns = this.cols.map(col => ({title: col.header, dataKey: col.field}));
+
     this.tableSvc.getTableData().subscribe(res => {
       this.tablelist = res;
   })
@@ -91,8 +107,51 @@ export class CaptainComponent implements OnInit {
   getCaptain() {
     this.capnfran.ReadCaptain(this.id).subscribe(x=>{
       this.cap=x
+
+      this.colss=this.cap.map(res=> 
+        ({
+          Name:res.user.userName,
+          Contact:res.user.contact,
+          Email:res.user.email,
+          Table:res.tableList,
+        }))
+
+        this.pdfobj =this.cap.map(x=>({
+          userName:x.user.userName,
+          contact:x.user.contact,
+          email:x.user.email,
+          tableList:x.tableList
+        }))
+        console.log(this.pdfobj)
     })
+    // .map(x=>{x.name})
   }
+  exportPdf() {
+    import("jspdf").then(jsPDF => {
+        import("jspdf-autotable").then(x => {
+            const doc = new jsPDF.default();
+            (doc as any).autoTable(this.exportColumns, this.pdfobj);
+            doc.save('Captain_list.pdf');
+        })
+    })
+}
+exportExcel() {
+  import("xlsx").then(xlsx => {
+      const worksheet = xlsx.utils.json_to_sheet(this.colss);
+      const workbook = { Sheets: { 'data': worksheet }, SheetNames: ['data'] };
+      const excelBuffer: any = xlsx.write(workbook, { bookType: 'xlsx', type: 'array' });
+      this.saveAsExcelFile(excelBuffer, "Captain");
+  });
+}
+saveAsExcelFile(buffer: any, Category: string): void {
+  let EXCEL_TYPE = 'application/vnd.openxmlformats-officedocument.spreadsheetml.sheet;charset=UTF-8';
+  let EXCEL_EXTENSION = '.xlsx';
+  const data: Blob = new Blob([buffer], {
+      type: EXCEL_TYPE
+  });
+  FileSaver.saveAs(data, Category + '_List_' + EXCEL_EXTENSION);
+}
+
 
 }
 

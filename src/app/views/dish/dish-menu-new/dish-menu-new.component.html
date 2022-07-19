@@ -186,9 +186,9 @@
 
           <ng-container *ngIf="dish.status === 'active' && simplemenu==true"> 
        
-            <div class="p-col-12 p-md-4 simplemenu">
+            <div class="p-col-6 p-md-4 simplemenu">
       
-       <div class="product-grid-item card">
+       <div class="product-grid-item card cart">
         
         <div class="product-grid-item-content">
           <div class="p-d-flex p-jc-between">
@@ -410,7 +410,7 @@
         <div class="p-grid">
             <div class="p-col-12 p-text-left">
              <span style="color: red;" class="text-xl" *ngIf="droperror==true">Please select customer data for bill</span>
-           <span class="p-text-uppercase"> <strong>{{selectedUsers}}</strong> </span>
+           <span class="p-text-uppercase"> <strong class="p-mr-1">{{selectedUsers}}</strong><p-tag value="{{tablename}}" severity="success" *ngIf="tables"></p-tag>  </span>
           </div> 
          
           
@@ -463,7 +463,7 @@
                   pButton
                   type="button"
                   icon="pi pi-minus"
-                  [disabled]="item.kotPrinted"
+                  [disabled]="item.prevQuantities === item.quantity"
                   (click)="removeItem(item)"
                   class="
                     p-button-secondary
@@ -479,8 +479,7 @@
                 <button
                   pButton
                   type="button"
-                  icon="pi pi-plus"
-                  [disabled]="item.kotPrinted"
+                  icon="pi pi-plus" 
                   (click)="addItem(item)"
                   class="
                     p-button-success
@@ -601,8 +600,8 @@
               type="button"
               label="Bill Print"
               [disabled]="!isKOTdone"                                            
-              (click)="fnBillPrint($event)"
-              class="p-button-sm p-button-info p-p-1 cartbtn"
+              (click)="fnBillPrint(cartItems)"
+              class="p-button-sm p-button-info p-p-1"
               *ngIf="both==false"
             ></button>
             <button
@@ -645,8 +644,10 @@
           </div>
         </div>
 
-        <p *ngIf="cartItems?.orderItems?.length == 0">
+        <p *ngIf="cartItems?.orderItems?.length == 0" class="lead">
           Order some yummy and delicious food from menu!
+          <br>
+          Your cart is empty !
         </p>
         <!-- cart Item end -->
       </div>

@@ -15,13 +15,13 @@
         </tr>
       </thead>
 
-      <tbody *ngFor="let item of orderData.orderItems">
-        <tr *ngIf="!item.kotPrinted">
+      <tbody *ngFor="let item of orderData.orderItems" >
+        <tr *ngIf="item.quantity-item.prevQuantities > 0">
           <td style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
             {{ item.name }}{{item.isFull ? '' : ' (Half)'}}
           </td>
           <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
-            {{ item.quantity }}
+            {{item.quantity - item.prevQuantities}}
           </td>
         </tr>
       </tbody>
@@ -77,8 +77,12 @@
                 <span style="text-transform:capitalize;color:black;font-family:Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">{{userdata}}</span> </div>
             </td>
           </tr>
+
         </table> 
-  <table  class="tblInvoice" cellspacing="0" cellpadding="0">
+ 
+        
+  <table class="tblInvoice" cellspacing="0" cellpadding="0">
+
     <thead>
       <tr>
         <th style="width:10%;color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">#</th>
@@ -168,12 +172,12 @@
       </thead>
 
       <tbody *ngFor="let item of orderData.orderItems">
-        <tr *ngIf="!item.kotPrinted">
+        <tr>
           <td style="color: black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
             {{ item.name }}{{item.isFull ? '' : ' (Half)'}}
           </td>
           <td class="p-text-right" style="color:black;font-family: Verdana,Geneva,sans-serif;font-size: 10px;font-weight:bold;">
-            {{ item.quantity }}
+            {{ item.quantity - item.prevQuantities}}
           </td>
         </tr>
       </tbody>

@@ -55,6 +55,7 @@ userData:any
   fnLogout(){
     this.logOut.emit();
     this.lbluserProfleShow = false;
+    this.authService.pageHeadingSubject$.next('HMS')
   }
   fnToggleUProfile(){
     this.lbluserProfleShow = !this.lbluserProfleShow;

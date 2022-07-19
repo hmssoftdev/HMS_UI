@@ -11,6 +11,7 @@ export class CartItem {
   public gstPrice:number;
   public isFull: boolean;
   public kotPrinted: boolean;
+  public prevQuantities:number = 0;
 }
 export class ShoppingCart {
   public id: number;

@@ -12,6 +12,7 @@ import { setting } from './models/setting';
 import { CommonService } from './service/common.service';
 import { SettingComponent } from './views/setting/setting.component';
 import { MessageService } from 'primeng/api';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   // tslint:disable-next-line
@@ -36,7 +37,8 @@ export class AppComponent implements OnInit {
     public authService:AuthService,
     private user:UserService,
     private storageService: StorageService,private users: UserService,private cmser:CommonService,
-    public translate:TranslateService
+    public translate:TranslateService,
+    private title: Title
   ) {
     // iconSet singleton
     iconSet.icons = { ...freeSet };
@@ -50,7 +52,9 @@ export class AppComponent implements OnInit {
     this.sidebarMinimized = e;
   }
   ngOnInit() { 
-  
+    this.authService.pageHeadingSubject$.subscribe(resp => {
+      if(resp){this.title.setTitle(resp)}
+    })
     const uData = JSON.parse(this.storage.getItem('HMSUserData'));
     if(uData && uData.userType != 4){
       this.authService.uLoggedInSubject$.next(true)
