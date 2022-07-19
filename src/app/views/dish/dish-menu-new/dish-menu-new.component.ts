@@ -655,7 +655,7 @@ else{
   }
   fnBillPrint(order: OrderList){
 
-    if(this.fstPayment==true){
+     if(this.fstPayment==true){
       this.fnLoadCartData(); 
      // this.showKOTItems = true; 
       const orderS = {status:1}
