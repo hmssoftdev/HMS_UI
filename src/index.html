@@ -9,11 +9,34 @@
   <!-- <meta name="author" content="Łukasz Holeczek"> -->
   <meta name="keyword" content="Hotel Management Service">
 	<link rel="shortcut icon" href="assets/favicon.ico">
-
+  <script defer src="../init-firebase.js"></script>
 	<title>HMS</title>
   <!-- Global site tag (gtag.js) - Google Analytics -->
   <script async="" src="https://www.googletagmanager.com/gtag/js?id=UA-118965717-3"></script>
-
+  <script type="module">
+    // Import the functions you need from the SDKs you need
+    import { initializeApp } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-app.js";
+    import { getAnalytics } from "https://www.gstatic.com/firebasejs/9.9.0/firebase-analytics.js";
+    // TODO: Add SDKs for Firebase products that you want to use
+    // https://firebase.google.com/docs/web/setup#available-libraries
+  
+    // Your web app's Firebase configuration
+    // For Firebase JS SDK v7.20.0 and later, measurementId is optional
+    const firebaseConfig = {
+      apiKey: "AIzaSyCtinGzzcZPkWwvTq-CwVhWMQLLJy-reiI",
+      authDomain: "hmstest-6cdfd.firebaseapp.com",
+      databaseURL: "https://hmstest-6cdfd-default-rtdb.firebaseio.com",
+      projectId: "hmstest-6cdfd",
+      storageBucket: "hmstest-6cdfd.appspot.com",
+      messagingSenderId: "970556843525",
+      appId: "1:970556843525:web:dbf891ba00e45986869e6c",
+      measurementId: "G-QW3G04YLET"
+    };
+  
+    // Initialize Firebase
+    const app = initializeApp(firebaseConfig);
+    const analytics = getAnalytics(app);
+  </script>
   <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
 <link href="https://fonts.googleapis.com/css2?family=Nanum+Gothic+Coding&amp;display=swap" rel="stylesheet">

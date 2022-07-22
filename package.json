@@ -53,6 +53,7 @@
         "compose-function": "^3.0.3",
         "es6-iterator": "^2.0.3",
         "file-saver": "^2.0.5",
+        "firebase": "^9.9.0",
         "flag-icon-css": "^3.5.0",
         "font-awesome": "^4.7.0",
         "i18n-iso-countries": "^7.3.0",

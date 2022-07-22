@@ -5,5 +5,15 @@
 
 export const environment = {
   production: false,
-  apiURL : 'http://webapplication121-dev.us-east-2.elasticbeanstalk.com/'    //'http://localhost:8000/'
+  apiURL : 'https://hmsserver.net/'  ,
+   firebase : {
+    apiKey: "AIzaSyCtinGzzcZPkWwvTq-CwVhWMQLLJy-reiI",
+    authDomain: "hmstest-6cdfd.firebaseapp.com",
+    databaseURL: "https://hmstest-6cdfd-default-rtdb.firebaseio.com",
+    projectId: "hmstest-6cdfd",
+    storageBucket: "hmstest-6cdfd.appspot.com",
+    messagingSenderId: "970556843525",
+    appId: "1:970556843525:web:dbf891ba00e45986869e6c",
+    measurementId: "G-QW3G04YLET"
+  }  //'http://localhost:8000/'
 };
